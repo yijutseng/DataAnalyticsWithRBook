@@ -1,0 +1,164 @@
+# 資料讀取與匯出 {#io}
+
+What is 'Data'?
+
+http://en.wikipedia.org/wiki/Data
+
+`Data are values of qualitative or quantitative variables, belonging to a set of items.`
+
+看完本章會學到：
+
+- 找資料、抓資料、總之就是弄到資料
+- 資料前處理原則：tidy
+- 用R做到以上工作
+
+`Raw data` -> **Processing script** -> `Tidy data` -> Data analysis -> Data communication
+
+## 資料類型
+
+### Tidy Data
+
+- 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
+- 不同的觀察值應該要在不同行（Raw）
+- 一張表裡面，有所有分析需要的資料
+- 如果一定要多張表，中間一定要有index可以把表串起來
+- One file, one table
+
+```{r results='hide',message=FALSE}
+if (!require('SportsAnalytics')){
+    install.packages("SportsAnalytics")
+    library(SportsAnalytics)
+}
+NBA1415<-fetch_NBAPlayerStatistics("14-15")
+```
+```{r}
+head(NBA1415)
+```
+
+### 真實世界裡的Raw Data
+
+#### Html
+
+#### Facebook
+
+#### !?
+
+
+## 資料到底在哪裡？
+- 硬碟裡 
+- 網路下載
+- Open Data
+    - http://data.taipei/
+    - http://data.tycg.gov.tw/
+    - http://data.moi.gov.tw/
+    
+- 網頁裡（爬蟲！）
+- 任何地方
+
+### Open Data 
+http://bit.ly/1U3pVoI
+<img src="fig/marriage.png" width="800px">
+
+<img src="fig/marriageData.png" width="800px">
+
+
+## 讀取各類檔案
+### 表格(.csv / Tab分隔 / Excel)
+`read.table`, `read.csv`, 讀取表格資料
+
+The `read.table`, `read.csv` 是最常見的，會用這些就好
+
+有以下參數：
+
+- `file`, 檔名
+- `header`, 是否有欄位名稱（表頭）（T/F）
+- `sep`, 分隔符號
+- `colClasses`, 每一個欄位的類別，用向量表示 
+- `comment.char`, 把欄位包起來的符號
+- `skip`, 要跳過幾行？
+- `stringsAsFactors`, 要不要輸入成'Factor'（有序因子）
+
+要安裝xlsx 套件
+
+```r
+if (!require('xlsx')){
+    install.packages("xlsx")
+    library(xlsx)
+}
+ExcelData <- read.xlsx("data.xlsx",sheetIndex=1,header=TRUE)
+head(ExcelData)
+```
+
+## read.csv使用範例
+完全不用給參數
+```{r eval=FALSE}
+data <- read.csv('open.csv')
+data
+```
+
+
+
+### 文字資料
+`readLines`, 逐行讀取文字資料
+
+### R檔案格式
+`load`, 讀取已經在R裡面的資料（Ex: iris）
+
+### R程式
+`source`, 讀R的Obejct or script, 執行, ASCII (`dump`的相反) 
+
+
+
+## 各類檔案匯出
+寫檔的函數跟讀檔很像：
+
+### 表格(.csv / Tab分隔)
+`write.table`
+
+### 文字資料
+`writeLines`
+
+### R檔案格式
+`save`
+
+### R程式
+`dump`
+
+
+
+##讀檔的時候R會自動
+
+- 跳過#開頭的任何行（Row）
+- 判斷要讀幾行
+- 判斷每個列（Column）的類別
+- 把欄位包起來的符號
+
+如果讀取時已指定**Column類別**以及**把欄位包起來的符號**，會快很多
+
+```{r eval=FALSE}
+initial <- read.csv("open.csv", nrows = 100)
+classes <- sapply(initial, class)
+tabAll <- read.csv("open.csv", colClasses = classes)
+```
+
+
+##從網路上下載檔案 download.file
+使用RCurl Package
+
+download.file(URL, destfile=儲存檔名, method=?)
+
+method = "curl"-->For **https**
+```{r eval=FALSE, results='hide',message=FALSE, warning=F,cache=T}
+if (!require('RCurl')){
+    install.packages("RCurl")
+    library(RCurl)
+}
+download.file("https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv", 
+              destfile = "open.csv", method = "curl")
+```
+
+## Open Data
+
+## 爬蟲
+
+

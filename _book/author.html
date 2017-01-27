@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>資料科學與R語言</title>
+  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。">
+  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
+
+  <meta property="og:title" content="資料科學與R語言" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。" />
+  <meta name="github-repo" content="yijutseng/DataAnalyticsWithR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="資料科學與R語言" />
+  
+  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。" />
+  
+
+<meta name="author" content="曾意儒 Yi-Ju Tseng">
+
+
+<meta name="date" content="2017-01-26">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="big.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">資料科學與R語言</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface"></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R 101</a></li>
+<li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R資料結構</a></li>
+<li class="chapter" data-level="3" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>3</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="3.1" data-path="io.html"><a href="io.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 資料類型</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="io.html"><a href="io.html#tidy-data"><i class="fa fa-check"></i><b>3.1.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="io.html"><a href="io.html#raw-data"><i class="fa fa-check"></i><b>3.1.2</b> 真實世界裡的Raw Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="io.html"><a href="io.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 資料到底在哪裡？</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>3.2.1</b> Open Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="io.html"><a href="io.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 讀取各類檔案</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="io.html"><a href="io.html#.csv-tab-excel"><i class="fa fa-check"></i><b>3.3.1</b> 表格(.csv / Tab分隔 / Excel)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="io.html"><a href="io.html#read.csv"><i class="fa fa-check"></i><b>3.4</b> read.csv使用範例</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="io.html"><a href="io.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 文字資料</a></li>
+<li class="chapter" data-level="3.4.2" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.4.2</b> R檔案格式</a></li>
+<li class="chapter" data-level="3.4.3" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.4.3</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="io.html"><a href="io.html#section-3.5"><i class="fa fa-check"></i><b>3.5</b> 各類檔案匯出</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="io.html"><a href="io.html#.csv-tab"><i class="fa fa-check"></i><b>3.5.1</b> 表格(.csv / Tab分隔)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="io.html"><a href="io.html#-1"><i class="fa fa-check"></i><b>3.5.2</b> 文字資料</a></li>
+<li class="chapter" data-level="3.5.3" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.3</b> R檔案格式</a></li>
+<li class="chapter" data-level="3.5.4" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.4</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.6</b> 讀檔的時候R會自動</a></li>
+<li class="chapter" data-level="3.7" data-path="io.html"><a href="io.html#-download.file"><i class="fa fa-check"></i><b>3.7</b> 從網路上下載檔案 download.file</a></li>
+<li class="chapter" data-level="3.8" data-path="io.html"><a href="io.html#open-data-1"><i class="fa fa-check"></i><b>3.8</b> Open Data</a></li>
+<li class="chapter" data-level="3.9" data-path="io.html"><a href="io.html#section-3.9"><i class="fa fa-check"></i><b>3.9</b> 爬蟲</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>5</b> 控制流程</a></li>
+<li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a></li>
+<li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a></li>
+<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
+<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">資料科學與R語言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="author" class="section level1 unnumbered">
+<h1>作者資訊</h1>
+<p>曾意儒 Yi-Ju Tseng</p>
+<p><a href="http://yijutseng.github.io">個人網站</a></p>
+<p><a href="http://yijutseng.github.io/Lab/">數位健康實驗室</a></p>
+<p><a href="http://im.cgu.edu.tw/bin/home.php">長庚大學 資訊管理學系</a> 助理教授</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="big.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/09-author.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

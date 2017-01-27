@@ -1,0 +1,180 @@
+# 從小數據到大數據分析 {#big}
+
+## R + Hadoop
+
+## RHadoop安裝測試流程 (Cloudera)
+安裝與測試日期2016/05/12
+
+### 系統/軟體版本資訊
+- Cloudera Hadoop Platform: CDH-5.4.5 [下載](http://www.cloudera.com/downloads/cdh/5-4-5.html)
+- R for Linux 3.3.0 [安裝說明](https://cran.rstudio.com/bin/linux/redhat/README)
+- RStudio Server [下載](https://www.rstudio.com/products/rstudio/download-server/)
+- RHadoop (latest version on May 12, 2016) [下載](https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads)
+    - ravro-1.0.3
+    - plyrmr-0.6.0
+    - rmr-3.3.1
+    - rhdfs-1.0.8
+    - rhbase-1.2.1
+
+
+### 參考資料
+- [RHadoop安裝說明文件](https://github.com/RevolutionAnalytics/RHadoop/wiki/Installing-RHadoop-on-RHEL)
+- [RHadoop安裝步驟](https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV)
+- [Setting persistent environment variable in CentOS 7 issue](http://unix.stackexchange.com/questions/271514/setting-persistent-environment-variable-in-centos-7-issue)
+- [How to resolve "Permission denied" errors in CDH](https://community.cloudera.com/t5/CDH-Manual-Installation/How-to-resolve-quot-Permission-denied-quot-errors-in-CDH/ta-p/36141)
+
+### 安裝步驟
+1. 下載Cloudera CDH QuickStart VM [Cloudera VM](http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html)
+2. 安裝R [安裝說明](https://cran.rstudio.com/bin/linux/redhat/README)
+3. 安裝RHadoop [RHadoop安裝步驟](https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV)
+4. 安裝RStudio Server [說明](https://www.rstudio.com/products/rstudio/download-server/)
+
+#### Cloudera CDH QuickStart VM
+Cloudera CDH QuickStart VM是由Cloudera提供的虛擬機器，內涵Linux系統與預載多項Hadoop相關服務，適合想了解Hadoop運作的初學者。
+
+下載VM後，用Virtural Box 開啟即可。
+
+- [Cloudera CDH QuickStart VM下載處](http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html)
+- [Virtural Box下載處](https://www.virtualbox.org/)
+
+以下安裝步驟都在Cloudera CDH QuickStart VM內進行
+
+#### 安裝R
+- Cloudera CDH用的Linux作業系統是CentOS
+- 依照安裝說明，需要先安裝Extra
+Packages for Enterprise Linux (EPEL)，但系統內有預載，所以可以不用按照說明重新下載安裝，直接執行`sudo yum install epel-release`指令即可
+- 步驟：安裝最新EPRL，更新yum，安裝R。打開Terminal輸入以下指令。
+
+```
+sudo yum install epel-release
+sudo yum update
+sudo yum install R
+```
+
+#### 安裝RHadoop-1 先進行環境設定
+設定`HADOOP_CMD`與`HADOOP_STREAMING`兩項環境參數，路徑可能會不同（尤其是`HADOOP_STREAMING`）
+
+1. 尋找`HADOOP_STREAMING`路徑方法
+```
+find / -name hadoop-streaming-*.jar
+```
+
+2. 設定`HADOOP_CMD`與`HADOOP_STREAMING`兩項環境參數，路徑記得換成自己的
+```
+echo export HADOOP_CMD="/usr/bin/hadoop">/etc/profile.d/hadoopenv.sh
+echo export HADOOP_STREAMING=
+    "/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/
+        hadoop-streaming-2.6.0-cdh5.4.5.jar" > /etc/profile.d/hadoopenv.sh
+chmod 0755 /etc/profile.d/hadoopenv.sh
+```
+
+#### 安裝RHadoop-2 rmr2
+- 每個Node都要裝
+- 安裝前先至[說明檔](https://github.com/RevolutionAnalytics/rmr2/blob/master/pkg/DESCRIPTION)看需要先安裝哪些其他的packages，Depends 和 Imports 所列的packages都要裝
+- 以下為安裝packages的程式碼，在R內執行（在Terminal輸入`R`，就能進入R軟體）
+```{r, eval=F}
+install.packages(c("methods","Rcpp", "RJSONIO", "digest", "functional", 
+                   "reshape2","stringr", "plyr", "caTools","quickcheck","testthat"), 
+                 dependencies=TRUE, repos='http://cran.rstudio.com/')
+```
+
+- 使用`q()`指令，跳出R軟體
+- [下載rmr2](https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads)
+- 安裝（請將`rmr2_2.3.0.tar.gz`替換成剛剛下載的安裝檔路徑）
+
+```
+sudo R CMD INSTALL rmr2_2.3.0.tar.gz
+```
+
+#### 安裝RHadoop-3 rhdfs
+- 只要裝在會跑R的那個Node
+- 在裝之前，先Check是否有安裝JDK （測試JDK 1.8.0_91沒問題）
+- Check環境變數JAVA_HOME是否有設好
+
+```
+echo $JAVA_HOME
+```
+
+若什麼都沒有回傳，先設定環境變數（將`/usr/java/jdk1.8.0_91`換成自己的路徑）
+
+```
+echo export JAVA_HOME="/usr/java/jdk1.8.0_91">/etc/profile.d/jdkenv.sh
+```
+
+為了讓R可以跑JAVA，在Terminal輸入
+
+```
+R CMD javareconf
+```
+
+然後進到R程式（在Terminal輸入`R`，就能進入R軟體），安裝`rJava` package
+```{r, eval=F}
+install.packages("rJava",dependencies=TRUE, repos='http://cran.rstudio.com/')
+```
+
+最後跳出R程式，[下載rhdfs](https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads)，安裝rhdfs
+
+- 將`/usr/bin/hadoop`換成自己的`HADOOP_CMD`路徑
+- `rhdfs_1.0.8.tar.gz`換成下載的安裝檔路徑）
+
+```
+sudo HADOOP_CMD=/usr/bin/hadoop R CMD INSTALL rhdfs_1.0.8.tar.gz
+```
+
+### 測試前，先解決權限問題
+- 預設hdfs的存取權限不足，所以要打開
+- 將`user01`改為自己的使用者名稱
+
+```
+sudo -u hdfs hadoop fs -mkdir /user/user01
+sudo -u hdfs hadoop fs -chown user01 /user/user01
+```
+
+### 測試
+進入R測試以下程式碼是否能執行
+```{r, eval=F}
+Sys.setenv(HADOOP_CMD="/usr/bin/hadoop")
+Sys.setenv(HADOOP_STREAMING="/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.4.5.jar")
+library(rmr2)
+#test mapreduce
+small.ints = to.dfs(1:100)
+out<-mapreduce(
+    input = small.ints, 
+    map = function(., v) cbind(v, v^2))
+head(from.dfs(out))
+```
+
+### 安裝RStudio Server
+[官方下載與安裝說明](https://www.rstudio.com/products/rstudio/download-server/)
+
+在Terminal執行以下程式碼
+
+- 檔案連結`https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86_64.rpm`可能有最新版，請Check[官網](https://www.rstudio.com/products/rstudio/download-server/)
+
+```
+wget https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86_64.rpm
+sudo yum install --nogpgcheck rstudio-server-rhel-0.99.896-x86_64.rpm
+
+```
+
+打開瀏覽器，輸入`http://localhost:8787/`，就能進入RStudio Server了！
+
+測完收工～
+
+## RHadoop MapReduce: easy word count
+```{r eval=F}
+Debate<-readLines("https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/RepDebateMiami.txt")
+DebateSplit<-unlist(strsplit(tolower(Debate),split = ' |\\.|\\,|\\?'))
+#table(DebateSplit)
+```
+
+```{r eval=F}
+DebateSplitDFS = to.dfs(DebateSplit)
+result = mapreduce(
+    input = DebateSplitDFS,
+    map = function(.,v) keyval(v, 1),
+    reduce = function(k,vv) keyval(k, sum(vv)))
+head(result)
+```
+
+## R + Spark

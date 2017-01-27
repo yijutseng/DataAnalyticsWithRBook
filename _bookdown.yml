@@ -1,0 +1,17 @@
+book_filename: "DataAnalyticsWithR"
+language:
+  label:
+    fig: 'Figure '
+    tab: 'Table '
+    eq: 'Equation '
+    thm: 'Theorem '
+    lem: 'Lemma '
+    def: 'Definition '
+    cor: 'Corollary '
+    prp: 'Proposition '
+    ex: 'Example '
+    proof: 'Proof. '
+    remark: 'Remark. '
+  ui:
+    edit: Edit
+    chapter_name: ''

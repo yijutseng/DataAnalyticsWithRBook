@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>資料科學與R語言</title>
+  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。">
+  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
+
+  <meta property="og:title" content="資料科學與R語言" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。" />
+  <meta name="github-repo" content="yijutseng/DataAnalyticsWithR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="資料科學與R語言" />
+  
+  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。" />
+  
+
+<meta name="author" content="曾意儒 Yi-Ju Tseng">
+
+
+<meta name="date" content="2017-01-26">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="vis.html">
+<link rel="next" href="author.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">資料科學與R語言</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface"></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R 101</a></li>
+<li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R資料結構</a></li>
+<li class="chapter" data-level="3" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>3</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="3.1" data-path="io.html"><a href="io.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 資料類型</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="io.html"><a href="io.html#tidy-data"><i class="fa fa-check"></i><b>3.1.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="io.html"><a href="io.html#raw-data"><i class="fa fa-check"></i><b>3.1.2</b> 真實世界裡的Raw Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="io.html"><a href="io.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 資料到底在哪裡？</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>3.2.1</b> Open Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="io.html"><a href="io.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 讀取各類檔案</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="io.html"><a href="io.html#.csv-tab-excel"><i class="fa fa-check"></i><b>3.3.1</b> 表格(.csv / Tab分隔 / Excel)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="io.html"><a href="io.html#read.csv"><i class="fa fa-check"></i><b>3.4</b> read.csv使用範例</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="io.html"><a href="io.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 文字資料</a></li>
+<li class="chapter" data-level="3.4.2" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.4.2</b> R檔案格式</a></li>
+<li class="chapter" data-level="3.4.3" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.4.3</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="io.html"><a href="io.html#section-3.5"><i class="fa fa-check"></i><b>3.5</b> 各類檔案匯出</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="io.html"><a href="io.html#.csv-tab"><i class="fa fa-check"></i><b>3.5.1</b> 表格(.csv / Tab分隔)</a></li>
+<li class="chapter" data-level="3.5.2" data-path="io.html"><a href="io.html#-1"><i class="fa fa-check"></i><b>3.5.2</b> 文字資料</a></li>
+<li class="chapter" data-level="3.5.3" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.3</b> R檔案格式</a></li>
+<li class="chapter" data-level="3.5.4" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.4</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="io.html"><a href="io.html#r"><i class="fa fa-check"></i><b>3.6</b> 讀檔的時候R會自動</a></li>
+<li class="chapter" data-level="3.7" data-path="io.html"><a href="io.html#-download.file"><i class="fa fa-check"></i><b>3.7</b> 從網路上下載檔案 download.file</a></li>
+<li class="chapter" data-level="3.8" data-path="io.html"><a href="io.html#open-data-1"><i class="fa fa-check"></i><b>3.8</b> Open Data</a></li>
+<li class="chapter" data-level="3.9" data-path="io.html"><a href="io.html#section-3.9"><i class="fa fa-check"></i><b>3.9</b> 爬蟲</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
+<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>5</b> 控制流程</a></li>
+<li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a></li>
+<li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a></li>
+<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
+<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">資料科學與R語言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="big" class="section level1">
+<h1><span class="header-section-number">8</span> 從小數據到大數據分析</h1>
+<div id="r-hadoop" class="section level2">
+<h2><span class="header-section-number">8.1</span> R + Hadoop</h2>
+</div>
+<div id="rhadoop-cloudera" class="section level2">
+<h2><span class="header-section-number">8.2</span> RHadoop安裝測試流程 (Cloudera)</h2>
+<p>安裝與測試日期2016/05/12</p>
+<div id="section-8.2.1" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> 系統/軟體版本資訊</h3>
+<ul>
+<li>Cloudera Hadoop Platform: CDH-5.4.5 <a href="http://www.cloudera.com/downloads/cdh/5-4-5.html">下載</a></li>
+<li>R for Linux 3.3.0 <a href="https://cran.rstudio.com/bin/linux/redhat/README">安裝說明</a></li>
+<li>RStudio Server <a href="https://www.rstudio.com/products/rstudio/download-server/">下載</a></li>
+<li>RHadoop (latest version on May 12, 2016) <a href="https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads">下載</a>
+<ul>
+<li>ravro-1.0.3</li>
+<li>plyrmr-0.6.0</li>
+<li>rmr-3.3.1</li>
+<li>rhdfs-1.0.8</li>
+<li>rhbase-1.2.1</li>
+</ul></li>
+</ul>
+</div>
+<div id="section-8.2.2" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> 參考資料</h3>
+<ul>
+<li><a href="https://github.com/RevolutionAnalytics/RHadoop/wiki/Installing-RHadoop-on-RHEL">RHadoop安裝說明文件</a></li>
+<li><a href="https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV">RHadoop安裝步驟</a></li>
+<li><a href="http://unix.stackexchange.com/questions/271514/setting-persistent-environment-variable-in-centos-7-issue">Setting persistent environment variable in CentOS 7 issue</a></li>
+<li><a href="https://community.cloudera.com/t5/CDH-Manual-Installation/How-to-resolve-quot-Permission-denied-quot-errors-in-CDH/ta-p/36141">How to resolve “Permission denied” errors in CDH</a></li>
+</ul>
+</div>
+<div id="section-8.2.3" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> 安裝步驟</h3>
+<ol style="list-style-type: decimal">
+<li>下載Cloudera CDH QuickStart VM <a href="http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html">Cloudera VM</a></li>
+<li>安裝R <a href="https://cran.rstudio.com/bin/linux/redhat/README">安裝說明</a></li>
+<li>安裝RHadoop <a href="https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV">RHadoop安裝步驟</a></li>
+<li>安裝RStudio Server <a href="https://www.rstudio.com/products/rstudio/download-server/">說明</a></li>
+</ol>
+<div id="cloudera-cdh-quickstart-vm" class="section level4">
+<h4><span class="header-section-number">8.2.3.1</span> Cloudera CDH QuickStart VM</h4>
+<p>Cloudera CDH QuickStart VM是由Cloudera提供的虛擬機器，內涵Linux系統與預載多項Hadoop相關服務，適合想了解Hadoop運作的初學者。</p>
+<p>下載VM後，用Virtural Box 開啟即可。</p>
+<ul>
+<li><a href="http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html">Cloudera CDH QuickStart VM下載處</a></li>
+<li><a href="https://www.virtualbox.org/">Virtural Box下載處</a></li>
+</ul>
+<p>以下安裝步驟都在Cloudera CDH QuickStart VM內進行</p>
+</div>
+<div id="r" class="section level4">
+<h4><span class="header-section-number">8.2.3.2</span> 安裝R</h4>
+<ul>
+<li>Cloudera CDH用的Linux作業系統是CentOS</li>
+<li>依照安裝說明，需要先安裝Extra Packages for Enterprise Linux (EPEL)，但系統內有預載，所以可以不用按照說明重新下載安裝，直接執行<code>sudo yum install epel-release</code>指令即可</li>
+<li>步驟：安裝最新EPRL，更新yum，安裝R。打開Terminal輸入以下指令。</li>
+</ul>
+<pre><code>sudo yum install epel-release
+sudo yum update
+sudo yum install R</code></pre>
+</div>
+<div id="rhadoop-1-" class="section level4">
+<h4><span class="header-section-number">8.2.3.3</span> 安裝RHadoop-1 先進行環境設定</h4>
+<p>設定<code>HADOOP_CMD</code>與<code>HADOOP_STREAMING</code>兩項環境參數，路徑可能會不同（尤其是<code>HADOOP_STREAMING</code>）</p>
+<ol style="list-style-type: decimal">
+<li><p>尋找<code>HADOOP_STREAMING</code>路徑方法</p>
+<pre><code>find / -name hadoop-streaming-*.jar</code></pre></li>
+<li><p>設定<code>HADOOP_CMD</code>與<code>HADOOP_STREAMING</code>兩項環境參數，路徑記得換成自己的</p>
+<pre><code>echo export HADOOP_CMD=&quot;/usr/bin/hadoop&quot;&gt;/etc/profile.d/hadoopenv.sh
+echo export HADOOP_STREAMING=
+&quot;/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/
+    hadoop-streaming-2.6.0-cdh5.4.5.jar&quot; &gt; /etc/profile.d/hadoopenv.sh
+chmod 0755 /etc/profile.d/hadoopenv.sh</code></pre></li>
+</ol>
+</div>
+<div id="rhadoop-2-rmr2" class="section level4">
+<h4><span class="header-section-number">8.2.3.4</span> 安裝RHadoop-2 rmr2</h4>
+<ul>
+<li>每個Node都要裝</li>
+<li>安裝前先至<a href="https://github.com/RevolutionAnalytics/rmr2/blob/master/pkg/DESCRIPTION">說明檔</a>看需要先安裝哪些其他的packages，Depends 和 Imports 所列的packages都要裝</li>
+<li>以下為安裝packages的程式碼，在R內執行（在Terminal輸入<code>R</code>，就能進入R軟體）</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;methods&quot;</span>,<span class="st">&quot;Rcpp&quot;</span>, <span class="st">&quot;RJSONIO&quot;</span>, <span class="st">&quot;digest&quot;</span>, <span class="st">&quot;functional&quot;</span>, 
+                   <span class="st">&quot;reshape2&quot;</span>,<span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;plyr&quot;</span>, <span class="st">&quot;caTools&quot;</span>,<span class="st">&quot;quickcheck&quot;</span>,<span class="st">&quot;testthat&quot;</span>), 
+                 <span class="dt">dependencies=</span><span class="ot">TRUE</span>, <span class="dt">repos=</span><span class="st">&#39;http://cran.rstudio.com/&#39;</span>)</code></pre></div>
+<ul>
+<li>使用<code>q()</code>指令，跳出R軟體</li>
+<li><a href="https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads">下載rmr2</a></li>
+<li>安裝（請將<code>rmr2_2.3.0.tar.gz</code>替換成剛剛下載的安裝檔路徑）</li>
+</ul>
+<pre><code>sudo R CMD INSTALL rmr2_2.3.0.tar.gz</code></pre>
+</div>
+<div id="rhadoop-3-rhdfs" class="section level4">
+<h4><span class="header-section-number">8.2.3.5</span> 安裝RHadoop-3 rhdfs</h4>
+<ul>
+<li>只要裝在會跑R的那個Node</li>
+<li>在裝之前，先Check是否有安裝JDK （測試JDK 1.8.0_91沒問題）</li>
+<li>Check環境變數JAVA_HOME是否有設好</li>
+</ul>
+<pre><code>echo $JAVA_HOME</code></pre>
+<p>若什麼都沒有回傳，先設定環境變數（將<code>/usr/java/jdk1.8.0_91</code>換成自己的路徑）</p>
+<pre><code>echo export JAVA_HOME=&quot;/usr/java/jdk1.8.0_91&quot;&gt;/etc/profile.d/jdkenv.sh</code></pre>
+<p>為了讓R可以跑JAVA，在Terminal輸入</p>
+<pre><code>R CMD javareconf</code></pre>
+<p>然後進到R程式（在Terminal輸入<code>R</code>，就能進入R軟體），安裝<code>rJava</code> package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rJava&quot;</span>,<span class="dt">dependencies=</span><span class="ot">TRUE</span>, <span class="dt">repos=</span><span class="st">&#39;http://cran.rstudio.com/&#39;</span>)</code></pre></div>
+<p>最後跳出R程式，<a href="https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads">下載rhdfs</a>，安裝rhdfs</p>
+<ul>
+<li>將<code>/usr/bin/hadoop</code>換成自己的<code>HADOOP_CMD</code>路徑</li>
+<li><code>rhdfs_1.0.8.tar.gz</code>換成下載的安裝檔路徑）</li>
+</ul>
+<pre><code>sudo HADOOP_CMD=/usr/bin/hadoop R CMD INSTALL rhdfs_1.0.8.tar.gz</code></pre>
+</div>
+</div>
+<div id="section-8.2.4" class="section level3">
+<h3><span class="header-section-number">8.2.4</span> 測試前，先解決權限問題</h3>
+<ul>
+<li>預設hdfs的存取權限不足，所以要打開</li>
+<li>將<code>user01</code>改為自己的使用者名稱</li>
+</ul>
+<pre><code>sudo -u hdfs hadoop fs -mkdir /user/user01
+sudo -u hdfs hadoop fs -chown user01 /user/user01</code></pre>
+</div>
+<div id="section-8.2.5" class="section level3">
+<h3><span class="header-section-number">8.2.5</span> 測試</h3>
+<p>進入R測試以下程式碼是否能執行</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">HADOOP_CMD=</span><span class="st">&quot;/usr/bin/hadoop&quot;</span>)
+<span class="kw">Sys.setenv</span>(<span class="dt">HADOOP_STREAMING=</span><span class="st">&quot;/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.4.5.jar&quot;</span>)
+<span class="kw">library</span>(rmr2)
+<span class="co">#test mapreduce</span>
+small.ints =<span class="st"> </span><span class="kw">to.dfs</span>(<span class="dv">1</span>:<span class="dv">100</span>)
+out&lt;-<span class="kw">mapreduce</span>(
+    <span class="dt">input =</span> small.ints, 
+    <span class="dt">map =</span> function(., v) <span class="kw">cbind</span>(v, v^<span class="dv">2</span>))
+<span class="kw">head</span>(<span class="kw">from.dfs</span>(out))</code></pre></div>
+</div>
+<div id="rstudio-server" class="section level3">
+<h3><span class="header-section-number">8.2.6</span> 安裝RStudio Server</h3>
+<p><a href="https://www.rstudio.com/products/rstudio/download-server/">官方下載與安裝說明</a></p>
+<p>在Terminal執行以下程式碼</p>
+<ul>
+<li>檔案連結<code>https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86_64.rpm</code>可能有最新版，請Check<a href="https://www.rstudio.com/products/rstudio/download-server/">官網</a></li>
+</ul>
+<pre><code>wget https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86_64.rpm
+sudo yum install --nogpgcheck rstudio-server-rhel-0.99.896-x86_64.rpm
+</code></pre>
+<p>打開瀏覽器，輸入<code>http://localhost:8787/</code>，就能進入RStudio Server了！</p>
+<p>測完收工～</p>
+</div>
+</div>
+<div id="rhadoop-mapreduce-easy-word-count" class="section level2">
+<h2><span class="header-section-number">8.3</span> RHadoop MapReduce: easy word count</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Debate&lt;-<span class="kw">readLines</span>(<span class="st">&quot;https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/RepDebateMiami.txt&quot;</span>)
+DebateSplit&lt;-<span class="kw">unlist</span>(<span class="kw">strsplit</span>(<span class="kw">tolower</span>(Debate),<span class="dt">split =</span> <span class="st">&#39; |</span><span class="ch">\\</span><span class="st">.|</span><span class="ch">\\</span><span class="st">,|</span><span class="ch">\\</span><span class="st">?&#39;</span>))
+<span class="co">#table(DebateSplit)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DebateSplitDFS =<span class="st"> </span><span class="kw">to.dfs</span>(DebateSplit)
+result =<span class="st"> </span><span class="kw">mapreduce</span>(
+    <span class="dt">input =</span> DebateSplitDFS,
+    <span class="dt">map =</span> function(.,v) <span class="kw">keyval</span>(v, <span class="dv">1</span>),
+    <span class="dt">reduce =</span> function(k,vv) <span class="kw">keyval</span>(k, <span class="kw">sum</span>(vv)))
+<span class="kw">head</span>(result)</code></pre></div>
+</div>
+<div id="r-spark" class="section level2">
+<h2><span class="header-section-number">8.4</span> R + Spark</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="author.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/08-bigData.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
