@@ -2,3 +2,6 @@ base
 SportsAnalytics
 bitops
 RCurl
+bit
+bit64
+lubridate

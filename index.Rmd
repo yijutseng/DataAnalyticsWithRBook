@@ -16,19 +16,19 @@ options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
 )
 
-pkg<-c('ggplot2', 'dplyr')
+pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table')
 lapply(c(), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
 
 # {- #preface}
-長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。
+長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括使用M語言做資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘等，並介紹R與Hadoop EcoSystems介接方法。
 
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+  .packages(), pkg
 ), 'packages.bib')
 ```

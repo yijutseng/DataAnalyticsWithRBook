@@ -1,3 +1,39 @@
-# R資料結構 {#RDataStructure}
+# R 資料結構 {#RDataStructure}
 
 Here is a review of existing methods.
+**因子 (factor)**、
+
+## 向量 vector
+向量為一維資料的表現和儲存方式，用`c()`函數可定義向量，如：
+```{r vector1}
+vec<-c('a','b','c','d','e')
+vec
+```
+a~e為vec向量中的**元素(element)**，各元素向中的順序固定，`a`為`vec`向量中的第**1**個元素，`b`則為第**2**個元素，以此類推，若要將`vec`向量的第**4**個元素取出，可使用
+```{r vector2}
+vec[4] ## 第4個元素
+```
+此外，在同一向量中，所有元素之**資料型態必須相同**，如上述`vec`向量，元素均為文字型態。
+
+### 快速產生向量函數
+
+### 向量運算
+
+## 因子 factor
+```{r factor1}
+char1<-"abcTest" 
+char2<-"100"
+char3<-"200"
+#char2+char3 #會輸出Error message: non-numeric argument to binary operator
+```
+
+## 列表 list
+```{r list1}
+
+```
+## 矩陣 matrix
+
+## 資料框 data.frame
+
+## 資料表 data.table (快)
+
