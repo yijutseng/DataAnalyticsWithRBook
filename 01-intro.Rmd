@@ -207,6 +207,7 @@ TRUE & FALSE
 TRUE | TRUE
 TRUE | FALSE
 ```
+<<<<<<< Updated upstream
 
 ## 錯誤訊息
 - Message：有可能的錯誤通知，程式會繼續執行
@@ -259,3 +260,5 @@ knitr::kable(
 ```
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+=======
+>>>>>>> Stashed changes
