@@ -1,0 +1,3574 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={資料科學與R語言},
+            pdfauthor={曾意儒 Yi-Ju Tseng},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{資料科學與R語言}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{曾意儒 Yi-Ju Tseng}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2017-02-07}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+
+\usepackage{CJKutf8}
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{}\label{preface}
+\addcontentsline{toc}{chapter}{}
+
+\href{http://im.cgu.edu.tw/bin/home.php}{長庚大學資訊管理學系}
+\href{https://github.com/yijutseng/BigDataCGUIM}{大數據分析方法}教學使用書籍，內容包括使用\href{http://www.r-project.org/}{R語言}做資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘等，並介紹R與Hadoop
+EcoSystems介接方法。
+
+\chapter{R語言101}\label{intro}
+
+本章節介紹學習R語言的基本知識，包括基本指令操作、運算子介紹等。
+
+\section{什麼是R語言}\label{r}
+
+\href{http://www.r-project.org/}{R語言}是一種自由軟體程式語言，主要用於資料分析與統計運算，2000年時終於發表R
+1.0.0，有關R語言的發展歷史可參考\href{https://zh.wikipedia.org/wiki/R\%E8\%AF\%AD\%E8\%A8\%80}{維基百科}。基本的R軟體已經內建多種統計及分析功能，其餘功能可以透過安裝\textbf{套件（Packages）}加載，眾多的套件使R的使用者可以【站在巨人的肩膀上(Standing
+on the shoulders of giants (Hal R. Varian,
+Google))】做資料分析，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上
+(\href{https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/}{R
+Studio報導})。常用的套件清單可參考各項網路資訊，如\href{https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages}{R
+Studio的整理：Quick list of useful R packages}
+
+安裝套件Package的方法如下：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"套件名稱"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+值得注意的是，套件名稱需要加上雙引號，舉例來說，若要安裝\texttt{ggplot2}套件，則要在R的Console視窗內輸入：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+若要載入\textbf{已安裝}的套件，則輸入\texttt{library(套件名稱)}，範例：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+載入已安裝的套件時，\textbf{不用}在套件名稱前後加雙引號。
+
+\section{函數使用}
+
+在R中有許多內建函數，安裝套件後各套件也會提供各式各樣寫好的函數，函數使用方式為\texttt{函數名稱(參數1,參數2,....)}，以計算平均數為例，可使用\texttt{mean()}函數，範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)) ##計算1~6的平均數}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.5
+\end{verbatim}
+
+若想知道各函數所需參數，可使用\texttt{?函數名稱}觀看函數作者所撰寫的說明文件
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?mean}
+\end{Highlighting}
+\end{Shaded}
+
+除非有指定參數名稱，函數的參數設定有順序性，如序列產生函數\texttt{seq()}，參數順序為\texttt{from,\ to,\ by}，代表序列起點、序列終點，以及相隔單位。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{1}\NormalTok{,}\DataTypeTok{to=}\DecValTok{9}\NormalTok{,}\DataTypeTok{by=}\DecValTok{2}\NormalTok{)}\CommentTok{#1~9，每隔2產生一數字}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{2}\NormalTok{)}\CommentTok{#按照順序輸入參數，可省去參數名稱}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{by=}\DecValTok{2}\NormalTok{,}\DataTypeTok{to=}\DecValTok{9}\NormalTok{,}\DataTypeTok{from=}\DecValTok{1}\NormalTok{)}\CommentTok{#若不想照順序輸入參數，需要指定參數名稱}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\section{變數設定}
+
+在開始深入學習R語言之前，首要任務是學習最基本的R程式碼：\textbf{變數設定}，在R語言中，主要使用\texttt{\textless{}-}設定變數，設定方法為：\textbf{變數名稱}\texttt{\textless{}-}\textbf{變數內容(值)}，雖然\textbf{變數名稱}可依箭頭方向放置於左側\texttt{\textless{}-}或右側\texttt{-\textgreater{}}，但為方便閱讀，\textbf{變數名稱}多放置於左側。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a<-}\DecValTok{1} 
+\DecValTok{2}\NormalTok{->b}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+R語言也接受使用\texttt{=}設定變數，此時\textbf{變數名稱}必須在左側，如：\textbf{變數名稱}\texttt{=}\textbf{變數內容}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c=}\DecValTok{1} 
+\NormalTok{c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+除了\textbf{變數設定}外，\texttt{str()}函數也為常用基本函數，\texttt{str()}用在檢查與總覽各類變數型態。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d<-}\DecValTok{3}
+\KeywordTok{str}\NormalTok{(d)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  num 3
+\end{verbatim}
+
+變數的命名有以下規則:
+
+\begin{itemize}
+\tightlist
+\item
+  不可使用保留字，如break, else, FALSE, for, function, if, Inf, NA, NaN,
+  next, repeat, return, TRUE, while等
+\item
+  開頭只能是英文字，或 \texttt{.}
+\item
+  大小寫敏感
+\end{itemize}
+
+\section{執行視窗}
+
+R是可直譯的語言，也就是說，可以在執行視窗(Console)直接打程式碼，在視窗出現\texttt{\textgreater{}}時，表示可輸入指令，若視窗出現\texttt{+}時，表示前面的程式碼還沒打完，必須鍵入完整的程式碼讓R執行。
+
+\section{資料型態}\label{DataType}
+
+在R語言中，常用的資料型態包括\textbf{數值 (numeric)}、\textbf{字串
+(character)}、\textbf{布林變數 (logic)}以及\textbf{日期 (Date)}等。
+
+\subsection{數值 numeric}\label{-numeric}
+
+數值包括整數（沒有小數點）與符點數（有小數點）的數值
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1<-}\DecValTok{100} 
+\NormalTok{num2<-}\FloatTok{1000.001}
+\end{Highlighting}
+\end{Shaded}
+
+值得注意的是，若數值長度超過 \texttt{2\^{}53}，必須導入\texttt{bit64}
+package
+\citep{R-bit64}，將數值長度上限提高為\texttt{2\^{}63}，才能表示完整數值
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\DecValTok{2}\NormalTok{^}\DecValTok{53}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{20}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9007199254740992
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\DecValTok{2}\NormalTok{^}\DecValTok{53+1}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{20}\NormalTok{) }\CommentTok{# +1後，數值仍與2^53相同}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9007199254740992
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(bit64) }\CommentTok{# 導入bit64 package}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{as.integer64}\NormalTok{(}\DecValTok{2}\NormalTok{)^}\DecValTok{53}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## integer64
+## [1] 9007199254740992
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{as.integer64}\NormalTok{(}\DecValTok{2}\NormalTok{)^}\DecValTok{53+1}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{20}\NormalTok{)}\CommentTok{# 導入bit64後，可得正確答案}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## integer64
+## [1] 9007199254740993
+\end{verbatim}
+
+\subsection{字串 character}\label{-character}
+
+用雙引號\texttt{"}框起的文字會被儲存為字串格式，若在數字前後加上雙引號，數字也會被儲存為文字形式，無法進行數值的加減乘除等運算。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{char1<-}\StringTok{"abcTest"} 
+\NormalTok{char2<-}\StringTok{"100"}
+\NormalTok{char3<-}\StringTok{"200"}
+\CommentTok{#char2+char3 #會輸出Error message: non-numeric argument to binary operator}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{布林變數 logic}\label{-logic}
+
+用於邏輯判斷，可使用大寫\textbf{TRUE}或\textbf{T}代表\textbf{真}，大寫\textbf{FALSE}或\textbf{F}代表假。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boolT<-}\OtherTok{TRUE}
+\NormalTok{boolT1<-T}
+\NormalTok{boolF<-}\OtherTok{FALSE}
+\NormalTok{boolF1<-F}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{日期 (Date)}\label{-date}
+
+用於表示日期，於資料分析中常用，使用\texttt{Sys.Date()}指定可得系統日期。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dateBook<-}\KeywordTok{Sys.Date}\NormalTok{()}
+\NormalTok{dateBook}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2017-02-07"
+\end{verbatim}
+
+日期與字串的相關轉換操作可考慮使用簡單易懂的\texttt{lubridate}\citep{R-lubridate}
+package，如果想要將\texttt{年/月/日}格式的文字轉換為日期物件，可使用\texttt{ymd()}函數（y表年year，m表月month，d表日day），如果想要將\texttt{月/日/年}格式的文字轉換為日期物件，則使用\texttt{mdy()}函數，以此類推。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{ymd}\NormalTok{(}\StringTok{'2012/3/3'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mdy}\NormalTok{(}\StringTok{'3/3/2012'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+其他使用方式可參考
+\href{http://blog.yhat.com/static/pdf/R_date_cheat_sheet.pdf}{The Yhat
+Blog}。
+
+\section{基本運算子}
+
+\subsection{數學基本運算}
+
+在R中，數學運算與其他程式語言相同
+
+\begin{itemize}
+\tightlist
+\item
+  加 \texttt{+}
+\item
+  減 \texttt{-}
+\item
+  乘 \texttt{*}
+\item
+  除 \texttt{/}
+\item
+  餘數 \texttt{\%\%}
+\item
+  次方 \texttt{\^{}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1<-}\DecValTok{1}
+\NormalTok{num2<-}\DecValTok{100}
+\NormalTok{num1+num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 101
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1-num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -99
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1*num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1/num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{100}\NormalTok{%%}\DecValTok{3} \NormalTok{##100除以3後所得餘數}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\NormalTok{^}\DecValTok{3} \NormalTok{##2的3次方}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\subsection{進階數學函數}
+
+\begin{itemize}
+\tightlist
+\item
+  四捨五入 \texttt{round()}
+\item
+  無條件捨去 \texttt{floor()}
+\item
+  無條件進位 \texttt{ceiling()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1<-}\FloatTok{1.568}
+\NormalTok{num2<-}\FloatTok{2.121}
+\KeywordTok{round}\NormalTok{(num1,}\DataTypeTok{digits =} \DecValTok{2}\NormalTok{) }\CommentTok{#四捨五入至小數點第二位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.57
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(num2,}\DataTypeTok{digits =} \DecValTok{1}\NormalTok{) }\CommentTok{#四捨五入至小數點第一位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{floor}\NormalTok{(num1) ##1.568}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ceiling}\NormalTok{(num2) ##2.121}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\subsection{邏輯運算}
+
+常用之邏輯判斷也可在R中直接使用
+
+\begin{itemize}
+\tightlist
+\item
+  大於 \texttt{\textgreater{}}
+\item
+  小於 \texttt{\textless{}}
+\item
+  等於
+  \texttt{==}，為了不與變數設定混淆，判斷兩變數是否相等，要用\textbf{雙等號}
+\item
+  大於等於 \texttt{\textgreater{}=}
+\item
+  小於等於 \texttt{\textless{}=}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1<-}\DecValTok{1}
+\NormalTok{num2<-}\DecValTok{100}
+\NormalTok{num1>num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num1<num2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+文字字串也可比較大小
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{char1<-}\StringTok{"abcTest"} 
+\NormalTok{char2<-}\StringTok{"defTest"}
+\NormalTok{char1>char2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+邏輯混合判斷，和JAVA等語言不同的是，在R中使用\textbf{單符號}即可表示且\texttt{\&}和或\texttt{\textbar{}}
+
+\begin{itemize}
+\tightlist
+\item
+  且 \texttt{\&}
+\item
+  或 \texttt{\textbar{}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE} \NormalTok{&}\StringTok{ }\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE} \NormalTok{&}\StringTok{ }\OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE} \NormalTok{|}\StringTok{ }\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{TRUE} \NormalTok{|}\StringTok{ }\OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+反向布林變數\texttt{!}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{!}\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{!}\OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\section{錯誤訊息}
+
+\begin{itemize}
+\tightlist
+\item
+  Message：有可能的錯誤通知，程式會繼續執行
+\item
+  Warning：有錯誤，但是不會影響太多，程式會繼續執行
+\item
+  Error：有錯，而且無法繼續執行程式
+\item
+  Condition：可能會發生的情況
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{log}\NormalTok{(-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in log(-1): NaNs produced
+\end{verbatim}
+
+\begin{verbatim}
+## [1] NaN
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mena}\NormalTok{(}\OtherTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in eval(expr, envir, enclos): could not find function "mena"
+\end{verbatim}
+
+錯誤訊息範例1:
+
+\begin{verbatim}
+# Error: could not find function "fetch_NBAPlayerStatistics"
+# 找不到"fetch_NBAPlayerStatistics" function
+\end{verbatim}
+
+可能原因：沒安裝或沒讀入SportsAnalytics package
+
+錯誤訊息範例2:
+
+\begin{verbatim}
+# Error in library(knitr): there is no package called 'knitr'
+# 找不到"knitr" package
+\end{verbatim}
+
+可能原因：沒安裝knitr package
+
+\section{Help}\label{help}
+
+R語言與套件均有完整的文件與範例可以參考，在R的執行視窗中，輸入\texttt{?函數名稱}或\texttt{?套件名稱}即可看到函數或套件的使用說明
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?ggplot2}
+\NormalTok{?ymd}
+\end{Highlighting}
+\end{Shaded}
+
+除此之外，\href{http://stackoverflow.com/}{Stack
+Overflow}中也有許多問答，可直接在網站中搜尋關鍵字與錯誤訊息。
+
+\chapter{R 資料結構}\label{RDataStructure}
+
+\section{向量 vector}\label{-vector}
+
+向量為一維資料的表現和儲存方式，用\texttt{c()}函數可定義向量，如：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec<-}\KeywordTok{c}\NormalTok{(}\StringTok{'a'}\NormalTok{,}\StringTok{'b'}\NormalTok{,}\StringTok{'c'}\NormalTok{,}\StringTok{'d'}\NormalTok{,}\StringTok{'e'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+a\textasciitilde{}e為vec向量中的\textbf{元素(element)}，各元素向中的順序固定，\texttt{a}為\texttt{vec}向量中的第\textbf{1}個元素，\texttt{b}則為第\textbf{2}個元素，以此類推，若要將\texttt{vec}向量的第\textbf{4}個元素取出，可使用
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec[}\DecValTok{4}\NormalTok{] ## 第4個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "d"
+\end{verbatim}
+
+也可同時取出多個元素
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)] ## 第2與第3個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "b" "c"
+\end{verbatim}
+
+此外，在同一向量中，所有元素之\textbf{資料型態必須相同}，如上述\texttt{vec}向量，元素均為文字型態。
+
+和變數指定類似，向量中的元素也可以使用\texttt{\textless{}-}重新指定
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "c"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{vec[}\DecValTok{3}\NormalTok{]<-}\StringTok{'z'} \NormalTok{##第三個元素值設定為“z”}
+\NormalTok{vec[}\DecValTok{3}\NormalTok{] }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "z"
+\end{verbatim}
+
+\subsection{快速產生向量函數}
+
+若要產生連續向量，如1\textasciitilde{}20，可使用\texttt{:}來串連首字與最後一字
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\NormalTok{:}\DecValTok{20} \NormalTok{## c(1,2,...,19,20)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+\end{verbatim}
+
+或是使用\texttt{seq()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{1}\NormalTok{,}\DataTypeTok{to=}\DecValTok{20}\NormalTok{,}\DataTypeTok{by=}\DecValTok{1}\NormalTok{) ##1~20，中間相隔1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{seq}\NormalTok{(}\DataTypeTok{from=}\DecValTok{1}\NormalTok{,}\DataTypeTok{to=}\DecValTok{50}\NormalTok{,}\DataTypeTok{by=}\DecValTok{2}\NormalTok{) ##1~50，中間相隔2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  3  5  7  9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49
+\end{verbatim}
+
+\subsection{向量運算}
+
+向量也可直接做加減乘除運算，如
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numvec<-}\DecValTok{1}\NormalTok{:}\DecValTok{10} \NormalTok{## c(1,2,3,4,5,6,7,8,9,10)}
+\NormalTok{numvec}\DecValTok{+3} \NormalTok{## 所有元素+3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  4  5  6  7  8  9 10 11 12 13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numvec*}\DecValTok{2} \NormalTok{## 所有元素*2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  2  4  6  8 10 12 14 16 18 20
+\end{verbatim}
+
+向量和向量也可做運算，如
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numvec1<-}\DecValTok{1}\NormalTok{:}\DecValTok{3} \NormalTok{## c(1,2,3)}
+\NormalTok{numvec2<-}\DecValTok{4}\NormalTok{:}\DecValTok{6} \NormalTok{## c(4,5,6)}
+\NormalTok{numvec1+numvec2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{numvec1*numvec2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  4 10 18
+\end{verbatim}
+
+\section{因子 factor}\label{-factor}
+
+因子是由向量轉換而成，多用於表示\textbf{類別}數據，如大學中有大學生、碩士班學生與博士班學生三種類別的學生，使用方法為\texttt{factor(資料向量,levels=類別次序)}，\texttt{levels}參數可設定各類別的次序
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"大學生"}\NormalTok{,}\StringTok{"碩士班學生"}\NormalTok{,}\StringTok{"博士班學生"}\NormalTok{),}
+       \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"大學生"}\NormalTok{,}\StringTok{"碩士班學生"}\NormalTok{,}\StringTok{"博士班學生"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 大學生     碩士班學生 博士班學生
+## Levels: 大學生 碩士班學生 博士班學生
+\end{verbatim}
+
+因子變量一但決定其類別的種類與數目時，通常不會再作更動，也就是任何新增的元素都要是大學生、碩士班學生與博士班學生其中一種。
+
+\section{列表 list}\label{-list}
+
+由於向量和因子都只能儲存一種元素，使用上彈性較不足，在R語言中，有一彈性很大的資料型態\textbf{列表list}，在列表中，元素可分屬不同資料類別，除了可包括\textbf{數值}與\textbf{文字}外，也可以包括資料集，如\textbf{向量}和\textbf{因子}等，更進階的使用，還可以包括矩陣與資料框。如要建立列表，可使用\texttt{list()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample<-}\KeywordTok{list}\NormalTok{(}\DataTypeTok{Students=}\KeywordTok{c}\NormalTok{(}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Kobe"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{),}\DataTypeTok{Year=}\DecValTok{2017}\NormalTok{,}
+                 \DataTypeTok{Score=}\KeywordTok{c}\NormalTok{(}\DecValTok{60}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{40}\NormalTok{),}\DataTypeTok{School=}\StringTok{"CGU"}\NormalTok{)}
+\NormalTok{listSample}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Students
+## [1] "Tom"  "Kobe" "Emma" "Amy" 
+## 
+## $Year
+## [1] 2017
+## 
+## $Score
+## [1] 60 50 80 40
+## 
+## $School
+## [1] "CGU"
+\end{verbatim}
+
+\subsection{列表資料擷取}
+
+列表可用\texttt{\$}符號做資料擷取
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample$Students ##取得中表中的Students變量}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Tom"  "Kobe" "Emma" "Amy"
+\end{verbatim}
+
+也可和向量一樣，使用索引值來擷取資料，和向量不同的是，若要取得\textbf{值}，要使用雙中括號\texttt{{[}{[}{]}{]}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample[[}\DecValTok{1}\NormalTok{]] ##取得中表中第一個變量的值}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Tom"  "Kobe" "Emma" "Amy"
+\end{verbatim}
+
+如果只使用單中括號，回傳的資料型態會是列表list，並非列表中的值
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample[}\DecValTok{1}\NormalTok{] ##取得中表中第一個變量（列表型態）}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Students
+## [1] "Tom"  "Kobe" "Emma" "Amy"
+\end{verbatim}
+
+\subsection{列表資料編輯設定}
+
+列表資料也可和向量資料一樣，重新編輯設定
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample[[}\DecValTok{1}\NormalTok{]] }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Tom"  "Kobe" "Emma" "Amy"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample[[}\DecValTok{1}\NormalTok{]]<-}\KeywordTok{c}\NormalTok{(}\StringTok{"小明"}\NormalTok{,}\StringTok{"大雄"}\NormalTok{,}\StringTok{"胖虎"}\NormalTok{,}\StringTok{"小新"}\NormalTok{,}\StringTok{"大白"}\NormalTok{) ##將Students變量重新設定}
+\NormalTok{listSample[[}\DecValTok{1}\NormalTok{]] }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "小明" "大雄" "胖虎" "小新" "大白"
+\end{verbatim}
+
+除了編輯以外，列表資料也能用\texttt{\$}符號與\texttt{\textless{}-}變數設定符號新增
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listSample$Gender<-}\KeywordTok{c}\NormalTok{(}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{,}\StringTok{"F"}\NormalTok{,}\StringTok{"M"}\NormalTok{) ##新增Gender變量，並設定向量值}
+\end{Highlighting}
+\end{Shaded}
+
+\section{矩陣 matrix}\label{-matrix}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{6}\NormalTok{), }\DataTypeTok{nrow=}\DecValTok{3}\NormalTok{, }\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{) ##建立3x2的矩陣，分別填入1~6的值}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+\end{verbatim}
+
+\section{資料框 data.frame}\label{-data.frame}
+
+資料框是非常常見的二維資料格式，由一系列的欄位（Column）和列（Row）所組成，常見的Excel試算表也是類似的資料表現形式，可使用\texttt{data.frame()}來創建新的資料框
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{StuDF <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{StuID=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{), ##欄位名稱=欄位值}
+                  \DataTypeTok{name=}\KeywordTok{c}\NormalTok{(}\StringTok{"小明"}\NormalTok{,}\StringTok{"大雄"}\NormalTok{,}\StringTok{"胖虎"}\NormalTok{,}\StringTok{"小新"}\NormalTok{,}\StringTok{"大白"}\NormalTok{),}
+                  \DataTypeTok{score=}\KeywordTok{c}\NormalTok{(}\DecValTok{80}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{90}\NormalTok{,}\DecValTok{70}\NormalTok{,}\DecValTok{50}\NormalTok{))}
+\NormalTok{StuDF }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   StuID name score
+## 1     1 小明    80
+## 2     2 大雄    60
+## 3     3 胖虎    90
+## 4     4 小新    70
+## 5     5 大白    50
+\end{verbatim}
+
+如範例所示，每個欄位都有名稱（StuID, name,
+score），若沒有設定欄位名稱，R會自動指派V1\textsubscript{Vn作為欄位名稱。在R中，每個欄位的資料型態必須相同，如StuID和score為數值型態，name為文字型態。每一列也有預設的列名，R自動依序指派1}n作為列名。
+如需檢查欄位名稱與列名，可使用\texttt{colnames()}和\texttt{rownames()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(StuDF) ##欄位名稱}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "StuID" "name"  "score"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rownames}\NormalTok{(StuDF) ##列名}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "1" "2" "3" "4" "5"
+\end{verbatim}
+
+如需檢查個欄位之資料型別，可使用\texttt{str()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(StuDF) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    5 obs. of  3 variables:
+##  $ StuID: num  1 2 3 4 5
+##  $ name : Factor w/ 5 levels "大白","大雄",..: 4 2 5 3 1
+##  $ score: num  80 60 90 70 50
+\end{verbatim}
+
+\section{資料表 data.table}\label{-data.table}
+
+data.table是data.frame資料框型別的延伸，如要使用必須安裝data.table
+\citep{R-data.table}
+package，使用\texttt{data.table}讀取大型資料的速度比使用資料框快上數倍，進階處理語言也相當好用，在探索式資料分析章節Chapter
+\ref{eda}會詳細介紹。其他詳細教學可見
+\href{https://www.datacamp.com/community/tutorials/data-table-r-tutorial\#gs.vzMYa_k}{A
+data.table R tutorial by
+DataCamp}，DataCamp也提供\href{https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial}{互動式教學課程}，可自行參閱。
+
+\section{資料屬性查詢函數}
+
+資料屬性可透過下列函數查詢:
+
+\begin{itemize}
+\tightlist
+\item
+  名稱 \texttt{names()}
+\item
+  各維度名稱 \texttt{dimnames()}
+\item
+  長度 \texttt{length()}
+\item
+  各維度長度 \texttt{dim()}
+\item
+  資料型態 \texttt{class()}
+\item
+  各類資料計數 \texttt{table()}
+\item
+  總覽資料 \texttt{str()}
+\end{itemize}
+
+透過\texttt{names()}函數，可取得各種資料之名稱
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(islands) ##R內建的資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Africa   Antarctica         Asia    Australia Axel Heiberg       Baffin 
+##        11506         5500        16988         2968           16          184
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{names}\NormalTok{(islands)) ##顯示上述資料之資料名稱}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Africa"       "Antarctica"   "Asia"         "Australia"    "Axel Heiberg"
+## [6] "Baffin"
+\end{verbatim}
+
+若為資料框，則會顯示行（欄位）名稱
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(USArrests) ##R內建的資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Murder Assault UrbanPop Rape
+## Alabama      13.2     236       58 21.2
+## Alaska       10.0     263       48 44.5
+## Arizona       8.1     294       80 31.0
+## Arkansas      8.8     190       50 19.5
+## California    9.0     276       91 40.6
+## Colorado      7.9     204       78 38.7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{names}\NormalTok{(USArrests)) ##顯示上述資料之資料名稱}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Murder"   "Assault"  "UrbanPop" "Rape"
+\end{verbatim}
+
+透過\texttt{dimnames()}函數可顯示資料框列與行的名稱，先顯示列，再顯示行
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dimnames}\NormalTok{(USArrests) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##  [1] "Alabama"        "Alaska"         "Arizona"        "Arkansas"      
+##  [5] "California"     "Colorado"       "Connecticut"    "Delaware"      
+##  [9] "Florida"        "Georgia"        "Hawaii"         "Idaho"         
+## [13] "Illinois"       "Indiana"        "Iowa"           "Kansas"        
+## [17] "Kentucky"       "Louisiana"      "Maine"          "Maryland"      
+## [21] "Massachusetts"  "Michigan"       "Minnesota"      "Mississippi"   
+## [25] "Missouri"       "Montana"        "Nebraska"       "Nevada"        
+## [29] "New Hampshire"  "New Jersey"     "New Mexico"     "New York"      
+## [33] "North Carolina" "North Dakota"   "Ohio"           "Oklahoma"      
+## [37] "Oregon"         "Pennsylvania"   "Rhode Island"   "South Carolina"
+## [41] "South Dakota"   "Tennessee"      "Texas"          "Utah"          
+## [45] "Vermont"        "Virginia"       "Washington"     "West Virginia" 
+## [49] "Wisconsin"      "Wyoming"       
+## 
+## [[2]]
+## [1] "Murder"   "Assault"  "UrbanPop" "Rape"
+\end{verbatim}
+
+透過\texttt{length()}函數可顯示資料長度，包括向量與資料框，若資料行態為資料框，則會顯示行（欄位）數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(islands) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 48
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{length}\NormalTok{(USArrests) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+透過\texttt{dim()}函數可顯示資料框列與行的長度，與\texttt{dimnames()}相同，先顯示列，後顯示行
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(USArrests) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 50  4
+\end{verbatim}
+
+使用\texttt{class()}函數可知道變數類別
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\StringTok{"Test"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\KeywordTok{Sys.Date}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+使用\texttt{table()}函數可知道向量中每個值出現幾次
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Species ##原始值}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(iris$Species) ##統計結果}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##     setosa versicolor  virginica 
+##         50         50         50
+\end{verbatim}
+
+使用\texttt{str()}函數可總覽變數資訊
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    150 obs. of  5 variables:
+##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(listSample)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 5
+##  $ Students: chr [1:5] "小明" "大雄" "胖虎" "小新" ...
+##  $ Year    : num 2017
+##  $ Score   : num [1:4] 60 50 80 40
+##  $ School  : chr "CGU"
+##  $ Gender  : chr [1:5] "M" "F" "M" "F" ...
+\end{verbatim}
+
+\chapter{控制流程}\label{controlstructure}
+
+\section{條件判斷}
+
+\subsection{if-else敘述}\label{if-else}
+
+\textbf{if-else}敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用\textbf{if-else}，若\textbf{if}後所接邏輯判斷為\textbf{真(TRUE)}，就會執行if下方之程式碼，若為\textbf{偽(FALSE)}，則執行\textbf{else}下方之程式碼，若程式中沒有\textbf{else}片段，則不執行任何程式碼。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"figure/ifelse.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{figure/ifelse.png}
+
+\texttt{if}與\texttt{else}下方的程式碼必須要使用\texttt{\{\}}將程式碼包起來，若程式碼只有一行，可省略\texttt{\{\}}，但為閱讀方便，建議不要省略\texttt{\{\}}。
+
+舉例來說，若考試分數\textbf{大於等於60分}，則印出\textbf{及格}字樣，小於60分則印出\textbf{不及格}字樣，程式範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score<-}\DecValTok{59}
+\NormalTok{if(score>=}\DecValTok{60}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"及格"}\NormalTok{)}
+\NormalTok{\}else\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"不及格"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "不及格"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score<-}\DecValTok{80}
+\NormalTok{if(score>=}\DecValTok{60}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"及格"}\NormalTok{)}
+\NormalTok{\}else\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"不及格"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "及格"
+\end{verbatim}
+
+\subsection{if-else if-else}\label{if-else-if-else}
+
+很多時候必須要使用多重邏輯判斷，若考試分數大於等於90分，印出\textbf{優良}，介於60到90分間，印出\textbf{及格}，小於60分則印出\textbf{不及格}，此時就會用到多重邏輯，使用多重邏輯時，會在\texttt{if}和\texttt{else}間新增邏輯區段\textbf{else
+if}，程式範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score<-}\DecValTok{95}
+\NormalTok{if(score>=}\DecValTok{90}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"優秀"}\NormalTok{)}
+\NormalTok{\}else if(score>=}\DecValTok{60}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"及格"}\NormalTok{)}
+\NormalTok{\}else\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"不及格"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "優秀"
+\end{verbatim}
+
+\texttt{if-else\ if-else}敘述是有順序的，若在\texttt{if}敘述判斷為真，就算後方\texttt{else\ if}判斷也為真，也只會執行\texttt{if}區段的程式碼，如上述範例，95分大於等於90分(if邏輯)，也大於等於60分(else
+if邏輯)，但最後只印出\textbf{優秀}字樣。
+
+\subsection{巢狀if}\label{if}
+
+巢狀if是指在\texttt{if}區段程式碼內包含其他\texttt{if-else}判斷，舉例來說，若國文分數與英文分數皆大於等於60分，印出\textbf{全部及格}，國文分數大於等於60分，英文小於60分，則印\textbf{國文及格，英文再加油}，以此類推，程式範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CHscore<-}\DecValTok{95} \NormalTok{##國文成績}
+\NormalTok{ENscore<-}\DecValTok{55} \NormalTok{##英文成績}
+\NormalTok{if(CHscore>=}\DecValTok{60}\NormalTok{)\{}
+  \NormalTok{if(ENscore>=}\DecValTok{60}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"全部及格"}\NormalTok{)}
+  \NormalTok{\}else\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"國文及格，英文再加油"}\NormalTok{)}
+  \NormalTok{\}}
+\NormalTok{\}else\{}
+  \NormalTok{if(ENscore>=}\DecValTok{60}\NormalTok{)\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"英文及格，國文再加油"}\NormalTok{)}
+  \NormalTok{\}else\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"全部不及格"}\NormalTok{)}
+  \NormalTok{\}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "國文及格，英文再加油"
+\end{verbatim}
+
+\subsection{ifelse()}\label{ifelse}
+
+\texttt{ifelse()}函數可用最短的方式取代\texttt{if-else}敘述，使用方法為\texttt{ifelse(邏輯判斷,判斷為真要執行的程式碼,判斷為偽要執行的程式碼)}，依上述範例，重寫程式碼如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{score<-}\DecValTok{80}
+\KeywordTok{ifelse}\NormalTok{(score>=}\DecValTok{60}\NormalTok{,}\StringTok{"及格"}\NormalTok{,}\StringTok{"不及格"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "及格"
+\end{verbatim}
+
+值得注意的是，\texttt{ifelse()}可判斷向量，也就是可一次\textbf{判斷多個元素}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scoreVector<-}\KeywordTok{c}\NormalTok{(}\DecValTok{30}\NormalTok{,}\DecValTok{90}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{80}\NormalTok{)}
+\KeywordTok{ifelse}\NormalTok{(scoreVector>=}\DecValTok{60}\NormalTok{,}\StringTok{"及格"}\NormalTok{, }\StringTok{"不及格"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "不及格" "及格"   "不及格" "及格"   "及格"
+\end{verbatim}
+
+\section{迴圈}
+
+\subsection{for}\label{for}
+
+R語言的\texttt{for}迴圈寫法和其他語言不同，首先必須建立需要逐一執行的參數向量或序列，再使用\texttt{for}迴圈逐一執行，程式寫法為\texttt{for\ (單一變數\ in\ 參數向量)\{\ 程式碼\ \}}，範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (n in }\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{)\{ }\CommentTok{#n為單一變數，1:10為需要逐一執行的參數向量}
+  \KeywordTok{print}\NormalTok{(n)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+\end{verbatim}
+
+\texttt{for}迴圈也可和\texttt{if-else}函數合併使用，如:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (n in }\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{)\{}
+  \NormalTok{if(n%%}\DecValTok{2}\NormalTok{==}\DecValTok{0}\NormalTok{)\{ }\CommentTok{#偶數直接輸出數字}
+    \KeywordTok{print}\NormalTok{(n)}
+  \NormalTok{\}else\{}
+    \KeywordTok{print}\NormalTok{(}\StringTok{"奇數"}\NormalTok{) }\CommentTok{#奇數則輸出"奇數"}
+  \NormalTok{\}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "奇數"
+## [1] 2
+## [1] "奇數"
+## [1] 4
+## [1] "奇數"
+## [1] 6
+## [1] "奇數"
+## [1] 8
+## [1] "奇數"
+## [1] 10
+\end{verbatim}
+
+\subsection{while}\label{while}
+
+\texttt{while}函數則是在每次執行迴圈時檢查while邏輯判斷是否為真，若邏輯判斷為真，就會執行區段程式碼，若邏輯判斷為偽，則會結束迴圈執行。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x<-}\DecValTok{0}
+\NormalTok{while(x<=}\DecValTok{5}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(x)}
+  \NormalTok{x<-x}\DecValTok{+1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+\subsection{break}\label{break}
+
+若遇特殊情形想\textbf{結束}迴圈執行，可使用\texttt{break}指令
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(n in }\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{)\{}
+  \NormalTok{if(n==}\DecValTok{5}\NormalTok{)\{}
+    \NormalTok{break ##一執行到5，跳出迴圈，不再執行之後的迴圈}
+  \NormalTok{\}}
+  \KeywordTok{print}\NormalTok{(n)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+\end{verbatim}
+
+\subsection{next}\label{next}
+
+若遇特殊情形想\textbf{跳過}迴圈執行，可使用\texttt{next}指令
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for(n in }\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{)\{}
+  \NormalTok{if(n==}\DecValTok{5}\NormalTok{)\{}
+    \NormalTok{next ##跳過5，直接執行下一個迴圈}
+  \NormalTok{\}}
+  \KeywordTok{print}\NormalTok{(n)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+\end{verbatim}
+
+\chapter{資料讀取與匯出}\label{io}
+
+What is `Data'?
+
+\url{http://en.wikipedia.org/wiki/Data}
+
+\texttt{Data\ are\ values\ of\ qualitative\ or\ quantitative\ variables,\ belonging\ to\ a\ set\ of\ items.}
+
+看完本章會學到：
+
+\begin{itemize}
+\tightlist
+\item
+  找資料、抓資料、總之就是弄到資料
+\item
+  資料前處理原則：tidy
+\item
+  用R做到以上工作
+\end{itemize}
+
+\texttt{Raw\ data} -\textgreater{} \textbf{Processing script}
+-\textgreater{} \texttt{Tidy\ data} -\textgreater{} Data analysis
+-\textgreater{} Data communication
+
+\section{資料類型}
+
+\subsection{Tidy Data}\label{tidy-data}
+
+\begin{itemize}
+\tightlist
+\item
+  一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
+\item
+  不同的觀察值應該要在不同行（Raw）
+\item
+  一張表裡面，有所有分析需要的資料
+\item
+  如果一定要多張表，中間一定要有index可以把表串起來
+\item
+  One file, one table
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'SportsAnalytics'}\NormalTok{))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"SportsAnalytics"}\NormalTok{)}
+    \KeywordTok{library}\NormalTok{(SportsAnalytics)}
+\NormalTok{\}}
+\NormalTok{NBA1415<-}\KeywordTok{fetch_NBAPlayerStatistics}\NormalTok{(}\StringTok{"14-15"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(NBA1415)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   League          Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Quincy Acy  NYK       SF          68               1288
+## 2    NBA  Jordan Adams  MEM       SG          30                249
+## 3    NBA  Steven Adams  OKL        C          70               1776
+## 4    NBA   Jeff Adrien  MIN       PF          17                215
+## 5    NBA Arron Afflalo  POR       SG          78               2502
+## 6    NBA Alexis Ajinca  NOR        C          68                956
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            152                 331         18              60             76
+## 2             35                  86         10              25             14
+## 3            217                 399          0               2            103
+## 4             19                  44          0               0             22
+## 5            375                 884        118             333            167
+## 6            181                 328          0               0             81
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                  97                79           301      68     27        60
+## 2                  23                 9            28      16     16        14
+## 3                 205               199           522      65     38        99
+## 4                  38                23            77      15      4         9
+## 5                 198                27           247     129     41       116
+## 6                  99               104           315      47     21        69
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     22           147                 1         398          5         0
+## 2      7            24                 0          94          0         0
+## 3     85           222                 3         537          3         0
+## 4      9            30                 0          60          0         0
+## 5      7           167                 1        1035          0         0
+## 6     51           151                 0         443          1         0
+##   FlagrantFouls GamesStarted
+## 1             0           22
+## 2             0            0
+## 3             0           67
+## 4             0            0
+## 5             0           72
+## 6             0            8
+\end{verbatim}
+
+\subsection{真實世界裡的Raw Data}\label{raw-data}
+
+\subsubsection{Html}\label{html}
+
+\subsubsection{Facebook}\label{facebook}
+
+\subsubsection{!?}\label{section}
+
+\section{資料到底在哪裡？}
+
+\begin{itemize}
+\tightlist
+\item
+  硬碟裡
+\item
+  網路下載
+\item
+  Open Data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \url{http://data.taipei/}
+  \item
+    \url{http://data.tycg.gov.tw/}
+  \item
+    \url{http://data.moi.gov.tw/}
+  \end{itemize}
+\item
+  網頁裡（爬蟲！）
+\item
+  任何地方
+\end{itemize}
+
+\subsection{Open Data}\label{open-data}
+
+\section{讀取各類檔案}
+
+\subsection{表格(.csv / Tab分隔 / Excel)}\label{.csv-tab-excel}
+
+\texttt{read.table}, \texttt{read.csv}, 讀取表格資料
+
+The \texttt{read.table}, \texttt{read.csv} 是最常見的，會用這些就好
+
+有以下參數：
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{file}, 檔名
+\item
+  \texttt{header}, 是否有欄位名稱（表頭）（T/F）
+\item
+  \texttt{sep}, 分隔符號
+\item
+  \texttt{colClasses}, 每一個欄位的類別，用向量表示
+\item
+  \texttt{comment.char}, 把欄位包起來的符號
+\item
+  \texttt{skip}, 要跳過幾行？
+\item
+  \texttt{stringsAsFactors}, 要不要輸入成'Factor'（有序因子）
+\end{itemize}
+
+要安裝xlsx 套件
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'xlsx'}\NormalTok{))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"xlsx"}\NormalTok{)}
+    \KeywordTok{library}\NormalTok{(xlsx)}
+\NormalTok{\}}
+\NormalTok{ExcelData <-}\StringTok{ }\KeywordTok{read.xlsx}\NormalTok{(}\StringTok{"data.xlsx"}\NormalTok{,}\DataTypeTok{sheetIndex=}\DecValTok{1}\NormalTok{,}\DataTypeTok{header=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{head}\NormalTok{(ExcelData)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{read.csv使用範例}\label{read.csv}
+
+完全不用給參數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'open.csv'}\NormalTok{)}
+\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{文字資料}
+
+\texttt{readLines}, 逐行讀取文字資料
+
+\subsection{R檔案格式}\label{r}
+
+\texttt{load}, 讀取已經在R裡面的資料（Ex: iris）
+
+\subsection{R程式}\label{r}
+
+\texttt{source}, 讀R的Obejct or script, 執行, ASCII
+(\texttt{dump}的相反)
+
+\section{各類檔案匯出}
+
+寫檔的函數跟讀檔很像：
+
+\subsection{表格(.csv / Tab分隔)}\label{.csv-tab}
+
+\texttt{write.table}
+
+\subsection{文字資料}\label{-1}
+
+\texttt{writeLines}
+
+\subsection{R檔案格式}\label{r-1}
+
+\texttt{save}
+
+\subsection{R程式}\label{r-1}
+
+\texttt{dump}
+
+\section{讀檔的時候R會自動}\label{r}
+
+\begin{itemize}
+\tightlist
+\item
+  跳過\#開頭的任何行（Row）
+\item
+  判斷要讀幾行
+\item
+  判斷每個列（Column）的類別
+\item
+  把欄位包起來的符號
+\end{itemize}
+
+如果讀取時已指定\textbf{Column類別}以及\textbf{把欄位包起來的符號}，會快很多
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{initial <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{nrows =} \DecValTok{100}\NormalTok{)}
+\NormalTok{classes <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(initial, class)}
+\NormalTok{tabAll <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{colClasses =} \NormalTok{classes)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{從網路上下載檔案 download.file}\label{-download.file}
+
+使用RCurl Package
+
+download.file(URL, destfile=儲存檔名, method=?)
+
+method = ``curl''--\textgreater{}For \textbf{https}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'RCurl'}\NormalTok{))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"RCurl"}\NormalTok{)}
+    \KeywordTok{library}\NormalTok{(RCurl)}
+\NormalTok{\}}
+\KeywordTok{download.file}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv"}\NormalTok{, }
+              \DataTypeTok{destfile =} \StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"curl"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Open Data}\label{open-data-1}
+
+\section{爬蟲}
+
+\chapter{資料處理與清洗}\label{manipulation}
+
+\section{資料型別轉換處理}
+
+在資料型態章節Chapter \ref{DataType}中，曾介紹\textbf{數值
+(numeric)}、\textbf{字串 (character)}、\textbf{布林變數
+(logic)}以及\textbf{日期
+(Date)}等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。
+
+\subsection{資料型別檢查}
+
+使用以下\texttt{is.}函數檢查資料型別，回傳布林變數，若為真，回傳TRUE
+
+\begin{itemize}
+\tightlist
+\item
+  是否為\textbf{數字} \texttt{is.numeric(變數名稱)}
+\item
+  是否為\textbf{文字} \texttt{is.character(變數名稱)}
+\item
+  是否為\textbf{布林變數} \texttt{is.logical(變數名稱)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num<-}\DecValTok{100}
+\NormalTok{cha<-}\StringTok{'200'}
+\NormalTok{boo<-T}
+\KeywordTok{is.numeric}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.numeric}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.character}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.character}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.logical}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+或使用\texttt{class(變數名稱)}函數，直接回傳資料型別
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\KeywordTok{Sys.Date}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+\subsection{資料型別轉換}
+
+使用以下\texttt{as.}函數轉換型別
+
+\begin{itemize}
+\tightlist
+\item
+  轉換為\textbf{數字} \texttt{as.numeric(變數名稱)}
+\item
+  轉換為\textbf{文字} \texttt{as.character(變數名稱)}
+\item
+  轉換為\textbf{布林變數} \texttt{as.logical(變數名稱)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 200
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.character}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "100"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.character}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "TRUE"
+\end{verbatim}
+
+若無法順利完成轉換，會回傳空值\texttt{NA}，並出現警告訊息\texttt{Warning:\ NAs\ introduced\ by\ coercion，Warning:\ 強制變更過程中產生了\ NA}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(}\StringTok{"abc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: NAs introduced by coercion
+\end{verbatim}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+日期的轉換則建議使用\texttt{lubridate}\citep{R-lubridate}
+package，如果想要將\texttt{年/月/日}格式的文字轉換為日期物件，可使用\texttt{ymd()}函數（y表年year，m表月month，d表日day），如果想要將\texttt{月/日/年}格式的文字轉換為日期物件，則使用\texttt{mdy()}函數，以此類推。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{ymd}\NormalTok{(}\StringTok{'2012/3/3'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mdy}\NormalTok{(}\StringTok{'3/3/2012'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+\section{文字字串處理}
+
+\subsection{基本處理}
+
+\begin{itemize}
+\tightlist
+\item
+  切割 \texttt{strsplit()}
+\item
+  子集 \texttt{substr()}
+\item
+  大小寫轉換 \texttt{toupper()} \texttt{tolower()}
+\item
+  兩文字連接 \texttt{paste()} \texttt{paste0()}
+\item
+  文字取代 \texttt{gsub()}
+\item
+  前後空白去除 \texttt{str\_trim()}
+  需安裝\texttt{stringr}\citep{R-stringr} package
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{strsplit} \NormalTok{(}\StringTok{"Hello World"}\NormalTok{,}\StringTok{" "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "Hello" "World"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{toupper}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "HELLO WORLD"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tolower}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hello world"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste}\NormalTok{(}\StringTok{"Hello"}\NormalTok{, }\StringTok{"World"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{''}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "HelloWorld"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{substr}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{, }\DataTypeTok{start=}\DecValTok{2}\NormalTok{,}\DataTypeTok{stop=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "ell"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gsub}\NormalTok{(}\StringTok{"o"}\NormalTok{,}\StringTok{"0"}\NormalTok{,}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hell0 W0rld"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stringr)}
+\KeywordTok{str_trim}\NormalTok{(}\StringTok{" Hello World "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello World"
+\end{verbatim}
+
+\subsection{搜尋字串}
+
+搜尋字串函數通常使用在\textbf{比對文字向量}，文字比對\textbf{有分大小寫}，依照回傳值的型態不同，有兩種常用函數，\texttt{grep()}與\texttt{grepl()}:
+
+\begin{itemize}
+\tightlist
+\item
+  回傳符合條件之向量位置(index) \texttt{grep(搜尋條件,要搜尋的向量)}
+\item
+  回傳每個向量是否符合條件(TRUE or FALSE)
+  \texttt{grepl(搜尋條件,要搜尋的向量)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grep}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找A，回傳包含"A"之元素位置}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grepl}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找A，回傳各元素是否包含"A"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grepl}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找a，回傳各元素是否包含"a"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE FALSE FALSE FALSE  TRUE
+\end{verbatim}
+
+\section{子集Subset}\label{subset}
+
+\subsection{一維資料 (向量)}\label{-}
+
+在向量章節\texttt{\{\#vector\}}有介紹使用\texttt{{[}{]}}取出單一或多個元素的方法
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters ##R語言內建資料之一}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s"
+## [20] "t" "u" "v" "w" "x" "y" "z"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\DecValTok{1}\NormalTok{] ##取出letters向量的第一個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{] ##取出letters向量的前十個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{)] ##取出letters向量的第1,3,5個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "c" "e"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\KeywordTok{c}\NormalTok{(-}\DecValTok{1}\NormalTok{,-}\DecValTok{3}\NormalTok{,-}\DecValTok{5}\NormalTok{)] ##取出letters向量除了第1,3,5個元素之外的所有元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "b" "d" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v"
+## [20] "w" "x" "y" "z"
+\end{verbatim}
+
+若想要快速取得一向量的開頭與結尾元素，可使用\texttt{head()}和\texttt{tail()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(letters,}\DecValTok{5}\NormalTok{) ##取出letters向量的前五個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c" "d" "e"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(letters,}\DecValTok{3}\NormalTok{) ##取出letters向量的後三個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x" "y" "z"
+\end{verbatim}
+
+\subsection{二維資料}
+
+最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用\texttt{{[}{]}}，但因應二維資料的需求，以\texttt{,}分隔列與行的篩選條件，資料篩選原則為\textbf{前Row,後Column}，\textbf{前列,後行}，若不想篩選列，則在\texttt{,}前方保持\textbf{空白}即可。
+
+篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)
+
+\begin{itemize}
+\tightlist
+\item
+  輸入位置: \texttt{dataFrame{[}row\ index,column\ index{]}}
+\item
+  輸入布林變數: \texttt{dataFrame{[}c(T,F,T),c(T,F,T){]}}
+\item
+  輸入欄位名稱: \texttt{dataFrame{[}row\ name,column\ name{]}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] ##第一列Row，第二行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,] ##第1~3列Row，所有的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[,}\StringTok{"Species"}\NormalTok{] ##所有的列Row，名稱為Species的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{,}\KeywordTok{c}\NormalTok{(T,F,T,F,T)] ##第1~10列Row，第1,3,5行Column (TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Petal.Length Species
+## 1           5.1          1.4  setosa
+## 2           4.9          1.4  setosa
+## 3           4.7          1.3  setosa
+## 4           4.6          1.5  setosa
+## 5           5.0          1.4  setosa
+## 6           5.4          1.7  setosa
+## 7           4.6          1.4  setosa
+## 8           5.0          1.5  setosa
+## 9           4.4          1.4  setosa
+## 10          4.9          1.5  setosa
+\end{verbatim}
+
+也可使用\texttt{\$}符號做\textbf{Column的篩選}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Species ##所有的列Row，名稱為Species的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica
+\end{verbatim}
+
+\textbf{Row的篩選}可使用\texttt{subset()}函數，使用方法為\texttt{subset(資料表,篩選邏輯)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(iris,Species==}\StringTok{"virginica"}\NormalTok{) ##Species等於"virginica"的列Row，所有的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 101          6.3         3.3          6.0         2.5 virginica
+## 102          5.8         2.7          5.1         1.9 virginica
+## 103          7.1         3.0          5.9         2.1 virginica
+## 104          6.3         2.9          5.6         1.8 virginica
+## 105          6.5         3.0          5.8         2.2 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+## 107          4.9         2.5          4.5         1.7 virginica
+## 108          7.3         2.9          6.3         1.8 virginica
+## 109          6.7         2.5          5.8         1.8 virginica
+## 110          7.2         3.6          6.1         2.5 virginica
+## 111          6.5         3.2          5.1         2.0 virginica
+## 112          6.4         2.7          5.3         1.9 virginica
+## 113          6.8         3.0          5.5         2.1 virginica
+## 114          5.7         2.5          5.0         2.0 virginica
+## 115          5.8         2.8          5.1         2.4 virginica
+## 116          6.4         3.2          5.3         2.3 virginica
+## 117          6.5         3.0          5.5         1.8 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 120          6.0         2.2          5.0         1.5 virginica
+## 121          6.9         3.2          5.7         2.3 virginica
+## 122          5.6         2.8          4.9         2.0 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 124          6.3         2.7          4.9         1.8 virginica
+## 125          6.7         3.3          5.7         2.1 virginica
+## 126          7.2         3.2          6.0         1.8 virginica
+## 127          6.2         2.8          4.8         1.8 virginica
+## 128          6.1         3.0          4.9         1.8 virginica
+## 129          6.4         2.8          5.6         2.1 virginica
+## 130          7.2         3.0          5.8         1.6 virginica
+## 131          7.4         2.8          6.1         1.9 virginica
+## 132          7.9         3.8          6.4         2.0 virginica
+## 133          6.4         2.8          5.6         2.2 virginica
+## 134          6.3         2.8          5.1         1.5 virginica
+## 135          6.1         2.6          5.6         1.4 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 137          6.3         3.4          5.6         2.4 virginica
+## 138          6.4         3.1          5.5         1.8 virginica
+## 139          6.0         3.0          4.8         1.8 virginica
+## 140          6.9         3.1          5.4         2.1 virginica
+## 141          6.7         3.1          5.6         2.4 virginica
+## 142          6.9         3.1          5.1         2.3 virginica
+## 143          5.8         2.7          5.1         1.9 virginica
+## 144          6.8         3.2          5.9         2.3 virginica
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+\end{verbatim}
+
+\textbf{Row的篩選}也可搭配字串搜尋函數\texttt{grepl()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(iris[}\KeywordTok{grepl}\NormalTok{(}\StringTok{"color"}\NormalTok{,iris$Species),]) ##Species包含"color"的列，所有的行}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r|l}
+\hline
+  & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\hline
+51 & 7.0 & 3.2 & 4.7 & 1.4 & versicolor\\
+\hline
+52 & 6.4 & 3.2 & 4.5 & 1.5 & versicolor\\
+\hline
+53 & 6.9 & 3.1 & 4.9 & 1.5 & versicolor\\
+\hline
+54 & 5.5 & 2.3 & 4.0 & 1.3 & versicolor\\
+\hline
+55 & 6.5 & 2.8 & 4.6 & 1.5 & versicolor\\
+\hline
+56 & 5.7 & 2.8 & 4.5 & 1.3 & versicolor\\
+\hline
+57 & 6.3 & 3.3 & 4.7 & 1.6 & versicolor\\
+\hline
+58 & 4.9 & 2.4 & 3.3 & 1.0 & versicolor\\
+\hline
+59 & 6.6 & 2.9 & 4.6 & 1.3 & versicolor\\
+\hline
+60 & 5.2 & 2.7 & 3.9 & 1.4 & versicolor\\
+\hline
+61 & 5.0 & 2.0 & 3.5 & 1.0 & versicolor\\
+\hline
+62 & 5.9 & 3.0 & 4.2 & 1.5 & versicolor\\
+\hline
+63 & 6.0 & 2.2 & 4.0 & 1.0 & versicolor\\
+\hline
+64 & 6.1 & 2.9 & 4.7 & 1.4 & versicolor\\
+\hline
+65 & 5.6 & 2.9 & 3.6 & 1.3 & versicolor\\
+\hline
+66 & 6.7 & 3.1 & 4.4 & 1.4 & versicolor\\
+\hline
+67 & 5.6 & 3.0 & 4.5 & 1.5 & versicolor\\
+\hline
+68 & 5.8 & 2.7 & 4.1 & 1.0 & versicolor\\
+\hline
+69 & 6.2 & 2.2 & 4.5 & 1.5 & versicolor\\
+\hline
+70 & 5.6 & 2.5 & 3.9 & 1.1 & versicolor\\
+\hline
+71 & 5.9 & 3.2 & 4.8 & 1.8 & versicolor\\
+\hline
+72 & 6.1 & 2.8 & 4.0 & 1.3 & versicolor\\
+\hline
+73 & 6.3 & 2.5 & 4.9 & 1.5 & versicolor\\
+\hline
+74 & 6.1 & 2.8 & 4.7 & 1.2 & versicolor\\
+\hline
+75 & 6.4 & 2.9 & 4.3 & 1.3 & versicolor\\
+\hline
+76 & 6.6 & 3.0 & 4.4 & 1.4 & versicolor\\
+\hline
+77 & 6.8 & 2.8 & 4.8 & 1.4 & versicolor\\
+\hline
+78 & 6.7 & 3.0 & 5.0 & 1.7 & versicolor\\
+\hline
+79 & 6.0 & 2.9 & 4.5 & 1.5 & versicolor\\
+\hline
+80 & 5.7 & 2.6 & 3.5 & 1.0 & versicolor\\
+\hline
+81 & 5.5 & 2.4 & 3.8 & 1.1 & versicolor\\
+\hline
+82 & 5.5 & 2.4 & 3.7 & 1.0 & versicolor\\
+\hline
+83 & 5.8 & 2.7 & 3.9 & 1.2 & versicolor\\
+\hline
+84 & 6.0 & 2.7 & 5.1 & 1.6 & versicolor\\
+\hline
+85 & 5.4 & 3.0 & 4.5 & 1.5 & versicolor\\
+\hline
+86 & 6.0 & 3.4 & 4.5 & 1.6 & versicolor\\
+\hline
+87 & 6.7 & 3.1 & 4.7 & 1.5 & versicolor\\
+\hline
+88 & 6.3 & 2.3 & 4.4 & 1.3 & versicolor\\
+\hline
+89 & 5.6 & 3.0 & 4.1 & 1.3 & versicolor\\
+\hline
+90 & 5.5 & 2.5 & 4.0 & 1.3 & versicolor\\
+\hline
+91 & 5.5 & 2.6 & 4.4 & 1.2 & versicolor\\
+\hline
+92 & 6.1 & 3.0 & 4.6 & 1.4 & versicolor\\
+\hline
+93 & 5.8 & 2.6 & 4.0 & 1.2 & versicolor\\
+\hline
+94 & 5.0 & 2.3 & 3.3 & 1.0 & versicolor\\
+\hline
+95 & 5.6 & 2.7 & 4.2 & 1.3 & versicolor\\
+\hline
+96 & 5.7 & 3.0 & 4.2 & 1.2 & versicolor\\
+\hline
+97 & 5.7 & 2.9 & 4.2 & 1.3 & versicolor\\
+\hline
+98 & 6.2 & 2.9 & 4.3 & 1.3 & versicolor\\
+\hline
+99 & 5.1 & 2.5 & 3.0 & 1.1 & versicolor\\
+\hline
+100 & 5.7 & 2.8 & 4.1 & 1.3 & versicolor\\
+\hline
+\end{tabular}
+
+若想要快速取得資料框的前幾列(Raw)或後幾列，也可使用\texttt{head()}和\texttt{tail()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris,}\DecValTok{5}\NormalTok{) ##取出iris資料框的前五列}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(iris,}\DecValTok{3}\NormalTok{) ##取出iris資料框的後三列}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+\end{verbatim}
+
+\section{排序}
+
+\subsection{sort 向量排序}\label{sort-}
+
+\texttt{sort()}函數可直接對向量做\textbf{由小到大}的排序
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(islands) ##排序前的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Africa   Antarctica         Asia    Australia Axel Heiberg       Baffin 
+##        11506         5500        16988         2968           16          184
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(islands)) ##由小到大排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Vancouver          Hainan Prince of Wales           Timor          Kyushu 
+##              12              13              13              13              14 
+##          Taiwan 
+##              14
+\end{verbatim}
+
+如需\textbf{由大到小}排序，可將\texttt{decreasing}參數設為TRUE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(islands,}\DataTypeTok{decreasing =} \NormalTok{T)) ##由大到小排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Asia        Africa North America South America    Antarctica 
+##         16988         11506          9390          6795          5500 
+##        Europe 
+##          3745
+\end{verbatim}
+
+\subsection{order}\label{order}
+
+如需對資料框做排序，可使用\texttt{order()}函數，\texttt{order()}函數可回傳\textbf{由小到大}之\textbf{元素位置}，以\texttt{iris\$Sepal.Length}為例，回傳的第一個位置為\texttt{14}，表示\texttt{iris\$Sepal.Length}中，數值最小的元素為第14個元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(iris$Sepal.Length)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  14   9  39  43  42   4   7  23  48   3  30  12  13  25  31  46   2  10
+##  [19]  35  38  58 107   5   8  26  27  36  41  44  50  61  94   1  18  20  22
+##  [37]  24  40  45  47  99  28  29  33  60  49   6  11  17  21  32  85  34  37
+##  [55]  54  81  82  90  91  65  67  70  89  95 122  16  19  56  80  96  97 100
+##  [73] 114  15  68  83  93 102 115 143  62  71 150  63  79  84  86 120 139  64
+##  [91]  72  74  92 128 135  69  98 127 149  57  73  88 101 104 124 134 137 147
+## [109]  52  75 112 116 129 133 138  55 105 111 117 148  59  76  66  78  87 109
+## [127] 125 141 145 146  77 113 144  53 121 140 142  51 103 110 126 130 108 131
+## [145] 106 118 119 123 136 132
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Sepal.Length[}\DecValTok{14}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.3
+\end{verbatim}
+
+若將\texttt{decreasing}參數設定為TRUE，則會回傳\textbf{由大到小}的元素位置，以\texttt{iris\$Sepal.Length}為例，回傳的第一個位置為\texttt{132}，表示\texttt{iris\$Sepal.Length}中，數值最大的元素為第132個元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(iris$Sepal.Length,}\DataTypeTok{decreasing =} \NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142  77
+##  [19] 113 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117 148  52
+##  [37]  75 112 116 129 133 138  57  73  88 101 104 124 134 137 147  69  98 127
+##  [55] 149  64  72  74  92 128 135  63  79  84  86 120 139  62  71 150  15  68
+##  [73]  83  93 102 115 143  16  19  56  80  96  97 100 114  65  67  70  89  95
+##  [91] 122  34  37  54  81  82  90  91   6  11  17  21  32  85  49  28  29  33
+## [109]  60   1  18  20  22  24  40  45  47  99   5   8  26  27  36  41  44  50
+## [127]  61  94   2  10  35  38  58 107  12  13  25  31  46   3  30   4   7  23
+## [145]  48  42   9  39  43  14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Sepal.Length[}\DecValTok{132}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.9
+\end{verbatim}
+
+依照order回傳的元素位置，重新排序iris資料框
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris) ##排序前的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris[}\KeywordTok{order}\NormalTok{(iris$Sepal.Length),]) ##依照Sepal.Length欄位數值大小排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 14          4.3         3.0          1.1         0.1  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 39          4.4         3.0          1.3         0.2  setosa
+## 43          4.4         3.2          1.3         0.2  setosa
+## 42          4.5         2.3          1.3         0.3  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris[}\KeywordTok{order}\NormalTok{(iris$Sepal.Length,}\DataTypeTok{decreasing =} \NormalTok{T),]) ##改為由大到小排序的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 132          7.9         3.8          6.4         2.0 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+\end{verbatim}
+
+\section{資料組合}
+
+有時需要在資料框新增一列，或新增一行，可以利用資料組合函數完成
+
+\begin{itemize}
+\tightlist
+\item
+  Row 列的組合 \texttt{rbind()}
+\item
+  Column 行的組合 \texttt{cbind()}
+\end{itemize}
+
+\texttt{rbind()}和\texttt{cbind()}的參數可以是向量，也可以是資料框，使用向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\CommentTok{#第一列}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)  }\CommentTok{#第二列}
+      \NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+\end{verbatim}
+
+使用資料框與向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{irisAdd<-}\KeywordTok{rbind}\NormalTok{(iris, }\CommentTok{#資料框}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\StringTok{"versicolor"}\NormalTok{)  }\CommentTok{#新增一列}
+      \NormalTok{) }
+\KeywordTok{tail}\NormalTok{(irisAdd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 146          6.7           3          5.2         2.3  virginica
+## 147          6.3         2.5            5         1.9  virginica
+## 148          6.5           3          5.2           2  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9           3          5.1         1.8  virginica
+## 151            1           1            1           1 versicolor
+\end{verbatim}
+
+使用向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\CommentTok{#第一行}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)  }\CommentTok{#第二行}
+      \NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+\end{verbatim}
+
+使用資料框與向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{irisAdd<-}\KeywordTok{cbind}\NormalTok{(iris, }\CommentTok{#資料框}
+      \KeywordTok{rep}\NormalTok{(}\StringTok{"Add"}\NormalTok{,}\KeywordTok{nrow}\NormalTok{(iris))  }\CommentTok{#新增一行}
+      \NormalTok{) }
+\KeywordTok{tail}\NormalTok{(irisAdd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+##     rep("Add", nrow(iris))
+## 145                    Add
+## 146                    Add
+## 147                    Add
+## 148                    Add
+## 149                    Add
+## 150                    Add
+\end{verbatim}
+
+\section{長表與寬表}
+
+在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2\citep{R-reshape2}
+package，提供完整的轉換功能，最常使用的是
+
+\begin{itemize}
+\tightlist
+\item
+  寬表轉長表 \texttt{melt(資料框/寬表,id.vars=需要保留的欄位)}
+\item
+  長表轉寬表
+  \texttt{dcast(資料框/長表,寬表分列依據\textasciitilde{}分欄位依據)}
+\end{itemize}
+
+原來的\texttt{airquality}資料框中，有Ozone, Solar.R, Wind, Temp, Month,
+Day等六個欄位
+(Column)，屬於寬表，以下範例將保留Month和Day兩個欄位，並將其他欄位的名稱整合至variable欄位，數值整合至value欄位，寬表轉長表範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reshape2)}
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airqualityM<-}\KeywordTok{melt}\NormalTok{(airquality,}\DataTypeTok{id.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"Month"}\NormalTok{,}\StringTok{"Day"}\NormalTok{)) ##欄位需要保留"Month","Day"}
+\KeywordTok{head}\NormalTok{(airqualityM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Month Day variable value
+## 1     5   1    Ozone    41
+## 2     5   2    Ozone    36
+## 3     5   3    Ozone    12
+## 4     5   4    Ozone    18
+## 5     5   5    Ozone    NA
+## 6     5   6    Ozone    28
+\end{verbatim}
+
+轉換過的長表\texttt{airqualityM}資料框中，剩下Month, Day, variable,
+value等四個欄位
+(Column)，屬於長表，以下範例variable欄位的值轉換為新欄位，並將value欄位填回新增的欄位，長表轉寬表範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reshape2)}
+\NormalTok{##欄位保留"Month","Day"外，其他欄位數目由variable定義}
+\NormalTok{airqualityCast<-}\KeywordTok{dcast}\NormalTok{(airqualityM, Month +Day~variable) }
+\KeywordTok{head}\NormalTok{(airqualityCast)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Month Day Ozone Solar.R Wind Temp
+## 1     5   1    41     190  7.4   67
+## 2     5   2    36     118  8.0   72
+## 3     5   3    12     149 12.6   74
+## 4     5   4    18     313 11.5   62
+## 5     5   5    NA      NA 14.3   56
+## 6     5   6    28      NA 14.9   66
+\end{verbatim}
+
+\section{遺漏值處理}
+
+遺漏值(Missing
+Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用\texttt{is.na()}來判斷資料是否為空值\texttt{NA}，若為真\texttt{TRUE}，則將資料移除。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{naVec<-}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{)}
+\KeywordTok{is.na}\NormalTok{(naVec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE FALSE  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{naVec[!}\KeywordTok{is.na}\NormalTok{(naVec)] ##保留所有在is.na()檢查回傳FALSE的元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "d" "e"
+\end{verbatim}
+
+若資料型態為資料框，可使用\texttt{complete.cases}來選出完整的資料列，如果資料列是完整的，則會回傳真TRUE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{complete.cases}\NormalTok{(airquality) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+##  [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [25] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [37] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
+##  [49]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [61] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [85]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [97] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+## [109]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+## [121]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [133]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [145]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(airquality[}\KeywordTok{complete.cases}\NormalTok{(airquality),]) ##保留所有在complete.cases()檢查回傳TRUE的元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 7    23     299  8.6   65     5   7
+## 8    19      99 13.8   59     5   8
+\end{verbatim}
+
+利用演算法補值也是一種解決辦法，可參考\_skydome20\_的\href{http://www.rpubs.com/skydome20/R-Note10-Missing_Value}{R筆記--(10)遺漏值處理(Impute
+Missing Value)}教學。
+
+\chapter{探索式資料分析}\label{eda}
+
+\section{資料內容初步分析統計}
+
+\section{data.table}\label{data.table}
+
+You can label chapter and section titles using \texttt{\{\#label\}}
+after them, e.g., we can reference Chapter \ref{intro}. If you do not
+manually label them, there will be automatic labels anyway, e.g.,
+Chapter \ref{methods}.
+
+Figures and tables with captions will be placed in \texttt{figure} and
+\texttt{table} environments, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{DataAnalyticsWithR_files/figure-latex/nice-fig6-1} 
+
+}
+
+\caption{Here is a nice figure!}\label{fig:nice-fig6}
+\end{figure}
+
+Reference a figure by its code chunk label with the \texttt{fig:}
+prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
+reference tables generated from \texttt{knitr::kable()}, e.g., see Table
+\ref{tab:nice-tab}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
+  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
+  \DataTypeTok{booktabs =} \OtherTok{TRUE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:nice-tab6}Here is a nice table!}
+\centering
+\begin{tabular}[t]{rrrrl}
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+4.6 & 3.4 & 1.4 & 0.3 & setosa\\
+5.0 & 3.4 & 1.5 & 0.2 & setosa\\
+4.4 & 2.9 & 1.4 & 0.2 & setosa\\
+4.9 & 3.1 & 1.5 & 0.1 & setosa\\
+\addlinespace
+5.4 & 3.7 & 1.5 & 0.2 & setosa\\
+4.8 & 3.4 & 1.6 & 0.2 & setosa\\
+4.8 & 3.0 & 1.4 & 0.1 & setosa\\
+4.3 & 3.0 & 1.1 & 0.1 & setosa\\
+5.8 & 4.0 & 1.2 & 0.2 & setosa\\
+\addlinespace
+5.7 & 4.4 & 1.5 & 0.4 & setosa\\
+5.4 & 3.9 & 1.3 & 0.4 & setosa\\
+5.1 & 3.5 & 1.4 & 0.3 & setosa\\
+5.7 & 3.8 & 1.7 & 0.3 & setosa\\
+5.1 & 3.8 & 1.5 & 0.3 & setosa\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+You can write citations, too. For example, we are using the
+\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
+was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+
+\chapter{資料視覺化}\label{vis}
+
+You can label chapter and section titles using \texttt{\{\#label\}}
+after them, e.g., we can reference Chapter \ref{intro}. If you do not
+manually label them, there will be automatic labels anyway, e.g.,
+Chapter \ref{methods}.
+
+Figures and tables with captions will be placed in \texttt{figure} and
+\texttt{table} environments, respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{DataAnalyticsWithR_files/figure-latex/nice-fig7-1} 
+
+}
+
+\caption{Here is a nice figure!}\label{fig:nice-fig7}
+\end{figure}
+
+Reference a figure by its code chunk label with the \texttt{fig:}
+prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
+reference tables generated from \texttt{knitr::kable()}, e.g., see Table
+\ref{tab:nice-tab}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
+  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
+  \DataTypeTok{booktabs =} \OtherTok{TRUE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:nice-tab7}Here is a nice table!}
+\centering
+\begin{tabular}[t]{rrrrl}
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2 & setosa\\
+4.9 & 3.0 & 1.4 & 0.2 & setosa\\
+4.7 & 3.2 & 1.3 & 0.2 & setosa\\
+4.6 & 3.1 & 1.5 & 0.2 & setosa\\
+5.0 & 3.6 & 1.4 & 0.2 & setosa\\
+\addlinespace
+5.4 & 3.9 & 1.7 & 0.4 & setosa\\
+4.6 & 3.4 & 1.4 & 0.3 & setosa\\
+5.0 & 3.4 & 1.5 & 0.2 & setosa\\
+4.4 & 2.9 & 1.4 & 0.2 & setosa\\
+4.9 & 3.1 & 1.5 & 0.1 & setosa\\
+\addlinespace
+5.4 & 3.7 & 1.5 & 0.2 & setosa\\
+4.8 & 3.4 & 1.6 & 0.2 & setosa\\
+4.8 & 3.0 & 1.4 & 0.1 & setosa\\
+4.3 & 3.0 & 1.1 & 0.1 & setosa\\
+5.8 & 4.0 & 1.2 & 0.2 & setosa\\
+\addlinespace
+5.7 & 4.4 & 1.5 & 0.4 & setosa\\
+5.4 & 3.9 & 1.3 & 0.4 & setosa\\
+5.1 & 3.5 & 1.4 & 0.3 & setosa\\
+5.7 & 3.8 & 1.7 & 0.3 & setosa\\
+5.1 & 3.8 & 1.5 & 0.3 & setosa\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+You can write citations, too. For example, we are using the
+\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
+was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+
+\chapter{從小數據到大數據分析}\label{big}
+
+\section{R + Hadoop}\label{r-hadoop}
+
+\section{RHadoop安裝測試流程 (Cloudera)}\label{rhadoop-cloudera}
+
+安裝與測試日期2016/05/12
+
+\subsection{系統/軟體版本資訊}
+
+\begin{itemize}
+\tightlist
+\item
+  Cloudera Hadoop Platform: CDH-5.4.5
+  \href{http://www.cloudera.com/downloads/cdh/5-4-5.html}{下載}
+\item
+  R for Linux 3.3.0
+  \href{https://cran.rstudio.com/bin/linux/redhat/README}{安裝說明}
+\item
+  RStudio Server
+  \href{https://www.rstudio.com/products/rstudio/download-server/}{下載}
+\item
+  RHadoop (latest version on May 12, 2016)
+  \href{https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads}{下載}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ravro-1.0.3
+  \item
+    plyrmr-0.6.0
+  \item
+    rmr-3.3.1
+  \item
+    rhdfs-1.0.8
+  \item
+    rhbase-1.2.1
+  \end{itemize}
+\end{itemize}
+
+\subsection{參考資料}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://github.com/RevolutionAnalytics/RHadoop/wiki/Installing-RHadoop-on-RHEL}{RHadoop安裝說明文件}
+\item
+  \href{https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV}{RHadoop安裝步驟}
+\item
+  \href{http://unix.stackexchange.com/questions/271514/setting-persistent-environment-variable-in-centos-7-issue}{Setting
+  persistent environment variable in CentOS 7 issue}
+\item
+  \href{https://community.cloudera.com/t5/CDH-Manual-Installation/How-to-resolve-quot-Permission-denied-quot-errors-in-CDH/ta-p/36141}{How
+  to resolve ``Permission denied'' errors in CDH}
+\end{itemize}
+
+\subsection{安裝步驟}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  下載Cloudera CDH QuickStart VM
+  \href{http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html}{Cloudera
+  VM}
+\item
+  安裝R
+  \href{https://cran.rstudio.com/bin/linux/redhat/README}{安裝說明}
+\item
+  安裝RHadoop
+  \href{https://bigdatastudy.hackpad.com/ep/pad/static/IADMBeqF0vV}{RHadoop安裝步驟}
+\item
+  安裝RStudio Server
+  \href{https://www.rstudio.com/products/rstudio/download-server/}{說明}
+\end{enumerate}
+
+\subsubsection{Cloudera CDH QuickStart
+VM}\label{cloudera-cdh-quickstart-vm}
+
+Cloudera CDH QuickStart
+VM是由Cloudera提供的虛擬機器，內涵Linux系統與預載多項Hadoop相關服務，適合想了解Hadoop運作的初學者。
+
+下載VM後，用Virtural Box 開啟即可。
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://www.cloudera.com/developers/get-started-with-hadoop-tutorial.html}{Cloudera
+  CDH QuickStart VM下載處}
+\item
+  \href{https://www.virtualbox.org/}{Virtural Box下載處}
+\end{itemize}
+
+以下安裝步驟都在Cloudera CDH QuickStart VM內進行
+
+\subsubsection{安裝R}\label{r}
+
+\begin{itemize}
+\tightlist
+\item
+  Cloudera CDH用的Linux作業系統是CentOS
+\item
+  依照安裝說明，需要先安裝Extra Packages for Enterprise Linux
+  (EPEL)，但系統內有預載，所以可以不用按照說明重新下載安裝，直接執行\texttt{sudo\ yum\ install\ epel-release}指令即可
+\item
+  步驟：安裝最新EPRL，更新yum，安裝R。打開Terminal輸入以下指令。
+\end{itemize}
+
+\begin{verbatim}
+sudo yum install epel-release
+sudo yum update
+sudo yum install R
+\end{verbatim}
+
+\subsubsection{安裝RHadoop-1 先進行環境設定}\label{rhadoop-1-}
+
+設定\texttt{HADOOP\_CMD}與\texttt{HADOOP\_STREAMING}兩項環境參數，路徑可能會不同（尤其是\texttt{HADOOP\_STREAMING}）
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  尋找\texttt{HADOOP\_STREAMING}路徑方法
+
+\begin{verbatim}
+find / -name hadoop-streaming-*.jar
+\end{verbatim}
+\item
+  設定\texttt{HADOOP\_CMD}與\texttt{HADOOP\_STREAMING}兩項環境參數，路徑記得換成自己的
+
+\begin{verbatim}
+echo export HADOOP_CMD="/usr/bin/hadoop">/etc/profile.d/hadoopenv.sh
+echo export HADOOP_STREAMING=
+"/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/
+    hadoop-streaming-2.6.0-cdh5.4.5.jar" > /etc/profile.d/hadoopenv.sh
+chmod 0755 /etc/profile.d/hadoopenv.sh
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{安裝RHadoop-2 rmr2}\label{rhadoop-2-rmr2}
+
+\begin{itemize}
+\tightlist
+\item
+  每個Node都要裝
+\item
+  安裝前先至\href{https://github.com/RevolutionAnalytics/rmr2/blob/master/pkg/DESCRIPTION}{說明檔}看需要先安裝哪些其他的packages，Depends
+  和 Imports 所列的packages都要裝
+\item
+  以下為安裝packages的程式碼，在R內執行（在Terminal輸入\texttt{R}，就能進入R軟體）
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"methods"}\NormalTok{,}\StringTok{"Rcpp"}\NormalTok{, }\StringTok{"RJSONIO"}\NormalTok{, }\StringTok{"digest"}\NormalTok{, }\StringTok{"functional"}\NormalTok{, }
+                   \StringTok{"reshape2"}\NormalTok{,}\StringTok{"stringr"}\NormalTok{, }\StringTok{"plyr"}\NormalTok{, }\StringTok{"caTools"}\NormalTok{,}\StringTok{"quickcheck"}\NormalTok{,}\StringTok{"testthat"}\NormalTok{), }
+                 \DataTypeTok{dependencies=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{repos=}\StringTok{'http://cran.rstudio.com/'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  使用\texttt{q()}指令，跳出R軟體
+\item
+  \href{https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads}{下載rmr2}
+\item
+  安裝（請將\texttt{rmr2\_2.3.0.tar.gz}替換成剛剛下載的安裝檔路徑）
+\end{itemize}
+
+\begin{verbatim}
+sudo R CMD INSTALL rmr2_2.3.0.tar.gz
+\end{verbatim}
+
+\subsubsection{安裝RHadoop-3 rhdfs}\label{rhadoop-3-rhdfs}
+
+\begin{itemize}
+\tightlist
+\item
+  只要裝在會跑R的那個Node
+\item
+  在裝之前，先Check是否有安裝JDK （測試JDK 1.8.0\_91沒問題）
+\item
+  Check環境變數JAVA\_HOME是否有設好
+\end{itemize}
+
+\begin{verbatim}
+echo $JAVA_HOME
+\end{verbatim}
+
+若什麼都沒有回傳，先設定環境變數（將\texttt{/usr/java/jdk1.8.0\_91}換成自己的路徑）
+
+\begin{verbatim}
+echo export JAVA_HOME="/usr/java/jdk1.8.0_91">/etc/profile.d/jdkenv.sh
+\end{verbatim}
+
+為了讓R可以跑JAVA，在Terminal輸入
+
+\begin{verbatim}
+R CMD javareconf
+\end{verbatim}
+
+然後進到R程式（在Terminal輸入\texttt{R}，就能進入R軟體），安裝\texttt{rJava}
+package
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rJava"}\NormalTok{,}\DataTypeTok{dependencies=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{repos=}\StringTok{'http://cran.rstudio.com/'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+最後跳出R程式，\href{https://github.com/RevolutionAnalytics/RHadoop/wiki/Downloads}{下載rhdfs}，安裝rhdfs
+
+\begin{itemize}
+\tightlist
+\item
+  將\texttt{/usr/bin/hadoop}換成自己的\texttt{HADOOP\_CMD}路徑
+\item
+  \texttt{rhdfs\_1.0.8.tar.gz}換成下載的安裝檔路徑）
+\end{itemize}
+
+\begin{verbatim}
+sudo HADOOP_CMD=/usr/bin/hadoop R CMD INSTALL rhdfs_1.0.8.tar.gz
+\end{verbatim}
+
+\subsection{測試前，先解決權限問題}
+
+\begin{itemize}
+\tightlist
+\item
+  預設hdfs的存取權限不足，所以要打開
+\item
+  將\texttt{user01}改為自己的使用者名稱
+\end{itemize}
+
+\begin{verbatim}
+sudo -u hdfs hadoop fs -mkdir /user/user01
+sudo -u hdfs hadoop fs -chown user01 /user/user01
+\end{verbatim}
+
+\subsection{測試}
+
+進入R測試以下程式碼是否能執行
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sys.setenv}\NormalTok{(}\DataTypeTok{HADOOP_CMD=}\StringTok{"/usr/bin/hadoop"}\NormalTok{)}
+\KeywordTok{Sys.setenv}\NormalTok{(}\DataTypeTok{HADOOP_STREAMING=}\StringTok{"/opt/cloudera/parcels/CDH-5.4.5-1.cdh5.4.5.p0.7/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.4.5.jar"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(rmr2)}
+\CommentTok{#test mapreduce}
+\NormalTok{small.ints =}\StringTok{ }\KeywordTok{to.dfs}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{100}\NormalTok{)}
+\NormalTok{out<-}\KeywordTok{mapreduce}\NormalTok{(}
+    \DataTypeTok{input =} \NormalTok{small.ints, }
+    \DataTypeTok{map =} \NormalTok{function(., v) }\KeywordTok{cbind}\NormalTok{(v, v^}\DecValTok{2}\NormalTok{))}
+\KeywordTok{head}\NormalTok{(}\KeywordTok{from.dfs}\NormalTok{(out))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{安裝RStudio Server}\label{rstudio-server}
+
+\href{https://www.rstudio.com/products/rstudio/download-server/}{官方下載與安裝說明}
+
+在Terminal執行以下程式碼
+
+\begin{itemize}
+\tightlist
+\item
+  檔案連結\texttt{https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86\_64.rpm}可能有最新版，請Check\href{https://www.rstudio.com/products/rstudio/download-server/}{官網}
+\end{itemize}
+
+\begin{verbatim}
+wget https://download2.rstudio.org/rstudio-server-rhel-0.99.896-x86_64.rpm
+sudo yum install --nogpgcheck rstudio-server-rhel-0.99.896-x86_64.rpm
+\end{verbatim}
+
+打開瀏覽器，輸入\texttt{http://localhost:8787/}，就能進入RStudio
+Server了！
+
+測完收工～
+
+\section{RHadoop MapReduce: easy word
+count}\label{rhadoop-mapreduce-easy-word-count}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Debate<-}\KeywordTok{readLines}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/RepDebateMiami.txt"}\NormalTok{)}
+\NormalTok{DebateSplit<-}\KeywordTok{unlist}\NormalTok{(}\KeywordTok{strsplit}\NormalTok{(}\KeywordTok{tolower}\NormalTok{(Debate),}\DataTypeTok{split =} \StringTok{' |}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{.|}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{,|}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{?'}\NormalTok{))}
+\CommentTok{#table(DebateSplit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DebateSplitDFS =}\StringTok{ }\KeywordTok{to.dfs}\NormalTok{(DebateSplit)}
+\NormalTok{result =}\StringTok{ }\KeywordTok{mapreduce}\NormalTok{(}
+    \DataTypeTok{input =} \NormalTok{DebateSplitDFS,}
+    \DataTypeTok{map =} \NormalTok{function(.,v) }\KeywordTok{keyval}\NormalTok{(v, }\DecValTok{1}\NormalTok{),}
+    \DataTypeTok{reduce =} \NormalTok{function(k,vv) }\KeywordTok{keyval}\NormalTok{(k, }\KeywordTok{sum}\NormalTok{(vv)))}
+\KeywordTok{head}\NormalTok{(result)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{R + Spark}\label{r-spark}
+
+\chapter{軟體安裝}\label{install}
+
+\section{R}\label{r-2}
+
+\section{RStudio}\label{rstudio}
+
+\chapter*{作者資訊}\label{author}
+\addcontentsline{toc}{chapter}{作者資訊}
+
+曾意儒 Yi-Ju Tseng
+
+\href{http://im.cgu.edu.tw/bin/home.php}{長庚大學 資訊管理學系} 助理教授
+\href{http://yijutseng.github.io}{個人網站} Lab:
+\href{http://yijutseng.github.io/Lab/}{數位健康實驗室}
+
+\bibliography{packages.bib,book.bib}
+
+
+\end{document}

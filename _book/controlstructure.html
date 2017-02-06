@@ -25,15 +25,15 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-06">
+<meta name="date" content="2017-02-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="manipulation.html">
-<link rel="next" href="eda.html">
+<link rel="prev" href="RDataStructure.html">
+<link rel="next" href="io.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -122,7 +122,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#section-1.7"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.8</b> Help</a></li>
-<li class="chapter" data-level="1.9" data-path="intro.html"><a href="intro.html#rbookdown"><i class="fa fa-check"></i><b>1.9</b> rbookdown原始範例，暫留</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R 資料結構</a><ul>
 <li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
@@ -130,74 +129,81 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.1.2"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
-<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a></li>
+<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
+<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
+</ul></li>
 <li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
 <li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
-<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#-data.table-"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table (快)</a></li>
+<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
 <li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.7"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>3</b> 資料讀取與匯出</a><ul>
-<li class="chapter" data-level="3.1" data-path="io.html"><a href="io.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 資料類型</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="io.html"><a href="io.html#tidy-data"><i class="fa fa-check"></i><b>3.1.1</b> Tidy Data</a></li>
-<li class="chapter" data-level="3.1.2" data-path="io.html"><a href="io.html#raw-data"><i class="fa fa-check"></i><b>3.1.2</b> 真實世界裡的Raw Data</a></li>
+<li class="chapter" data-level="3" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>3</b> 控制流程</a><ul>
+<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
+<li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
+<li class="chapter" data-level="3.1.3" data-path="controlstructure.html"><a href="controlstructure.html#if"><i class="fa fa-check"></i><b>3.1.3</b> 巢狀if</a></li>
+<li class="chapter" data-level="3.1.4" data-path="controlstructure.html"><a href="controlstructure.html#ifelse"><i class="fa fa-check"></i><b>3.1.4</b> ifelse()</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="io.html"><a href="io.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 資料到底在哪裡？</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>3.2.1</b> Open Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="io.html"><a href="io.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 讀取各類檔案</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="io.html"><a href="io.html#.csv-tab-excel"><i class="fa fa-check"></i><b>3.3.1</b> 表格(.csv / Tab分隔 / Excel)</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="io.html"><a href="io.html#read.csv"><i class="fa fa-check"></i><b>3.4</b> read.csv使用範例</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="io.html"><a href="io.html#section-3.4.1"><i class="fa fa-check"></i><b>3.4.1</b> 文字資料</a></li>
-<li class="chapter" data-level="3.4.2" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>3.4.2</b> R檔案格式</a></li>
-<li class="chapter" data-level="3.4.3" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>3.4.3</b> R程式</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="io.html"><a href="io.html#section-3.5"><i class="fa fa-check"></i><b>3.5</b> 各類檔案匯出</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="io.html"><a href="io.html#.csv-tab"><i class="fa fa-check"></i><b>3.5.1</b> 表格(.csv / Tab分隔)</a></li>
-<li class="chapter" data-level="3.5.2" data-path="io.html"><a href="io.html#-1"><i class="fa fa-check"></i><b>3.5.2</b> 文字資料</a></li>
-<li class="chapter" data-level="3.5.3" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.3</b> R檔案格式</a></li>
-<li class="chapter" data-level="3.5.4" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>3.5.4</b> R程式</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>3.6</b> 讀檔的時候R會自動</a></li>
-<li class="chapter" data-level="3.7" data-path="io.html"><a href="io.html#-download.file"><i class="fa fa-check"></i><b>3.7</b> 從網路上下載檔案 download.file</a></li>
-<li class="chapter" data-level="3.8" data-path="io.html"><a href="io.html#open-data-1"><i class="fa fa-check"></i><b>3.8</b> Open Data</a></li>
-<li class="chapter" data-level="3.9" data-path="io.html"><a href="io.html#section-3.9"><i class="fa fa-check"></i><b>3.9</b> 爬蟲</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>4</b> 資料處理與清洗</a><ul>
-<li class="chapter" data-level="4.1" data-path="manipulation.html"><a href="manipulation.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 資料型別轉換處理</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="manipulation.html"><a href="manipulation.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 資料型別檢查</a></li>
-<li class="chapter" data-level="4.1.2" data-path="manipulation.html"><a href="manipulation.html#section-4.1.2"><i class="fa fa-check"></i><b>4.1.2</b> 資料型別轉換</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="manipulation.html"><a href="manipulation.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 文字字串處理</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="manipulation.html"><a href="manipulation.html#section-4.2.1"><i class="fa fa-check"></i><b>4.2.1</b> 基本處理</a></li>
-<li class="chapter" data-level="4.2.2" data-path="manipulation.html"><a href="manipulation.html#section-4.2.2"><i class="fa fa-check"></i><b>4.2.2</b> 搜尋字串</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>4.3</b> 子集Subset</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="manipulation.html"><a href="manipulation.html#-"><i class="fa fa-check"></i><b>4.3.1</b> 一維資料 (向量)</a></li>
-<li class="chapter" data-level="4.3.2" data-path="manipulation.html"><a href="manipulation.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 二維資料</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="manipulation.html"><a href="manipulation.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 排序</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="manipulation.html"><a href="manipulation.html#sort-"><i class="fa fa-check"></i><b>4.4.1</b> sort 向量排序</a></li>
-<li class="chapter" data-level="4.4.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>4.4.2</b> order</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="manipulation.html"><a href="manipulation.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> 資料組合</a></li>
-<li class="chapter" data-level="4.6" data-path="manipulation.html"><a href="manipulation.html#section-4.6"><i class="fa fa-check"></i><b>4.6</b> 長表與寬表</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>5</b> 控制流程</a><ul>
-<li class="chapter" data-level="5.1" data-path="controlstructure.html"><a href="controlstructure.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 條件判斷</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else"><i class="fa fa-check"></i><b>5.1.1</b> if-else敘述</a></li>
-<li class="chapter" data-level="5.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>5.1.2</b> if-else if-else</a></li>
-<li class="chapter" data-level="5.1.3" data-path="controlstructure.html"><a href="controlstructure.html#if"><i class="fa fa-check"></i><b>5.1.3</b> 巢狀if</a></li>
-<li class="chapter" data-level="5.1.4" data-path="controlstructure.html"><a href="controlstructure.html#ifelse"><i class="fa fa-check"></i><b>5.1.4</b> ifelse()</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="controlstructure.html"><a href="controlstructure.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 迴圈</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="controlstructure.html"><a href="controlstructure.html#for"><i class="fa fa-check"></i><b>5.2.1</b> for</a></li>
-<li class="chapter" data-level="5.2.2" data-path="controlstructure.html"><a href="controlstructure.html#while"><i class="fa fa-check"></i><b>5.2.2</b> while</a></li>
-<li class="chapter" data-level="5.2.3" data-path="controlstructure.html"><a href="controlstructure.html#break"><i class="fa fa-check"></i><b>5.2.3</b> break</a></li>
-<li class="chapter" data-level="5.2.4" data-path="controlstructure.html"><a href="controlstructure.html#next"><i class="fa fa-check"></i><b>5.2.4</b> next</a></li>
+<li class="chapter" data-level="3.2" data-path="controlstructure.html"><a href="controlstructure.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 迴圈</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="controlstructure.html"><a href="controlstructure.html#for"><i class="fa fa-check"></i><b>3.2.1</b> for</a></li>
+<li class="chapter" data-level="3.2.2" data-path="controlstructure.html"><a href="controlstructure.html#while"><i class="fa fa-check"></i><b>3.2.2</b> while</a></li>
+<li class="chapter" data-level="3.2.3" data-path="controlstructure.html"><a href="controlstructure.html#break"><i class="fa fa-check"></i><b>3.2.3</b> break</a></li>
+<li class="chapter" data-level="3.2.4" data-path="controlstructure.html"><a href="controlstructure.html#next"><i class="fa fa-check"></i><b>3.2.4</b> next</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a></li>
+<li class="chapter" data-level="4" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>4</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="4.1" data-path="io.html"><a href="io.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 資料類型</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="io.html"><a href="io.html#tidy-data"><i class="fa fa-check"></i><b>4.1.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="io.html"><a href="io.html#raw-data"><i class="fa fa-check"></i><b>4.1.2</b> 真實世界裡的Raw Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 資料到底在哪裡？</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 讀取各類檔案</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#.csv-tab-excel"><i class="fa fa-check"></i><b>4.3.1</b> 表格(.csv / Tab分隔 / Excel)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="io.html"><a href="io.html#read.csv"><i class="fa fa-check"></i><b>4.4</b> read.csv使用範例</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="io.html"><a href="io.html#section-4.4.1"><i class="fa fa-check"></i><b>4.4.1</b> 文字資料</a></li>
+<li class="chapter" data-level="4.4.2" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>4.4.2</b> R檔案格式</a></li>
+<li class="chapter" data-level="4.4.3" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>4.4.3</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="io.html"><a href="io.html#section-4.5"><i class="fa fa-check"></i><b>4.5</b> 各類檔案匯出</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="io.html"><a href="io.html#.csv-tab"><i class="fa fa-check"></i><b>4.5.1</b> 表格(.csv / Tab分隔)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="io.html"><a href="io.html#-1"><i class="fa fa-check"></i><b>4.5.2</b> 文字資料</a></li>
+<li class="chapter" data-level="4.5.3" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>4.5.3</b> R檔案格式</a></li>
+<li class="chapter" data-level="4.5.4" data-path="io.html"><a href="io.html#r-1"><i class="fa fa-check"></i><b>4.5.4</b> R程式</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>4.6</b> 讀檔的時候R會自動</a></li>
+<li class="chapter" data-level="4.7" data-path="io.html"><a href="io.html#-download.file"><i class="fa fa-check"></i><b>4.7</b> 從網路上下載檔案 download.file</a></li>
+<li class="chapter" data-level="4.8" data-path="io.html"><a href="io.html#open-data-1"><i class="fa fa-check"></i><b>4.8</b> Open Data</a></li>
+<li class="chapter" data-level="4.9" data-path="io.html"><a href="io.html#section-4.9"><i class="fa fa-check"></i><b>4.9</b> 爬蟲</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>5</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="5.1" data-path="manipulation.html"><a href="manipulation.html#section-5.1"><i class="fa fa-check"></i><b>5.1</b> 資料型別轉換處理</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="manipulation.html"><a href="manipulation.html#section-5.1.1"><i class="fa fa-check"></i><b>5.1.1</b> 資料型別檢查</a></li>
+<li class="chapter" data-level="5.1.2" data-path="manipulation.html"><a href="manipulation.html#section-5.1.2"><i class="fa fa-check"></i><b>5.1.2</b> 資料型別轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="manipulation.html"><a href="manipulation.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulation.html"><a href="manipulation.html#section-5.2.1"><i class="fa fa-check"></i><b>5.2.1</b> 基本處理</a></li>
+<li class="chapter" data-level="5.2.2" data-path="manipulation.html"><a href="manipulation.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 搜尋字串</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>5.3</b> 子集Subset</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulation.html"><a href="manipulation.html#-"><i class="fa fa-check"></i><b>5.3.1</b> 一維資料 (向量)</a></li>
+<li class="chapter" data-level="5.3.2" data-path="manipulation.html"><a href="manipulation.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 二維資料</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulation.html"><a href="manipulation.html#section-5.4"><i class="fa fa-check"></i><b>5.4</b> 排序</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="manipulation.html"><a href="manipulation.html#sort-"><i class="fa fa-check"></i><b>5.4.1</b> sort 向量排序</a></li>
+<li class="chapter" data-level="5.4.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>5.4.2</b> order</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="manipulation.html"><a href="manipulation.html#section-5.5"><i class="fa fa-check"></i><b>5.5</b> 資料組合</a></li>
+<li class="chapter" data-level="5.6" data-path="manipulation.html"><a href="manipulation.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 長表與寬表</a></li>
+<li class="chapter" data-level="5.7" data-path="manipulation.html"><a href="manipulation.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 遺漏值處理</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
+<li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 資料內容初步分析統計</a></li>
+<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#data.table"><i class="fa fa-check"></i><b>6.2</b> data.table</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a></li>
 <li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
@@ -211,6 +217,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
 <li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>9</b> 軟體安裝</a><ul>
+<li class="chapter" data-level="9.1" data-path="install.html"><a href="install.html#r-2"><i class="fa fa-check"></i><b>9.1</b> R</a></li>
+<li class="chapter" data-level="9.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.2</b> RStudio</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -235,14 +245,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="controlstructure" class="section level1">
-<h1><span class="header-section-number">5</span> 控制流程</h1>
-<div id="section-5.1" class="section level2">
-<h2><span class="header-section-number">5.1</span> 條件判斷</h2>
+<h1><span class="header-section-number">3</span> 控制流程</h1>
+<div id="section-3.1" class="section level2">
+<h2><span class="header-section-number">3.1</span> 條件判斷</h2>
 <div id="if-else" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> if-else敘述</h3>
+<h3><span class="header-section-number">3.1.1</span> if-else敘述</h3>
 <p><strong>if-else</strong>敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用<strong>if-else</strong>，若<strong>if</strong>後所接邏輯判斷為<strong>真(TRUE)</strong>，就會執行if下方之程式碼，若為<strong>偽(FALSE)</strong>，則執行<strong>else</strong>下方之程式碼，若程式中沒有<strong>else</strong>片段，則不執行任何程式碼。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">include_graphics</span>(<span class="st">&quot;figure/ifelse.png&quot;</span>)</code></pre></div>
-<p><img src="figure/ifelse.png" width="1000" /></p>
+<p><img src="figure/ifelse.png" /><!-- --></p>
 <p><code>if</code>與<code>else</code>下方的程式碼必須要使用<code>{}</code>將程式碼包起來，若程式碼只有一行，可省略<code>{}</code>，但為閱讀方便，建議不要省略<code>{}</code>。</p>
 <p>舉例來說，若考試分數<strong>大於等於60分</strong>，則印出<strong>及格</strong>字樣，小於60分則印出<strong>不及格</strong>字樣，程式範例如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">score&lt;-<span class="dv">59</span>
@@ -261,7 +271,7 @@ if(score&gt;=<span class="dv">60</span>){
 <pre><code>## [1] &quot;及格&quot;</code></pre>
 </div>
 <div id="if-else-if-else" class="section level3">
-<h3><span class="header-section-number">5.1.2</span> if-else if-else</h3>
+<h3><span class="header-section-number">3.1.2</span> if-else if-else</h3>
 <p>很多時候必須要使用多重邏輯判斷，若考試分數大於等於90分，印出<strong>優良</strong>，介於60到90分間，印出<strong>及格</strong>，小於60分則印出<strong>不及格</strong>，此時就會用到多重邏輯，使用多重邏輯時，會在<code>if</code>和<code>else</code>間新增邏輯區段<strong>else if</strong>，程式範例如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">score&lt;-<span class="dv">95</span>
 if(score&gt;=<span class="dv">90</span>){
@@ -275,7 +285,7 @@ if(score&gt;=<span class="dv">90</span>){
 <p><code>if-else if-else</code>敘述是有順序的，若在<code>if</code>敘述判斷為真，就算後方<code>else if</code>判斷也為真，也只會執行<code>if</code>區段的程式碼，如上述範例，95分大於等於90分(if邏輯)，也大於等於60分(else if邏輯)，但最後只印出<strong>優秀</strong>字樣。</p>
 </div>
 <div id="if" class="section level3">
-<h3><span class="header-section-number">5.1.3</span> 巢狀if</h3>
+<h3><span class="header-section-number">3.1.3</span> 巢狀if</h3>
 <p>巢狀if是指在<code>if</code>區段程式碼內包含其他<code>if-else</code>判斷，舉例來說，若國文分數與英文分數皆大於等於60分，印出<strong>全部及格</strong>，國文分數大於等於60分，英文小於60分，則印<strong>國文及格，英文再加油</strong>，以此類推，程式範例如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">CHscore&lt;-<span class="dv">95</span> ##國文成績
 ENscore&lt;-<span class="dv">55</span> ##英文成績
@@ -295,7 +305,7 @@ if(CHscore&gt;=<span class="dv">60</span>){
 <pre><code>## [1] &quot;國文及格，英文再加油&quot;</code></pre>
 </div>
 <div id="ifelse" class="section level3">
-<h3><span class="header-section-number">5.1.4</span> ifelse()</h3>
+<h3><span class="header-section-number">3.1.4</span> ifelse()</h3>
 <p><code>ifelse()</code>函數可用最短的方式取代<code>if-else</code>敘述，使用方法為<code>ifelse(邏輯判斷,判斷為真要執行的程式碼,判斷為偽要執行的程式碼)</code>，依上述範例，重寫程式碼如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">score&lt;-<span class="dv">80</span>
 <span class="kw">ifelse</span>(score&gt;=<span class="dv">60</span>,<span class="st">&quot;及格&quot;</span>,<span class="st">&quot;不及格&quot;</span>)</code></pre></div>
@@ -306,10 +316,10 @@ if(CHscore&gt;=<span class="dv">60</span>){
 <pre><code>## [1] &quot;不及格&quot; &quot;及格&quot;   &quot;不及格&quot; &quot;及格&quot;   &quot;及格&quot;</code></pre>
 </div>
 </div>
-<div id="section-5.2" class="section level2">
-<h2><span class="header-section-number">5.2</span> 迴圈</h2>
+<div id="section-3.2" class="section level2">
+<h2><span class="header-section-number">3.2</span> 迴圈</h2>
 <div id="for" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> for</h3>
+<h3><span class="header-section-number">3.2.1</span> for</h3>
 <p>R語言的<code>for</code>迴圈寫法和其他語言不同，首先必須建立需要逐一執行的參數向量或序列，再使用<code>for</code>迴圈逐一執行，程式寫法為<code>for (單一變數 in 參數向量){ 程式碼 }</code>，範例如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (n in <span class="dv">1</span>:<span class="dv">10</span>){ <span class="co">#n為單一變數，1:10為需要逐一執行的參數向量</span>
   <span class="kw">print</span>(n)
@@ -344,7 +354,7 @@ if(CHscore&gt;=<span class="dv">60</span>){
 ## [1] 10</code></pre>
 </div>
 <div id="while" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> while</h3>
+<h3><span class="header-section-number">3.2.2</span> while</h3>
 <p><code>while</code>函數則是在每次執行迴圈時檢查while邏輯判斷是否為真，若邏輯判斷為真，就會執行區段程式碼，若邏輯判斷為偽，則會結束迴圈執行。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="dv">0</span>
 while(x&lt;=<span class="dv">5</span>){
@@ -359,7 +369,7 @@ while(x&lt;=<span class="dv">5</span>){
 ## [1] 5</code></pre>
 </div>
 <div id="break" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> break</h3>
+<h3><span class="header-section-number">3.2.3</span> break</h3>
 <p>若遇特殊情形想<strong>結束</strong>迴圈執行，可使用<code>break</code>指令</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(n in <span class="dv">1</span>:<span class="dv">10</span>){
   if(n==<span class="dv">5</span>){
@@ -373,7 +383,7 @@ while(x&lt;=<span class="dv">5</span>){
 ## [1] 4</code></pre>
 </div>
 <div id="next" class="section level3">
-<h3><span class="header-section-number">5.2.4</span> next</h3>
+<h3><span class="header-section-number">3.2.4</span> next</h3>
 <p>若遇特殊情形想<strong>跳過</strong>迴圈執行，可使用<code>next</code>指令</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for(n in <span class="dv">1</span>:<span class="dv">10</span>){
   if(n==<span class="dv">5</span>){
@@ -399,8 +409,8 @@ while(x&lt;=<span class="dv">5</span>){
           </div>
         </div>
       </div>
-<a href="manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="eda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="RDataStructure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="io.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -429,10 +439,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/05-controlstructure.Rmd",
+"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/03-controlstructure.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["DataAnalyticsWithR.pdf", "DataAnalyticsWithR.epub"],
 "toc": {
 "collapse": "subsection"
 }

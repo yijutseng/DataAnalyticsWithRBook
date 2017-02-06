@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="controlstructure.html">
-<link rel="next" href="manipulation.html">
+<link rel="prev" href="big.html">
+<link rel="next" href="author.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -244,195 +244,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="io" class="section level1">
-<h1><span class="header-section-number">4</span> 資料讀取與匯出</h1>
-<p>What is ‘Data’?</p>
-<p><a href="http://en.wikipedia.org/wiki/Data" class="uri">http://en.wikipedia.org/wiki/Data</a></p>
-<p><code>Data are values of qualitative or quantitative variables, belonging to a set of items.</code></p>
-<p>看完本章會學到：</p>
-<ul>
-<li>找資料、抓資料、總之就是弄到資料</li>
-<li>資料前處理原則：tidy</li>
-<li>用R做到以上工作</li>
-</ul>
-<p><code>Raw data</code> -&gt; <strong>Processing script</strong> -&gt; <code>Tidy data</code> -&gt; Data analysis -&gt; Data communication</p>
-<div id="section-4.1" class="section level2">
-<h2><span class="header-section-number">4.1</span> 資料類型</h2>
-<div id="tidy-data" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Tidy Data</h3>
-<ul>
-<li>一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name</li>
-<li>不同的觀察值應該要在不同行（Raw）</li>
-<li>一張表裡面，有所有分析需要的資料</li>
-<li>如果一定要多張表，中間一定要有index可以把表串起來</li>
-<li>One file, one table</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;SportsAnalytics&#39;</span>)){
-    <span class="kw">install.packages</span>(<span class="st">&quot;SportsAnalytics&quot;</span>)
-    <span class="kw">library</span>(SportsAnalytics)
-}
-NBA1415&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;14-15&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(NBA1415)</code></pre></div>
-<pre><code>##   League          Name Team Position GamesPlayed TotalMinutesPlayed
-## 1    NBA    Quincy Acy  NYK       SF          68               1288
-## 2    NBA  Jordan Adams  MEM       SG          30                249
-## 3    NBA  Steven Adams  OKL        C          70               1776
-## 4    NBA   Jeff Adrien  MIN       PF          17                215
-## 5    NBA Arron Afflalo  POR       SG          78               2502
-## 6    NBA Alexis Ajinca  NOR        C          68                956
-##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
-## 1            152                 331         18              60             76
-## 2             35                  86         10              25             14
-## 3            217                 399          0               2            103
-## 4             19                  44          0               0             22
-## 5            375                 884        118             333            167
-## 6            181                 328          0               0             81
-##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
-## 1                  97                79           301      68     27        60
-## 2                  23                 9            28      16     16        14
-## 3                 205               199           522      65     38        99
-## 4                  38                23            77      15      4         9
-## 5                 198                27           247     129     41       116
-## 6                  99               104           315      47     21        69
-##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
-## 1     22           147                 1         398          5         0
-## 2      7            24                 0          94          0         0
-## 3     85           222                 3         537          3         0
-## 4      9            30                 0          60          0         0
-## 5      7           167                 1        1035          0         0
-## 6     51           151                 0         443          1         0
-##   FlagrantFouls GamesStarted
-## 1             0           22
-## 2             0            0
-## 3             0           67
-## 4             0            0
-## 5             0           72
-## 6             0            8</code></pre>
+<div id="install" class="section level1">
+<h1><span class="header-section-number">9</span> 軟體安裝</h1>
+<div id="r-2" class="section level2">
+<h2><span class="header-section-number">9.1</span> R</h2>
 </div>
-<div id="raw-data" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> 真實世界裡的Raw Data</h3>
-<div id="html" class="section level4">
-<h4><span class="header-section-number">4.1.2.1</span> Html</h4>
-</div>
-<div id="facebook" class="section level4">
-<h4><span class="header-section-number">4.1.2.2</span> Facebook</h4>
-</div>
-<div id="section" class="section level4">
-<h4><span class="header-section-number">4.1.2.3</span> !?</h4>
-</div>
-</div>
-</div>
-<div id="section-4.2" class="section level2">
-<h2><span class="header-section-number">4.2</span> 資料到底在哪裡？</h2>
-<ul>
-<li>硬碟裡</li>
-<li>網路下載</li>
-<li>Open Data
-<ul>
-<li><a href="http://data.taipei/" class="uri">http://data.taipei/</a></li>
-<li><a href="http://data.tycg.gov.tw/" class="uri">http://data.tycg.gov.tw/</a></li>
-<li><a href="http://data.moi.gov.tw/" class="uri">http://data.moi.gov.tw/</a></li>
-</ul></li>
-<li>網頁裡（爬蟲！）</li>
-<li>任何地方</li>
-</ul>
-<div id="open-data" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Open Data</h3>
-</div>
-</div>
-<div id="section-4.3" class="section level2">
-<h2><span class="header-section-number">4.3</span> 讀取各類檔案</h2>
-<div id=".csv-tab-excel" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> 表格(.csv / Tab分隔 / Excel)</h3>
-<p><code>read.table</code>, <code>read.csv</code>, 讀取表格資料</p>
-<p>The <code>read.table</code>, <code>read.csv</code> 是最常見的，會用這些就好</p>
-<p>有以下參數：</p>
-<ul>
-<li><code>file</code>, 檔名</li>
-<li><code>header</code>, 是否有欄位名稱（表頭）（T/F）</li>
-<li><code>sep</code>, 分隔符號</li>
-<li><code>colClasses</code>, 每一個欄位的類別，用向量表示</li>
-<li><code>comment.char</code>, 把欄位包起來的符號</li>
-<li><code>skip</code>, 要跳過幾行？</li>
-<li><code>stringsAsFactors</code>, 要不要輸入成’Factor’（有序因子）</li>
-</ul>
-<p>要安裝xlsx 套件</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;xlsx&#39;</span>)){
-    <span class="kw">install.packages</span>(<span class="st">&quot;xlsx&quot;</span>)
-    <span class="kw">library</span>(xlsx)
-}
-ExcelData &lt;-<span class="st"> </span><span class="kw">read.xlsx</span>(<span class="st">&quot;data.xlsx&quot;</span>,<span class="dt">sheetIndex=</span><span class="dv">1</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
-<span class="kw">head</span>(ExcelData)</code></pre></div>
-</div>
-</div>
-<div id="read.csv" class="section level2">
-<h2><span class="header-section-number">4.4</span> read.csv使用範例</h2>
-<p>完全不用給參數</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;open.csv&#39;</span>)
-data</code></pre></div>
-<div id="section-4.4.1" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> 文字資料</h3>
-<p><code>readLines</code>, 逐行讀取文字資料</p>
-</div>
-<div id="r" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> R檔案格式</h3>
-<p><code>load</code>, 讀取已經在R裡面的資料（Ex: iris）</p>
-</div>
-<div id="r" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> R程式</h3>
-<p><code>source</code>, 讀R的Obejct or script, 執行, ASCII (<code>dump</code>的相反)</p>
-</div>
-</div>
-<div id="section-4.5" class="section level2">
-<h2><span class="header-section-number">4.5</span> 各類檔案匯出</h2>
-<p>寫檔的函數跟讀檔很像：</p>
-<div id=".csv-tab" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> 表格(.csv / Tab分隔)</h3>
-<p><code>write.table</code></p>
-</div>
-<div id="-1" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> 文字資料</h3>
-<p><code>writeLines</code></p>
-</div>
-<div id="r-1" class="section level3">
-<h3><span class="header-section-number">4.5.3</span> R檔案格式</h3>
-<p><code>save</code></p>
-</div>
-<div id="r-1" class="section level3">
-<h3><span class="header-section-number">4.5.4</span> R程式</h3>
-<p><code>dump</code></p>
-</div>
-</div>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">4.6</span> 讀檔的時候R會自動</h2>
-<ul>
-<li>跳過#開頭的任何行（Row）</li>
-<li>判斷要讀幾行</li>
-<li>判斷每個列（Column）的類別</li>
-<li>把欄位包起來的符號</li>
-</ul>
-<p>如果讀取時已指定<strong>Column類別</strong>以及<strong>把欄位包起來的符號</strong>，會快很多</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">initial &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;open.csv&quot;</span>, <span class="dt">nrows =</span> <span class="dv">100</span>)
-classes &lt;-<span class="st"> </span><span class="kw">sapply</span>(initial, class)
-tabAll &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;open.csv&quot;</span>, <span class="dt">colClasses =</span> classes)</code></pre></div>
-</div>
-<div id="-download.file" class="section level2">
-<h2><span class="header-section-number">4.7</span> 從網路上下載檔案 download.file</h2>
-<p>使用RCurl Package</p>
-<p>download.file(URL, destfile=儲存檔名, method=?)</p>
-<p>method = “curl”–&gt;For <strong>https</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;RCurl&#39;</span>)){
-    <span class="kw">install.packages</span>(<span class="st">&quot;RCurl&quot;</span>)
-    <span class="kw">library</span>(RCurl)
-}
-<span class="kw">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv&quot;</span>, 
-              <span class="dt">destfile =</span> <span class="st">&quot;open.csv&quot;</span>, <span class="dt">method =</span> <span class="st">&quot;curl&quot;</span>)</code></pre></div>
-</div>
-<div id="open-data-1" class="section level2">
-<h2><span class="header-section-number">4.8</span> Open Data</h2>
-</div>
-<div id="section-4.9" class="section level2">
-<h2><span class="header-section-number">4.9</span> 爬蟲</h2>
+<div id="rstudio" class="section level2">
+<h2><span class="header-section-number">9.2</span> RStudio</h2>
 
 </div>
 </div>
@@ -441,8 +259,8 @@ tabAll &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span clas
           </div>
         </div>
       </div>
-<a href="controlstructure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="big.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="author.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -471,7 +289,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/04-io.Rmd",
+"link": "https://github.com/yijutseng/DataAnalyticsWithR/edit/master/09-install.Rmd",
 "text": "Edit"
 },
 "download": ["DataAnalyticsWithR.pdf", "DataAnalyticsWithR.epub"],

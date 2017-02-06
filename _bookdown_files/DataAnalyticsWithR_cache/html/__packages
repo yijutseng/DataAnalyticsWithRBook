@@ -5,3 +5,5 @@ RCurl
 bit
 bit64
 lubridate
+stringr
+reshape2

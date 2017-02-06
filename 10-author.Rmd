@@ -2,10 +2,8 @@
 曾意儒 Yi-Ju Tseng
 
 [長庚大學 資訊管理學系](http://im.cgu.edu.tw/bin/home.php) 助理教授
-
 [個人網站](http://yijutseng.github.io)
-
-[數位健康實驗室](http://yijutseng.github.io/Lab/)
+Lab: [數位健康實驗室](http://yijutseng.github.io/Lab/)
 
 
 

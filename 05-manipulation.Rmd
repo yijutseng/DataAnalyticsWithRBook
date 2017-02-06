@@ -112,7 +112,7 @@ tail(letters,3) ##取出letters向量的後三個元素
 ```
 
 ###二維資料
-最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用`[]`，但因應二維資料的需求，以`,`分隔列與行的篩選條件，資料篩選原則為**前Row,後Column**，**前列,後行**。
+最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用`[]`，但因應二維資料的需求，以`,`分隔列與行的篩選條件，資料篩選原則為**前Row,後Column**，**前列,後行**，若不想篩選列，則在`,`前方保持**空白**即可。
 
 篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)
 
@@ -216,6 +216,8 @@ irisAdd<-cbind(iris, #資料框
 tail(irisAdd)
 ```
 
+
+
 ##長表與寬表
 在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2[@R-reshape2] package，提供完整的轉換功能，最常使用的是
 
@@ -233,7 +235,24 @@ head(airqualityM)
 轉換過的長表`airqualityM`資料框中，剩下Month, Day, variable, value等四個欄位 (Column)，屬於長表，以下範例variable欄位的值轉換為新欄位，並將value欄位填回新增的欄位，長表轉寬表範例如下:
 ```{r}
 library(reshape2)
-airqualityCast<-dcast(airqualityM, Month +Day~variable) ##欄位保留"Month","Day"外，其他欄位數目由variable定義
+##欄位保留"Month","Day"外，其他欄位數目由variable定義
+airqualityCast<-dcast(airqualityM, Month +Day~variable) 
 head(airqualityCast)
 ```
 
+##遺漏值處理
+遺漏值(Missing Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用`is.na()`來判斷資料是否為空值`NA`，若為真`TRUE`，則將資料移除。
+```{r}
+naVec<-c("a","b",NA,"d","e")
+is.na(naVec)
+naVec[!is.na(naVec)] ##保留所有在is.na()檢查回傳FALSE的元素
+```
+
+若資料型態為資料框，可使用`complete.cases`來選出完整的資料列，如果資料列是完整的，則會回傳真TRUE
+```{r}
+head(airquality)
+complete.cases(airquality) 
+head(airquality[complete.cases(airquality),]) ##保留所有在complete.cases()檢查回傳TRUE的元素
+```
+
+利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value)教學。

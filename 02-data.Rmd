@@ -1,13 +1,9 @@
 # R 資料結構 {#RDataStructure}
 
-Here is a review of existing methods.
-**因子 (factor)**、
-
 ## 向量 vector
 向量為一維資料的表現和儲存方式，用`c()`函數可定義向量，如：
 ```{r vector1}
 vec<-c('a','b','c','d','e')
-vec
 ```
 a~e為vec向量中的**元素(element)**，各元素向中的順序固定，`a`為`vec`向量中的第**1**個元素，`b`則為第**2**個元素，以此類推，若要將`vec`向量的第**4**個元素取出，可使用
 ```{r vector2}
@@ -19,6 +15,12 @@ vec[c(2,3)] ## 第2與第3個元素
 ```
 此外，在同一向量中，所有元素之**資料型態必須相同**，如上述`vec`向量，元素均為文字型態。
 
+和變數指定類似，向量中的元素也可以使用`<-`重新指定
+```{r vector22}
+vec[3]
+vec[3]<-'z' ##第三個元素值設定為“z”
+vec[3] 
+```
 ### 快速產生向量函數
 若要產生連續向量，如1~20，可使用`:`來串連首字與最後一字
 ```{r vector3}
@@ -47,13 +49,48 @@ numvec1*numvec2
 ```
 
 ## 因子 factor
+因子是由向量轉換而成，多用於表示**類別**數據，如大學中有大學生、碩士班學生與博士班學生三種類別的學生，使用方法為`factor(資料向量,levels=類別次序)`，`levels`參數可設定各類別的次序
 ```{r factor1}
-
+factor(c("大學生","碩士班學生","博士班學生"),
+       levels = c("大學生","碩士班學生","博士班學生"))
 ```
+因子變量一但決定其類別的種類與數目時，通常不會再作更動，也就是任何新增的元素都要是大學生、碩士班學生與博士班學生其中一種。
+
 
 ## 列表 list
+由於向量和因子都只能儲存一種元素，使用上彈性較不足，在R語言中，有一彈性很大的資料型態**列表list**，在列表中，元素可分屬不同資料類別，除了可包括**數值**與**文字**外，也可以包括資料集，如**向量**和**因子**等，更進階的使用，還可以包括矩陣與資料框。如要建立列表，可使用`list()`函數
 ```{r list1}
+listSample<-list(Students=c("Tom","Kobe","Emma","Amy"),Year=2017,
+                 Score=c(60,50,80,40),School="CGU")
+listSample
+```
 
+### 列表資料擷取
+列表可用`$`符號做資料擷取
+```{r}
+listSample$Students ##取得中表中的Students變量
+```
+也可和向量一樣，使用索引值來擷取資料，和向量不同的是，若要取得**值**，要使用雙中括號`[[]]`
+```{r}
+listSample[[1]] ##取得中表中第一個變量的值
+```
+如果只使用單中括號，回傳的資料型態會是列表list，並非列表中的值
+```{r}
+listSample[1] ##取得中表中第一個變量（列表型態）
+```
+
+
+### 列表資料編輯設定
+列表資料也可和向量資料一樣，重新編輯設定
+```{r}
+listSample[[1]] 
+listSample[[1]]<-c("小明","大雄","胖虎","小新","大白") ##將Students變量重新設定
+listSample[[1]] 
+```
+
+除了編輯以外，列表資料也能用`$`符號與`<-`變數設定符號新增
+```{r}
+listSample$Gender<-c("M","F","M","F","M") ##新增Gender變量，並設定向量值
 ```
 
 ## 矩陣 matrix
@@ -62,16 +99,79 @@ a <- matrix(c(1:6), nrow=3, ncol=2) ##建立3x2的矩陣，分別填入1~6的值
 a
 ```
 ## 資料框 data.frame
+資料框是非常常見的二維資料格式，由一系列的欄位（Column）和列（Row）所組成，常見的Excel試算表也是類似的資料表現形式，可使用`data.frame()`來創建新的資料框
 ```{r dataframe1}
-tmp <- data.frame(Student_ID=c(1,2,3,4,5),
-                  name=c("Helen", "Lun", "Leon", "Kevin", "Tommy"),
-                  score=c(80,36, 88.9, 97.5, 60))
-tmp 
+StuDF <- data.frame(StuID=c(1,2,3,4,5), ##欄位名稱=欄位值
+                  name=c("小明","大雄","胖虎","小新","大白"),
+                  score=c(80,60,90,70,50))
+StuDF 
 ```
-## 資料表 data.table (快)
+如範例所示，每個欄位都有名稱（StuID, name, score），若沒有設定欄位名稱，R會自動指派V1~Vn作為欄位名稱。在R中，每個欄位的資料型態必須相同，如StuID和score為數值型態，name為文字型態。每一列也有預設的列名，R自動依序指派1~n作為列名。
+如需檢查欄位名稱與列名，可使用`colnames()`和`rownames()`
+
+```{r}
+colnames(StuDF) ##欄位名稱
+rownames(StuDF) ##列名
+```
+
+如需檢查個欄位之資料型別，可使用`str()`函數
+```{r}
+str(StuDF) 
+```
+
+
+## 資料表 data.table
+data.table是data.frame資料框型別的延伸，如要使用必須安裝data.table [@R-data.table] package，使用`data.table`讀取大型資料的速度比使用資料框快上數倍，進階處理語言也相當好用，在探索式資料分析章節Chapter \@ref(eda)會詳細介紹。其他詳細教學可見 [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k)，DataCamp也提供[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial)，可自行參閱。
 
 ## 資料屬性查詢函數
-`names`
-`dimnames`
-`length`
-`class`
+資料屬性可透過下列函數查詢:
+
+- 名稱 `names()`
+- 各維度名稱 `dimnames()`
+- 長度 `length()`
+- 各維度長度 `dim()`
+- 資料型態 `class()`
+- 各類資料計數 `table()`
+- 總覽資料 `str()`
+
+透過`names()`函數，可取得各種資料之名稱
+```{r names1}
+head(islands) ##R內建的資料
+head(names(islands)) ##顯示上述資料之資料名稱
+```
+若為資料框，則會顯示行（欄位）名稱
+```{r names2}
+head(USArrests) ##R內建的資料
+head(names(USArrests)) ##顯示上述資料之資料名稱
+```
+透過`dimnames()`函數可顯示資料框列與行的名稱，先顯示列，再顯示行
+```{r dimnames１}
+dimnames(USArrests) 
+```
+透過`length()`函數可顯示資料長度，包括向量與資料框，若資料行態為資料框，則會顯示行（欄位）數
+```{r length１}
+length(islands) 
+length(USArrests) 
+```
+透過`dim()`函數可顯示資料框列與行的長度，與`dimnames()`相同，先顯示列，後顯示行
+```{r dim1}
+dim(USArrests) 
+```
+使用`class()`函數可知道變數類別
+```{r class1}
+class(1)
+class("Test")
+class(Sys.Date())
+```
+
+使用`table()`函數可知道向量中每個值出現幾次
+```{r table1}
+iris$Species ##原始值
+table(iris$Species) ##統計結果
+```
+使用`str()`函數可總覽變數資訊
+```{r str1}
+str(iris)
+str(listSample)
+```
+

@@ -56,10 +56,6 @@ head(NBA1415)
 - 任何地方
 
 ### Open Data 
-http://bit.ly/1U3pVoI
-<img src="fig/marriage.png" width="800px">
-
-<img src="fig/marriageData.png" width="800px">
 
 
 ## 讀取各類檔案
