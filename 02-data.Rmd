@@ -37,3 +37,8 @@ char3<-"200"
 
 ## 資料表 data.table (快)
 
+## 資料屬性查詢函數
+`names`
+`dimnames`
+`length`
+`class`

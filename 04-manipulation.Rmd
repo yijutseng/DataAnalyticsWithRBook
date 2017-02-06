@@ -1,7 +1,239 @@
 # 資料處理與清洗 {#manipulation}
 
-Some _significant_ applications are demonstrated in this chapter.
+## 資料型別轉換處理
+在資料型態章節Chapter \@ref(DataType)中，曾介紹**數值 (numeric)**、**字串 (character)**、**布林變數 (logic)**以及**日期 (Date)**等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。
 
-## Example one
+###資料型別檢查
+使用以下`is.`函數檢查資料型別，回傳布林變數，若為真，回傳TRUE
 
-## Example two
+- 是否為**數字** `is.numeric(變數名稱)`
+- 是否為**文字** `is.character(變數名稱)`
+- 是否為**布林變數** `is.logical(變數名稱)`
+
+```{r}
+num<-100
+cha<-'200'
+boo<-T
+is.numeric(num)
+is.numeric(cha)
+is.character(num)
+is.character(cha)
+is.logical(boo)
+```
+
+或使用`class(變數名稱)`函數，直接回傳資料型別
+```{r}
+class(num)
+class(cha)
+class(boo)
+class(Sys.Date())
+```
+
+###資料型別轉換
+使用以下`as.`函數轉換型別
+
+- 轉換為**數字** `as.numeric(變數名稱)`
+- 轉換為**文字** `as.character(變數名稱)`
+- 轉換為**布林變數** `as.logical(變數名稱)`
+
+```{r}
+as.numeric(cha)
+as.numeric(boo)
+as.character(num)
+as.character(boo)
+```
+若無法順利完成轉換，會回傳空值`NA`，並出現警告訊息`Warning: NAs introduced by coercion，Warning: 強制變更過程中產生了 NA`
+```{r}
+as.numeric("abc")
+```
+
+日期的轉換則建議使用`lubridate`[@R-lubridate] package，如果想要將`年/月/日`格式的文字轉換為日期物件，可使用`ymd()`函數（y表年year，m表月month，d表日day），如果想要將`月/日/年`格式的文字轉換為日期物件，則使用`mdy()`函數，以此類推。
+
+```{r ,message=F}
+library(lubridate)
+ymd('2012/3/3')
+mdy('3/3/2012')
+```
+
+## 文字字串處理
+
+### 基本處理
+
+- 切割 `strsplit()`
+- 子集 `substr()`
+- 大小寫轉換 `toupper()` `tolower()`
+- 兩文字連接 `paste()` `paste0()`
+- 文字取代 `gsub()`
+- 前後空白去除 `str_trim()` 需安裝`stringr`[@R-stringr] package
+
+```{r}
+strsplit ("Hello World"," ")
+toupper("Hello World")
+tolower("Hello World")
+paste("Hello", "World", sep='')
+substr("Hello World", start=2,stop=4)
+gsub("o","0","Hello World")
+library(stringr)
+str_trim(" Hello World ")
+```
+
+### 搜尋字串
+搜尋字串函數通常使用在**比對文字向量**，文字比對**有分大小寫**，依照回傳值的型態不同，有兩種常用函數，`grep()`與`grepl()`:
+
+- 回傳符合條件之向量位置(index) `grep(搜尋條件,要搜尋的向量)`
+- 回傳每個向量是否符合條件(TRUE or FALSE) `grepl(搜尋條件,要搜尋的向量)`
+
+```{r}
+grep("A",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找A，回傳包含"A"之元素位置
+```
+
+```{r}
+grepl("A",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找A，回傳各元素是否包含"A"
+grepl("a",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找a，回傳各元素是否包含"a"
+```
+
+
+##子集Subset
+
+###一維資料 (向量)
+在向量章節`{#vector}`有介紹使用`[]`取出單一或多個元素的方法
+```{r}
+letters ##R語言內建資料之一
+letters[1] ##取出letters向量的第一個元素
+letters[1:10] ##取出letters向量的前十個元素
+letters[c(1,3,5)] ##取出letters向量的第1,3,5個元素
+letters[c(-1,-3,-5)] ##取出letters向量除了第1,3,5個元素之外的所有元素
+```
+
+若想要快速取得一向量的開頭與結尾元素，可使用`head()`和`tail()`函數
+```{r}
+head(letters,5) ##取出letters向量的前五個元素
+tail(letters,3) ##取出letters向量的後三個元素
+```
+
+###二維資料
+最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用`[]`，但因應二維資料的需求，以`,`分隔列與行的篩選條件，資料篩選原則為**前Row,後Column**，**前列,後行**。
+
+篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)
+
+- 輸入位置: `dataFrame[row index,column index]`
+- 輸入布林變數: `dataFrame[c(T,F,T),c(T,F,T)]`
+- 輸入欄位名稱: `dataFrame[row name,column name]`
+
+```{r}
+iris[1,2] ##第一列Row，第二行Column
+iris[1:3,] ##第1~3列Row，所有的行Column
+iris[,"Species"] ##所有的列Row，名稱為Species的行Column
+iris[1:10,c(T,F,T,F,T)] ##第1~10列Row，第1,3,5行Column (TRUE)
+```
+
+也可使用`$`符號做**Column的篩選**
+```{r}
+iris$Species ##所有的列Row，名稱為Species的行Column
+```
+
+**Row的篩選**可使用`subset()`函數，使用方法為`subset(資料表,篩選邏輯)`
+
+```{r}
+subset(iris,Species=="virginica") ##Species等於"virginica"的列Row，所有的行Column
+```
+
+**Row的篩選**也可搭配字串搜尋函數`grepl()`
+
+```{r}
+knitr::kable(iris[grepl("color",iris$Species),]) ##Species包含"color"的列，所有的行
+```
+
+若想要快速取得資料框的前幾列(Raw)或後幾列，也可使用`head()`和`tail()`函數
+```{r}
+head(iris,5) ##取出iris資料框的前五列
+tail(iris,3) ##取出iris資料框的後三列
+```
+
+##排序
+
+###sort 向量排序
+`sort()`函數可直接對向量做**由小到大**的排序
+```{r}
+head(islands) ##排序前的前六筆資料
+head(sort(islands)) ##由小到大排序後的前六筆資料
+```
+如需**由大到小**排序，可將`decreasing`參數設為TRUE
+```{r}
+head(sort(islands,decreasing = T)) ##由大到小排序後的前六筆資料
+```
+
+###order
+如需對資料框做排序，可使用`order()`函數，`order()`函數可回傳**由小到大**之**元素位置**，以`iris$Sepal.Length`為例，回傳的第一個位置為`14`，表示`iris$Sepal.Length`中，數值最小的元素為第14個元素。
+```{r}
+order(iris$Sepal.Length)
+iris$Sepal.Length[14]
+```
+若將`decreasing`參數設定為TRUE，則會回傳**由大到小**的元素位置，以`iris$Sepal.Length`為例，回傳的第一個位置為`132`，表示`iris$Sepal.Length`中，數值最大的元素為第132個元素。
+```{r}
+order(iris$Sepal.Length,decreasing = T)
+iris$Sepal.Length[132]
+```
+依照order回傳的元素位置，重新排序iris資料框
+
+```{r}
+head(iris) ##排序前的前六筆資料
+head(iris[order(iris$Sepal.Length),]) ##依照Sepal.Length欄位數值大小排序後的前六筆資料
+head(iris[order(iris$Sepal.Length,decreasing = T),]) ##改為由大到小排序的前六筆資料
+```
+
+##資料組合
+有時需要在資料框新增一列，或新增一行，可以利用資料組合函數完成
+
+- Row 列的組合 `rbind()`
+- Column 行的組合 `cbind()`
+
+`rbind()`和`cbind()`的參數可以是向量，也可以是資料框，使用向量做資料整合範例:
+```{r}
+rbind(c(1,2,3), #第一列
+      c(4,5,6)  #第二列
+      ) 
+```
+
+使用資料框與向量做資料整合範例:
+```{r warning=F}
+irisAdd<-rbind(iris, #資料框
+      c(1,1,1,1,"versicolor")  #新增一列
+      ) 
+tail(irisAdd)
+```
+使用向量做資料整合範例:
+```{r}
+cbind(c(1,2,3), #第一行
+      c(4,5,6)  #第二行
+      ) 
+```
+使用資料框與向量做資料整合範例:
+```{r warning=F}
+irisAdd<-cbind(iris, #資料框
+      rep("Add",nrow(iris))  #新增一行
+      ) 
+tail(irisAdd)
+```
+
+##長表與寬表
+在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2[@R-reshape2] package，提供完整的轉換功能，最常使用的是
+
+- 寬表轉長表 `melt(資料框/寬表,id.vars=需要保留的欄位)`
+- 長表轉寬表 `dcast(資料框/長表,寬表分列依據~分欄位依據)`
+
+原來的`airquality`資料框中，有Ozone, Solar.R, Wind, Temp, Month, Day等六個欄位 (Column)，屬於寬表，以下範例將保留Month和Day兩個欄位，並將其他欄位的名稱整合至variable欄位，數值整合至value欄位，寬表轉長表範例如下:
+```{r}
+library(reshape2)
+head(airquality)
+airqualityM<-melt(airquality,id.vars = c("Month","Day")) ##欄位需要保留"Month","Day"
+head(airqualityM)
+```
+
+轉換過的長表`airqualityM`資料框中，剩下Month, Day, variable, value等四個欄位 (Column)，屬於長表，以下範例variable欄位的值轉換為新欄位，並將value欄位填回新增的欄位，長表轉寬表範例如下:
+```{r}
+library(reshape2)
+airqualityCast<-dcast(airqualityM, Month +Day~variable) ##欄位保留"Month","Day"外，其他欄位數目由variable定義
+head(airqualityCast)
+```
+

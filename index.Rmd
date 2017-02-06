@@ -13,10 +13,10 @@ description: "長庚大學資訊管理學系大數據分析方法教學使用書
 ---
 ```{r setup, include=FALSE}
 options(
-  htmltools.dir.version = FALSE, formatR.indent = 2, width = 55, digits = 4
+  htmltools.dir.version = FALSE, formatR.indent = 2, width = 80, digits = 4
 )
 
-pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table')
+pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2')
 lapply(c(), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })

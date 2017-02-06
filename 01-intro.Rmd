@@ -4,7 +4,8 @@
 
 ## 什麼是R語言
 
-[R語言](http://www.r-project.org/)是一種自由軟體程式語言，主要用於資料分析與統計運算，其發展歷史可參考[維基百科](https://zh.wikipedia.org/wiki/R%E8%AF%AD%E8%A8%80)。基本的R軟體已經內建多種統計學及數字分析功能，其餘功能可以透過安裝**套件（Packages）**加載，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上 ([R Studio報導](https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/))。常用的套件清單可參考各項網路資訊，如[R Studio的整理：Quick list of useful R packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+[R語言](http://www.r-project.org/)是一種自由軟體程式語言，主要用於資料分析與統計運算，在2000發表R 1.0.0，其發展歷史可參考[維基百科](https://zh.wikipedia.org/wiki/R%E8%AF%AD%E8%A8%80)。基本的R軟體已經內建多種統計學及數字分析功能，其餘功能可以透過安裝**套件（Packages）**加載，眾多的套件使得R的使用者可以【站在巨人的肩膀上】做資料分析(Standing on the shoulders of
+giants (Hal R. Varian, Google))，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上 ([R Studio報導](https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/))。常用的套件清單可參考各項網路資訊，如[R Studio的整理：Quick list of useful R packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
 
 安裝套件Package的方法如下：
 ```{r eval=F}
@@ -22,6 +23,24 @@ library(ggplot2)
 ```
 載入已安裝的套件時，不用再套件名稱前後加雙引號。
 
+## 函數使用
+在R中有許多內建函數，安裝套件後各套件提供各式各樣寫好的函數，函數使用方式為`函數名稱(參數)`，以計算平均數為例，可使用`mean()`函數，範例如下:
+
+```{r}
+mean(c(1,2,3,4,5,6))
+```
+
+若想知道各函數所需參數，可使用`?函數名稱`觀看函數作者所撰寫的說明文件
+```{r eval=F}
+?mean
+```
+
+除非有指定參數名稱，函數的參數設定有順序性，如序列產生函數`seq`，參數順序為from, to, by，代表序列起點、序列終點，以及相隔單位。
+```{r}
+seq(from=1,to=9,by=2)#1~9，每隔2產生一數字
+seq(1,9,2)#按照順序輸入參數，可省去參數名稱
+seq(by=2,to=9,from=1)#若不想照順序輸入參數，需要指定參數名稱
+```
 
 ## 變數設定
 
@@ -48,8 +67,17 @@ d<-3
 str(d)
 ```
 
+變數的命名有以下規則:
 
-## 資料型態
+- 不可使用保留字，如break, else, FALSE, for, function, if, Inf, NA, NaN,
+next, repeat, return, TRUE, while等
+- 開頭只能是英文字，或 `.`
+- 大小寫敏感
+
+## 執行視窗
+R是可直譯的語言，也就是說，可以在執行視窗(Console)直接打程式碼，在視窗出現`>`時，表示可輸入指令，若視窗出現`+`時，表示前面的程式碼還沒打完，必須鍵入完整的程式碼讓R執行
+
+## 資料型態 {#DataType}
 在R語言中，常用的資料型態包括**數值 (numeric)**、**字串 (character)**、**布林變數 (logic)**以及**日期 (Date)**等。
 
 ### 數值 numeric
@@ -110,13 +138,15 @@ mdy('3/3/2012')
 
 ## 基本運算子
 
-### 數學運算
+### 數學基本運算
 在R中，數學運算與其他程式語言相同
 
 - 加 `+`
 - 減 `-`
 - 乘 `*`
 - 除 `/`
+- 餘數 `%%`
+- 次方 `^`
 
 ```{r math1}
 num1<-1
@@ -125,6 +155,22 @@ num1+num2
 num1-num2
 num1*num2
 num1/num2
+100%%3
+2^3
+```
+
+###進階數學函數
+- 四捨五入 `round()`
+- 無條件捨去 `floor()`
+- 無條件進位 `ceiling()`
+
+```{r math2}
+num1<-1.568
+num2<-2.121
+round(num1,digits = 2) #四捨五入至小數點第二位
+round(num2,digits = 1) #四捨五入至小數點第一位
+floor(num1)
+ceiling(num2)
 ```
 
 ### 邏輯運算
@@ -161,6 +207,37 @@ TRUE & FALSE
 TRUE | TRUE
 TRUE | FALSE
 ```
+
+## 錯誤訊息
+- Message：有可能的錯誤通知，程式會繼續執行
+- Warning：有錯誤，但是不會影響太多，程式會繼續執行
+- Error：有錯，而且無法繼續執行程式
+- Condition：可能會發生的情況
+```{r}
+log(-1)
+```
+```{r, error=T}
+mena(NA)
+```
+錯誤訊息範例:
+```
+# Error: could not find function "fetch_NBAPlayerStatistics"
+# 找不到"fetch_NBAPlayerStatistics" function
+# 原因：沒安裝或沒讀入SportsAnalytics package
+```
+```
+# Error in library(knitr): there is no package called 'knitr'
+# 找不到"knitr" package
+# 原因：沒安裝knitr package
+```
+## Help
+R語言與套件均有完整的文件與範例可以參考，在R的執行視窗中，輸入`?函數名稱`或`?套件名稱`即可看到函數或套件的使用說明
+```{r eval=F}
+?ggplot2
+?ymd
+```
+
+除此之外，[Stack Overflow](http://stackoverflow.com/)中也有許多問答，可直接在網站中搜尋關鍵字與錯誤訊息。
 
 ## rbookdown原始範例，暫留
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
