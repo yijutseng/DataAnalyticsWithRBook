@@ -1,9 +1,4 @@
 \documentclass[]{book}
-\usepackage{xeCJK}  %讓中英文字體分開設置
-\setCJKmainfont{標楷體}  
-  %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
-\XeTeXlinebreaklocale "zh"  
-\XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -20,6 +15,11 @@
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
+\usepackage{xeCJK}  %讓中英文字體分開設置
+\setCJKmainfont{微軟正黑體}  
+  %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\XeTeXlinebreaklocale "zh"  
+\XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
 \IfFileExists{microtype.sty}{%
@@ -161,12 +161,14 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter*{}\label{preface}
+\hypertarget{preface}{\chapter*{}\label{preface}}
 \addcontentsline{toc}{chapter}{}
 
 \href{http://im.cgu.edu.tw/bin/home.php}{長庚大學資訊管理學系}
 \href{https://github.com/yijutseng/BigDataCGUIM}{大數據分析方法}教學使用書籍，內容包括使用\href{http://www.r-project.org/}{R語言}做資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘等，並介紹R與Hadoop
 EcoSystems介接方法。
+
+目前完成1\textasciitilde{}5與第8章，PDF版本與epub版本格式微調中。
 
 \chapter{R語言101}\label{intro}
 
@@ -749,7 +751,7 @@ Blog}。
 \end{Shaded}
 
 \begin{verbatim}
-## Warning in log(-1): NaNs produced
+## Warning in log(-1): 產生了 NaNs
 \end{verbatim}
 
 \begin{verbatim}
@@ -763,7 +765,7 @@ Blog}。
 \end{Shaded}
 
 \begin{verbatim}
-## Error in eval(expr, envir, enclos): could not find function "mena"
+## Error in eval(expr, envir, enclos): 沒有這個函數 "mena"
 \end{verbatim}
 
 錯誤訊息範例1:
@@ -1133,7 +1135,7 @@ score），若沒有設定欄位名稱，R會自動指派V1\textsubscript{Vn作�
 \begin{verbatim}
 ## 'data.frame':    5 obs. of  3 variables:
 ##  $ StuID: num  1 2 3 4 5
-##  $ name : Factor w/ 5 levels "大白","大雄",..: 4 2 5 3 1
+##  $ name : Factor w/ 5 levels "大白","大雄",..: 3 2 5 4 1
 ##  $ score: num  80 60 90 70 50
 \end{verbatim}
 
@@ -1404,13 +1406,7 @@ DataCamp}，DataCamp也提供\href{https://www.datacamp.com/courses/data-table-d
 
 \textbf{if-else}敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用\textbf{if-else}，若\textbf{if}後所接邏輯判斷為\textbf{真(TRUE)}，就會執行if下方之程式碼，若為\textbf{偽(FALSE)}，則執行\textbf{else}下方之程式碼，若程式中沒有\textbf{else}片段，則不執行任何程式碼。
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"figure/ifelse.png"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{figure/ifelse.png}
+\includegraphics[width=27.78in]{figure/ifelse}
 
 \texttt{if}與\texttt{else}下方的程式碼必須要使用\texttt{\{\}}將程式碼包起來，若程式碼只有一行，可省略\texttt{\{\}}，但為閱讀方便，建議不要省略\texttt{\{\}}。
 
@@ -1655,31 +1651,839 @@ R語言的\texttt{for}迴圈寫法和其他語言不同，首先必須建立需�
 
 \chapter{資料讀取與匯出}\label{io}
 
-What is `Data'?
+資料(Data)在\href{http://en.wikipedia.org/wiki/Data}{維基百科}的定義是\texttt{values\ of\ qualitative\ or\ quantitative\ variables,\ belonging\ to\ a\ set\ of\ items.}，一般來說，在資料分析前會經過多個步驟，包括\textbf{資料匯入}Chapter
+\ref{io}、\textbf{資料清洗處理}Chapter \ref{manipulation}並轉換為Tidy
+data、\textbf{資料分析}Chapter
+\ref{eda}、\textbf{資料呈現與視覺化}Chapter \ref{vis}。
 
-\url{http://en.wikipedia.org/wiki/Data}
-
-\texttt{Data\ are\ values\ of\ qualitative\ or\ quantitative\ variables,\ belonging\ to\ a\ set\ of\ items.}
-
-看完本章會學到：
+資料有多種可能來源，包括:
 
 \begin{itemize}
 \tightlist
 \item
-  找資料、抓資料、總之就是弄到資料
+  硬碟
 \item
-  資料前處理原則：tidy
+  網路下載
 \item
-  用R做到以上工作
+  Open Data (API)
+\item
+  網頁裡 (爬蟲！)
+\item
+  任何地方
 \end{itemize}
 
-\texttt{Raw\ data} -\textgreater{} \textbf{Processing script}
--\textgreater{} \texttt{Tidy\ data} -\textgreater{} Data analysis
--\textgreater{} Data communication
+以下介紹由檔案、網路等來源匯入多種資料格式的匯入方式，以及建議的資料匯出方法。
 
-\section{資料類型}
+\section{從檔案匯入基本資料格式}\label{file}
 
-\subsection{Tidy Data}\label{tidy-data}
+\subsection{Import Dataset功能 (RStudio)}\label{import-dataset-rstudio}
+
+\href{https://www.rstudio.com/}{RStudio}
+1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成\texttt{.csv}、\texttt{Excel}以及\texttt{SAS}等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇\textbf{Import
+Dataset}，就會出現檔案格式的選項
+
+\includegraphics[width=16.43in]{figure/import}
+
+以csv檔案為例，在選單中選取\texttt{From\ CSV}，選取後會跳出資料匯入輔助視窗，點選\texttt{Browse}按鈕開啟檔案選取器，並點選欲匯入之文字檔案
+
+\includegraphics[width=13.81in]{figure/csv}
+
+檔案選取後，資料匯入輔助視窗有預覽功能，供使用者檢查資料匯入方法是否正確，若需調整各項參數，可利用下方\texttt{Import\ Options}的選項微調，最常用的調整功能是\texttt{Delimiter}分隔符號與\texttt{First\ Row\ as\ Names}首列是否為欄位名稱。
+
+\includegraphics[width=26.67in]{figure/csv2}
+
+如果要匯入的檔案為\textbf{tab分隔文字檔}，一樣可以選擇\texttt{.csv}選項，再修改\texttt{Delimiter}參數為\texttt{Tab}即可。
+
+資料匯入輔助視窗右下方\texttt{Code\ Preview:}子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。
+
+\subsection{分隔文字檔 .txt}\label{-.txt}
+
+\texttt{readr} \citep{R-readr}
+package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為\textbf{檔案路徑與名稱}，\texttt{read\_delim()}函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將\texttt{delim}參數設定為\texttt{\textbackslash{}t}，即可用tab將各欄位分開讀取。此外，\texttt{col\_names}參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為
+X1, X2, X3 \ldots{}。
+
+參數整理如下 (可用?read\_delim指令閱讀官方說明)：
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{file}, 檔名
+\item
+  \texttt{delim}, 分隔符號
+\item
+  \texttt{quote}, 把欄位包起來的符號
+\item
+  \texttt{escape\_backslash}, 預設FALSE，是否用/作為逃脫符號
+\item
+  \texttt{escape\_double}, 預設TRUE，是否用quote符號作為逃脫符號
+\item
+  \texttt{col\_names}, 是否有欄位名稱（表頭）（T/F）
+\item
+  \texttt{col\_types}, 每一個欄位的類別，用向量表示
+\item
+  \texttt{comment}, 備註標示符號，在備註標示符號之後的文字不會被讀入
+\item
+  \texttt{skip}, 要跳過幾行？
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{dataset <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"檔案路徑與名稱"}\NormalTok{, }\DataTypeTok{delim=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{CSV檔案 .csv}\label{csv}
+
+\texttt{readr} \citep{R-readr} package也提供CSV
+(逗號分隔)檔案的讀取功能，\texttt{read\_csv()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readr)}
+\NormalTok{dataset <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"檔案路徑與名稱"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Excel檔案 .xls}\label{excel-.xls}
+
+\texttt{readxl} \citep{R-readxl} package提供讀取Excel檔案 (xls,
+xlsx)的函數\texttt{read\_excel()}，除了常用的\texttt{col\_names}參數外，也可使用\texttt{sheet}參數設定要讀取的工作表(sheet)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\NormalTok{dataset <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"檔案路徑與名稱"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{R物件 .rds}\label{r-.rds}
+
+R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用\texttt{readRDS()}函數
+(參考資料:\href{http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/}{A
+better way of saving and loading objects in R})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dataset <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(}\StringTok{"檔案路徑與名稱"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{R程式 .R}\label{r-.r}
+
+\texttt{source}, 讀R的Obejct or script, 執行, ASCII
+(\texttt{dump}的相反)
+
+\subsection{純文字資料 (無分隔)}\label{-}
+
+\texttt{readLines}, 逐行讀取文字資料
+
+\subsection{其他讀檔注意事項}
+
+讀檔的時候R會自動
+
+\begin{itemize}
+\tightlist
+\item
+  跳過\#開頭的任何行（Row）
+\item
+  判斷要讀幾行
+\item
+  判斷每個列（Column）的類別
+\item
+  把欄位包起來的符號
+\end{itemize}
+
+如果讀取時已指定\textbf{Column類別}以及\textbf{把欄位包起來的符號}，讀取速度會快很多。
+
+\section{從網路匯入資料}
+
+\subsection{Open Data}\label{open-data}
+
+\textbf{開放資料} (Open data)
+指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open
+data
+運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open
+data 背後的核心思想由來已，但 Open data
+這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open
+data
+政府組織的設立。\href{https://zh.wikipedia.org/wiki/\%E9\%96\%8B\%E6\%94\%BE\%E8\%B3\%87\%E6\%96\%99}{維基百科}
+
+台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://data.gov.tw/}{政府資料開放平台}
+\item
+  \href{http://data.taipei/}{Data Taipei}
+\item
+  \href{http://data.tycg.gov.tw/}{開放資料 x 開放桃園}
+\item
+  \href{http://data.moi.gov.tw/}{內政資料開放平台}
+\end{itemize}
+
+Open Data常見的儲存方式為: \texttt{CSV}Chapter
+\ref{csv}、\texttt{JSON}Chapter \ref{json}、\texttt{XML}Chapter
+\ref{xml}，開放資料網站通常有提供民眾\textbf{直接下載}檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述\textbf{由檔案匯入資料}
+Chapter \ref{file}方法匯入即可。
+
+\subsection{API (Application programming interfaces)}\label{api}
+
+應用程式介面 Application programming interfaces (API)
+是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。\href{https://zh.wikipedia.org/zh-tw/\%E5\%BA\%94\%E7\%94\%A8\%E7\%A8\%8B\%E5\%BA\%8F\%E6\%8E\%A5\%E5\%8F\%A3}{Wiki}
+但若檔案更新頻繁，以\href{http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463}{臺北市開放認養動物}資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過\textbf{API}下載的服務，透過API下載的資料格式會是JSON格式Chapter
+\ref{json}，如\href{http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463\&rid=f4a75ba9-7721-4363-884d-c3820b0b917c}{臺北市開放認養動物API資訊}所示，開放資料網站會提供\textbf{資料集ID}與\textbf{資料RID}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{資料集ID}: 紀錄資料的基本參數，如包含欄位、更新頻率等
+\item
+  \textbf{資料RID}: 資料集
+\end{itemize}
+
+並同時提供擷取範例，如果需要下載原始資料，可直接從範例複製貼上即可，如http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire\&rid=f4a75ba9-7721-4363-884d-c3820b0b917c
+
+\subsection{JSON格式檔案}\label{json}
+
+JSON (\textbf{J}ava\textbf{s}cript \textbf{O}bject
+\textbf{N}otation)是一種輕量級的資料交換語言
+\href{http://en.wikipedia.org/wiki/JSON}{Wiki}，特色如下:
+
+\begin{itemize}
+\tightlist
+\item
+  from \textbf{a}pplication \textbf{p}rogramming \textbf{i}nterfaces
+  (APIs)
+\item
+  JavaScript、Java、Node.js應用
+\item
+  一些NoSQL非關係型資料庫用JSON儲存格資料：\textbf{MongoDB}
+\item
+  資料儲存格式
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Numbers (double)
+  \item
+    Strings (double quoted)
+  \item
+    Boolean (\emph{true} or \emph{false})
+  \item
+    Array (ordered, comma separated enclosed in square brackets
+    \emph{\protect\hyperlink{preface}{}})
+  \item
+    Object (unorderd, comma separated collection of \textbf{key:value}
+    pairs in curley brackets \emph{\{\}})
+  \end{itemize}
+\end{itemize}
+
+\href{https://api.github.com/users/yijutseng/repos}{JSON檔案範例}
+
+許多Open
+Data也用JSON格式儲存，例如\href{http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463}{臺北市開放認養動物}資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire\&rid=f4a75ba9-7721-4363-884d-c3820b0b917c
+。
+
+將JSON檔案匯入R可以使用\texttt{jsonlite}\citep{R-jsonlite}
+package，套件使用前必須安裝，安裝套件方法請參考Chapter
+\ref{intro}，載入後，可使用\texttt{fromJSON()}函數載入JSON資料。
+如需直接從API網址截取資料，需要載入\texttt{RCurl}\citep{R-RCurl}
+package，並使用\texttt{getURL()}函數處理資料擷取網址。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(jsonlite)}
+\KeywordTok{library}\NormalTok{(RCurl)}
+\NormalTok{PetData<-}\KeywordTok{fromJSON}\NormalTok{(}\KeywordTok{getURL}\NormalTok{(}\StringTok{"http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c"}\NormalTok{))}
+\KeywordTok{str}\NormalTok{(PetData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 1
+##  $ result:List of 5
+##   ..$ offset : int 0
+##   ..$ limit  : int 10000
+##   ..$ count  : int 308
+##   ..$ sort   : chr ""
+##   ..$ results:'data.frame':  308 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:308] "1" "2" "3" "4" ...
+##   .. ..$ Name           : chr [1:308] "威利" "" "妮妮 " "桔福" ...
+##   .. ..$ Sex            : chr [1:308] "雄" "雄" "雌" "雄" ...
+##   .. ..$ Type           : chr [1:308] "犬" "貓" "犬" "貓" ...
+##   .. ..$ Build          : chr [1:308] "中" "中" "小" "中" ...
+##   .. ..$ Age            : chr [1:308] "成年" "老年" "年輕" "成年" ...
+##   .. ..$ Variety        : chr [1:308] "米克斯" "米克斯" "米克斯" "米克斯" ...
+##   .. ..$ Reason         : chr [1:308] "民眾不擬續養" "民眾拾獲" "民眾不擬續養" "動物管制" ...
+##   .. ..$ AcceptNum      : chr [1:308] "106020301" "106012706" "106012601" "106012602" ...
+##   .. ..$ ChipNum        : chr [1:308] "965000000263051" "" "900073000086609" "" ...
+##   .. ..$ IsSterilization: chr [1:308] "已絕育" "未絕育" "未絕育" "未絕育" ...
+##   .. ..$ HairType       : chr [1:308] "黃白" "黃白" "黃" "黃白" ...
+##   .. ..$ Note           : chr [1:308] "哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!" "疑似高處掉落 疑似無視覺 血尿" "皮膚病\n你好~我的名字叫妮妮，雖然我目前的狀況不太好，但只要好好照顧、增強抵抗力，就可以改善了唷!\n" "臉傷" ...
+##   .. ..$ Resettlement   : chr [1:308] "臺北市動物之家 收容編號106020301" "臺北市動物之家 收容編號：106012706" "臺北市動物之家 收容編號106012601" "臺北市動物之家 收容編號：106012602" ...
+##   .. ..$ Phone          : chr [1:308] "02-87913062" "02-87913062" "02-87913062" "02-87913062" ...
+##   .. ..$ Email          : chr [1:308] "tcapoa8@mail.taipei.gov.tw" "tcapoa8@mail.taipei.gov.tw" "tcapoa8@mail.taipei.gov.tw" "tcapoa8@mail.taipei.gov.tw" ...
+##   .. ..$ ChildreAnlong  : chr [1:308] "" "" "" "" ...
+##   .. ..$ AnimalAnlong   : chr [1:308] "" "" "" "" ...
+##   .. ..$ Bodyweight     : chr [1:308] "" "" "" "" ...
+##   .. ..$ ImageName      : chr [1:308] "http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg" "http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg" "http://163.29.39.183/uploads/images/medium/24abcf2b-9b48-43f3-afd8-d027be7de948.jpg" "http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg" ...
+\end{verbatim}
+
+由資料結構可知，經過\texttt{fromJSON()}函數匯入的JSON檔案被轉存為\texttt{列表list}的型態，且在result元素中包含五個子元素(offset,
+limit, count, sort,
+results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用\texttt{\$}符號截取元素與子元素
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(PetData$result$results)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l}
+\hline
+\_id & Name & Sex & Type & Build & Age & Variety & Reason & AcceptNum & ChipNum & IsSterilization & HairType & Note & Resettlement & Phone & Email & ChildreAnlong & AnimalAnlong & Bodyweight & ImageName\\
+\hline
+1 & 威利 & 雄 & 犬 & 中 & 成年 & 米克斯 & 民眾不擬續養 & 106020301 & 965000000263051 & 已絕育 & 黃白 & 哈囉\textasciitilde{}我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!! & 臺北市動物之家 收容編號106020301 & 02-87913062 & tcapoa8@mail.taipei.gov.tw &  &  &  & http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg\\
+\hline
+2 &  & 雄 & 貓 & 中 & 老年 & 米克斯 & 民眾拾獲 & 106012706 &  & 未絕育 & 黃白 & 疑似高處掉落 疑似無視覺 血尿 & 臺北市動物之家 收容編號：106012706 & 02-87913062 & tcapoa8@mail.taipei.gov.tw &  &  &  & http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg\\
+\hline
+3 & 妮妮 & 雌 & 犬 & 小 & 年輕 & 米克斯 & 民眾不擬續養 & 106012601 & 900073000086609 & 未絕育 & 黃 & 皮膚病
+你好\textasciitilde{}我的名字叫妮妮，雖然我目前的狀況不太好，但只要好好照顧、增強抵抗力，就可以改善了唷! & 臺北市動物之家 收容編號106012601 & 02-87913062 & tcapoa8@mail.taipei.gov.tw &  &  &  & http://163.29.39.183/uploads/images/medium/24abcf2b-9b48-43f3-afd8-d027be7de948.jpg\\
+\hline
+4 & 桔福 & 雄 & 貓 & 中 & 成年 & 米克斯 & 動物管制 & 106012602 &  & 未絕育 & 黃白 & 臉傷 & 臺北市動物之家 收容編號：106012602 & 02-87913062 & tcapoa8@mail.taipei.gov.tw &  &  &  & http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg\\
+\hline
+5 &  & 雄 & 貓 & 大 & 老年 & 米克斯 & 民眾拾獲 & 106012510 &  & 未絕育 & 虎斑白 & 上呼吸道感染 無睪丸 缺右上犬齒 &  &  &  &  &  &  & http://163.29.39.183/uploads/images/medium/411b54ce-59ae-45d5-adcf-d7c5f66ccb86.jpg\\
+\hline
+6 & Nana & 雌 & 犬 & 中 & 成年 & 米克斯 & 民眾拾獲 & 106012504 &  & 未絕育 & 黑 & 我是Nana
+我才剛來動物之家不久
+所以還是有些害羞、防備
+如果要與我互動記得動作別太大唷
+這可是會嚇到我的
+希望你們願意花些時間與耐心
+慢慢建立起我對你們的信任
+來動物之家看看我吧！ & 臺北市動物之家 收容編號106012504 & 02-87913062 & tcapoa8@mail.taipei.gov.tw &  &  &  & http://163.29.39.183/uploads/images/medium/9bbf0d11-2dad-4bf6-b732-c0a40f2df146.jpg\\
+\hline
+\end{tabular}
+
+results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項\textbf{開放認養理由}出現次數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(PetData$result$results$Reason)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##              民眾不擬續養     民眾拾獲     動物救援     動物管制 
+##           28           41           23          105          111
+\end{verbatim}
+
+分析可知開放認養理由以動物管制與未填寫居多。
+
+如果需要將資料框轉換成JSON檔案可以使用\texttt{jsonlite}
+package所提供的\texttt{toJSON()}函數。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myjson <-}\StringTok{ }\KeywordTok{toJSON}\NormalTok{(iris, }\DataTypeTok{pretty=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(myjson)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Class 'json'  chr "[\n  {\n    \"Sepal.Length\": 5.1,\n    \"Sepal.Width\": 3.5,\n    \"Petal.Length\": 1.4,\n    \"Petal.Width\": 0.2,\n    \"Spe"| __truncated__
+\end{verbatim}
+
+\subsection{XML 可延伸標記式語言}\label{xml}
+
+\begin{itemize}
+\tightlist
+\item
+  E\textbf{x}tensible \textbf{m}arkup \textbf{l}anguage
+\item
+  描述\textbf{結構化}資料的語言
+\item
+  處理XML檔案是網頁\textbf{Html}爬蟲的基礎
+\item
+  Components
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Markup 標記 - labels that give the text structure
+  \item
+    Content 內文 - the actual text of the document
+  \end{itemize}
+\item
+  \href{https://zh.wikipedia.org/wiki/XML}{XML Wiki}
+\end{itemize}
+
+Tags, elements and attributes
+
+\begin{itemize}
+\tightlist
+\item
+  Tags correspond to general labels
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Start tags \texttt{\textless{}breakfast\_menu\textgreater{}},
+    \texttt{\textless{}price\textgreater{}}
+  \item
+    End tags
+    \texttt{\textless{}/breakfast\_menu\textgreater{}},\texttt{\textless{}/price\textgreater{}}
+  \item
+    Empty tags \texttt{\textless{}line-break\ /\textgreater{}}
+  \end{itemize}
+\item
+  Elements are specific examples of tags
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\textless{}name\textgreater{}Belgian\ Waffles\textless{}/name\textgreater{}}
+  \end{itemize}
+\item
+  Attributes are components of the label
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{\textless{}book\ category="web"\textgreater{}}
+  \end{itemize}
+\end{itemize}
+
+許多Open
+Data也用XML格式儲存，例如\href{http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc\&rid=190796c8-7c56-42e0-8068-39242b8ec927}{臺北市水質監測資訊}。如需將XML檔案匯入R中，需要安裝\texttt{XML}
+\citep{R-XML} package，使用\texttt{xmlTreeParse()}函數將檔案匯入。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(XML)}
+\NormalTok{waterQ <-}\StringTok{ }\KeywordTok{xmlTreeParse}\NormalTok{(}\StringTok{"http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927"}\NormalTok{,}\DataTypeTok{useInternal=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{rootNode <-}\StringTok{ }\KeywordTok{xmlRoot}\NormalTok{(waterQ) }\CommentTok{#access the top node}
+\end{Highlighting}
+\end{Shaded}
+
+使用\texttt{xpathSApply()}函數取得指定標籤內的資料
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#取得所有"code_name"標籤內的資料}
+\KeywordTok{xpathSApply}\NormalTok{(rootNode,}\StringTok{"//code_name"}\NormalTok{,xmlValue)[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "雙溪淨水場"               "衛理女中"                
+##  [3] "雙溪國小                " "華興加壓站"              
+##  [5] "長興淨水場"               "市政大樓"                
+##  [7] "市議會"                   "捷運忠孝復興站"          
+##  [9] "南港高工"                 "南港加壓站"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#取得各監測站的經度}
+\KeywordTok{xpathSApply}\NormalTok{(rootNode,}\StringTok{"//longitude"}\NormalTok{,xmlValue)[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "121.56094" "121.54401" "121.55557" "121.53476" "121.54043" "121.55661"
+##  [7] "121.55360" "121.53551" "121.59892" "121.60829"
+\end{verbatim}
+
+\subsection{網頁爬蟲 Webscraping, Crawling}\label{-webscraping-crawling}
+
+\textbf{Webscraping}: Programatically extracting data from the HTML code
+of websites.
+
+\begin{itemize}
+\tightlist
+\item
+  不是每個網站都提供API
+
+  \begin{itemize}
+  \tightlist
+  \item
+    但網頁上卻有你想要分析的資料（像是ptt推文！？）
+  \item
+    除了人工複製貼上以外，也可以將網頁處理程式化
+  \end{itemize}
+\item
+  可能違法\ldots{}..，一次讀太多太快，很可能被鎖IP
+\item
+  \href{http://en.wikipedia.org/wiki/Web_scraping}{Webscraping Wiki}
+\item
+  \href{http://www.largitdata.com/course/1/}{什麼是網頁爬蟲}
+\end{itemize}
+
+What's the difference between scraping and crawling
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Crawling}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    dealing with \texttt{large\ data-sets} where you develop your own
+    crawlers which crawl to the deepest of the \texttt{web\ pages}.
+  \end{itemize}
+\item
+  \texttt{Data\ scraping}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    retrieving information from
+    \texttt{any\ source\ (not\ necessarily\ the\ web)}.
+  \item
+    It's more often the case that irrespective of the approaches
+    involved.
+  \end{itemize}
+\end{itemize}
+
+以\href{http://im.cgu.edu.tw/bin/home.php}{長庚資管系}網站為例，可直接逐行讀取
+\texttt{readLines()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{htmlCode <-}\KeywordTok{readLines}\NormalTok{(}\KeywordTok{url}\NormalTok{(}\StringTok{"http://im.cgu.edu.tw/bin/home.php"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in readLines(url("http://im.cgu.edu.tw/bin/home.php")): 於 'http://
+## im.cgu.edu.tw/bin/home.php' 找到不完整的最後一列
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{htmlCode[}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"                                                             
+## [2] "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"zh-tw\">"                                                                                                                              
+## [3] "<head>"                                                                                                                                                                                    
+## [4] "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"                                                                                                                 
+## [5] "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=EmulateIE7\" /><meta name=\"keywords\" content=\"隢‵撖怎雯蝡\x97閮\xba\xbc\xe5\x8d\xa7\u0080\x99\x9f(,)\xe9\x9a\x96\x8b\" />"
+\end{verbatim}
+
+用XML工具讀取網頁 (\texttt{XML} package)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(httr)}
+\NormalTok{html <-}\StringTok{ }\KeywordTok{htmlTreeParse}\NormalTok{(}\KeywordTok{GET}\NormalTok{(}\StringTok{"http://im.cgu.edu.tw/bin/home.php"}\NormalTok{), }\DataTypeTok{useInternalNodes=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## No encoding supplied: defaulting to UTF-8.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{xpathSApply}\NormalTok{(html, }\StringTok{"//title"}\NormalTok{, xmlValue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "長庚大學 資訊管理學系 "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{xpathSApply}\NormalTok{(html, }\StringTok{"//span[@class='ptname ']"}\NormalTok{, xmlValue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "畢業專題成果展"       "碩士班計畫書審查"     "畢業校友資料登錄"    
+##  [4] "長庚大學首頁"         "校務資訊系統"         "人事教育訓練資訊網"  
+##  [7] "國內資管系所"         "碩博士論文網"         "資管系內部行政系統"  
+## [10] "資管系分機表"         "資管系學會"           "TA課後輔導值班表"    
+## [13] "學生webmail"          "工商管理學系/研究所"  "工業設計學系/研究所" 
+## [16] "管理學院"             "醫務管理學系/研究所"  "商管專業學院"        
+## [19] "企業管理研究所博士班" "長庚大學行事曆"
+\end{verbatim}
+
+其他爬蟲相關參考資源
+
+\begin{itemize}
+\tightlist
+\item
+  R Bloggers
+  有很多\href{http://www.r-bloggers.com/?s=Web+Scraping}{爬蟲範例}（英文）
+\item
+  \href{http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html}{Ptt爬蟲實作}
+\item
+  \href{http://www.largitdata.com/course_list/1}{大數學堂 網頁爬蟲課程}
+\end{itemize}
+
+\section{Facebook資料擷取}\label{facebook}
+
+Facebook提供\href{https://developers.facebook.com/docs/graph-api?locale=zh_TW}{Graph
+API}，讓應用程式可透過API讀取與寫入 Facebook相關資料，\textbf{Graph
+API}會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供\href{https://developers.facebook.com/tools/explorer/}{Graph
+API Explorer}，讓程式開發人員可以測試資料撈取方法和結果。
+
+Get access token
+
+\subsection{Graph API in R}\label{graph-api-in-r}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(httr)}
+\NormalTok{token<-}\StringTok{"your token"} \CommentTok{#將token複製到此處 }
+\NormalTok{FBData =}\StringTok{ }\KeywordTok{GET}\NormalTok{(}
+    \KeywordTok{paste0}\NormalTok{(}\StringTok{"https://graph.facebook.com/v2.8/tsaiingwen?fields=posts%7Bmessage%7D&access_token="}\NormalTok{,}
+           \NormalTok{token))}
+\KeywordTok{names}\NormalTok{(FBData)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "url"         "status_code" "headers"     "all_headers" "cookies"     "content"     "date"       
+## [8] "times"       "request"     "handle"    
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{json1 =}\StringTok{ }\KeywordTok{content}\NormalTok{(FBData)}
+\KeywordTok{names}\NormalTok{(json1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "posts" "id"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(json1$posts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data"   "paging"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(json1$posts$data,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[[1]]
+[[1]]$message
+[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
+
+[[1]]$id
+[1] "46251501064_10154006497451065"
+
+
+[[2]]
+[[2]]$message
+[1] "今天，智慧機械推動辦公室正式啟動。「落實產學合作」、「支持創新研發」、「強化行銷通路」是辦公室的三項重點任務。\n\n智慧機械是「5+2」關鍵產業的其中之一。政府有決心。我相信，所有的機械業者－無論做的是螺桿、刀庫、控制器或是工作母機，大家也都有很強的決心，要走向創新、走向智慧化、走向品牌。我們是一個團隊，我們一起加油！"
+
+[[2]]$id
+[1] "46251501064_10154006456601065"
+
+
+[[3]]
+[[3]]$message
+[1] "今天來向台商拜個晚年。我也邀請台商朋友們，共同參與台灣經濟轉型升級的世紀工程。\n\n無論是擴大對國內的投資，或者配合新南向政策，前進海外深耕佈局，我期待跟台商朋友們一起努力，群策群力，克服困難和瓶頸，為台灣經濟發展打開全新的局面。"
+
+[[3]]$id
+[1] "46251501064_10154001652641065"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{json1$posts$data[[}\DecValTok{1}\NormalTok{]]$message}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
+\end{verbatim}
+
+除了直接使用Graph API外，也可使用\texttt{Rfacebook} \citep{R-Rfacebook}
+package來讀取Facebook資料
+
+Use Rfacebook To Get Info from \texttt{tsaiingwen} Page
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(Rfacebook)}
+\NormalTok{token<-}\StringTok{"your token"} \CommentTok{#將token複製到此處 }
+\KeywordTok{getPage}\NormalTok{(}\StringTok{"tsaiingwen"}\NormalTok{, token,}\DataTypeTok{n =} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+5 posts       from_id           from_name
+1 46251501064 蔡英文 Tsai Ing-wen
+2 46251501064 蔡英文 Tsai Ing-wen
+3 46251501064 蔡英文 Tsai Ing-wen
+4 46251501064 蔡英文 Tsai Ing-wen
+5 46251501064 蔡英文 Tsai Ing-wen
+                                                                                                                                                                                                                                                                                                                                                                                        message
+1 「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。
+2                                                                   今天，智慧機械推動辦公室正式啟動。「落實產學合作」、「支持創新研發」、「強化行銷通路」是辦公室的三項重點任務。\n\n智慧機械是「5+2」關鍵產業的其中之一。政府有決心。我相信，所有的機械業者－無論做的是螺桿、刀庫、控制器或是工作母機，大家也都有很強的決心，要走向創新、走向智慧化、走向品牌。我們是一個團隊，我們一起加油！
+3                                                                                                                                                          今天來向台商拜個晚年。我也邀請台商朋友們，共同參與台灣經濟轉型升級的世紀工程。\n\n無論是擴大對國內的投資，或者配合新南向政策，前進海外深耕佈局，我期待跟台商朋友們一起努力，群策群力，克服困難和瓶頸，為台灣經濟發展打開全新的局面。
+4                                                                                                                                                                                                                                                                                    「快了」！雞年通機捷，等待很值得。大年初四，我來看看機場捷運通車前的準備，也坐捷運到中壢，跟鄉親拜年問好。
+5                                                                                                                                                                                                                                                                                                            雞年初三發福袋\n\n臺中豐原慈濟宮、彰化溪湖福安宮、雲林北港朝天宮、嘉義九華山地藏庵
+              created_time  type
+1 2017-02-07T08:02:45+0000 photo
+2 2017-02-07T07:18:00+0000 photo
+3 2017-02-05T07:12:52+0000 photo
+4 2017-01-31T08:37:42+0000 photo
+5 2017-01-30T11:41:07+0000 photo
+                                                                                                    link
+1 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154006497206065/?type=3
+2 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154006455396065/?type=3
+3 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154001652641065/?type=3
+4 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10153989357181065/?type=3
+5 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10153987089121065/?type=3
+                             id likes_count comments_count shares_count
+1 46251501064_10154006497451065        2013            125           43
+2 46251501064_10154006456601065        2217            163           57
+3 46251501064_10154001652641065        9416            920          163
+4 46251501064_10153989358051065       34116           1574          373
+5 46251501064_10153987095776065       20592            665          269
+\end{verbatim}
+
+How To Get More Data? Use \textbf{since} and \textbf{until}
+
+Set the dates vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lastDate<-}\KeywordTok{Sys.Date}\NormalTok{()}
+\NormalTok{DateVector<-}\KeywordTok{seq}\NormalTok{(}\KeywordTok{as.Date}\NormalTok{(}\StringTok{"2017-01-01"}\NormalTok{),lastDate,}\DataTypeTok{by=}\StringTok{"5 days"}\NormalTok{)}
+\NormalTok{DateVectorStr<-}\KeywordTok{as.character}\NormalTok{(DateVector)}
+\NormalTok{DateVectorStr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## "2017-01-01" "2017-01-06" "2017-01-11" "2017-01-16" "2017-01-21" "2017-01-26" "2017-01-31" "2017-02-05"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{totalPage<-}\OtherTok{NULL}
+\NormalTok{token<-}\StringTok{'your token'}
+\NormalTok{numberOfPost<-}\DecValTok{30}
+\NormalTok{for(i in }\DecValTok{1}\NormalTok{:(}\KeywordTok{length}\NormalTok{(DateVectorStr)-}\DecValTok{1}\NormalTok{))\{}
+    \NormalTok{tempPage<-}\KeywordTok{getPage}\NormalTok{(}\StringTok{"tsaiingwen"}\NormalTok{, token,}
+                      \DataTypeTok{since =} \NormalTok{DateVectorStr[i],}\DataTypeTok{until =} \NormalTok{DateVectorStr[i}\DecValTok{+1}\NormalTok{])}
+    \NormalTok{totalPage<-}\KeywordTok{rbind}\NormalTok{(totalPage,tempPage)}
+\NormalTok{\}}
+\KeywordTok{nrow}\NormalTok{(totalPage)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 4 posts 8 posts 10 posts 3 posts 2 posts 14 posts 1 posts
+## [1] 42
+\end{verbatim}
+
+Other Useful Methods in Rfacebook Packages
+
+\begin{itemize}
+\tightlist
+\item
+  getUser()
+\item
+  getPost()
+\item
+  getLikes()
+\item
+  Check \url{https://github.com/pablobarbera/Rfacebook}
+\item
+  ?Rfacebook
+\end{itemize}
+
+\section{資料匯出}
+
+在R中完成資料處理後，有多種匯出選擇，如果是要匯出供他人在其他環境(如Excel)使用，建議匯出成tab分隔的文字檔(.txt)或是逗號分隔的文字檔(.csv)；但若是要在R的環境繼續使用，建議匯出成R物件
+(.rds)，除了可保留欄位型別設定外，讀取速度與檔案大小皆優於文字檔案。
+
+\subsection{文字檔 .txt}\label{-.txt}
+
+使用\texttt{write.table()}函數寫入檔案，需要參數有
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x} 要匯出的檔案，通常為matrix或是data.frame格式
+\item
+  \texttt{file} 檔案名稱
+\item
+  \texttt{append} T/F TRUE表示在檔案後端加入文字，F表示直接覆蓋原始檔案
+  (預設F)
+\item
+  \texttt{quote} 是否需要用雙引號將字串包起 (預設T)
+\item
+  \texttt{sep} 分隔符號 (預設空白)
+\item
+  \texttt{eol} 換行符號
+\item
+  \texttt{na} 表示空值的字串
+\item
+  \texttt{dec} 小數點表示法
+\item
+  \texttt{row.names} T/F 是否需要輸出row names
+\item
+  \texttt{col.names} T/F 是否需要輸出column names
+\item
+  \texttt{qmethod} 逃脫字串設定
+\item
+  \texttt{fileEncoding} 編碼設定
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.table}\NormalTok{(iris,}\DataTypeTok{file=}\StringTok{"iris.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{","}\NormalTok{,}\DataTypeTok{row.names =} \NormalTok{F,}\DataTypeTok{col.names =} \NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{CSV檔 .csv}\label{csv-.csv}
+
+與\texttt{write.table()}類似，使用\texttt{write.csv()}函數寫入檔案
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv}\NormalTok{(iris,}\DataTypeTok{file=}\StringTok{"iris.csv"}\NormalTok{,}\DataTypeTok{row.names =} \NormalTok{F)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{R物件 .rds}\label{r-.rds-1}
+
+若是要在R的環境繼續使用，建議匯出成R物件檔案(.rds)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{saveRDS}\NormalTok{(iris,}\StringTok{"iris.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{資料處理與清洗}\label{manipulation}
+
+\section{Tidy Data}\label{tidy-data}
 
 \begin{itemize}
 \tightlist
@@ -1694,230 +2498,6 @@ What is `Data'?
 \item
   One file, one table
 \end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'SportsAnalytics'}\NormalTok{))\{}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"SportsAnalytics"}\NormalTok{)}
-    \KeywordTok{library}\NormalTok{(SportsAnalytics)}
-\NormalTok{\}}
-\NormalTok{NBA1415<-}\KeywordTok{fetch_NBAPlayerStatistics}\NormalTok{(}\StringTok{"14-15"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{head}\NormalTok{(NBA1415)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   League          Name Team Position GamesPlayed TotalMinutesPlayed
-## 1    NBA    Quincy Acy  NYK       SF          68               1288
-## 2    NBA  Jordan Adams  MEM       SG          30                249
-## 3    NBA  Steven Adams  OKL        C          70               1776
-## 4    NBA   Jeff Adrien  MIN       PF          17                215
-## 5    NBA Arron Afflalo  POR       SG          78               2502
-## 6    NBA Alexis Ajinca  NOR        C          68                956
-##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
-## 1            152                 331         18              60             76
-## 2             35                  86         10              25             14
-## 3            217                 399          0               2            103
-## 4             19                  44          0               0             22
-## 5            375                 884        118             333            167
-## 6            181                 328          0               0             81
-##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
-## 1                  97                79           301      68     27        60
-## 2                  23                 9            28      16     16        14
-## 3                 205               199           522      65     38        99
-## 4                  38                23            77      15      4         9
-## 5                 198                27           247     129     41       116
-## 6                  99               104           315      47     21        69
-##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
-## 1     22           147                 1         398          5         0
-## 2      7            24                 0          94          0         0
-## 3     85           222                 3         537          3         0
-## 4      9            30                 0          60          0         0
-## 5      7           167                 1        1035          0         0
-## 6     51           151                 0         443          1         0
-##   FlagrantFouls GamesStarted
-## 1             0           22
-## 2             0            0
-## 3             0           67
-## 4             0            0
-## 5             0           72
-## 6             0            8
-\end{verbatim}
-
-\subsection{真實世界裡的Raw Data}\label{raw-data}
-
-\subsubsection{Html}\label{html}
-
-\subsubsection{Facebook}\label{facebook}
-
-\subsubsection{!?}\label{section}
-
-\section{資料到底在哪裡？}
-
-\begin{itemize}
-\tightlist
-\item
-  硬碟裡
-\item
-  網路下載
-\item
-  Open Data
-
-  \begin{itemize}
-  \tightlist
-  \item
-    \url{http://data.taipei/}
-  \item
-    \url{http://data.tycg.gov.tw/}
-  \item
-    \url{http://data.moi.gov.tw/}
-  \end{itemize}
-\item
-  網頁裡（爬蟲！）
-\item
-  任何地方
-\end{itemize}
-
-\subsection{Open Data}\label{open-data}
-
-\section{讀取各類檔案}
-
-\subsection{表格(.csv / Tab分隔 / Excel)}\label{.csv-tab-excel}
-
-\texttt{read.table}, \texttt{read.csv}, 讀取表格資料
-
-The \texttt{read.table}, \texttt{read.csv} 是最常見的，會用這些就好
-
-有以下參數：
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{file}, 檔名
-\item
-  \texttt{header}, 是否有欄位名稱（表頭）（T/F）
-\item
-  \texttt{sep}, 分隔符號
-\item
-  \texttt{colClasses}, 每一個欄位的類別，用向量表示
-\item
-  \texttt{comment.char}, 把欄位包起來的符號
-\item
-  \texttt{skip}, 要跳過幾行？
-\item
-  \texttt{stringsAsFactors}, 要不要輸入成'Factor'（有序因子）
-\end{itemize}
-
-要安裝xlsx 套件
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'xlsx'}\NormalTok{))\{}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"xlsx"}\NormalTok{)}
-    \KeywordTok{library}\NormalTok{(xlsx)}
-\NormalTok{\}}
-\NormalTok{ExcelData <-}\StringTok{ }\KeywordTok{read.xlsx}\NormalTok{(}\StringTok{"data.xlsx"}\NormalTok{,}\DataTypeTok{sheetIndex=}\DecValTok{1}\NormalTok{,}\DataTypeTok{header=}\OtherTok{TRUE}\NormalTok{)}
-\KeywordTok{head}\NormalTok{(ExcelData)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{read.csv使用範例}\label{read.csv}
-
-完全不用給參數
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'open.csv'}\NormalTok{)}
-\NormalTok{data}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection{文字資料}
-
-\texttt{readLines}, 逐行讀取文字資料
-
-\subsection{R檔案格式}\label{r}
-
-\texttt{load}, 讀取已經在R裡面的資料（Ex: iris）
-
-\subsection{R程式}\label{r}
-
-\texttt{source}, 讀R的Obejct or script, 執行, ASCII
-(\texttt{dump}的相反)
-
-\section{各類檔案匯出}
-
-寫檔的函數跟讀檔很像：
-
-\subsection{表格(.csv / Tab分隔)}\label{.csv-tab}
-
-\texttt{write.table}
-
-\subsection{文字資料}\label{-1}
-
-\texttt{writeLines}
-
-\subsection{R檔案格式}\label{r-1}
-
-\texttt{save}
-
-\subsection{R程式}\label{r-1}
-
-\texttt{dump}
-
-\section{讀檔的時候R會自動}\label{r}
-
-\begin{itemize}
-\tightlist
-\item
-  跳過\#開頭的任何行（Row）
-\item
-  判斷要讀幾行
-\item
-  判斷每個列（Column）的類別
-\item
-  把欄位包起來的符號
-\end{itemize}
-
-如果讀取時已指定\textbf{Column類別}以及\textbf{把欄位包起來的符號}，會快很多
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{initial <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{nrows =} \DecValTok{100}\NormalTok{)}
-\NormalTok{classes <-}\StringTok{ }\KeywordTok{sapply}\NormalTok{(initial, class)}
-\NormalTok{tabAll <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{colClasses =} \NormalTok{classes)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{從網路上下載檔案 download.file}\label{-download.file}
-
-使用RCurl Package
-
-download.file(URL, destfile=儲存檔名, method=?)
-
-method = ``curl''--\textgreater{}For \textbf{https}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{if (!}\KeywordTok{require}\NormalTok{(}\StringTok{'RCurl'}\NormalTok{))\{}
-    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"RCurl"}\NormalTok{)}
-    \KeywordTok{library}\NormalTok{(RCurl)}
-\NormalTok{\}}
-\KeywordTok{download.file}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv"}\NormalTok{, }
-              \DataTypeTok{destfile =} \StringTok{"open.csv"}\NormalTok{, }\DataTypeTok{method =} \StringTok{"curl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section{Open Data}\label{open-data-1}
-
-\section{爬蟲}
-
-\chapter{資料處理與清洗}\label{manipulation}
 
 \section{資料型別轉換處理}
 
@@ -2098,7 +2678,7 @@ method = ``curl''--\textgreater{}For \textbf{https}
 \end{Shaded}
 
 \begin{verbatim}
-## Warning: NAs introduced by coercion
+## Warning: 強制變更過程中產生了 NA
 \end{verbatim}
 
 \begin{verbatim}
@@ -3093,167 +3673,332 @@ Value)常常出現在真實資料內，在數值運算時常會有問題，最�
 利用演算法補值也是一種解決辦法，可參考\_skydome20\_的\href{http://www.rpubs.com/skydome20/R-Note10-Missing_Value}{R筆記--(10)遺漏值處理(Impute
 Missing Value)}教學。
 
+\section{綜合練習範例}
+
+在本範例中，介紹使用\texttt{SportsAnalytics} \citep{R-SportsAnalytics}
+package 撈取NBA各球員的數據，並加以觀察分析。
+
+\subsection{載入資料}
+
+首先用\texttt{library()}函數將\texttt{SportsAnalytics}套件載入
+(若尚未安裝此套件者，必須先安裝套件，可參考Chapter
+\ref{intro})，並利用套件內提供的\texttt{fetch\_NBAPlayerStatistics()}函數，將對應年份之資料取出。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(SportsAnalytics)}
+\NormalTok{NBA1516<-}\KeywordTok{fetch_NBAPlayerStatistics}\NormalTok{(}\StringTok{"15-16"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{資料總覽}
+
+資料取出後，可用\texttt{str()}函數總覽\texttt{NBA1516}這個資料框的欄位與欄位類別
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(NBA1516)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    476 obs. of  25 variables:
+##  $ League             : Factor w/ 1 level "NBA": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Name               : chr  "Quincy Acy" "Jordan Adams" "Steven Adams" "Arron Afflalo" ...
+##  $ Team               : Factor w/ 31 levels "ATL","BOS","BRO",..: 27 15 22 20 19 13 28 26 12 15 ...
+##  $ Position           : Factor w/ 5 levels "C","PF","PG",..: 4 5 1 5 1 1 2 2 2 5 ...
+##  $ GamesPlayed        : int  59 2 80 71 59 60 74 9 79 64 ...
+##  $ TotalMinutesPlayed : int  877 15 2019 2359 863 802 2260 37 1601 1622 ...
+##  $ FieldGoalsMade     : int  119 2 261 354 150 134 536 5 191 215 ...
+##  $ FieldGoalsAttempted: int  214 6 426 799 314 225 1045 10 370 469 ...
+##  $ ThreesMade         : int  19 0 0 91 0 0 0 0 0 15 ...
+##  $ ThreesAttempted    : int  49 1 0 238 1 0 16 0 0 42 ...
+##  $ FreeThrowsMade     : int  50 3 114 110 52 60 259 0 46 90 ...
+##  $ FreeThrowsAttempted: int  68 5 196 131 62 84 302 0 73 138 ...
+##  $ OffensiveRebounds  : int  65 0 218 23 75 86 175 2 162 104 ...
+##  $ TotalRebounds      : int  188 2 531 266 269 288 631 6 424 297 ...
+##  $ Assists            : int  27 3 61 145 32 50 110 0 76 70 ...
+##  $ Steals             : int  29 3 42 25 19 47 38 1 26 109 ...
+##  $ Turnovers          : int  27 2 84 82 54 64 99 1 69 78 ...
+##  $ Blocks             : int  24 0 89 10 36 68 81 2 42 18 ...
+##  $ PersonalFouls      : int  103 2 223 142 134 139 151 1 147 175 ...
+##  $ Disqualifications  : int  0 0 2 1 0 1 0 0 1 1 ...
+##  $ TotalPoints        : int  307 7 636 909 352 328 1331 10 428 535 ...
+##  $ Technicals         : int  3 0 2 1 2 0 0 0 0 1 ...
+##  $ Ejections          : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ FlagrantFouls      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ GamesStarted       : int  29 0 80 57 17 5 74 0 28 56 ...
+\end{verbatim}
+
+可以發現此\texttt{NBA1516}資料框內有476筆球員資料(觀察值,
+obs)，每筆資料有25個欄位 (variables)。 \#\#\#資料預覽
+如果想看資料框內容，可用\texttt{head()}和\texttt{tail()}快速瀏覽部分資料
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(NBA1516)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   League          Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Quincy Acy  SAC       SF          59                877
+## 2    NBA  Jordan Adams  MEM       SG           2                 15
+## 3    NBA  Steven Adams  OKL        C          80               2019
+## 4    NBA Arron Afflalo  NYK       SG          71               2359
+## 5    NBA Alexis Ajinca  NOR        C          59                863
+## 6    NBA  Cole Aldrich  LAC        C          60                802
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            119                 214         19              49             50
+## 2              2                   6          0               1              3
+## 3            261                 426          0               0            114
+## 4            354                 799         91             238            110
+## 5            150                 314          0               1             52
+## 6            134                 225          0               0             60
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                  68                65           188      27     29        27
+## 2                   5                 0             2       3      3         2
+## 3                 196               218           531      61     42        84
+## 4                 131                23           266     145     25        82
+## 5                  62                75           269      32     19        54
+## 6                  84                86           288      50     47        64
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     24           103                 0         307          3         0
+## 2      0             2                 0           7          0         0
+## 3     89           223                 2         636          2         0
+## 4     10           142                 1         909          1         0
+## 5     36           134                 0         352          2         0
+## 6     68           139                 1         328          0         0
+##   FlagrantFouls GamesStarted
+## 1             0           29
+## 2             0            0
+## 3             0           80
+## 4             0           57
+## 5             0           17
+## 6             0            5
+\end{verbatim}
+
+\subsection{資料排序後篩選}
+
+觀察資料框的組成後，我們想要找出\textbf{出場數}最\textbf{高}的前五名選手的所有資料，此時可以利用\texttt{order()}函數先\textbf{由大到小}排序(\texttt{decreasing\ =\ T})後，再用\texttt{{[},{]}}取子集。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516Order<-NBA1516[}\KeywordTok{order}\NormalTok{(NBA1516$GamesPlayed,}\DataTypeTok{decreasing =} \NormalTok{T),]}
+\NormalTok{NBA1516Order[}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{,] ##逗號前方放1~5，表示取1~5列；逗號後方空白，表示要取所有欄位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 11     NBA Al-farouq Aminu  POR       SF          82               2342
+## 37     NBA     Will Barton  DEN       SG          82               2355
+## 48     NBA Bismack Biyombo  TOR       PF          82               1810
+## 62     NBA    Corey Brewer  HOU       SG          82               1670
+## 118    NBA    Gorgui Dieng  MIN        C          82               2222
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 11             299                 719        126             349
+## 37             426                 984        112             324
+## 48             156                 288          0               1
+## 62             212                 552         61             225
+## 118            308                 578          6              20
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 11             115                 156                98           498     138
+## 37             216                 268                60           477     204
+## 48             142                 226               182           655      29
+## 62             105                 140                42           199     109
+## 118            205                 248               156           584     143
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 11      72       120     53           171                 0         839
+## 37      71       139     39           147                 0        1180
+## 48      19        71    133           225                 2         454
+## 62      84        78     19           168                 1         590
+## 118     94       140     96           219                 0         827
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 11           3         0             0           82
+## 37           2         0             0            1
+## 48           3         0             0           22
+## 62           0         0             0           12
+## 118          1         0             0           39
+\end{verbatim}
+
+如果我們想要出\textbf{出場分鐘數}最\textbf{高}的前十名選手的\textbf{名字}，一樣可以用\texttt{order()}函數先\textbf{由大到小}排序(\texttt{decreasing\ =\ T})後，再用\texttt{{[},{]}}取子集。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516OrderM<-NBA1516[}\KeywordTok{order}\NormalTok{(NBA1516$TotalMinutesPlayed,}\DataTypeTok{decreasing =} \NormalTok{T),]}
+\NormalTok{NBA1516OrderM[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{,}\StringTok{"Name"}\NormalTok{] ##逗號前方取1~10列；逗號後方放"Name"，表示取名稱為Name之欄位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "James Harden"     "Gordon Hayward"   "Kemba Walker"     "Trevor Ariza"    
+##  [5] "Khris Middleton"  "Kyle Lowry"       "Marcus Morris"    "Andrew Wiggins"  
+##  [9] "Paul George"      "Gi Antetokounmpo"
+\end{verbatim}
+
+\subsection{欄位值篩選}
+
+除了排序取值外，也可用欄位條件搜尋，舉例來說，可以取出所有波士頓賽爾迪克隊的選手資料，使用\texttt{subset()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(NBA1516,Team==}\StringTok{"BOS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 60     NBA   Avery Bradley  BOS       PG          76               2536
+## 89     NBA     Coty Clarke  BOS     <NA>           4                  8
+## 102    NBA     Jae Crowder  BOS       SF          73               2310
+## 213    NBA     R.j. Hunter  BOS       SG          36                319
+## 228    NBA   Jonas Jerebko  BOS       PF          78               1178
+## 229    NBA    Amir Johnson  BOS       PF          79               1798
+## 300    NBA   Jordan Mickey  BOS       PF          16                 59
+## 340    NBA    Kelly Olynyk  BOS        C          69               1396
+## 382    NBA    Terry Rozier  BOS       PG          39                310
+## 400    NBA    Marcus Smart  BOS       PG          61               1666
+## 416    NBA Jared Sullinger  BOS       PF          81               1917
+## 422    NBA   Isaiah Thomas  BOS       PG          82               2647
+## 433    NBA     Evan Turner  BOS       SG          81               2270
+## 471    NBA     James Young  BOS       SG          29                200
+## 476    NBA    Tyler Zeller  BOS        C          60                714
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 60             456                1018        147             406
+## 89               2                   4          2               2
+## 102            359                 812        122             363
+## 213             36                  98         19              63
+## 228            118                 286         43             108
+## 229            250                 427         10              43
+## 300              8                  22          0               0
+## 340            253                 556         85             210
+## 382             29                 106          6              27
+## 400            184                 529         61             241
+## 416            351                 807         29             104
+## 422            591                1382        167             465
+## 433            343                 753         20              83
+## 471             11                  36          6              26
+## 476            138                 290          0               0
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 60              96                 123                48           220     158
+## 89               0                   0                 0             1       0
+## 102            196                 239                70           373     135
+## 213              6                   7                 2            37      13
+## 228             61                  78                77           288      62
+## 229             69                 121               178           505     137
+## 300              5                  10                 6            13       1
+## 340             96                 128                72           281     105
+## 382              8                  10                24            63      37
+## 400            129                 166                76           255     186
+## 416            103                 161               194           673     187
+## 422            474                 544                46           243     509
+## 433            148                 179                50           397     359
+## 471              1                   4                 4            26       9
+## 476             88                 108                62           178      29
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 60     117       109     19           164                 2        1155
+## 89       0         1      0             0                 0           6
+## 102    126        83     35           198                 4        1036
+## 213     14        11      4            29                 0          97
+## 228     20        52     24           137                 2         340
+## 229     52        94     83           214                 1         579
+## 300      0         1     11             5                 0          21
+## 340     52        74     33           163                 3         687
+## 382      6        19      1            23                 0          72
+## 400     91        80     18           183                 1         558
+## 416     75       102     47           209                 2         834
+## 422     91       220      9           167                 1        1823
+## 433     80       169     28           139                 0         854
+## 471      6         5      1            17                 0          29
+## 476     10        46     22            97                 1         364
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 60           0         0             0           72
+## 89           0         0             0            0
+## 102          3         0             0           73
+## 213          0         0             0            0
+## 228          1         0             0            0
+## 229          0         0             0           76
+## 300          0         0             0            0
+## 340          1         0             0            8
+## 382          0         0             0            0
+## 400          2         0             0           10
+## 416          2         0             0           73
+## 422          9         0             0           79
+## 433          2         0             0           12
+## 471          0         0             0            0
+## 476          0         0             0            3
+\end{verbatim}
+
+\subsection{字串條件搜尋後篩選}
+
+當然也可以結合\textbf{字串搜尋}函數\texttt{grepl()}，將所有名字裡有``James''的選手資料取出
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516[}\KeywordTok{grepl}\NormalTok{(}\StringTok{"James"}\NormalTok{,NBA1516$Name),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 15     NBA James Anderson  SAC       SG          51                721
+## 132    NBA    James Ennis  NOR       SF          22                329
+## 178    NBA   James Harden  HOU       SG          82               3121
+## 222    NBA   Lebron James  CLE       SF          76               2710
+## 231    NBA  James Johnson  TOR       PF          57                924
+## 239    NBA    James Jones  CLE       SG          48                466
+## 286    NBA   James Mcadoo  GSW       SG          41                265
+## 471    NBA    James Young  BOS       SG          29                200
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 15              67                 178         23              86
+## 132             54                 113         26              58
+## 178            710                1617        236             656
+## 222            737                1416         87             282
+## 231            114                 240         20              66
+## 239             59                 143         41             104
+## 286             45                  84          1               2
+## 471             11                  36          6              26
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 15              22                  29                13            86      41
+## 132             25                  34                21            42      21
+## 178            720                 837                63           502     612
+## 222            359                 491               111           565     512
+## 231             39                  68                28           126      67
+## 239             21                  26                 8            50      14
+## 286             26                  49                30            58      17
+## 471              1                   4                 4            26       9
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 15      21        42     14            54                 0         179
+## 132     16        19      5            28                 1         159
+## 178    138       374     51           229                 1        2376
+## 222    104       249     49           143                 0        1920
+## 231     29        54     33            84                 0         287
+## 239     11        13     10            50                 0         180
+## 286     10        16      8            39                 0         117
+## 471      6         5      1            17                 0          29
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 15           0         0             0           15
+## 132          0         0             0            5
+## 178          2         0             0           82
+## 222          3         0             0           76
+## 231          0         0             0           32
+## 239          1         0             0            0
+## 286          0         0             0            1
+## 471          0         0             0            0
+\end{verbatim}
+
 \chapter{探索式資料分析}\label{eda}
+
+撰寫中
 
 \section{資料內容初步分析統計}
 
 \section{data.table}\label{data.table}
 
-You can label chapter and section titles using \texttt{\{\#label\}}
-after them, e.g., we can reference Chapter \ref{intro}. If you do not
-manually label them, there will be automatic labels anyway, e.g.,
-Chapter \ref{methods}.
-
-Figures and tables with captions will be placed in \texttt{figure} and
-\texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{DataAnalyticsWithR_files/figure-latex/nice-fig6-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig6}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:}
-prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
-reference tables generated from \texttt{knitr::kable()}, e.g., see Table
-\ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab6}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-You can write citations, too. For example, we are using the
-\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
-was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
-
 \chapter{資料視覺化}\label{vis}
 
-You can label chapter and section titles using \texttt{\{\#label\}}
-after them, e.g., we can reference Chapter \ref{intro}. If you do not
-manually label them, there will be automatic labels anyway, e.g.,
-Chapter \ref{methods}.
-
-Figures and tables with captions will be placed in \texttt{figure} and
-\texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{DataAnalyticsWithR_files/figure-latex/nice-fig7-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig7}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:}
-prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
-reference tables generated from \texttt{knitr::kable()}, e.g., see Table
-\ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab7}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-You can write citations, too. For example, we are using the
-\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
-was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+撰寫中
 
 \chapter{從小數據到大數據分析}\label{big}
 
@@ -3461,7 +4206,7 @@ package
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rJava"}\NormalTok{,}\DataTypeTok{dependencies=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{repos=}\StringTok{'http://cran.rstudio.com/'}\NormalTok{)}
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rJava"}\NormalTok{,}\DataTypeTok{dependencies=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{repos=}\StringTok{'http://cran.rstudio.com/'}\NormalTok{)\{target=}\StringTok{"_blank"}\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3560,7 +4305,9 @@ count}\label{rhadoop-mapreduce-easy-word-count}
 
 \chapter{軟體安裝}\label{install}
 
-\section{R}\label{r-2}
+撰寫中
+
+\section{R}\label{r-1}
 
 \section{RStudio}\label{rstudio}
 
@@ -3570,10 +4317,12 @@ count}\label{rhadoop-mapreduce-easy-word-count}
 曾意儒 Yi-Ju Tseng
 
 \href{http://im.cgu.edu.tw/bin/home.php}{長庚大學 資訊管理學系} 助理教授
-\href{http://yijutseng.github.io}{個人網站} Lab:
-\href{http://yijutseng.github.io/Lab/}{數位健康實驗室}
 
-\bibliography{packages.bib,book.bib}
+\href{http://yijutseng.github.io}{個人網站}
+
+Lab: \href{http://yijutseng.github.io/Lab/}{數位健康實驗室}
+
+\bibliography{packages,book}
 
 
 \end{document}

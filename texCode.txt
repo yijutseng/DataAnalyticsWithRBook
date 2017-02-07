@@ -1,0 +1,5 @@
+\usepackage{xeCJK}  %讓中英文字體分開設置
+\setCJKmainfont{微軟正黑體}  
+  %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\XeTeXlinebreaklocale "zh"  
+\XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
