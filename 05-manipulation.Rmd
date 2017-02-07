@@ -263,7 +263,7 @@ complete.cases(airquality)
 head(airquality[complete.cases(airquality),]) ##保留所有在complete.cases()檢查回傳TRUE的元素
 ```
 
-利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value)教學。
+利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value){target="_blank"}教學。
 
 
 ##綜合練習範例

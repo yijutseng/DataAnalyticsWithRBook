@@ -1,6 +1,6 @@
 # 資料讀取與匯出 {#io}
 
-資料(Data)在[維基百科](http://en.wikipedia.org/wiki/Data)的定義是`values of qualitative or quantitative variables, belonging to a set of items.`，一般來說，在資料分析前會經過多個步驟，包括**資料匯入**Chapter \@ref(io)、**資料清洗處理**Chapter \@ref(manipulation)並轉換為Tidy data、**資料分析**Chapter \@ref(eda)、**資料呈現與視覺化**Chapter \@ref(vis)。
+資料(Data)在[維基百科](http://en.wikipedia.org/wiki/Data){target="_blank"}的定義是`values of qualitative or quantitative variables, belonging to a set of items.`，一般來說，在資料分析前會經過多個步驟，包括**資料匯入**Chapter \@ref(io)、**資料清洗處理**Chapter \@ref(manipulation)並轉換為Tidy data、**資料分析**Chapter \@ref(eda)、**資料呈現與視覺化**Chapter \@ref(vis)。
 
 資料有多種可能來源，包括:
 
@@ -15,7 +15,7 @@
 ##從檔案匯入基本資料格式 {#file}
 
 ###Import Dataset功能 (RStudio)
-[RStudio](https://www.rstudio.com/) 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成`.csv`、`Excel`以及`SAS`等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇**Import Dataset**，就會出現檔案格式的選項
+[RStudio](https://www.rstudio.com/){target="_blank"} 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成`.csv`、`Excel`以及`SAS`等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇**Import Dataset**，就會出現檔案格式的選項
 
 ```{r echo=FALSE}
 knitr::include_graphics("figure/import.png")
@@ -72,7 +72,7 @@ dataset <- read_excel("檔案路徑與名稱")
 ```
 
 ###R物件 .rds
-R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用`readRDS()`函數 (參考資料:[A better way of saving and loading objects in R](http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/))
+R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用`readRDS()`函數 (參考資料:[A better way of saving and loading objects in R](http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/){target="_blank"})
 ```{r eval=F}
 dataset <- readRDS("檔案路徑與名稱")
 ```
@@ -95,20 +95,20 @@ dataset <- readRDS("檔案路徑與名稱")
 
 ##從網路匯入資料
 ### Open Data
-**開放資料** (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。[維基百科](https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99)
+**開放資料** (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。[維基百科](https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99){target="_blank"}
 
 台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料
 
-- [政府資料開放平台](http://data.gov.tw/)
-- [Data Taipei](http://data.taipei/)
-- [開放資料 x 開放桃園](http://data.tycg.gov.tw/)
-- [內政資料開放平台](http://data.moi.gov.tw/)
+- [政府資料開放平台](http://data.gov.tw/){target="_blank"}
+- [Data Taipei](http://data.taipei/){target="_blank"}
+- [開放資料 x 開放桃園](http://data.tycg.gov.tw/){target="_blank"}
+- [內政資料開放平台](http://data.moi.gov.tw/){target="_blank"}
 
 Open Data常見的儲存方式為: `CSV`Chapter \@ref(csv)、`JSON`Chapter \@ref(json)、`XML`Chapter \@ref(xml)，開放資料網站通常有提供民眾**直接下載**檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述**由檔案匯入資料** Chapter \@ref(file)方法匯入即可。
 
 ### API (Application programming interfaces) {#api}
-應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。[Wiki](https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3)
-但若檔案更新頻繁，以[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463)資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過**API**下載的服務，透過API下載的資料格式會是JSON格式Chapter \@ref(json)，如[臺北市開放認養動物API資訊](http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&rid=f4a75ba9-7721-4363-884d-c3820b0b917c)所示，開放資料網站會提供**資料集ID**與**資料RID**
+應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。[Wiki](https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3){target="_blank"}
+但若檔案更新頻繁，以[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過**API**下載的服務，透過API下載的資料格式會是JSON格式Chapter \@ref(json)，如[臺北市開放認養動物API資訊](http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&rid=f4a75ba9-7721-4363-884d-c3820b0b917c){target="_blank"}所示，開放資料網站會提供**資料集ID**與**資料RID**
 
 - **資料集ID**: 紀錄資料的基本參數，如包含欄位、更新頻率等
 - **資料RID**: 資料集
@@ -118,7 +118,7 @@ Open Data常見的儲存方式為: `CSV`Chapter \@ref(csv)、`JSON`Chapter \@ref
 
 
 ###JSON格式檔案 {#json}
-JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交換語言 [Wiki](http://en.wikipedia.org/wiki/JSON)，特色如下:
+JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交換語言 [Wiki](http://en.wikipedia.org/wiki/JSON){target="_blank"}，特色如下:
 
 - from **a**pplication **p**rogramming **i**nterfaces (APIs)
 - JavaScript、Java、Node.js應用
@@ -130,9 +130,9 @@ JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交�
     - Array (ordered, comma separated enclosed in square brackets _[]_)
     - Object (unorderd, comma separated collection of **key:value** pairs in curley brackets _{}_)
 
-[JSON檔案範例](https://api.github.com/users/yijutseng/repos)
+[JSON檔案範例](https://api.github.com/users/yijutseng/repos){target="_blank"}
 
-許多Open Data也用JSON格式儲存，例如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463)資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。
+許多Open Data也用JSON格式儲存，例如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。
 
 將JSON檔案匯入R可以使用`jsonlite`[@R-jsonlite] package，套件使用前必須安裝，安裝套件方法請參考Chapter \@ref(intro)，載入後，可使用`fromJSON()`函數載入JSON資料。
 如需直接從API網址截取資料，需要載入`RCurl`[@R-RCurl] package，並使用`getURL()`函數處理資料擷取網址。
@@ -166,7 +166,7 @@ str(myjson)
 - Components
     - Markup 標記 - labels that give the text structure
     - Content 內文 - the actual text of the document
-- [XML Wiki](https://zh.wikipedia.org/wiki/XML)
+- [XML Wiki](https://zh.wikipedia.org/wiki/XML){target="_blank"}
 
 Tags, elements and attributes
 
@@ -179,7 +179,7 @@ Tags, elements and attributes
 - Attributes are components of the label
     - `<book category="web">`
     
-許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927)。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlTreeParse()`函數將檔案匯入。
+許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlTreeParse()`函數將檔案匯入。
 
 ```{r}
 library(XML)
@@ -202,8 +202,8 @@ __Webscraping__: Programatically extracting data from the HTML code of websites.
     - 但網頁上卻有你想要分析的資料（像是ptt推文！？）
     - 除了人工複製貼上以外，也可以將網頁處理程式化
 - 可能違法.....，一次讀太多太快，很可能被鎖IP
-- [Webscraping Wiki](http://en.wikipedia.org/wiki/Web_scraping)
-- [什麼是網頁爬蟲](http://www.largitdata.com/course/1/)
+- [Webscraping Wiki](http://en.wikipedia.org/wiki/Web_scraping){target="_blank"}
+- [什麼是網頁爬蟲](http://www.largitdata.com/course/1/){target="_blank"}
 
 What’s the difference between scraping and crawling
 
@@ -214,7 +214,7 @@ What’s the difference between scraping and crawling
     - It’s more often the case that irrespective of the approaches involved.
 
 
-以[長庚資管系](http://im.cgu.edu.tw/bin/home.php)網站為例，可直接逐行讀取 `readLines()`
+以[長庚資管系](http://im.cgu.edu.tw/bin/home.php){target="_blank"}網站為例，可直接逐行讀取 `readLines()`
 
 ```{r}
 htmlCode <-readLines(url("http://im.cgu.edu.tw/bin/home.php"))
@@ -233,12 +233,12 @@ xpathSApply(html, "//span[@class='ptname ']", xmlValue)
 
 其他爬蟲相關參考資源
 
-- R Bloggers 有很多[爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping)（英文）
-- [Ptt爬蟲實作](http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html) 
-- [大數學堂 網頁爬蟲課程](http://www.largitdata.com/course_list/1)
+- R Bloggers 有很多[爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping){target="_blank"}（英文）
+- [Ptt爬蟲實作](http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html){target="_blank"} 
+- [大數學堂 網頁爬蟲課程](http://www.largitdata.com/course_list/1){target="_blank"}
 
 ## Facebook資料擷取
-Facebook提供[Graph API](https://developers.facebook.com/docs/graph-api?locale=zh_TW)，讓應用程式可透過API讀取與寫入 Facebook相關資料，**Graph API**會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供[Graph API Explorer](https://developers.facebook.com/tools/explorer/)，讓程式開發人員可以測試資料撈取方法和結果。
+Facebook提供[Graph API](https://developers.facebook.com/docs/graph-api?locale=zh_TW){target="_blank"}，讓應用程式可透過API讀取與寫入 Facebook相關資料，**Graph API**會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供[Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="_blank"}，讓程式開發人員可以測試資料撈取方法和結果。
 
 Get access token
 

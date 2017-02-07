@@ -4,8 +4,8 @@
 
 ## 什麼是R語言
 
-[R語言](http://www.r-project.org/)是一種自由軟體程式語言，主要用於資料分析與統計運算，2000年時終於發表R 1.0.0，有關R語言的發展歷史可參考[維基百科](https://zh.wikipedia.org/wiki/R%E8%AF%AD%E8%A8%80)。基本的R軟體已經內建多種統計及分析功能，其餘功能可以透過安裝**套件（Packages）**加載，眾多的套件使R的使用者可以【站在巨人的肩膀上(Standing on the shoulders of
-giants (Hal R. Varian, Google))】做資料分析，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上 ([R Studio報導](https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/))。常用的套件清單可參考各項網路資訊，如[R Studio的整理：Quick list of useful R packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+[R語言](http://www.r-project.org/){target="_blank"}是一種自由軟體程式語言，主要用於資料分析與統計運算，2000年時終於發表R 1.0.0，有關R語言的發展歷史可參考[維基百科](https://zh.wikipedia.org/wiki/R%E8%AF%AD%E8%A8%80){target="_blank"}。基本的R軟體已經內建多種統計及分析功能，其餘功能可以透過安裝**套件（Packages）**加載，眾多的套件使R的使用者可以【站在巨人的肩膀上(Standing on the shoulders of
+giants (Hal R. Varian, Google))】做資料分析，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上 ([R Studio報導](https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/){target="_blank"})。常用的套件清單可參考各項網路資訊，如[R Studio的整理：Quick list of useful R packages](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages){target="_blank"}
 
 安裝套件Package的方法如下：
 ```{r eval=F}
@@ -134,7 +134,7 @@ ymd('2012/3/3')
 mdy('3/3/2012')
 ```
 
-其他使用方式可參考 [The Yhat Blog](http://blog.yhat.com/static/pdf/R_date_cheat_sheet.pdf)。
+其他使用方式可參考 [The Yhat Blog](http://blog.yhat.com/static/pdf/R_date_cheat_sheet.pdf){target="_blank"}。
 
 ## 基本運算子
 
@@ -245,5 +245,5 @@ R語言與套件均有完整的文件與範例可以參考，在R的執行視窗
 ?ymd
 ```
 
-除此之外，[Stack Overflow](http://stackoverflow.com/)中也有許多問答，可直接在網站中搜尋關鍵字與錯誤訊息。
+除此之外，[Stack Overflow](http://stackoverflow.com/){target="_blank"}中也有許多問答，可直接在網站中搜尋關鍵字與錯誤訊息。
 

@@ -254,7 +254,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="io" class="section level1">
 <h1><span class="header-section-number">4</span> 資料讀取與匯出</h1>
-<p>資料(Data)在<a href="http://en.wikipedia.org/wiki/Data">維基百科</a>的定義是<code>values of qualitative or quantitative variables, belonging to a set of items.</code>，一般來說，在資料分析前會經過多個步驟，包括<strong>資料匯入</strong>Chapter <a href="io.html#io">4</a>、<strong>資料清洗處理</strong>Chapter <a href="manipulation.html#manipulation">5</a>並轉換為Tidy data、<strong>資料分析</strong>Chapter <a href="eda.html#eda">6</a>、<strong>資料呈現與視覺化</strong>Chapter <a href="vis.html#vis">7</a>。</p>
+<p>資料(Data)在<a href="http://en.wikipedia.org/wiki/Data" target="_blank">維基百科</a>的定義是<code>values of qualitative or quantitative variables, belonging to a set of items.</code>，一般來說，在資料分析前會經過多個步驟，包括<strong>資料匯入</strong>Chapter <a href="io.html#io">4</a>、<strong>資料清洗處理</strong>Chapter <a href="manipulation.html#manipulation">5</a>並轉換為Tidy data、<strong>資料分析</strong>Chapter <a href="eda.html#eda">6</a>、<strong>資料呈現與視覺化</strong>Chapter <a href="vis.html#vis">7</a>。</p>
 <p>資料有多種可能來源，包括:</p>
 <ul>
 <li>硬碟</li>
@@ -268,7 +268,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.1</span> 從檔案匯入基本資料格式</h2>
 <div id="import-dataset-rstudio" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Import Dataset功能 (RStudio)</h3>
-<p><a href="https://www.rstudio.com/">RStudio</a> 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成<code>.csv</code>、<code>Excel</code>以及<code>SAS</code>等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇<strong>Import Dataset</strong>，就會出現檔案格式的選項</p>
+<p><a href="https://www.rstudio.com/" target="_blank">RStudio</a> 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成<code>.csv</code>、<code>Excel</code>以及<code>SAS</code>等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇<strong>Import Dataset</strong>，就會出現檔案格式的選項</p>
 <p><img src="figure/import.png" width="592" /></p>
 <p>以csv檔案為例，在選單中選取<code>From CSV</code>，選取後會跳出資料匯入輔助視窗，點選<code>Browse</code>按鈕開啟檔案選取器，並點選欲匯入之文字檔案</p>
 <p><img src="figure/csv.png" width="497" /></p>
@@ -309,7 +309,7 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 </div>
 <div id="r-.rds" class="section level3">
 <h3><span class="header-section-number">4.1.5</span> R物件 .rds</h3>
-<p>R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用<code>readRDS()</code>函數 (參考資料:<a href="http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/">A better way of saving and loading objects in R</a>)</p>
+<p>R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用<code>readRDS()</code>函數 (參考資料:<a href="http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/" target="_blank">A better way of saving and loading objects in R</a>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataset &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</code></pre></div>
 </div>
 <div id="r-.r" class="section level3">
@@ -336,19 +336,19 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <h2><span class="header-section-number">4.2</span> 從網路匯入資料</h2>
 <div id="open-data" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Open Data</h3>
-<p><strong>開放資料</strong> (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。<a href="https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99">維基百科</a></p>
+<p><strong>開放資料</strong> (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。<a href="https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99" target="_blank">維基百科</a></p>
 <p>台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料</p>
 <ul>
-<li><a href="http://data.gov.tw/">政府資料開放平台</a></li>
-<li><a href="http://data.taipei/">Data Taipei</a></li>
-<li><a href="http://data.tycg.gov.tw/">開放資料 x 開放桃園</a></li>
-<li><a href="http://data.moi.gov.tw/">內政資料開放平台</a></li>
+<li><a href="http://data.gov.tw/" target="_blank">政府資料開放平台</a></li>
+<li><a href="http://data.taipei/" target="_blank">Data Taipei</a></li>
+<li><a href="http://data.tycg.gov.tw/" target="_blank">開放資料 x 開放桃園</a></li>
+<li><a href="http://data.moi.gov.tw/" target="_blank">內政資料開放平台</a></li>
 </ul>
 <p>Open Data常見的儲存方式為: <code>CSV</code>Chapter <a href="io.html#csv">4.1.3</a>、<code>JSON</code>Chapter <a href="io.html#json">4.2.3</a>、<code>XML</code>Chapter <a href="io.html#xml">4.2.4</a>，開放資料網站通常有提供民眾<strong>直接下載</strong>檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述<strong>由檔案匯入資料</strong> Chapter <a href="io.html#file">4.1</a>方法匯入即可。</p>
 </div>
 <div id="api" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> API (Application programming interfaces)</h3>
-<p>應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。<a href="https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3">Wiki</a> 但若檔案更新頻繁，以<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463">臺北市開放認養動物</a>資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">4.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
+<p>應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。<a href="https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank">Wiki</a> 但若檔案更新頻繁，以<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">4.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c" target="_blank">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
 <ul>
 <li><strong>資料集ID</strong>: 紀錄資料的基本參數，如包含欄位、更新頻率等</li>
 <li><strong>資料RID</strong>: 資料集</li>
@@ -357,7 +357,7 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 </div>
 <div id="json" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> JSON格式檔案</h3>
-<p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otation)是一種輕量級的資料交換語言 <a href="http://en.wikipedia.org/wiki/JSON">Wiki</a>，特色如下:</p>
+<p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otation)是一種輕量級的資料交換語言 <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">Wiki</a>，特色如下:</p>
 <ul>
 <li>from <strong>a</strong>pplication <strong>p</strong>rogramming <strong>i</strong>nterfaces (APIs)</li>
 <li>JavaScript、Java、Node.js應用</li>
@@ -371,8 +371,8 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <li>Object (unorderd, comma separated collection of <strong>key:value</strong> pairs in curley brackets <em>{}</em>)</li>
 </ul></li>
 </ul>
-<p><a href="https://api.github.com/users/yijutseng/repos">JSON檔案範例</a></p>
-<p>許多Open Data也用JSON格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463">臺北市開放認養動物</a>資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。</p>
+<p><a href="https://api.github.com/users/yijutseng/repos" target="_blank">JSON檔案範例</a></p>
+<p>許多Open Data也用JSON格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。</p>
 <p>將JSON檔案匯入R可以使用<code>jsonlite</code><span class="citation">(Ooms, Temple Lang, and Hilaiel <a href="#ref-R-jsonlite">2016</a>)</span> package，套件使用前必須安裝，安裝套件方法請參考Chapter <a href="intro.html#intro">1</a>，載入後，可使用<code>fromJSON()</code>函數載入JSON資料。 如需直接從API網址截取資料，需要載入<code>RCurl</code><span class="citation">(Temple Lang and CRAN team <a href="#ref-R-RCurl">2016</a>)</span> package，並使用<code>getURL()</code>函數處理資料擷取網址。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
 <span class="kw">library</span>(RCurl)
@@ -786,7 +786,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <li>Markup 標記 - labels that give the text structure</li>
 <li>Content 內文 - the actual text of the document</li>
 </ul></li>
-<li><a href="https://zh.wikipedia.org/wiki/XML">XML Wiki</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/XML" target="_blank">XML Wiki</a></li>
 </ul>
 <p>Tags, elements and attributes</p>
 <ul>
@@ -805,7 +805,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <li><code>&lt;book category=&quot;web&quot;&gt;</code></li>
 </ul></li>
 </ul>
-<p>許多Open Data也用XML格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927">臺北市水質監測資訊</a>。如需將XML檔案匯入R中，需要安裝<code>XML</code> <span class="citation">(Temple Lang and CRAN Team <a href="#ref-R-XML">2016</a>)</span> package，使用<code>xmlTreeParse()</code>函數將檔案匯入。</p>
+<p>許多Open Data也用XML格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927" target="_blank">臺北市水質監測資訊</a>。如需將XML檔案匯入R中，需要安裝<code>XML</code> <span class="citation">(Temple Lang and CRAN Team <a href="#ref-R-XML">2016</a>)</span> package，使用<code>xmlTreeParse()</code>函數將檔案匯入。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(XML)
 waterQ &lt;-<span class="st"> </span><span class="kw">xmlTreeParse</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span>,<span class="dt">useInternal=</span><span class="ot">TRUE</span>)
 rootNode &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(waterQ) <span class="co">#access the top node</span></code></pre></div>
@@ -832,8 +832,8 @@ rootNode &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(waterQ) <
 <li>除了人工複製貼上以外，也可以將網頁處理程式化</li>
 </ul></li>
 <li>可能違法…..，一次讀太多太快，很可能被鎖IP</li>
-<li><a href="http://en.wikipedia.org/wiki/Web_scraping">Webscraping Wiki</a></li>
-<li><a href="http://www.largitdata.com/course/1/">什麼是網頁爬蟲</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Web_scraping" target="_blank">Webscraping Wiki</a></li>
+<li><a href="http://www.largitdata.com/course/1/" target="_blank">什麼是網頁爬蟲</a></li>
 </ul>
 <p>What’s the difference between scraping and crawling</p>
 <ul>
@@ -847,7 +847,7 @@ rootNode &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(waterQ) <
 <li>It’s more often the case that irrespective of the approaches involved.</li>
 </ul></li>
 </ul>
-<p>以<a href="http://im.cgu.edu.tw/bin/home.php">長庚資管系</a>網站為例，可直接逐行讀取 <code>readLines()</code></p>
+<p>以<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚資管系</a>網站為例，可直接逐行讀取 <code>readLines()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">htmlCode &lt;-<span class="kw">readLines</span>(<span class="kw">url</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>))</code></pre></div>
 <pre><code>## Warning in readLines(url(&quot;http://im.cgu.edu.tw/bin/home.php&quot;)): 於 &#39;http://
 ## im.cgu.edu.tw/bin/home.php&#39; 找到不完整的最後一列</code></pre>
@@ -873,15 +873,15 @@ html &lt;-<span class="st"> </span><span class="kw">htmlTreeParse</span>(<span c
 ## [19] &quot;企業管理研究所博士班&quot; &quot;長庚大學行事曆&quot;</code></pre>
 <p>其他爬蟲相關參考資源</p>
 <ul>
-<li>R Bloggers 有很多<a href="http://www.r-bloggers.com/?s=Web+Scraping">爬蟲範例</a>（英文）</li>
-<li><a href="http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html">Ptt爬蟲實作</a></li>
-<li><a href="http://www.largitdata.com/course_list/1">大數學堂 網頁爬蟲課程</a></li>
+<li>R Bloggers 有很多<a href="http://www.r-bloggers.com/?s=Web+Scraping" target="_blank">爬蟲範例</a>（英文）</li>
+<li><a href="http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html" target="_blank">Ptt爬蟲實作</a></li>
+<li><a href="http://www.largitdata.com/course_list/1" target="_blank">大數學堂 網頁爬蟲課程</a></li>
 </ul>
 </div>
 </div>
 <div id="facebook" class="section level2">
 <h2><span class="header-section-number">4.3</span> Facebook資料擷取</h2>
-<p>Facebook提供<a href="https://developers.facebook.com/docs/graph-api?locale=zh_TW">Graph API</a>，讓應用程式可透過API讀取與寫入 Facebook相關資料，<strong>Graph API</strong>會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供<a href="https://developers.facebook.com/tools/explorer/">Graph API Explorer</a>，讓程式開發人員可以測試資料撈取方法和結果。</p>
+<p>Facebook提供<a href="https://developers.facebook.com/docs/graph-api?locale=zh_TW" target="_blank">Graph API</a>，讓應用程式可透過API讀取與寫入 Facebook相關資料，<strong>Graph API</strong>會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>，讓程式開發人員可以測試資料撈取方法和結果。</p>
 <p>Get access token</p>
 <div id="graph-api-in-r" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Graph API in R</h3>
