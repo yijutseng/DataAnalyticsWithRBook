@@ -1,160 +1,425 @@
 # 資料讀取與匯出 {#io}
 
-What is 'Data'?
+資料(Data)在[維基百科](http://en.wikipedia.org/wiki/Data)的定義是`values of qualitative or quantitative variables, belonging to a set of items.`，一般來說，在資料分析前會經過多個步驟，包括**資料匯入**Chapter \@ref(io)、**資料清洗處理**Chapter \@ref(manipulation)並轉換為Tidy data、**資料分析**Chapter \@ref(eda)、**資料呈現與視覺化**Chapter \@ref(vis)。
 
-http://en.wikipedia.org/wiki/Data
+資料有多種可能來源，包括:
 
-`Data are values of qualitative or quantitative variables, belonging to a set of items.`
-
-看完本章會學到：
-
-- 找資料、抓資料、總之就是弄到資料
-- 資料前處理原則：tidy
-- 用R做到以上工作
-
-`Raw data` -> **Processing script** -> `Tidy data` -> Data analysis -> Data communication
-
-## 資料類型
-
-### Tidy Data
-
-- 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
-- 不同的觀察值應該要在不同行（Raw）
-- 一張表裡面，有所有分析需要的資料
-- 如果一定要多張表，中間一定要有index可以把表串起來
-- One file, one table
-
-```{r results='hide',message=FALSE}
-if (!require('SportsAnalytics')){
-    install.packages("SportsAnalytics")
-    library(SportsAnalytics)
-}
-NBA1415<-fetch_NBAPlayerStatistics("14-15")
-```
-```{r}
-head(NBA1415)
-```
-
-### 真實世界裡的Raw Data
-
-#### Html
-
-#### Facebook
-
-#### !?
-
-
-## 資料到底在哪裡？
-- 硬碟裡 
+- 硬碟
 - 網路下載
-- Open Data
-    - http://data.taipei/
-    - http://data.tycg.gov.tw/
-    - http://data.moi.gov.tw/
-    
-- 網頁裡（爬蟲！）
+- Open Data (API)
+- 網頁裡 (爬蟲！)
 - 任何地方
 
-### Open Data 
+以下介紹由檔案、網路等來源匯入多種資料格式的匯入方式，以及建議的資料匯出方法。
 
+##從檔案匯入基本資料格式 {#file}
 
-## 讀取各類檔案
-### 表格(.csv / Tab分隔 / Excel)
-`read.table`, `read.csv`, 讀取表格資料
+###Import Dataset功能 (RStudio)
+[RStudio](https://www.rstudio.com/) 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成`.csv`、`Excel`以及`SAS`等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇**Import Dataset**，就會出現檔案格式的選項
 
-The `read.table`, `read.csv` 是最常見的，會用這些就好
+```{r echo=FALSE}
+knitr::include_graphics("figure/import.png")
+```
 
-有以下參數：
+以csv檔案為例，在選單中選取`From CSV`，選取後會跳出資料匯入輔助視窗，點選`Browse`按鈕開啟檔案選取器，並點選欲匯入之文字檔案
+
+```{r echo=FALSE}
+knitr::include_graphics("figure/csv.png")
+```
+
+檔案選取後，資料匯入輔助視窗有預覽功能，供使用者檢查資料匯入方法是否正確，若需調整各項參數，可利用下方`Import Options`的選項微調，最常用的調整功能是`Delimiter`分隔符號與`First Row as Names`首列是否為欄位名稱。
+
+```{r echo=FALSE}
+knitr::include_graphics("figure/csv2.png")
+```
+
+如果要匯入的檔案為**tab分隔文字檔**，一樣可以選擇`.csv`選項，再修改`Delimiter`參數為`Tab`即可。
+
+資料匯入輔助視窗右下方`Code Preview:`子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。
+
+###分隔文字檔 .txt
+`readr` [@R-readr] package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為**檔案路徑與名稱**，`read_delim()`函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將`delim`參數設定為`\t`，即可用tab將各欄位分開讀取。此外，`col_names`參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為 X1, X2, X3 ...。
+
+參數整理如下 (可用?read_delim指令閱讀官方說明)：
 
 - `file`, 檔名
-- `header`, 是否有欄位名稱（表頭）（T/F）
-- `sep`, 分隔符號
-- `colClasses`, 每一個欄位的類別，用向量表示 
-- `comment.char`, 把欄位包起來的符號
+- `delim`, 分隔符號
+- `quote`, 把欄位包起來的符號
+- `escape_backslash`, 預設FALSE，是否用/作為逃脫符號
+- `escape_double`, 預設TRUE，是否用quote符號作為逃脫符號
+- `col_names`, 是否有欄位名稱（表頭）（T/F）
+- `col_types`, 每一個欄位的類別，用向量表示 
+- `comment`, 備註標示符號，在備註標示符號之後的文字不會被讀入
 - `skip`, 要跳過幾行？
-- `stringsAsFactors`, 要不要輸入成'Factor'（有序因子）
 
-要安裝xlsx 套件
-
-```r
-if (!require('xlsx')){
-    install.packages("xlsx")
-    library(xlsx)
-}
-ExcelData <- read.xlsx("data.xlsx",sheetIndex=1,header=TRUE)
-head(ExcelData)
+```{r eval=F}
+library(readr)
+dataset <- read_delim("檔案路徑與名稱", delim="\t")
 ```
 
-## read.csv使用範例
-完全不用給參數
-```{r eval=FALSE}
-data <- read.csv('open.csv')
-data
+###CSV檔案 .csv {#csv}
+`readr` [@R-readr] package也提供CSV (逗號分隔)檔案的讀取功能，`read_csv()`
+```{r eval=F}
+library(readr)
+dataset <- read_csv("檔案路徑與名稱")
 ```
 
+###Excel檔案 .xls
+`readxl` [@R-readxl] package提供讀取Excel檔案 (xls, xlsx)的函數`read_excel()`，除了常用的`col_names`參數外，也可使用`sheet`參數設定要讀取的工作表(sheet)
+```{r eval=F}
+library(readxl)
+dataset <- read_excel("檔案路徑與名稱")
+```
 
+###R物件 .rds
+R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用`readRDS()`函數 (參考資料:[A better way of saving and loading objects in R](http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/))
+```{r eval=F}
+dataset <- readRDS("檔案路徑與名稱")
+```
 
-### 文字資料
-`readLines`, 逐行讀取文字資料
-
-### R檔案格式
-`load`, 讀取已經在R裡面的資料（Ex: iris）
-
-### R程式
+###R程式 .R
 `source`, 讀R的Obejct or script, 執行, ASCII (`dump`的相反) 
 
+### 純文字資料 (無分隔)
+`readLines`, 逐行讀取文字資料
 
-
-## 各類檔案匯出
-寫檔的函數跟讀檔很像：
-
-### 表格(.csv / Tab分隔)
-`write.table`
-
-### 文字資料
-`writeLines`
-
-### R檔案格式
-`save`
-
-### R程式
-`dump`
-
-
-
-##讀檔的時候R會自動
+### 其他讀檔注意事項
+讀檔的時候R會自動
 
 - 跳過#開頭的任何行（Row）
 - 判斷要讀幾行
 - 判斷每個列（Column）的類別
 - 把欄位包起來的符號
 
-如果讀取時已指定**Column類別**以及**把欄位包起來的符號**，會快很多
+如果讀取時已指定**Column類別**以及**把欄位包起來的符號**，讀取速度會快很多。
+
+##從網路匯入資料
+### Open Data
+**開放資料** (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。[維基百科](https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99)
+
+台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料
+
+- [政府資料開放平台](http://data.gov.tw/)
+- [Data Taipei](http://data.taipei/)
+- [開放資料 x 開放桃園](http://data.tycg.gov.tw/)
+- [內政資料開放平台](http://data.moi.gov.tw/)
+
+Open Data常見的儲存方式為: `CSV`Chapter \@ref(csv)、`JSON`Chapter \@ref(json)、`XML`Chapter \@ref(xml)，開放資料網站通常有提供民眾**直接下載**檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述**由檔案匯入資料** Chapter \@ref(file)方法匯入即可。
+
+### API (Application programming interfaces) {#api}
+應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。[Wiki](https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3)
+但若檔案更新頻繁，以[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463)資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過**API**下載的服務，透過API下載的資料格式會是JSON格式Chapter \@ref(json)，如[臺北市開放認養動物API資訊](http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&rid=f4a75ba9-7721-4363-884d-c3820b0b917c)所示，開放資料網站會提供**資料集ID**與**資料RID**
+
+- **資料集ID**: 紀錄資料的基本參數，如包含欄位、更新頻率等
+- **資料RID**: 資料集
+
+並同時提供擷取範例，如果需要下載原始資料，可直接從範例複製貼上即可，如http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c
+
+
+
+###JSON格式檔案 {#json}
+JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交換語言 [Wiki](http://en.wikipedia.org/wiki/JSON)，特色如下:
+
+- from **a**pplication **p**rogramming **i**nterfaces (APIs)
+- JavaScript、Java、Node.js應用
+- 一些NoSQL非關係型資料庫用JSON儲存格資料：**MongoDB**
+- 資料儲存格式
+    - Numbers (double)
+    - Strings (double quoted)
+    - Boolean (_true_ or _false_)
+    - Array (ordered, comma separated enclosed in square brackets _[]_)
+    - Object (unorderd, comma separated collection of **key:value** pairs in curley brackets _{}_)
+
+[JSON檔案範例](https://api.github.com/users/yijutseng/repos)
+
+許多Open Data也用JSON格式儲存，例如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463)資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。
+
+將JSON檔案匯入R可以使用`jsonlite`[@R-jsonlite] package，套件使用前必須安裝，安裝套件方法請參考Chapter \@ref(intro)，載入後，可使用`fromJSON()`函數載入JSON資料。
+如需直接從API網址截取資料，需要載入`RCurl`[@R-RCurl] package，並使用`getURL()`函數處理資料擷取網址。
+```{r message=FALSE,warning=FALSE}
+library(jsonlite)
+library(RCurl)
+PetData<-fromJSON(getURL("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c"))
+str(PetData)
+```
+由資料結構可知，經過`fromJSON()`函數匯入的JSON檔案被轉存為`列表list`的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用`$`符號截取元素與子元素
+```{r readJSON}
+knitr::kable(head(PetData$result$results)) 
+```
+results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項**開放認養理由**出現次數
+```{r readJSON1}
+table(PetData$result$results$Reason)
+```
+分析可知開放認養理由以動物管制與未填寫居多。
+
+如果需要將資料框轉換成JSON檔案可以使用`jsonlite` package所提供的`toJSON()`函數。
+```{r writeJSON}
+myjson <- toJSON(iris, pretty=TRUE)
+str(myjson)
+```
+
+
+### XML 可延伸標記式語言 {#xml}
+- E**x**tensible **m**arkup **l**anguage
+- 描述**結構化**資料的語言
+- 處理XML檔案是網頁**Html**爬蟲的基礎
+- Components
+    - Markup 標記 - labels that give the text structure
+    - Content 內文 - the actual text of the document
+- [XML Wiki](https://zh.wikipedia.org/wiki/XML)
+
+Tags, elements and attributes
+
+- Tags correspond to general labels
+    - Start tags `<breakfast_menu>`, `<price>`
+    - End tags `</breakfast_menu>`,`</price>`
+    - Empty tags `<line-break />`
+- Elements are specific examples of tags
+    - `<name>Belgian Waffles</name>`
+- Attributes are components of the label
+    - `<book category="web">`
+    
+許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927)。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlTreeParse()`函數將檔案匯入。
+
+```{r}
+library(XML)
+waterQ <- xmlTreeParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927",useInternal=TRUE)
+rootNode <- xmlRoot(waterQ) #access the top node
+```
+使用`xpathSApply()`函數取得指定標籤內的資料
+```{r}
+#取得所有"code_name"標籤內的資料
+xpathSApply(rootNode,"//code_name",xmlValue)[1:10]
+#取得各監測站的經度
+xpathSApply(rootNode,"//longitude",xmlValue)[1:10]
+```
+
+### 網頁爬蟲 Webscraping, Crawling
+
+__Webscraping__: Programatically extracting data from the HTML code of websites. 
+
+- 不是每個網站都提供API
+    - 但網頁上卻有你想要分析的資料（像是ptt推文！？）
+    - 除了人工複製貼上以外，也可以將網頁處理程式化
+- 可能違法.....，一次讀太多太快，很可能被鎖IP
+- [Webscraping Wiki](http://en.wikipedia.org/wiki/Web_scraping)
+- [什麼是網頁爬蟲](http://www.largitdata.com/course/1/)
+
+What’s the difference between scraping and crawling
+
+- `Crawling` 
+    - dealing with `large data-sets` where you develop your own crawlers which crawl to the deepest of the `web pages`. 
+- `Data scraping` 
+    - retrieving information from `any source (not necessarily the web)`. 
+    - It’s more often the case that irrespective of the approaches involved.
+
+
+以[長庚資管系](http://im.cgu.edu.tw/bin/home.php)網站為例，可直接逐行讀取 `readLines()`
+
+```{r}
+htmlCode <-readLines(url("http://im.cgu.edu.tw/bin/home.php"))
+htmlCode[1:5]
+```
+
+用XML工具讀取網頁 (`XML` package)
+
+```{r xmlhtml, warning=F}
+library(httr)
+html <- htmlTreeParse(GET("http://im.cgu.edu.tw/bin/home.php"), useInternalNodes=T)
+xpathSApply(html, "//title", xmlValue)
+xpathSApply(html, "//span[@class='ptname ']", xmlValue)
+```
+
+
+其他爬蟲相關參考資源
+
+- R Bloggers 有很多[爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping)（英文）
+- [Ptt爬蟲實作](http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html) 
+- [大數學堂 網頁爬蟲課程](http://www.largitdata.com/course_list/1)
+
+## Facebook資料擷取
+Facebook提供[Graph API](https://developers.facebook.com/docs/graph-api?locale=zh_TW)，讓應用程式可透過API讀取與寫入 Facebook相關資料，**Graph API**會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供[Graph API Explorer](https://developers.facebook.com/tools/explorer/)，讓程式開發人員可以測試資料撈取方法和結果。
+
+Get access token
+
+### Graph API in R
+```{r eval=FALSE, warning=F}
+library(httr)
+token<-"your token" #將token複製到此處 
+FBData = GET(
+    paste0("https://graph.facebook.com/v2.8/tsaiingwen?fields=posts%7Bmessage%7D&access_token=",
+           token))
+names(FBData)
+```
+
+```
+## [1] "url"         "status_code" "headers"     "all_headers" "cookies"     "content"     "date"       
+## [8] "times"       "request"     "handle"    
+```
 
 ```{r eval=FALSE}
-initial <- read.csv("open.csv", nrows = 100)
-classes <- sapply(initial, class)
-tabAll <- read.csv("open.csv", colClasses = classes)
+json1 = content(FBData)
+names(json1)
+```
+```
+## [1] "posts" "id"
+```
+```{r eval=FALSE}
+names(json1$posts)
+```
+```
+## [1] "data"   "paging"
+```
+```{r eval=FALSE}
+head(json1$posts$data,3)
+```
+```
+[[1]]
+[[1]]$message
+[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
+
+[[1]]$id
+[1] "46251501064_10154006497451065"
+
+
+[[2]]
+[[2]]$message
+[1] "今天，智慧機械推動辦公室正式啟動。「落實產學合作」、「支持創新研發」、「強化行銷通路」是辦公室的三項重點任務。\n\n智慧機械是「5+2」關鍵產業的其中之一。政府有決心。我相信，所有的機械業者－無論做的是螺桿、刀庫、控制器或是工作母機，大家也都有很強的決心，要走向創新、走向智慧化、走向品牌。我們是一個團隊，我們一起加油！"
+
+[[2]]$id
+[1] "46251501064_10154006456601065"
+
+
+[[3]]
+[[3]]$message
+[1] "今天來向台商拜個晚年。我也邀請台商朋友們，共同參與台灣經濟轉型升級的世紀工程。\n\n無論是擴大對國內的投資，或者配合新南向政策，前進海外深耕佈局，我期待跟台商朋友們一起努力，群策群力，克服困難和瓶頸，為台灣經濟發展打開全新的局面。"
+
+[[3]]$id
+[1] "46251501064_10154001652641065"
+
 ```
 
 
-##從網路上下載檔案 download.file
-使用RCurl Package
+```{r eval=FALSE}
+json1$posts$data[[1]]$message
+```
+```
+##[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
+```
 
-download.file(URL, destfile=儲存檔名, method=?)
+除了直接使用Graph API外，也可使用`Rfacebook` [@R-Rfacebook] package來讀取Facebook資料
 
-method = "curl"-->For **https**
-```{r eval=FALSE, results='hide',message=FALSE, warning=F,cache=T}
-if (!require('RCurl')){
-    install.packages("RCurl")
-    library(RCurl)
+Use Rfacebook To Get Info from `tsaiingwen` Page
+```{r eval=FALSE}
+library(Rfacebook)
+token<-"your token" #將token複製到此處 
+getPage("tsaiingwen", token,n = 5)
+```
+```
+5 posts       from_id           from_name
+1 46251501064 蔡英文 Tsai Ing-wen
+2 46251501064 蔡英文 Tsai Ing-wen
+3 46251501064 蔡英文 Tsai Ing-wen
+4 46251501064 蔡英文 Tsai Ing-wen
+5 46251501064 蔡英文 Tsai Ing-wen
+                                                                                                                                                                                                                                                                                                                                                                                        message
+1 「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。
+2                                                                   今天，智慧機械推動辦公室正式啟動。「落實產學合作」、「支持創新研發」、「強化行銷通路」是辦公室的三項重點任務。\n\n智慧機械是「5+2」關鍵產業的其中之一。政府有決心。我相信，所有的機械業者－無論做的是螺桿、刀庫、控制器或是工作母機，大家也都有很強的決心，要走向創新、走向智慧化、走向品牌。我們是一個團隊，我們一起加油！
+3                                                                                                                                                          今天來向台商拜個晚年。我也邀請台商朋友們，共同參與台灣經濟轉型升級的世紀工程。\n\n無論是擴大對國內的投資，或者配合新南向政策，前進海外深耕佈局，我期待跟台商朋友們一起努力，群策群力，克服困難和瓶頸，為台灣經濟發展打開全新的局面。
+4                                                                                                                                                                                                                                                                                    「快了」！雞年通機捷，等待很值得。大年初四，我來看看機場捷運通車前的準備，也坐捷運到中壢，跟鄉親拜年問好。
+5                                                                                                                                                                                                                                                                                                            雞年初三發福袋\n\n臺中豐原慈濟宮、彰化溪湖福安宮、雲林北港朝天宮、嘉義九華山地藏庵
+              created_time  type
+1 2017-02-07T08:02:45+0000 photo
+2 2017-02-07T07:18:00+0000 photo
+3 2017-02-05T07:12:52+0000 photo
+4 2017-01-31T08:37:42+0000 photo
+5 2017-01-30T11:41:07+0000 photo
+                                                                                                    link
+1 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154006497206065/?type=3
+2 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154006455396065/?type=3
+3 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10154001652641065/?type=3
+4 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10153989357181065/?type=3
+5 https://www.facebook.com/tsaiingwen/photos/a.390960786064.163647.46251501064/10153987089121065/?type=3
+                             id likes_count comments_count shares_count
+1 46251501064_10154006497451065        2013            125           43
+2 46251501064_10154006456601065        2217            163           57
+3 46251501064_10154001652641065        9416            920          163
+4 46251501064_10153989358051065       34116           1574          373
+5 46251501064_10153987095776065       20592            665          269
+```
+
+How To Get More Data?
+Use **since** and **until**
+
+Set the dates vector
+```{r eval=FALSE}
+lastDate<-Sys.Date()
+DateVector<-seq(as.Date("2017-01-01"),lastDate,by="5 days")
+DateVectorStr<-as.character(DateVector)
+DateVectorStr
+```
+```
+## "2017-01-01" "2017-01-06" "2017-01-11" "2017-01-16" "2017-01-21" "2017-01-26" "2017-01-31" "2017-02-05"
+```
+
+```{r eval=FALSE}
+totalPage<-NULL
+token<-'your token'
+numberOfPost<-30
+for(i in 1:(length(DateVectorStr)-1)){
+    tempPage<-getPage("tsaiingwen", token,
+                      since = DateVectorStr[i],until = DateVectorStr[i+1])
+    totalPage<-rbind(totalPage,tempPage)
 }
-download.file("https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/files/opendata10401.csv", 
-              destfile = "open.csv", method = "curl")
+nrow(totalPage)
+```
+```
+## 4 posts 8 posts 10 posts 3 posts 2 posts 14 posts 1 posts
+## [1] 42
 ```
 
-## Open Data
+Other Useful Methods in Rfacebook Packages
 
-## 爬蟲
+- getUser()
+- getPost()
+- getLikes()
+- Check https://github.com/pablobarbera/Rfacebook
+- ?Rfacebook
+
+
+##資料匯出
+在R中完成資料處理後，有多種匯出選擇，如果是要匯出供他人在其他環境(如Excel)使用，建議匯出成tab分隔的文字檔(.txt)或是逗號分隔的文字檔(.csv)；但若是要在R的環境繼續使用，建議匯出成R物件 (.rds)，除了可保留欄位型別設定外，讀取速度與檔案大小皆優於文字檔案。
+
+###文字檔 .txt
+使用`write.table()`函數寫入檔案，需要參數有
+
+- `x` 要匯出的檔案，通常為matrix或是data.frame格式
+- `file` 檔案名稱
+- `append` T/F TRUE表示在檔案後端加入文字，F表示直接覆蓋原始檔案 (預設F)
+- `quote` 是否需要用雙引號將字串包起 (預設T)
+- `sep` 分隔符號 (預設空白)
+- `eol` 換行符號 (預設\n)
+- `na` 表示空值的字串
+- `dec` 小數點表示法
+- `row.names` T/F 是否需要輸出row names
+- `col.names` T/F 是否需要輸出column names
+- `qmethod` 逃脫字串設定
+- `fileEncoding` 編碼設定
+
+```{r eval=FALSE}
+write.table(iris,file="iris.txt",sep=",",row.names = F,col.names = T)
+```
+
+###CSV檔 .csv
+與`write.table()`類似，使用`write.csv()`函數寫入檔案
+```{r eval=FALSE}
+write.csv(iris,file="iris.csv",row.names = F)
+```
+
+###R物件 .rds
+若是要在R的環境繼續使用，建議匯出成R物件檔案(.rds)
+```{r eval=FALSE}
+saveRDS(iris,"iris.rds")
+```
 
 

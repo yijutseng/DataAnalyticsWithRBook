@@ -1,5 +1,13 @@
 # 資料處理與清洗 {#manipulation}
 
+## Tidy Data
+
+- 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
+- 不同的觀察值應該要在不同行（Raw）
+- 一張表裡面，有所有分析需要的資料
+- 如果一定要多張表，中間一定要有index可以把表串起來
+- One file, one table
+
 ## 資料型別轉換處理
 在資料型態章節Chapter \@ref(DataType)中，曾介紹**數值 (numeric)**、**字串 (character)**、**布林變數 (logic)**以及**日期 (Date)**等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。
 
@@ -256,3 +264,49 @@ head(airquality[complete.cases(airquality),]) ##保留所有在complete.cases()�
 ```
 
 利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value)教學。
+
+
+##綜合練習範例
+在本範例中，介紹使用`SportsAnalytics` [@R-SportsAnalytics] package 撈取NBA各球員的數據，並加以觀察分析。
+
+### 載入資料
+首先用`library()`函數將`SportsAnalytics`套件載入 (若尚未安裝此套件者，必須先安裝套件，可參考Chapter \@ref(intro))，並利用套件內提供的`fetch_NBAPlayerStatistics()`函數，將對應年份之資料取出。
+```{r}
+library(SportsAnalytics)
+NBA1516<-fetch_NBAPlayerStatistics("15-16")
+```
+###資料總覽
+資料取出後，可用`str()`函數總覽`NBA1516`這個資料框的欄位與欄位類別
+```{r}
+str(NBA1516)
+```
+可以發現此`NBA1516`資料框內有476筆球員資料(觀察值, obs)，每筆資料有25個欄位 (variables)。
+###資料預覽
+如果想看資料框內容，可用`head()`和`tail()`快速瀏覽部分資料
+```{r}
+head(NBA1516)
+```
+
+###資料排序後篩選
+觀察資料框的組成後，我們想要找出**出場數**最**高**的前五名選手的所有資料，此時可以利用`order()`函數先**由大到小**排序(`decreasing = T`)後，再用`[,]`取子集。
+```{r}
+NBA1516Order<-NBA1516[order(NBA1516$GamesPlayed,decreasing = T),]
+NBA1516Order[1:5,] ##逗號前方放1~5，表示取1~5列；逗號後方空白，表示要取所有欄位
+```
+如果我們想要出**出場分鐘數**最**高**的前十名選手的**名字**，一樣可以用`order()`函數先**由大到小**排序(`decreasing = T`)後，再用`[,]`取子集。
+```{r}
+NBA1516OrderM<-NBA1516[order(NBA1516$TotalMinutesPlayed,decreasing = T),]
+NBA1516OrderM[1:10,"Name"] ##逗號前方取1~10列；逗號後方放"Name"，表示取名稱為Name之欄位
+```
+
+###欄位值篩選
+除了排序取值外，也可用欄位條件搜尋，舉例來說，可以取出所有波士頓賽爾迪克隊的選手資料，使用`subset()`函數
+```{r}
+subset(NBA1516,Team=="BOS")
+```
+
+###字串條件搜尋後篩選
+當然也可以結合**字串搜尋**函數`grepl()`，將所有名字裡有"James"的選手資料取出
+```{r}
+NBA1516[grepl("James",NBA1516$Name),]
+```

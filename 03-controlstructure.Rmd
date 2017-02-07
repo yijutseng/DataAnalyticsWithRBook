@@ -4,7 +4,7 @@
 ## 條件判斷
 ### if-else敘述
 **if-else**敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用**if-else**，若**if**後所接邏輯判斷為**真(TRUE)**，就會執行if下方之程式碼，若為**偽(FALSE)**，則執行**else**下方之程式碼，若程式中沒有**else**片段，則不執行任何程式碼。
-```{r}
+```{r echo=FALSE}
 knitr::include_graphics("figure/ifelse.png")
 ```
 

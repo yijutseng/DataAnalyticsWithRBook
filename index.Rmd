@@ -9,14 +9,14 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: yijutseng/DataAnalyticsWithR
-description: "長庚大學資訊管理學系大數據分析方法教學使用書籍，內容包括資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘，並介紹R與Hadoop EcoSystems介接方法等。"
+description: "長庚大學資訊管理學系大數據分析方法教學使用書籍。"
 ---
 ```{r setup, include=FALSE}
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 80, digits = 4
 )
 
-pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2')
+pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2','SportsAnalytics','readr','readxl','jsonlite','RCurl','XML','Rfacebook')
 lapply(c(), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
