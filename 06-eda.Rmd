@@ -1,7 +1,140 @@
 # 探索式資料分析 {#eda}
 撰寫中
 
+探索式資料分析 (**E**xploratory **D**ata **A**nalysis)
+主要精神是從反覆的資料探索過程中來獲得資料所包含的資訊
+就是運用視覺化、基本的統計等工具，來「看」一下資料；以期進行複雜或嚴謹的分析之前，能夠對資料有更多的認識
+探索式資料分析是指在沒有標準流程跟方法的情況下，在現有的數據中找尋資料的結構和特點、探索潛藏於資料中的訊息，這種資料分析方法強調的是探索式的分析而非嚴謹的模式確認。
+they include identifying relationships between variables that are particularly interesting or unexpected, checking to see if there is any evidence for or against a stated hypothesis, checking for problems with the collected data, such as missing data or measurement error), or identifying certain areas where more data need to be collected. At this point, finer details of presentation of the data and evidence, important for the final product, are not necessarily the focus.
+
+Ultimately, EDA is important because it allows the investigator to make critical decisions about what is interesting to follow up on and what probably isn’t worth pursuing because the data just don’t provide the evidence (and might never provide the evidence, even with follow up). These kinds of decisions are important to make if a project is to move forward and remain within its budget.
+
+In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task. Exploratory data analysis was promoted by John Tukey to encourage statisticians to explore the data, and possibly formulate hypotheses that could lead to new data collection and experiments. EDA is different from initial data analysis (IDA),[1] which focuses more narrowly on checking assumptions required for model fitting and hypothesis testing, and handling missing values and making transformations of variables as needed. EDA encompasses IDA.
+
+Types of EDA
+
+EDA can be broadly classified into the following:
+
+Graphical or Quantitative
+Univariate or Bivariate
+
+Quantitative methods include summary statisitcs while graphical methods include plots and charts. Univariate methods involve analysing one variable at a time while bivariate involves analysing two or more variables to examine their underlying relationships. EDA also depends on the role of variable being examined:
+
+Outcome variable
+Explanatory variable
+Further division is based on the type of variable being examined:
+
+Categorical variable
+Binary
+Ordinal
+Nominal
+Quantitative variable
+Discrete
+Continuous
+
+Univariate
+
+Univariate Quantitative
+
+Univariate analysis includes:
+
+Measures of central tendancy:
+
+Mean
+Median
+Mode
+Measures of dispersion:
+
+Min
+Max
+Range
+Quartiles
+Variance
+Standard deviation
+Other measures include:
+
+Skewness
+Kurtosis
+We will explore each of the above in detail in the case study provided at the end of this tutorial.
+
+Univariate Graphical
+
+Graphical methods include the following:
+
+Histogram
+Box plots
+Bar plots
+Kernel density plots
+Bivariate
+
+Bivariate Quantitative
+
+Bivariate analysis include:
+
+Crosstabs
+Covariance
+Correlation
+Advanced techniques include:
+
+Cluster analysis
+Analysis of variance (ANOVA)
+Factor analysis
+Principal component analysis (PCA)
+Bivariate Graphical
+
+Graphical techniques include:
+
+Scatterplot
+Box plot
+
+## data.table {#datatable}
+data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table [@R-data.table] package
+```{r eval=F}
+install.packages("data.table") ##安裝
+```
+```{r message=F}
+library(data.table) ##載入
+```
+
+使用`data.table`讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為`fread()`，使用方法與一般檔案讀取方法(Ch \@ref(file))類似
+```{r eval=F}
+fread("檔案名稱")
+```
+
+如果已經使用其他資料來源將檔案讀成資料框data.frame格式，可以使用`data.table()`函數將data.frame轉為data.table格式，以先前介紹過的NBA資料為例（Ch \@ref(manCase)，需安裝與載入`SportsAnalytics`套件）
+
+```{r}
+library(SportsAnalytics)
+NBA1516<-fetch_NBAPlayerStatistics("15-16")
+NBA1516DT<-data.table(NBA1516)
+class(NBA1516DT)
+```
+可以發現轉換後的`NBA1516DT`資料型態為`data.table`以及`data.frame`，這是因為data.table是data.frame資料框型別的延伸，所以是data.table型態的資料，就一定會是data.frame型態。
+
+
+`data.table`資料型態的特殊結構和語法設計，便於後續資料分析處理，基本語法結構如下：
+
+`DT[i,j,by=]`
+
+- `i` 觀察值 (Row) 篩選邏輯
+- `j` 所需欄位 (Column)
+- `by` 分組依據
+
+各參數的使用方法分述如下
+
+### i 篩選邏輯
+```{r}
+NBA1516DT
+```
+### j 欄位選擇運算
+
+### by 分組依據
+
+### 參考文件與資源
+其他`data.table`教學可見 [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k){target="_blank"}，此外，DataCamp也提供[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial){target="_blank"}，可自行參閱。
+
 ## 資料內容初步分析統計
 
-## data.table
+## Case study
 
+## dplyr

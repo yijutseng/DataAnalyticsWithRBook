@@ -230,6 +230,7 @@ xpathSApply(html, "//title", xmlValue)
 xpathSApply(html, "//span[@class='ptname ']", xmlValue)
 ```
 
+rvest 
 
 其他爬蟲相關參考資源
 

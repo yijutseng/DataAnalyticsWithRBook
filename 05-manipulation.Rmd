@@ -1,6 +1,7 @@
 # 資料處理與清洗 {#manipulation}
 
 ## Tidy Data
+Each column is a variable. Each row is an observation.
 
 - 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
 - 不同的觀察值應該要在不同行（Raw）
@@ -266,7 +267,7 @@ head(airquality[complete.cases(airquality),]) ##保留所有在complete.cases()�
 利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value){target="_blank"}教學。
 
 
-##綜合練習範例
+##綜合練習範例Case study {#manCase}
 在本範例中，介紹使用`SportsAnalytics` [@R-SportsAnalytics] package 撈取NBA各球員的數據，並加以觀察分析。
 
 ### 載入資料

@@ -1,2 +1,79 @@
 # 資料視覺化 {#vis}
 撰寫中
+
+## ggplot2
+`ggplot2` [@R-ggplot2]的開發靈感來自於Dr. Leland Wilkinson的[Grammar of Graphics](http://www.springer.com/us/book/9780387245447){target="_blank"}，Package是由[Hadley Wickham](http://hadley.nz/){target="_blank"}開發，還在持續發展更新中，對原始碼有興趣的人可以到[GitHub](https://github.com/tidyverse/ggplot2){target="_blank"}看一下最新動態。
+
+`ggplot2` 是第三個R的畫圖Package。自發表以來一直是最熱門的R packages之一，在開始學ggplot2的核心功能之前，qplot()是ggplot2 Package提供最基本的畫圖方法，跟基本的plot() function很接近，提供一個簡單入門的方法，在這篇就不詳細介紹，有興趣可以看一下網路上的[教學範例](http://www.ancienteco.com/2012/03/basic-introduction-to-ggplot2.html){target="_blank"}。
+
+簡單來說，做圖的文法包括兩個最主要元素：
+
+Aesthetic attributes：包括顏色、形狀、點的大小與線的粗細等
+Geometric objects：包括點、線、盒狀圖、直條圖等
+
+其他元素包括：
+
+Facets：提供在同一張圖內做多個子圖的方法，只要使用Faceting功能設定子圖分類的依據參數即可。
+Stats：將資料做統計轉換
+Scales：修改點線的顏色、形狀、xy軸的範圍等
+
+使用ggplot2作圖有以下步驟：
+準備好資料。當然要有資料才能畫圖。
+設定Aesthetic attributes。使用aes(x, y, ...)指定
+指定Geometric objects。常用的包括geom_point()、geom_line()、geom_point()、geom_polygon()、geom_errorbar()。
+
+```{r}
+library(ggplot2)
+```
+Generate the data
+```{r}
+df <- data.frame(gp = factor(rep(letters[1:3], each = 10)),y = rnorm(30))
+```
+Set Aesthetic attributes and assign Geometric objects
+```{r}
+ggplot(df, aes(x = gp, y = y)) +geom_point()
+```
+用geom_boxpolt()改畫盒狀圖
+```{r}
+ggplot(df, aes(x = gp, y = y)) +geom_boxplot()
+```
+使用Faceting功能
+```{r}
+df$z<-df$y+rnorm(30)
+ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)
+```
+轉向
+```{r}
+ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(.~gp)
+```
+用geom_smooth()替xy散佈圖加上趨勢線
+```{r}
+ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)+geom_smooth()
+```
+用geom_smooth()替xy散佈圖加上趨勢線，使用linear regresion
+```{r}
+ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)+geom_smooth(method='lm')
+```
+改用geom_line()畫線
+```{r}
+ggplot(df, aes(x = z, y = y)) +geom_line()+facet_grid(gp~.)
+```
+改用顏色分組，使用aes(color='group name')
+```{r}
+ggplot(df, aes(x = z, y = y, color=gp)) +geom_line()
+```
+
+畫圖前需要注意的幾個小地方：
+
+提供資料時，把資料修改為想要在圖片顯示的文字。從上面的範例可以發現，ggplot2會直接將資料分組（a/b/c）直接標在圖上，與其之後再來改圖，不如在資料處理時就將a/b/c改為有意義且可以直接使用的文字。
+如果是離散性的資料，但卻又是數值時（像是1,2,3）可以用factor()轉換，ggplot會將factor視為離散資料
+
+### 參考文件與資源
+
+- 官方網站[文件](http://docs.ggplot2.org/current/){target="_blank"}
+- RStudio製作的[ggplot cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf){target="_blank"}
+- DataCamp互動式課程1 [Data Visualization with ggplot2 (Part 1)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1){target="_blank"}
+- DataCamp互動式課程2 [Data Visualization with ggplot2 (Part 2)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-2){target="_blank"}
+- DataCamp互動式課程3 [Data Visualization with ggplot2 (Part 3)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-3){target="_blank"}
+
+## Case study
