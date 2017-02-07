@@ -3,12 +3,17 @@ title: "資料科學與R語言"
 author: "曾意儒 Yi-Ju Tseng"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+output: 
+  bookdown::gitbook:
+    config:
+      download: false
+      fontsettings:
+        family: Microsoft JhengHei
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: yijutseng/DataAnalyticsWithR
+github-repo: yijutseng/DataAnalyticsWithRBook
 description: "長庚大學資訊管理學系大數據分析方法教學使用書籍。"
 ---
 ```{r setup, include=FALSE}
