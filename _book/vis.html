@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -285,22 +285,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(letters[<span class="dv">1</span>:<span class="dv">3</span>], <span class="dt">each =</span> <span class="dv">10</span>)),<span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">30</span>))</code></pre></div>
 <p>Set Aesthetic attributes and assign Geometric objects</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> gp, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-94-1.png" width="672" /> 用geom_boxpolt()改畫盒狀圖</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-96-1.png" width="672" /> 用geom_boxpolt()改畫盒狀圖</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> gp, <span class="dt">y =</span> y)) +<span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-95-1.png" width="672" /> 使用Faceting功能</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-97-1.png" width="672" /> 使用Faceting功能</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$z&lt;-df$y+<span class="kw">rnorm</span>(<span class="dv">30</span>)
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-96-1.png" width="672" /> 轉向</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-98-1.png" width="672" /> 轉向</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(.~gp)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-97-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-99-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-98-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線，使用linear regresion</p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-100-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線，使用linear regresion</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-99-1.png" width="672" /> 改用geom_line()畫線</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-101-1.png" width="672" /> 改用geom_line()畫線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_line</span>()+<span class="kw">facet_grid</span>(gp~.)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-100-1.png" width="672" /> 改用顏色分組，使用aes(color=‘group name’)</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-102-1.png" width="672" /> 改用顏色分組，使用aes(color=‘group name’)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y, <span class="dt">color=</span>gp)) +<span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>畫圖前需要注意的幾個小地方：</p>
 <p>提供資料時，把資料修改為想要在圖片顯示的文字。從上面的範例可以發現，ggplot2會直接將資料分組（a/b/c）直接標在圖上，與其之後再來改圖，不如在資料處理時就將a/b/c改為有意義且可以直接使用的文字。 如果是離散性的資料，但卻又是數值時（像是1,2,3）可以用factor()轉換，ggplot會將factor視為離散資料</p>
 <div id="-1" class="section level3">
@@ -322,7 +323,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-ggplot2">
-<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: An Implementation of the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
 </div>
 </div>
             </section>

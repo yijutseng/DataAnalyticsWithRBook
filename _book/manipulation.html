@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -333,7 +333,7 @@ boo&lt;-T
 <pre><code>## [1] &quot;TRUE&quot;</code></pre>
 <p>若無法順利完成轉換，會回傳空值<code>NA</code>，並出現警告訊息<code>Warning: NAs introduced by coercion，Warning: 強制變更過程中產生了 NA</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(<span class="st">&quot;abc&quot;</span>)</code></pre></div>
-<pre><code>## Warning: 強制變更過程中產生了 NA</code></pre>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>日期的轉換則建議使用<code>lubridate</code><span class="citation">(Grolemund, Spinu, and Wickham <a href="#ref-R-lubridate">2016</a>)</span> package，如果想要將<code>年/月/日</code>格式的文字轉換為日期物件，可使用<code>ymd()</code>函數（y表年year，m表月month，d表日day），如果想要將<code>月/日/年</code>格式的文字轉換為日期物件，則使用<code>mdy()</code>函數，以此類推。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
@@ -353,7 +353,7 @@ boo&lt;-T
 <li>大小寫轉換 <code>toupper()</code> <code>tolower()</code></li>
 <li>兩文字連接 <code>paste()</code> <code>paste0()</code></li>
 <li>文字取代 <code>gsub()</code></li>
-<li>前後空白去除 <code>str_trim()</code> 需安裝<code>stringr</code><span class="citation">(Wickham <a href="#ref-R-stringr">2015</a>)</span> package</li>
+<li>前後空白去除 <code>str_trim()</code> 需安裝<code>stringr</code><span class="citation">(Wickham <a href="#ref-R-stringr">2016</a><a href="#ref-R-stringr">d</a>)</span> package</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">strsplit</span> (<span class="st">&quot;Hello World&quot;</span>,<span class="st">&quot; &quot;</span>)</code></pre></div>
 <pre><code>## [[1]]
@@ -1449,7 +1449,7 @@ NBA1516OrderM[<span class="dv">1</span>:<span class="dv">10</span>,<span class="
 <p>Grolemund, Garrett, Vitalie Spinu, and Hadley Wickham. 2016. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate" class="uri">https://CRAN.R-project.org/package=lubridate</a>.</p>
 </div>
 <div id="ref-R-stringr">
-<p>Wickham, Hadley. 2015. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
+<p>Wickham, Hadley. 2016d. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a>.</p>
 </div>
 <div id="ref-R-reshape2">
 <p>Wickham, Hadley. 2016b. <em>Reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package</em>. <a href="https://CRAN.R-project.org/package=reshape2" class="uri">https://CRAN.R-project.org/package=reshape2</a>.</p>

@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -274,7 +274,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">3.1</span> 條件判斷</h2>
 <div id="if-else" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> if-else敘述</h3>
-<p><strong>if-else</strong>敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用<strong>if-else</strong>，若<strong>if</strong>後所接邏輯判斷為<strong>真(TRUE)</strong>，就會執行if下方之程式碼，若為<strong>偽(FALSE)</strong>，則執行<strong>else</strong>下方之程式碼，若程式中沒有<strong>else</strong>片段，則不執行任何程式碼。 <img src="figure/ifelse.png" width="1000" /></p>
+<p><strong>if-else</strong>敘述使用在邏輯判斷，若需要依條件改變需要執行的程式碼，就會使用<strong>if-else</strong>，若<strong>if</strong>後所接邏輯判斷為<strong>真(TRUE)</strong>，就會執行if下方之程式碼，若為<strong>偽(FALSE)</strong>，則執行<strong>else</strong>下方之程式碼，若程式中沒有<strong>else</strong>片段，則不執行任何程式碼。 <img src="figure/ifelse.png" /><!-- --></p>
 <p><code>if</code>與<code>else</code>下方的程式碼必須要使用<code>{}</code>將程式碼包起來，若程式碼只有一行，可省略<code>{}</code>，但為閱讀方便，建議不要省略<code>{}</code>。</p>
 <p>舉例來說，若考試分數<strong>大於等於60分</strong>，則印出<strong>及格</strong>字樣，小於60分則印出<strong>不及格</strong>字樣，程式範例如下:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">score&lt;-<span class="dv">59</span>

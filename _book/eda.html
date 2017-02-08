@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -310,9 +310,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div id="datatable" class="section level2">
 <h2><span class="header-section-number">6.1</span> data.table</h2>
-<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table <span class="citation">(Dowle et al. <a href="#ref-R-data.table">2015</a>)</span> package</p>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table <span class="citation">(Dowle et al. <a href="#ref-R-data.table">2016</a>)</span> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>) ##安裝</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table) ##載入</code></pre></div>
+<pre><code>## 
+## This data.table install has not detected OpenMP support. It will work but slower in single threaded mode.</code></pre>
 <p>使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為<code>fread()</code>，使用方法與一般檔案讀取方法(Ch <a href="io.html#file">4.1</a>)類似</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fread</span>(<span class="st">&quot;檔案名稱&quot;</span>)</code></pre></div>
 <p>如果已經使用其他資料來源將檔案讀成資料框data.frame格式，可以使用<code>data.table()</code>函數將data.frame轉為data.table格式，以先前介紹過的NBA資料為例（Ch <a href="manipulation.html#manCase">5.9</a>，需安裝與載入<code>SportsAnalytics</code>套件）</p>
@@ -419,7 +421,7 @@ NBA1516DT&lt;-<span class="kw">data.table</span>(NBA1516)
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-data.table">
-<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2015. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2016. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
 </div>
 </div>
             </section>

@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -285,17 +285,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="import-dataset-rstudio" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Import Dataset功能 (RStudio)</h3>
 <p><a href="https://www.rstudio.com/" target="_blank">RStudio</a> 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成<code>.csv</code>、<code>Excel</code>以及<code>SAS</code>等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇<strong>Import Dataset</strong>，就會出現檔案格式的選項</p>
-<p><img src="figure/import.png" width="592" /></p>
+<p><img src="figure/import.png" /><!-- --></p>
 <p>以csv檔案為例，在選單中選取<code>From CSV</code>，選取後會跳出資料匯入輔助視窗，點選<code>Browse</code>按鈕開啟檔案選取器，並點選欲匯入之文字檔案</p>
-<p><img src="figure/csv.png" width="497" /></p>
+<p><img src="figure/csv.png" /><!-- --></p>
 <p>檔案選取後，資料匯入輔助視窗有預覽功能，供使用者檢查資料匯入方法是否正確，若需調整各項參數，可利用下方<code>Import Options</code>的選項微調，最常用的調整功能是<code>Delimiter</code>分隔符號與<code>First Row as Names</code>首列是否為欄位名稱。</p>
-<p><img src="figure/csv2.png" width="960" /></p>
+<p><img src="figure/csv2.png" /><!-- --></p>
 <p>如果要匯入的檔案為<strong>tab分隔文字檔</strong>，一樣可以選擇<code>.csv</code>選項，再修改<code>Delimiter</code>參數為<code>Tab</code>即可。</p>
 <p>資料匯入輔助視窗右下方<code>Code Preview:</code>子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。</p>
 </div>
 <div id="-.txt" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> 分隔文字檔 .txt</h3>
-<p><code>readr</code> <span class="citation">(Wickham and Francois <a href="#ref-R-readr">2015</a>)</span> package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為<strong>檔案路徑與名稱</strong>，<code>read_delim()</code>函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將<code>delim</code>參數設定為<code>\t</code>，即可用tab將各欄位分開讀取。此外，<code>col_names</code>參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為 X1, X2, X3 …。</p>
+<p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為<strong>檔案路徑與名稱</strong>，<code>read_delim()</code>函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將<code>delim</code>參數設定為<code>\t</code>，即可用tab將各欄位分開讀取。此外，<code>col_names</code>參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為 X1, X2, X3 …。</p>
 <p>參數整理如下 (可用?read_delim指令閱讀官方說明)：</p>
 <ul>
 <li><code>file</code>, 檔名</li>
@@ -313,7 +313,7 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span c
 </div>
 <div id="csv" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> CSV檔案 .csv</h3>
-<p><code>readr</code> <span class="citation">(Wickham and Francois <a href="#ref-R-readr">2015</a>)</span> package也提供CSV (逗號分隔)檔案的讀取功能，<code>read_csv()</code></p>
+<p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package也提供CSV (逗號分隔)檔案的讀取功能，<code>read_csv()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</code></pre></div>
 </div>
@@ -398,393 +398,78 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 305
+##   ..$ count  : int 306
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  305 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:305] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:305] &quot;威利&quot; &quot;&quot; &quot;妮妮 &quot; &quot;桔福&quot; ...
-##   .. ..$ Sex            : chr [1:305] &quot;雄&quot; &quot;雄&quot; &quot;雌&quot; &quot;雄&quot; ...
-##   .. ..$ Type           : chr [1:305] &quot;犬&quot; &quot;貓&quot; &quot;犬&quot; &quot;貓&quot; ...
-##   .. ..$ Build          : chr [1:305] &quot;中&quot; &quot;中&quot; &quot;小&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:305] &quot;成年&quot; &quot;老年&quot; &quot;年輕&quot; &quot;成年&quot; ...
-##   .. ..$ Variety        : chr [1:305] &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:305] &quot;民眾不擬續養&quot; &quot;民眾拾獲&quot; &quot;民眾不擬續養&quot; &quot;動物管制&quot; ...
-##   .. ..$ AcceptNum      : chr [1:305] &quot;106020301&quot; &quot;106012706&quot; &quot;106012601&quot; &quot;106012602&quot; ...
-##   .. ..$ ChipNum        : chr [1:305] &quot;965000000263051&quot; &quot;&quot; &quot;900073000086609&quot; &quot;&quot; ...
-##   .. ..$ IsSterilization: chr [1:305] &quot;已絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
-##   .. ..$ HairType       : chr [1:305] &quot;黃白&quot; &quot;黃白&quot; &quot;黃&quot; &quot;黃白&quot; ...
-##   .. ..$ Note           : chr [1:305] &quot;哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!&quot; &quot;疑似高處掉落 疑似無視覺 血尿&quot; &quot;皮膚病\n你好~我的名字叫妮妮，雖然我目前的狀況不太好，但只要好好照顧、增強抵抗力，就可以改善了唷!\n&quot; &quot;臉傷&quot; ...
-##   .. ..$ Resettlement   : chr [1:305] &quot;臺北市動物之家 收容編號106020301&quot; &quot;臺北市動物之家 收容編號：106012706&quot; &quot;臺北市動物之家 收容編號106012601&quot; &quot;臺北市動物之家 收容編號：106012602&quot; ...
-##   .. ..$ Phone          : chr [1:305] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:305] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:305] &quot;http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/24abcf2b-9b48-43f3-afd8-d027be7de948.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  306 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:306] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:306] &quot;Piggy&quot; &quot;爵士&quot; &quot;威利&quot; &quot;&quot; ...
+##   .. ..$ Sex            : chr [1:306] &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; ...
+##   .. ..$ Type           : chr [1:306] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; ...
+##   .. ..$ Build          : chr [1:306] &quot;小&quot; &quot;中&quot; &quot;中&quot; &quot;中&quot; ...
+##   .. ..$ Age            : chr [1:306] &quot;成年&quot; &quot;成年&quot; &quot;成年&quot; &quot;老年&quot; ...
+##   .. ..$ Variety        : chr [1:306] &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:306] &quot;民眾不擬續養&quot; &quot;動物救援&quot; &quot;民眾不擬續養&quot; &quot;民眾拾獲&quot; ...
+##   .. ..$ AcceptNum      : chr [1:306] &quot;106020812&quot; &quot;106020702&quot; &quot;106020301&quot; &quot;106012706&quot; ...
+##   .. ..$ ChipNum        : chr [1:306] &quot;900073000086495&quot; &quot;&quot; &quot;965000000263051&quot; &quot;&quot; ...
+##   .. ..$ IsSterilization: chr [1:306] &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; ...
+##   .. ..$ HairType       : chr [1:306] &quot;棕黑&quot; &quot;黑白&quot; &quot;黃白&quot; &quot;黃白&quot; ...
+##   .. ..$ Note           : chr [1:306] &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！&quot; &quot;哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!&quot; &quot;疑似高處掉落 疑似無視覺 血尿&quot; ...
+##   .. ..$ Resettlement   : chr [1:306] &quot;臺北市動物之家 收容編號106020812&quot; &quot;臺北市動物之家 收容編號106020702&quot; &quot;臺北市動物之家 收容編號106020301&quot; &quot;臺北市動物之家 收容編號：106012706&quot; ...
+##   .. ..$ Phone          : chr [1:306] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:306] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:306] &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr::<span class="kw">kable</span>(<span class="kw">head</span>(PetData$result$results)) </code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">_id</th>
-<th align="left">Name</th>
-<th align="left">Sex</th>
-<th align="left">Type</th>
-<th align="left">Build</th>
-<th align="left">Age</th>
-<th align="left">Variety</th>
-<th align="left">Reason</th>
-<th align="left">AcceptNum</th>
-<th align="left">ChipNum</th>
-<th align="left">IsSterilization</th>
-<th align="left">HairType</th>
-<th align="left">Note</th>
-<th align="left">Resettlement</th>
-<th align="left">Phone</th>
-<th align="left">Email</th>
-<th align="left">ChildreAnlong</th>
-<th align="left">AnimalAnlong</th>
-<th align="left">Bodyweight</th>
-<th align="left">ImageName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">威利</td>
-<td align="left">雄</td>
-<td align="left">犬</td>
-<td align="left">中</td>
-<td align="left">成年</td>
-<td align="left">米克斯</td>
-<td align="left">民眾不擬續養</td>
-<td align="left">106020301</td>
-<td align="left">965000000263051</td>
-<td align="left">已絕育</td>
-<td align="left">黃白</td>
-<td align="left">哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!</td>
-<td align="left">臺北市動物之家 收容編號106020301</td>
-<td align="left">02-87913062</td>
-<td align="left"><a href="mailto:tcapoa8@mail.taipei.gov.tw">tcapoa8@mail.taipei.gov.tw</a></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg" class="uri">http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg</a></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left"></td>
-<td align="left">雄</td>
-<td align="left">貓</td>
-<td align="left">中</td>
-<td align="left">老年</td>
-<td align="left">米克斯</td>
-<td align="left">民眾拾獲</td>
-<td align="left">106012706</td>
-<td align="left"></td>
-<td align="left">未絕育</td>
-<td align="left">黃白</td>
-<td align="left">疑似高處掉落 疑似無視覺 血尿</td>
-<td align="left">臺北市動物之家 收容編號：106012706</td>
-<td align="left">02-87913062</td>
-<td align="left"><a href="mailto:tcapoa8@mail.taipei.gov.tw">tcapoa8@mail.taipei.gov.tw</a></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg" class="uri">http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg</a></td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">妮妮</td>
-<td align="left">雌</td>
-<td align="left">犬</td>
-<td align="left">小</td>
-<td align="left">年輕</td>
-<td align="left">米克斯</td>
-<td align="left">民眾不擬續養</td>
-<td align="left">106012601</td>
-<td align="left">900073000086609</td>
-<td align="left">未絕育</td>
-<td align="left">黃</td>
-<td align="left">皮膚病</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">你好~我</td>
-<td align="left">的名字叫</td>
-<td align="left">妮妮，</td>
-<td align="left">雖然我目</td>
-<td align="left">前的狀況</td>
-<td align="left">不太好，</td>
-<td align="left">但只要好好</td>
-<td align="left">照顧、增強抵抗力</td>
-<td align="left">，就可以改善</td>
-<td align="left">了唷!</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">臺北市動物之家 收容編號106012601 02-87913062 <a href="mailto:tcapoa8@mail.taipei.gov.tw">tcapoa8@mail.taipei.gov.tw</a> <a href="http://163.29" class="uri">http://163.29</a></td>
-<td align="left">.39.183/uploads/images/medium/24abcf2</td>
-<td align="left">b-9b48-43f3-af</td>
-<td align="left">d8-d027be7de948.jpg</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">桔福</td>
-<td align="left">雄</td>
-<td align="left">貓</td>
-<td align="left">中</td>
-<td align="left">成年</td>
-<td align="left">米克斯</td>
-<td align="left">動物管制</td>
-<td align="left">106012602</td>
-<td align="left"></td>
-<td align="left">未絕育</td>
-<td align="left">黃白</td>
-<td align="left">臉傷</td>
-<td align="left">臺北市動物之家 收容編號：106012602</td>
-<td align="left">02-87913062</td>
-<td align="left"><a href="mailto:tcapoa8@mail.taipei.gov.tw">tcapoa8@mail.taipei.gov.tw</a></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg" class="uri">http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg</a></td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left"></td>
-<td align="left">雄</td>
-<td align="left">貓</td>
-<td align="left">大</td>
-<td align="left">老年</td>
-<td align="left">米克斯</td>
-<td align="left">民眾拾獲</td>
-<td align="left">106012510</td>
-<td align="left"></td>
-<td align="left">未絕育</td>
-<td align="left">虎斑白</td>
-<td align="left">上呼吸道感染 無睪丸 缺右上犬齒</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="http://163.29.39.183/uploads/images/medium/411b54ce-59ae-45d5-adcf-d7c5f66ccb86.jpg" class="uri">http://163.29.39.183/uploads/images/medium/411b54ce-59ae-45d5-adcf-d7c5f66ccb86.jpg</a></td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">Nana</td>
-<td align="left">雌</td>
-<td align="left">犬</td>
-<td align="left">中</td>
-<td align="left">成年</td>
-<td align="left">米克斯</td>
-<td align="left">民眾拾獲</td>
-<td align="left">106012504</td>
-<td align="left"></td>
-<td align="left">未絕育</td>
-<td align="left">黑</td>
-<td align="left">我是Nana</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">我才剛</td>
-<td align="left">來動物之</td>
-<td align="left">家不久</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">所以還</td>
-<td align="left">是有些害</td>
-<td align="left">羞、防</td>
-<td align="left">備</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">如果要</td>
-<td align="left">與我互動</td>
-<td align="left">記得動</td>
-<td align="left">作別太大</td>
-<td align="left">唷</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">這可是</td>
-<td align="left">會嚇到我</td>
-<td align="left">的</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">希望你</td>
-<td align="left">們願意花</td>
-<td align="left">些時間</td>
-<td align="left">與耐心</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">慢慢建</td>
-<td align="left">立起我對</td>
-<td align="left">你們的</td>
-<td align="left">信任</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">來動物</td>
-<td align="left">之家看看</td>
-<td align="left">我吧！</td>
-<td align="left">臺北</td>
-<td align="left">市動物之</td>
-<td align="left">家 收容</td>
-<td align="left">編號106012</td>
-<td align="left">504 02-8791</td>
-<td align="left">3062 tcapo</td>
-<td align="left"><a href="mailto:a8@mail.taipei.gov">a8@mail.taipei.gov</a></td>
-<td align="left">.tw</td>
-<td align="left"></td>
-<td align="left"><a href="http://163.29.39.183/uploads/images/medium/9bbf0d11-2dad-4bf6-b732-c0a40f2df146.jpg" class="uri">http://163.29.39.183/uploads/images/medium/9bbf0d11-2dad-4bf6-b732-c0a40f2df146.jpg</a></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">result</td>
-<td align="left">s資料框</td>
-<td align="left">中包含</td>
-<td align="left">20個欄位</td>
-<td align="left">，可以像</td>
-<td align="left">分析資料</td>
-<td align="left">框一樣，針</td>
-<td align="left">對此資料框做分析</td>
-<td align="left">，舉例來說，</td>
-<td align="left">可分析各項**開放認</td>
-<td align="left">養理由**出現次數</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
+<pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
+## 1   1 Piggy  雄   犬    小 成年  約克夏 民眾不擬續養 106020812 900073000086495
+## 2   2  爵士  雄   犬    中 成年  米克斯     動物救援 106020702                
+## 3   3  威利  雄   犬    中 成年  米克斯 民眾不擬續養 106020301 965000000263051
+## 4   4        雄   貓    中 老年  米克斯     民眾拾獲 106012706                
+## 5   5 妮妮   雌   犬    小 年輕  米克斯 民眾不擬續養 106012601 900073000086609
+## 6   6  桔福  雄   貓    中 成年  米克斯     動物管制 106012602                
+##   IsSterilization HairType
+## 1          已絕育     棕黑
+## 2          未絕育     黑白
+## 3          已絕育     黃白
+## 4          未絕育     黃白
+## 5          未絕育       黃
+## 6          未絕育     黃白
+##                                                                                                                                                         Note
+## 1 皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什麼呢?快來動物之家認養我吧!!
+## 2                                             我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！
+## 3                                                    哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!
+## 4                                                                                                                               疑似高處掉落 疑似無視覺 血尿
+## 5                                                         皮膚病\n你好~我的名字叫妮妮，雖然我目前的狀況不太好，但只要好好照顧、增強抵抗力，就可以改善了唷!\n
+## 6                                                                                                                                                       臉傷
+##                         Resettlement       Phone                      Email
+## 1   臺北市動物之家 收容編號106020812 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 2   臺北市動物之家 收容編號106020702 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 3   臺北市動物之家 收容編號106020301 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 4 臺北市動物之家 收容編號：106012706 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 5   臺北市動物之家 收容編號106012601 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 6 臺北市動物之家 收容編號：106012602 02-87913062 tcapoa8@mail.taipei.gov.tw
+##   ChildreAnlong AnimalAnlong Bodyweight
+## 1                                      
+## 2                                      
+## 3                                      
+## 4                                      
+## 5                                      
+## 6                                      
+##                                                                             ImageName
+## 1 http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg
+## 2 http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg
+## 3 http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg
+## 4 http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg
+## 5 http://163.29.39.183/uploads/images/medium/24abcf2b-9b48-43f3-afd8-d027be7de948.jpg
+## 6 http://163.29.39.183/uploads/images/medium/af55b5d8-6953-4ec8-9882-b692bf130b81.jpg</code></pre>
+<p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
-##              民眾不擬續養     民眾拾獲     動物救援     動物管制 
-##           28           41           23          104          109</code></pre>
+##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
+##           28          104          109           42           23</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -838,42 +523,21 @@ rootNode &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(waterQ) <
 <pre><code>##  [1] &quot;121.56094&quot; &quot;121.54401&quot; &quot;121.55557&quot; &quot;121.53476&quot; &quot;121.54043&quot; &quot;121.55661&quot;
 ##  [7] &quot;121.55360&quot; &quot;121.53551&quot; &quot;121.59892&quot; &quot;121.60829&quot;</code></pre>
 </div>
-<div id="-webscraping-crawling" class="section level3">
-<h3><span class="header-section-number">4.2.5</span> 網頁爬蟲 Webscraping, Crawling</h3>
-<p><strong>Webscraping</strong>: Programatically extracting data from the HTML code of websites.</p>
-<ul>
-<li>不是每個網站都提供API
-<ul>
-<li>但網頁上卻有你想要分析的資料（像是ptt推文！？）</li>
-<li>除了人工複製貼上以外，也可以將網頁處理程式化</li>
-</ul></li>
-<li>可能違法…..，一次讀太多太快，很可能被鎖IP</li>
-<li><a href="http://en.wikipedia.org/wiki/Web_scraping" target="_blank">Webscraping Wiki</a></li>
-<li><a href="http://www.largitdata.com/course/1/" target="_blank">什麼是網頁爬蟲</a></li>
-</ul>
-<p>What’s the difference between scraping and crawling</p>
-<ul>
-<li><code>Crawling</code>
-<ul>
-<li>dealing with <code>large data-sets</code> where you develop your own crawlers which crawl to the deepest of the <code>web pages</code>.</li>
-</ul></li>
-<li><code>Data scraping</code>
-<ul>
-<li>retrieving information from <code>any source (not necessarily the web)</code>.</li>
-<li>It’s more often the case that irrespective of the approaches involved.</li>
-</ul></li>
-</ul>
+<div id="-webscraping" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> 網頁爬蟲 Webscraping</h3>
+<p>由於不是每個網站都提供API，但網頁上卻有你想要分析的資料（像是ptt推文！？），除了人工複製貼上以外，也可以將網頁處理程式化，以程式化的方式擷取網頁資料就叫做<strong>網頁爬蟲（Webscraping）</strong>（<a href="http://en.wikipedia.org/wiki/Web_scraping" target="_blank">Webscraping Wiki</a>）。在R中可以直接把HTML檔案當作XML檔案處理分析，也可使用<code>rvest</code><span class="citation">(Wickham <a href="#ref-R-rvest">2016</a><a href="#ref-R-rvest">c</a>)</span> package輔助爬蟲程式撰寫。</p>
+<p>此外，網頁爬蟲可能耗費很多網頁流量和資源，所以在許多網站被視為非法行為，如果一次讀太多太快，很可能被鎖IP。</p>
 <p>以<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚資管系</a>網站為例，可直接逐行讀取 <code>readLines()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">htmlCode &lt;-<span class="kw">readLines</span>(<span class="kw">url</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>))</code></pre></div>
-<pre><code>## Warning in readLines(url(&quot;http://im.cgu.edu.tw/bin/home.php&quot;)): 於 &#39;http://
-## im.cgu.edu.tw/bin/home.php&#39; 找到不完整的最後一列</code></pre>
+<pre><code>## Warning in readLines(url(&quot;http://im.cgu.edu.tw/bin/home.php&quot;)): incomplete final
+## line found on &#39;http://im.cgu.edu.tw/bin/home.php&#39;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">htmlCode[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
-<pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt;&quot;                                                             
-## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;zh-tw\&quot;&gt;&quot;                                                                                                                              
-## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                    
-## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                                                                 
-## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;隢‵撖怎雯蝡\x97閮\xba\xbc\xe5\x8d\xa7\u0080\x99\x9f(,)\xe9\x9a\x96\x8b\&quot; /&gt;&quot;</code></pre>
-<p>用XML工具讀取網頁 (<code>XML</code> package)</p>
+<pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt;&quot;                
+## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;zh-tw\&quot;&gt;&quot;                                                                                 
+## [3] &quot;&lt;head&gt;&quot;                                                                                                                                       
+## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                    
+## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;請填寫網站關鍵記事，用半角逗號(,)隔開\&quot; /&gt;&quot;</code></pre>
+<p>讀取完網頁後，使用用XML工具分析擷取網頁 (<code>XML</code> package)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
 html &lt;-<span class="st"> </span><span class="kw">htmlTreeParse</span>(<span class="kw">GET</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>), <span class="dt">useInternalNodes=</span>T)</code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
@@ -887,9 +551,42 @@ html &lt;-<span class="st"> </span><span class="kw">htmlTreeParse</span>(<span c
 ## [13] &quot;學生webmail&quot;          &quot;工商管理學系/研究所&quot;  &quot;工業設計學系/研究所&quot; 
 ## [16] &quot;管理學院&quot;             &quot;醫務管理學系/研究所&quot;  &quot;商管專業學院&quot;        
 ## [19] &quot;企業管理研究所博士班&quot; &quot;長庚大學行事曆&quot;</code></pre>
-<p>rvest</p>
-<p>其他爬蟲相關參考資源</p>
+<p>除了把HTML檔案當作XML處理外，<code>rvest</code><span class="citation">(Wickham <a href="#ref-R-rvest">2016</a><a href="#ref-R-rvest">c</a>)</span> package是R語言中最場被使用的爬蟲套件，使用前一樣需要安裝與載入</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>) ##安裝</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest) ##載入</code></pre></div>
+<p>載入<code>rvest</code>套件後，經由以下步驟進行網站解析：</p>
 <ul>
+<li>使用<code>read_html(“欲擷取的網站網址”)</code>函數讀取網頁</li>
+<li>使用<code>html_nodes()</code>函數擷取所需內容 (條件為CSS或xpath標籤)</li>
+<li>使用<code>html_text()</code>函數處理/清洗擷取內容，留下需要的資料</li>
+<li>使用<code>html_attr()</code>函數擷取資料參數（如連結url）</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">YahooNewsurl=<span class="st">&quot;https://tw.news.yahoo.com/&quot;</span>
+news_title =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) %&gt;%<span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">html_text</span>()
+news_url =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) %&gt;%<span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)
+Yahoo_news =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">title =</span> news_title, <span class="dt">url=</span>news_url)
+<span class="kw">head</span>(Yahoo_news)</code></pre></div>
+<pre><code>                                    title                                                           url
+1         曾1妻5妾好風光 男星慘賣豪宅還債 /從1妻5妾的風光到變賣豪宅還債-網友噓雷洪：活該-091741737.html
+2          美報告：美棄「一中」台灣更危險               /美報告-美拋棄-中-台灣處境更危險-081036215.html
+3           藍色凍蕃薯！1張圖看寒流有多冷       /霸王級寒流再襲台-張圖看懂這波寒流有多強-101500692.html
+4           他被妻子戴綠帽 對象竟是親弟弟                 /他被妻子戴綠帽-對象竟是親弟弟-072010033.html
+5               匆忙推出移民禁令 他後悔了           /匆忙推移民禁令-美國土安全部長表後悔-044517088.html
+6 蔡政府對釣魚台態度 國民黨憂美日安保質變       /蔡政府對釣魚台態度-國民黨憂美日安保質變-160200179.html</code></pre>
+<p>在<code>html_nodes()</code>、<code>html_text()</code>和<code>html_attr()</code>函數中，擷取條件的撰寫會因網頁語法不同而有差異，必須要使用<strong>Google Chrome開發工具</strong>等工具輔助觀察需要擷取資料的條件。以上述Yahoo新聞為例，需要擷取的資料所在HTML片段如下：</p>
+<pre><code>&lt;ul class=&quot;tpl-title yom-list list-style-none&quot; id=&quot;yui_3_9_1_1_1486568229946_2408&quot;&gt;
+&lt;li class=&quot;list-story first&quot; id=&quot;yui_3_9_1_1_1486568229946_2407&quot;&gt;
+&lt;div class=&quot;txt&quot; id=&quot;yui_3_9_1_1_1486568229946_2406&quot;&gt;
+&lt;a href=&quot;/從1妻5妾的風光到變賣豪宅還債-網友噓雷洪：活該-091741737.html&quot; class=&quot;title &quot; data-ylk=&quot;pkg:96a0ca11-47bc-3100-81ad-0a288707f150;ver:60cdb126-ee0c-11e6-bb9b-8a777738a932;lt:i;pos:1;&quot; data-rapid_p=&quot;1&quot;&gt;曾1妻5妾好風光 男星慘賣豪宅還債&lt;/a&gt;
+&lt;cite id=&quot;yui_3_9_1_1_1486568229946_2405&quot;&gt;
+&lt;span class=&quot;provider&quot; id=&quot;yui_3_9_1_1_1486568229946_2404&quot;&gt;Yahoo奇摩娛樂新聞&lt;/span&gt;
+&lt;/cite&gt;&lt;/div&gt;&lt;/li&gt;
+....</code></pre>
+<p>觀察上述程式碼可已發現新聞清單被包含在<code>ul</code>標籤下，且css class為<code>tpl-title yom-list list-style-none</code>，所以這邊可以使用第一個class<code>tpl-title</code>為篩選條件。網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。</p>
+<p>其他爬蟲相關參考資源:</p>
+<ul>
+<li><a href="https://www.slideshare.net/secret/mdfHLPgvIW1kPR" target="_blank">網路爬蟲實作 - 用 r 語言打造自己的爬蟲程式</a></li>
+<li><a href="https://github.com/hadley/rvest" target="_blank">rvest GitHub</a></li>
 <li>R Bloggers 有很多<a href="http://www.r-bloggers.com/?s=Web+Scraping" target="_blank">爬蟲範例</a>（英文）</li>
 <li><a href="http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html" target="_blank">Ptt爬蟲實作</a></li>
 <li><a href="http://www.largitdata.com/course_list/1" target="_blank">大數學堂 網頁爬蟲課程</a></li>
@@ -898,12 +595,12 @@ html &lt;-<span class="st"> </span><span class="kw">htmlTreeParse</span>(<span c
 </div>
 <div id="facebook" class="section level2">
 <h2><span class="header-section-number">4.3</span> Facebook資料擷取</h2>
-<p>Facebook提供<a href="https://developers.facebook.com/docs/graph-api?locale=zh_TW" target="_blank">Graph API</a>，讓應用程式可透過API讀取與寫入 Facebook相關資料，<strong>Graph API</strong>會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>，讓程式開發人員可以測試資料撈取方法和結果。</p>
-<p>Get access token</p>
+<p>Facebook提供<a href="https://developers.facebook.com/docs/graph-api?locale=zh_TW" target="_blank">Graph API</a>，讓應用程式可透過API讀取與寫入 Facebook相關資料，<strong>Graph API</strong>會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>，讓程式開發人員可以測試資料撈取方法和結果。 在開始使用<strong>Graph API</strong>之前，必須要取得自己的<strong>access token</strong> (存取權杖)，<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>工具提供<strong>Get Token</strong>按鈕(通常在視窗右上角)，可以讓開發者在不用新增應用程式(Application)的情況下取得暫時的<strong>access token</strong>。</p>
+<p>有關Facebook access token的詳細介紹，可參考<a href="https://developers.facebook.com/docs/facebook-login/access-tokens/?locale=zh_TW" target="_blank">官方文件</a></p>
 <div id="graph-api-in-r" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> Graph API in R</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
-token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span>
+token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將access token複製到此處 </span>
 FBData =<span class="st"> </span><span class="kw">GET</span>(
     <span class="kw">paste0</span>(<span class="st">&quot;https://graph.facebook.com/v2.8/tsaiingwen?fields=posts%7Bmessage%7D&amp;access_token=&quot;</span>,
            token))
@@ -941,7 +638,7 @@ FBData =<span class="st"> </span><span class="kw">GET</span>(
 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">json1$posts$data[[<span class="dv">1</span>]]$message</code></pre></div>
 <pre><code>##[1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;</code></pre>
-<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code> <span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2016</a>)</span> package來讀取Facebook資料</p>
+<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(<span class="citeproc-not-found" data-reference-id="R-Rfacebook"><strong>???</strong></span>)</span> package來讀取Facebook資料</p>
 <p>Use Rfacebook To Get Info from <code>tsaiingwen</code> Page</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rfacebook)
 token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span>
@@ -1042,7 +739,7 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-readr">
-<p>Wickham, Hadley, and Romain Francois. 2015. <em>Readr: Read Tabular Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2016. <em>Readr: Read Tabular Data</em>. <a href="https://CRAN.R-project.org/package=readr" class="uri">https://CRAN.R-project.org/package=readr</a>.</p>
 </div>
 <div id="ref-R-readxl">
 <p>Wickham, Hadley. 2016a. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl" class="uri">https://CRAN.R-project.org/package=readxl</a>.</p>
@@ -1056,8 +753,8 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <div id="ref-R-XML">
 <p>Temple Lang, Duncan, and the CRAN Team. 2016. <em>XML: Tools for Parsing and Generating Xml Within R and S-Plus</em>. <a href="https://CRAN.R-project.org/package=XML" class="uri">https://CRAN.R-project.org/package=XML</a>.</p>
 </div>
-<div id="ref-R-Rfacebook">
-<p>Barbera, Pablo, Michael Piccirilli, and Andrew Geisler. 2016. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook" class="uri">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
+<div id="ref-R-rvest">
+<p>Wickham, Hadley. 2016c. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest" class="uri">https://CRAN.R-project.org/package=rvest</a>.</p>
 </div>
 </div>
             </section>

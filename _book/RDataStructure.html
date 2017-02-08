@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-08">
+<meta name="date" content="2017-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
 <li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
 <li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping-crawling"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping, Crawling</a></li>
+<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
@@ -397,12 +397,12 @@ StuDF </code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(StuDF) </code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    5 obs. of  3 variables:
 ##  $ StuID: num  1 2 3 4 5
-##  $ name : Factor w/ 5 levels &quot;大白&quot;,&quot;大雄&quot;,..: 3 2 5 4 1
+##  $ name : Factor w/ 5 levels &quot;大白&quot;,&quot;大雄&quot;,..: 4 2 5 3 1
 ##  $ score: num  80 60 90 70 50</code></pre>
 </div>
 <div id="-data.table" class="section level2">
 <h2><span class="header-section-number">2.6</span> 資料表 data.table</h2>
-<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝data.table <span class="citation">(Dowle et al. <a href="#ref-R-data.table">2015</a>)</span> package，使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，進階處理語言也相當好用，在探索式資料分析章節Chapter <a href="eda.html#eda">6</a>會詳細介紹。其他詳細教學可見 Chapter <a href="eda.html#datatable">6.1</a> ，DataCamp也提供<a href="https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial" target="_blank">互動式教學課程</a>，可自行參閱。</p>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝data.table <span class="citation">(Dowle et al. <a href="#ref-R-data.table">2016</a>)</span> package，使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，進階處理語言也相當好用，在探索式資料分析章節Chapter <a href="eda.html#eda">6</a>會詳細介紹。其他詳細教學可見 Chapter <a href="eda.html#datatable">6.1</a> ，DataCamp也提供<a href="https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial" target="_blank">互動式教學課程</a>，可自行參閱。</p>
 </div>
 <div id="section-2.7" class="section level2">
 <h2><span class="header-section-number">2.7</span> 資料屬性查詢函數</h2>
@@ -521,7 +521,7 @@ StuDF </code></pre></div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-data.table">
-<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2015. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2016. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
 </div>
 </div>
             </section>
