@@ -31,6 +31,8 @@ lapply(c(), function(pkg) {
 
 目前完成1~5與第8章，PDF版本與epub版本格式微調中。
 
+歡迎提供[建議與回饋](https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"}。
+
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
