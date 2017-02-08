@@ -1,91 +1,42 @@
 # 探索式資料分析 {#eda}
 撰寫中
 
-探索式資料分析 (**E**xploratory **D**ata **A**nalysis)
-主要精神是從反覆的資料探索過程中來獲得資料所包含的資訊
-就是運用視覺化、基本的統計等工具，來「看」一下資料；以期進行複雜或嚴謹的分析之前，能夠對資料有更多的認識
-探索式資料分析是指在沒有標準流程跟方法的情況下，在現有的數據中找尋資料的結構和特點、探索潛藏於資料中的訊息，這種資料分析方法強調的是探索式的分析而非嚴謹的模式確認。
-they include identifying relationships between variables that are particularly interesting or unexpected, checking to see if there is any evidence for or against a stated hypothesis, checking for problems with the collected data, such as missing data or measurement error), or identifying certain areas where more data need to be collected. At this point, finer details of presentation of the data and evidence, important for the final product, are not necessarily the focus.
+探索式資料分析 (**E**xploratory **D**ata **A**nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料套性獲取資料所包含的資訊、的結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。
 
-Ultimately, EDA is important because it allows the investigator to make critical decisions about what is interesting to follow up on and what probably isn’t worth pursuing because the data just don’t provide the evidence (and might never provide the evidence, even with follow up). These kinds of decisions are important to make if a project is to move forward and remain within its budget.
+探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方項錯誤所造成的時間浪費。
 
-In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. A statistical model can be used or not, but primarily EDA is for seeing what the data can tell us beyond the formal modeling or hypothesis testing task. Exploratory data analysis was promoted by John Tukey to encourage statisticians to explore the data, and possibly formulate hypotheses that could lead to new data collection and experiments. EDA is different from initial data analysis (IDA),[1] which focuses more narrowly on checking assumptions required for model fitting and hypothesis testing, and handling missing values and making transformations of variables as needed. EDA encompasses IDA.
+探索式資料分析分為:
 
-Types of EDA
+- 圖形化Graphical 或 量化Quantitative
+- 單變量Univariate 或 雙變量Bivariate 或 多變量Multivariate
 
-EDA can be broadly classified into the following:
+圖形化的分析方式包括做圖與列表，量化的分析方式則是資料初步統計，本章節著重於量化的分析方式，圖形化的分析方式請參考Ch \@ref(vis)。
 
-Graphical or Quantitative
-Univariate or Bivariate
+以單變量分析來說，量化的分析方式可包含
 
-Quantitative methods include summary statisitcs while graphical methods include plots and charts. Univariate methods involve analysing one variable at a time while bivariate involves analysing two or more variables to examine their underlying relationships. EDA also depends on the role of variable being examined:
+- Measures of central tendancy
+    - Mean
+    - Median
+    - Mode
 
-Outcome variable
-Explanatory variable
-Further division is based on the type of variable being examined:
+- Measures of dispersion
+    - Min
+    - Max
+    - Range
+    - Quartiles
+    - Variance
+    - Standard deviation
 
-Categorical variable
-Binary
-Ordinal
-Nominal
-Quantitative variable
-Discrete
-Continuous
+- Other measures
+    - Skewness
+    - Kurtosis
 
-Univariate
+以雙變量分析來說，分式方式可包括:
 
-Univariate Quantitative
+- Crosstabs
+- Covariance
+- Correlation
 
-Univariate analysis includes:
-
-Measures of central tendancy:
-
-Mean
-Median
-Mode
-Measures of dispersion:
-
-Min
-Max
-Range
-Quartiles
-Variance
-Standard deviation
-Other measures include:
-
-Skewness
-Kurtosis
-We will explore each of the above in detail in the case study provided at the end of this tutorial.
-
-Univariate Graphical
-
-Graphical methods include the following:
-
-Histogram
-Box plots
-Bar plots
-Kernel density plots
-Bivariate
-
-Bivariate Quantitative
-
-Bivariate analysis include:
-
-Crosstabs
-Covariance
-Correlation
-Advanced techniques include:
-
-Cluster analysis
-Analysis of variance (ANOVA)
-Factor analysis
-Principal component analysis (PCA)
-Bivariate Graphical
-
-Graphical techniques include:
-
-Scatterplot
-Box plot
 
 ## data.table {#datatable}
 data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table [@R-data.table] package
