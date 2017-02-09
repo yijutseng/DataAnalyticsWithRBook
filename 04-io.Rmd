@@ -83,6 +83,19 @@ dataset <- readRDS("檔案路徑與名稱")
 ### 純文字資料 (無分隔)
 `readLines`, 逐行讀取文字資料
 
+###其他格式
+透過載入套件，R可讀入許多其他格式的檔案:
+
+- MySQL `RMySQL`
+- HDF5 `rhdf5`
+- Weka `foreign`
+- Stata `foreign`
+- SPSS `Hmisc`
+- SAS `Hmisc`
+- GIS `rgdal`
+- Images `jpeg`
+- Music `tuneR`
+
 ### 其他讀檔注意事項
 讀檔的時候R會自動
 

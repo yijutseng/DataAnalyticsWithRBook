@@ -1,26 +1,155 @@
 # 資料視覺化 {#vis}
 撰寫中
+延續Ch \@ref(eda)，探索式資料分析可分為圖形化Graphical 或 量化Quantitative分析，總括來說**作圖**的目的有:
+
+- 了解資料的特性
+- 尋找資料的模式(patterns)
+- 建議資料分析與建模的策略
+- 結果呈現與溝通
+
+其中前三項屬於探索圖 (Exploratory graphs)，結果呈現與溝通屬於結果圖 (Final graphs)，探索圖屬探索式資料分析，目的是在『看』與『觀察』資料的樣子，所以探索圖有以下特性:
+
+- 很快就可以做一張圖
+- 探索過程中，可能可以做圖
+- 主要目的是了解資料的樣子
+- 不用做圖形格式調整美化
+
+而在製作結果圖 (Final graphs)時，則須考慮以下事項:
+
+- 比較，呈現差異
+    - 比較什麼？誰跟誰比較？
+- 呈現因果關係（causality）,機制（mechanism）,結果解釋（explanation）,系統化的結構（systematic structure）
+    - 因果模型？為什麼你想要做這樣的比較
+- 呈現多變數（Multivariate）資料
+    - 多變數（Multivariate）：超過兩個變數就叫多變數
+    - 所有真實事件都是多變數的
+- 將證據整合呈現
+    - 在同一個畫面呈現文字、數字、影像、圖表
+    - 盡量用圖形呈現資料
+- 將圖表做適當的標記與說明，包括xy軸名稱、單位、資料來源等
+    - 資料圖表必須可以呈現你想說的故事
+- 內容才是最重要的
+    - 資料不好，分析不好，圖表再美也沒有用
+    
+在R中，有三個常用的畫圖套件，包括基本功能(Base)、`lattice`以及`ggplot2`，由於各套件繪圖邏輯不同，本書只介紹最推薦的`ggplot2`套件的使用方式。
 
 ## ggplot2
-`ggplot2` [@R-ggplot2]的開發靈感來自於Dr. Leland Wilkinson的[Grammar of Graphics](http://www.springer.com/us/book/9780387245447){target="_blank"}，Package是由[Hadley Wickham](http://hadley.nz/){target="_blank"}開發，還在持續發展更新中，對原始碼有興趣的人可以到[GitHub](https://github.com/tidyverse/ggplot2){target="_blank"}看一下最新動態。
+`ggplot2` [@R-ggplot2]的開發靈感來自於Dr. Leland Wilkinson的[Grammar of Graphics](http://www.springer.com/us/book/9780387245447){target="_blank"}
+
+“In brief, the grammar tells us that a statistical graphic is a `mapping` from data to `aesthetic` attributes (colour, shape, size) of `geometric` objects (points, lines, bars). The plot may also contain statistical transformations of the data and is drawn on a specific coordinate system”
+
+- from `ggplot2` book
+
+`ggplot2` Package是由[Hadley Wickham](http://hadley.nz/){target="_blank"}開發，還在持續發展更新中，對原始碼有興趣的人可以到[GitHub](https://github.com/tidyverse/ggplot2){target="_blank"}看一下最新動態。
+
+
 
 `ggplot2` 是第三個R的畫圖Package。自發表以來一直是最熱門的R packages之一，在開始學ggplot2的核心功能之前，qplot()是ggplot2 Package提供最基本的畫圖方法，跟基本的plot() function很接近，提供一個簡單入門的方法，在這篇就不詳細介紹，有興趣可以看一下網路上的[教學範例](http://www.ancienteco.com/2012/03/basic-introduction-to-ggplot2.html){target="_blank"}。
 
 簡單來說，做圖的文法包括兩個最主要元素：
 
-Aesthetic attributes：包括顏色、形狀、點的大小與線的粗細等
-Geometric objects：包括點、線、盒狀圖、直條圖等
+- **Aesthetic attributes**：包括顏色、形狀、點的大小與線的粗細等
+- **Geometric objects**：包括點、線、盒狀圖、直條圖等
 
 其他元素包括：
 
-Facets：提供在同一張圖內做多個子圖的方法，只要使用Faceting功能設定子圖分類的依據參數即可。
-Stats：將資料做統計轉換
-Scales：修改點線的顏色、形狀、xy軸的範圍等
+- **Facets**：提供在同一張圖內做多個子圖的方法，只要使用Faceting功能設定子圖分類的依據參數即可
+- **Stats**：將資料做統計轉換
+- **Scales**：修改點線的顏色、形狀、xy軸的範圍等
+
+
+
+## The Basics: `qplot()`
+
+- Works much like the `plot` function in base graphics system
+- Looks for data in a data frame, similar to lattice
+- Plots are made up of `aesthetics` (size, shape, color) and `geoms` (points, lines)
+
+  
+## The Basics: `qplot()`
+
+- Factors are important for indicating subsets of the data; they should be `labeled`
+- The `qplot()` hides what goes on underneath, which is okay for most operations
+- `ggplot()` is the core function and very flexible for doing things `qplot()` cannot do
+
+
+## ggplot2 “Hello, world!”
+
+```{r, fig.height=4, warning=F,message=F}
+library(ggplot2) #記得將ggplot2 package讀入，如果沒安奘記得先安裝
+#qplot(x軸,y軸,data=使用資料)--->畫散佈圖
+qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415)
+```
+
+
+
+## Modifying aesthetics
+
+```{r, fig.height=4}
+#color=Position, 用守備位置Position著色
+qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415,color=Position)
+```
+
+
+
+
+## Adding a geom
+
+```{r, fig.height=4}
+#geom = c("point", "smooth") 在圖上加點與漸進線
+qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415,
+      geom = c("point", "smooth"))
+```
+
+
+
+## Histograms
+
+```{r, fig.height=3.5}
+#畫TotalPoints的直方圖/ fill = Position 並用守備位置Position著色
+qplot(TotalPoints, data = NBA1415, fill = Position)
+```
+
+
+
+## Facets
+```{r, fig.height=3.5}
+#qplot(x軸,y軸,data=使用資料)--->畫散佈圖
+#facets = . ~ Position 用守備位置Position分群畫圖(橫向)
+qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415,
+      facets = . ~ Position)
+```
+
+## Facets
+```{r, fig.height=4}
+#facets = . ~ Position 用守備位置Position分群畫圖(直向)
+qplot(FieldGoalsAttempted, TotalPoints, data = NBA1415,
+      facets = Position ~ .)
+qplot(hwy, data = mpg, facets = drv ~ ., binwidth = 2)
+```
+
+## Facets
+```{r, fig.height=3.5}
+#facets = . ~ Position 用守備位置Position分群畫圖(直向)
+#binwidth = 100 每100分一組
+qplot(TotalPoints, data = NBA1415,
+      facets = Position ~ ., binwidth = 100)
+```
+
+## Summary of qplot()
+
+- The `qplot()` function is the analog to `plot()` but with many built-in features
+- Syntax somewhere in between `base/lattice`
+- Produces very nice graphics, essentially publication ready (if you like the design)
+- Difficult to go against the grain/customize (don’t bother; use full ggplot2 power in that case)
+
+
 
 使用ggplot2作圖有以下步驟：
-準備好資料。當然要有資料才能畫圖。
-設定Aesthetic attributes。使用aes(x, y, ...)指定
-指定Geometric objects。常用的包括geom_point()、geom_line()、geom_point()、geom_polygon()、geom_errorbar()。
+
+- 準備好資料。當然要有資料才能畫圖
+- 設定**Aesthetic attributes**。使用`aes(x, y, ...)`指定
+- 指定**Geometric objects**。常用的包括`geom_point()`、`geom_line()`、`geom_point()`、`geom_polygon()`、`geom_errorbar()`
 
 ```{r}
 library(ggplot2)
@@ -29,11 +158,11 @@ Generate the data
 ```{r}
 df <- data.frame(gp = factor(rep(letters[1:3], each = 10)),y = rnorm(30))
 ```
-Set Aesthetic attributes and assign Geometric objects
+Set **Aesthetic attributes** and assign **Geometric objects**
 ```{r}
 ggplot(df, aes(x = gp, y = y)) +geom_point()
 ```
-用geom_boxpolt()改畫盒狀圖
+用`geom_boxpolt()`改畫盒狀圖
 ```{r}
 ggplot(df, aes(x = gp, y = y)) +geom_boxplot()
 ```
@@ -46,19 +175,19 @@ ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)
 ```{r}
 ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(.~gp)
 ```
-用geom_smooth()替xy散佈圖加上趨勢線
+用`geom_smooth()`替xy散佈圖加上趨勢線
 ```{r}
 ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)+geom_smooth()
 ```
-用geom_smooth()替xy散佈圖加上趨勢線，使用linear regresion
+用`geom_smooth()`替xy散佈圖加上趨勢線，使用linear regresion
 ```{r}
 ggplot(df, aes(x = z, y = y)) +geom_point()+facet_grid(gp~.)+geom_smooth(method='lm')
 ```
-改用geom_line()畫線
+改用`geom_line()`畫線
 ```{r}
 ggplot(df, aes(x = z, y = y)) +geom_line()+facet_grid(gp~.)
 ```
-改用顏色分組，使用aes(color='group name')
+改用顏色分組，使用`aes(color='group name')`
 ```{r}
 ggplot(df, aes(x = z, y = y, color=gp)) +geom_line()
 ```
@@ -68,10 +197,562 @@ ggplot(df, aes(x = z, y = y, color=gp)) +geom_line()
 提供資料時，把資料修改為想要在圖片顯示的文字。從上面的範例可以發現，ggplot2會直接將資料分組（a/b/c）直接標在圖上，與其之後再來改圖，不如在資料處理時就將a/b/c改為有意義且可以直接使用的文字。
 如果是離散性的資料，但卻又是數值時（像是1,2,3）可以用factor()轉換，ggplot會將factor視為離散資料
 
+
+## Building Plots with ggplot2
+- When building plots in ggplot2 (rather than using qplot) the “artist’s palette” model may be the closest analogy
+- Plots are built up in layers
+  - Plot the data
+  - Overlay a summary
+  - Metadata and annotation
+
+
+
+## Annotation
+- Labels: `xlab()`, `ylab()`, `labs()`, `ggtitle()`
+- Each of the “geom” functions has options to modify 
+- For things that only make sense globally, use `theme()` 
+  - Example: `theme(legend.position = "none")` 
+- Two standard appearance themes are included
+  - `theme_gray()`: The default theme (gray background)
+  - `theme_bw()`: More stark/plain 
+
+## Other themes 
+- `ggthemes` packages [Website](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html)
+- `xkcd` packages [Website](http://xkcd.r-forge.r-project.org/)
+
+
+## A Note about Axis Limits
+
+```{r, fig.height=4.5, fig.height=3}
+testdat <- data.frame(x = 1:100, y = rnorm(100))
+testdat[50,2] <- 100  ## Outlier!
+plot(testdat$x, testdat$y, type = "l", ylim = c(-3,3))
+```
+
+## A Note about Axis Limits
+
+```{r, fig.height=4.5, fig.height=3}
+g <- ggplot(testdat, aes(x = x, y = y))
+g + geom_line()
+```
+
+
+
+## Axis Limits
+
+```{r, fig.height=4.5}
+g + geom_line() + ylim(-3, 3)
+```
+
+## Axis Limits
+
+```{r, fig.height=4.5}
+g + geom_line() + coord_cartesian(ylim = c(-3, 3))
+```
+
+
+## ggplot2與地圖的結合
+
+
+## Choropleth map
+- [面量圖](https://en.wikipedia.org/wiki/Choropleth_map) 
+- 把統計資料用顏色畫在對應的地圖上
+- `choroplethr` package
+- 基於`ggplot2` package所做的專門畫`面量圖`的工具
+```{r, warning=F,message=F}
+if (!require('choroplethr')){
+    install.packages("choroplethr")
+    library(choroplethr)
+}
+```
+
+## 美國各州人口分布
+用到`choroplethr` package, 記得先讀入
+```{r}
+data(df_pop_state) #記載各州人口數的資料
+state_choropleth(df_pop_state) #把各州人口畫在地圖上
+```
+
+## 美國各州人口分布-2
+用到`choroplethr` package, 記得先讀入
+```{r, warning=F,message=F, fig.height=3.5}
+data(continental_us_states)
+state_choropleth(df_pop_state,reference_map = TRUE,
+                 zoom= continental_us_states) #把各州人口畫在地圖上
+```
+
+## 世界人口分布
+用`choroplethr` package畫地圖，資料來自`WDI` package
+```{r, warning=F,message=F, fig.height=3}
+if (!require('WDI')){
+    install.packages("WDI")
+    library(WDI)
+}
+choroplethr_wdi(code="SP.POP.TOTL", year=2014, 
+                title="2016 Population", num_colors=1)
+```
+
+## 世界平均壽命分布
+- 用`choroplethr` package畫地圖，資料來自`WDI` package
+- `WDI`: [World Development Indicators](http://beta.data.worldbank.org/)有許多開放資料可參考
+```{r warning=F,message=F, fig.height=4}
+choroplethr_wdi(code="SP.DYN.LE00.IN", year=2014, 
+                title="2014 Life Expectancy")
+```
+
+
+## 亞洲太平洋人口分布
+- 用`choroplethr` package畫地圖，資料來自`WDI` package
+- `WDI`: [World Development Indicators](http://beta.data.worldbank.org/)
+- zoom，只畫這些國家，名字要和country.regions資料完全吻合
+```{r, warning=F,message=F, fig.height=2.5}
+choroplethr_wdi(code="SP.POP.TOTL", year=2014, 
+                title="2014 Life Expectancy",
+                zoom=c('taiwan','japan','south korea','philippines'))
+```
+
+
+
+## ggmap，把google map載入
+```{r, warning=F,message=F, fig.height=3}
+library(ggmap)
+if (!require('ggmap')){
+    install.packages("ggmap")
+    library(ggmap)
+}
+twmap <- get_map(location = 'Taiwan', zoom = 7,language = "zh-TW")
+#location:可以是地名，也可以是經緯度座標
+#zoom:放大比例
+#language:地圖語言
+```
+
+```{r, warning=F,message=F, fig.height=5}
+ggmap(twmap) #基於ggplot2物件，可用相同方式處理
+```
+
+
+## ggmap實際應用範例-1
+台北市水質地圖，資料處理部分
+
+http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=190796c8-7c56-42e0-8068-39242b8ec927
+```{r, warning=F,message=F, fig.height=3}
+library(jsonlite)
+WaterData<-fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=190796c8-7c56-42e0-8068-39242b8ec927")
+WaterDataFrame<-WaterData$result$results
+WaterDataFrame$longitude<-as.numeric(WaterDataFrame$longitude)
+WaterDataFrame$latitude<-as.numeric(WaterDataFrame$latitude)
+WaterDataFrame$qua_cntu<-as.numeric(WaterDataFrame$qua_cntu)
+```
+
+## ggmap實際應用範例-2
+台北市水質地圖，畫圖部分
+```{r, warning=F,message=F, fig.height=3}
+library(ggmap)
+TaipeiMap = get_map(location = c(121.43,24.93,121.62,25.19), 
+                    zoom = 11, maptype = 'roadmap')
+TaipeiMapO = ggmap(TaipeiMap)+ 
+    geom_point(data=subset(WaterDataFrame,qua_cntu>=0), 
+               aes(x=longitude, y=latitude,color=qua_cntu,size=3.5))+ 
+    scale_color_continuous(low = "yellow",high = "red")+ 
+    guides(size=FALSE)
+```
+
+## ggmap實際應用範例-3
+台北市水質地圖，畫圖部分
+```{r, warning=F,message=F, fig.height=4}
+TaipeiMapO
+```
+
+## Taiwan的面量圖
+- 使用`rgdal`, `rgeos`,`maptools` package處理地圖檔
+- 使用`ggplot2` & `RColorBrewer` 畫圖
+
+```{r, echo=F, warning=F,message=F, fig.height=4}
+if (!require('rgdal')){#for fortify()
+    install.packages("rgdal");library(rgdal)
+}
+if (!require('rgeos')){#for fortify()
+    install.packages("rgeos");library(rgeos) 
+}
+if (!require('maptools')){#for readShapeSpatial()
+    install.packages("maptools");library(maptools) 
+}
+tw_new <- readShapeSpatial("Taiwan/Town_MOI_1041215.shp") #檔名
+library(ggplot2) #for fortify(), ggplot(), ggmap()
+tw_new.df <- fortify(tw_new, region = "T_UID") #from ggplot2 package
+mydata<-data.frame(NAME_2=tw_new$T_Name, id=tw_new$T_UID,
+                   prevalence=rnorm(length(tw_new$T_UID)))
+final.plot<-merge(tw_new.df,mydata,by="id",all.x=T)
+library(RColorBrewer) #配色用brewer.pal( 9 , "Reds" )
+twcmap<-ggplot() +
+    geom_polygon(data = final.plot, 
+                 aes(x = long, y = lat, group = group, 
+                     fill = prevalence), 
+                 color = "black", size = 0.25) + 
+    coord_map()+#維持地圖比例
+    scale_fill_gradientn(colours = brewer.pal(9,"Reds"))+
+    theme_void()+
+    labs(title="Prevalence of X in Taiwan")
+twcmap
+```
+
+
+## Taiwan的面量圖
+- 用台灣的Open Data來畫一次
+- 還沒有好用的package可用
+- 只好自己從頭來了
+- 下載台灣的地圖資料 [政府資料開放平台](http://data.gov.tw/node/7441)
+- 鄉鎮市區界線(TWD97經緯度)
+- 將下載的`資料夾`解壓縮，放到專案資料夾內
+- in `shapefile` [Wiki](https://zh.wikipedia.org/zh-tw/Shapefile)
+- 空間資料開放格式
+- [參考資料](http://www.r-bloggers.com/mapping-with-ggplot-create-a-nice-choropleth-map-in-r/)
+
+## 將shapefile讀入R
+使用`maptools` package 的`readShapeSpatial` function
+```{r, warning=F,message=F, fig.height=3}
+if (!require('rgdal')){#for fortify()
+    install.packages("rgdal");library(rgdal)
+}
+if (!require('rgeos')){#for fortify()
+    install.packages("rgeos");library(rgeos) 
+}
+if (!require('maptools')){#for readShapeSpatial()
+    install.packages("maptools");library(maptools) 
+}
+tw_new <- readShapeSpatial("Taiwan/Town_MOI_1041215.shp") #檔名
+names(tw_new)
+```
+
+## 處理shapefile-1
+- 需要`rgdal`, `rgeos`,`maptools`
+- fortify: 將`shapefile`物件轉為`data.frame`
+- [參考資料](http://www.r-bloggers.com/mapping-with-ggplot-create-a-nice-choropleth-map-in-r/)
+```{r, warning=F,message=F, fig.height=3}
+library(ggplot2) #for fortify(), ggplot(), ggmap()
+head(tw_new$Town_ID)
+tw_new.df <- fortify(tw_new, region = "T_UID") #from ggplot2 package
+```
+
+## 處理shapefile-2
+- [參考資料](http://www.r-bloggers.com/mapping-with-ggplot-create-a-nice-choropleth-map-in-r/)
+```{r, warning=F,message=F, fig.height=3}
+head(tw_new.df,10)
+```
+
+## 做一個假資料來畫：著色基準檔
+```{r, warning=F,message=F, fig.height=3}
+#做一個假資料來畫
+#prevalence設為亂數rnorm(需要的亂數個數)
+mydata<-data.frame(NAME_2=tw_new$T_Name, id=tw_new$T_UID,
+                   prevalence=rnorm(length(tw_new$T_UID)))
+head(mydata)
+```
+
+## 中文編碼
+```{r, warning=F,message=F, fig.height=3}
+#利用iconv將不知所以然的代碼（\xa6\xa8\xa5\\\xc2\xed）轉為看得懂的中文
+#from big5 to utf-8
+mydata$NAME_2<-iconv(as.character(mydata$NAME_2), #NAME_2原本是factor
+                     from="big5", to = "UTF-8")
+head(mydata,10)
+```
+
+## 合併的圖檔與著色基準檔
+```{r, warning=F,message=F, fig.height=3}
+#最後將有prevalence的假數據mydata和經緯度資料tw_new.df合併, 用merge()
+final.plot<-merge(tw_new.df,mydata,by="id",all.x=T)
+head(final.plot,10)
+```
+
+## 畫台灣面量圖-1
+```{r, warning=F,message=F, fig.height=3}
+library(RColorBrewer) #配色用brewer.pal( 9 , "Reds" )
+twcmap<-ggplot() +
+    geom_polygon(data = final.plot, 
+                 aes(x = long, y = lat, group = group, 
+                     fill = prevalence), 
+                 color = "black", size = 0.25) + 
+    coord_map()+#維持地圖比例
+    scale_fill_gradientn(colours = brewer.pal(9,"Reds"))+
+    theme_void()+
+    labs(title="Prevalence of X in Taiwan")
+```
+
+
+## 畫台灣面量圖-2
+```{r, warning=F,message=F, fig.height=5}
+twcmap
+```
+
+
+## 使用google map
+`ggmap` package
+```{r, echo=F,warning=F,message=F, fig.height=5}
+if (!require('ggmap')){
+    install.packages("ggmap")
+    library(ggmap)#for get_map()
+}
+twmap <- get_map(location = 'Taiwan', zoom = 7,language = "zh-TW")
+ggmap(twmap) 
+```
+
+
+## ggmap，把google map載入
+```{r, warning=F,message=F, fig.height=3}
+if (!require('ggmap')){
+    install.packages("ggmap")
+    library(ggmap)#for get_map()
+}
+twmap <- get_map(location = 'Taiwan', zoom = 7,language = "zh-TW")
+#location:可以是地名，也可以是經緯度座標
+#zoom:放大比例 2-20
+#language:地圖語言
+```
+
+## ggmap，畫圖
+```{r, warning=F,message=F, fig.height=4}
+ggmap(twmap) #基於ggplot2物件，可用相同方式處理
+```
+
+
+## ggmap，maptype
+```{r, warning=F,message=F, fig.height=3}
+#maptype:地圖型態，"terrain", "terrain-background", "satellite",
+# "roadmap","hybrid" (google maps), "terrain", "watercolor", 
+# "toner" (stamen maps), 
+# or a positive integer for cloudmade maps (see ?get_cloudmademap)
+TaipeiMap = get_map(location = c(121.43,24.93,121.62,25.19), 
+                    zoom = 14, maptype = 'roadmap')
+ggmap(TaipeiMap,extent = 'device') #extent = 'device' 滿版
+```
+
+
+## ggmap+面量圖
+```{r, warning=F,message=F, fig.height=6}
+ggmap(twmap)+ #ggmap
+    geom_polygon(data = final.plot,  #面量圖
+        aes(x = long, y = lat, group = group, fill = prevalence), 
+        color = "grey80", size = 0.1,alpha = 0.5) + 
+scale_fill_gradientn(colours = brewer.pal(9,"Reds"))
+```
+
+
+
+## Density Map? 美國人口密度圖
+```{r, echo=F, warning=F,message=F}
+StateCenter<-data.frame( #取得美國各州中心座標資料
+    region=tolower(state.name),lon=state.center$x,lat=state.center$y)
+StatePop<-merge(df_pop_state,StateCenter,by="region") #美國各州人口資料
+PopPoint<-NULL #將人口數值，轉為點！重要！
+for(i in 1:nrow(StatePop)){
+    for(j in 1:(StatePop[i,"value"]/1000000)){
+        PopPoint<-rbind(PopPoint,StatePop[i,])   
+    }
+}
+USMap <- get_map(location = "United States", zoom = 4)
+densityMap<-ggmap(USMap, extent = "device") + 
+    geom_density2d(data = PopPoint, aes(x = lon, y = lat), size = 0.3) + 
+    stat_density2d(data = PopPoint, 
+            aes(x = lon, y = lat, fill = ..level.., alpha = ..level..), 
+                size = 0.01, bins = 16, geom = "polygon") + 
+    scale_fill_gradient(low = "green", high = "red", guide = FALSE) + 
+    scale_alpha(range = c(0, 0.3), guide = FALSE)
+densityMap
+```
+
+
+
+## 使用 `ggplot2` + `ggmap` 來畫人口密度圖 - 資料前處理1
+```{r warning=F,message=F}
+#取得美國各州中心座標資料
+StateCenter<-data.frame( 
+    region=tolower(state.name),lon=state.center$x,lat=state.center$y)
+head(StateCenter,1)
+#美國各州人口資料
+StatePop<-merge(df_pop_state,StateCenter,by="region") 
+head(StatePop,1)
+```
+
+## 使用 `ggplot2` + `ggmap` 來畫人口密度圖 - 資料前處理2
+```{r warning=F,message=F}
+#將人口數值，轉為點！重要！
+PopPoint<-NULL 
+for(i in 1:nrow(StatePop)){
+    #每100萬人轉為1點
+    for(j in 1:(StatePop[i,"value"]/1000000)){
+        PopPoint<-rbind(PopPoint,StatePop[i,])   
+    }
+}
+head(PopPoint,3)
+```
+
+## 使用 `ggplot2` + `ggmap` 來畫人口密度圖 - 作圖
+```{r warning=F,message=F}
+USMap <- get_map(location = "United States", zoom = 4)
+densityMap<-ggmap(USMap, extent = "device") + 
+    geom_density2d(data = PopPoint, aes(x = lon, y = lat), size = 0.3) + 
+    stat_density2d(data = PopPoint, 
+            aes(x = lon, y = lat, fill = ..level.., alpha = ..level..), 
+                size = 0.01, bins = 16, geom = "polygon") + 
+    scale_fill_gradient(low = "green", high = "red", guide = FALSE) + 
+    scale_alpha(range = c(0, 0.3), guide = FALSE)
+```
+
+## 美國人口密度圖 Density Map
+```{r warning=F,fig.height=5.5}
+densityMap
+```
+
+## ggmap參考資料
+- [ggmap package source code](https://github.com/dkahle/ggmap)
+- [ggmap cheat sheet](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf)
+- [ggmap doc](https://dl.dropboxusercontent.com/u/24648660/ggmap%20useR%202012.pdf)
+
+
+##Heatmap 先將資料讀入
+[參考資料](http://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/)
+```{r message=FALSE,warning=F}
+#讀.csv檔案
+nba <- read.csv("http://datasets.flowingdata.com/ppg2008.csv")
+head(nba)
+```
+
+##Heatmap 資料處理，寬表轉長表
+```{r message=FALSE,warning=F}
+library(reshape2) #for melt()
+nba.m <- melt(nba,id.vars = "Name") #寬表轉長表,以名字作依據
+head(nba.m,10)
+```
+
+##Heatmap geom_tile()
+```{r message=FALSE,warning=F,fig.height=4}
+library(ggplot2) #for ggplot()
+ggplot(nba.m, aes(variable, Name)) + #aes(x,y)
+    geom_tile(aes(fill = value),colour = "white")+ #geom_tile: 區塊著色
+    scale_fill_gradient(low = "white",high = "steelblue") #數值低：白色
+```
+
+
+##Heatmap 資料前處理：scale
+```{r message=FALSE,warning=F,fig.height=4}
+head(nba,2)
+nba[,2:21]<-apply(nba[,2:21], 2, scale) #scale處理，將數值轉為平均=0
+head(nba,2)
+```
+
+## apply() 還記得嗎....
+有類似for迴圈的功能
+
+- apply(Data, MARGIN, FUN,…)
+    - Data：矩陣（Matrix），Data Frame
+    - MARGIN：1=row, 2=column
+    - FUN：函數
+    - …：函數要用的參數
+
+```{r}
+ #針對nba的各column做scale處理-->將數值轉為平均=0
+apply(nba[,2:21], 2, scale)
+```
+
+##Heatmap 資料前處理：scale
+```{r message=FALSE,warning=F,fig.height=4}
+nba.m <- melt(nba)
+ggplot(nba.m, aes(variable, Name)) + #aes(x,y)
+    geom_tile(aes(fill = value),colour = "white")+ #geom_tile: 區塊著色
+    scale_fill_gradient(low = "white",high = "steelblue") #數值低：白色
+```
+
+
+##Treemap
+需要`treemapify` packages
+```{r echo=F, message=FALSE,warning=F,fig.height=4}
+if (!require('treemapify')){
+    library(devtools) #install.packages("devtools") 沒安裝過記得先裝
+    install_github("wilkox/treemapify") #從GitHub安裝測試版Packages,需要安裝devtools
+    library(treemapify)
+}
+data(G20)#範例資料
+treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
+    area = "Nom.GDP.mil.USD",fill = "HDI",
+    label = "Country",group = "Region")
+ggplotify(treeMapCoordinates)+ 
+    scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色
+```
+
+##Treemap -資料處理
+- 需要`treemapify` packages
+- [參考資料](https://github.com/wilkox/treemapify)
+- [G20 Dataset](https://en.wikipedia.org/wiki/G-20_major_economies)
+
+```{r message=FALSE,warning=F,fig.height=4}
+if (!require('treemapify')){
+    library(devtools) #install.packages("devtools") 沒安裝過記得先裝
+    install_github("wilkox/treemapify") #從GitHub安裝測試版Packages,需要安裝devtools
+    library(treemapify)
+}
+data(G20)#範例資料
+head(G20)
+```
+
+##Treemap -設定Treemap參數
+```{r message=FALSE,warning=F,fig.height=4}
+#treemapify: 將資料轉為treemap所需格式
+#area:面積來源(GDP)
+#fill:著色來源(HDI)
+#label:每個方塊分類依據(Country)
+#group:方塊群組(Region)
+treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
+    area = "Nom.GDP.mil.USD",fill = "HDI",
+    label = "Country",group = "Region")
+head(treeMapCoordinates)
+```
+
+##Treemap -作圖1
+```{r message=FALSE,warning=F,fig.height=4}
+ggplotify(treeMapCoordinates)
+```
+
+##Treemap -作圖2
+好像數字越大顏色越深比較合理？
+```{r message=FALSE,warning=F,fig.height=4}
+ggplotify(treeMapCoordinates)+ 
+    scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色
+```
+
+## Error bar 誤差線
+- 終於要扯一點所謂的統計
+- 通常使用在bar chart, line chart
+- 比較多組資料的平均值高低時，務必加上Error bar 誤差線
+- 誤差線計算
+    - Standard deviation (SD) 標準差：呈現資料本質時使用
+    - Standard error (SE) 標準誤差：呈現預估平均值的可能誤差時使用
+    - Confidence interval (CI) 信賴區間：呈現預估平均值的信心時使用
+    
+## Bar Chart without Error Bar in ggplot2
+```{r,fig.height=3.5}
+library(datasets)
+airquality$Month<-as.factor(airquality$Month) #將Month轉為因子變項
+airquality.mean<-aggregate(Ozone~Month,airquality,mean) #計算每月Ozone平均mean
+ggplot()+geom_bar(data=airquality.mean,aes(x=Month,y=Ozone),
+                  stat = "identity") #stat = "identity" 直接畫數字
+```
+
+## Bar Chart with Error Bar in ggplot2
+```{r,fig.height=3}
+airquality.sd<-aggregate(Ozone~Month,airquality,sd) #計算每月Ozone標準差sd
+airquality.eb<-merge(airquality.mean,airquality.sd,by="Month")
+ggplot(data=airquality.eb)+ #資料airquality.eb
+    geom_bar(aes(x=Month,y=Ozone.x),stat = "identity")+
+    geom_errorbar( #ymin低點, ymax高點, Ozone.x=mean, Ozone.y=sd標準差
+        aes(x=Month,ymin=Ozone.x-Ozone.y,ymax=Ozone.x+Ozone.y), width=.1)
+```
+
+
 ### 參考文件與資源
 
 - 官方網站[文件](http://docs.ggplot2.org/current/){target="_blank"}
-- RStudio製作的[ggplot cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf){target="_blank"}
+- RStudio製作的[ggplot cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf){target="_blank"}
 - DataCamp互動式課程1 [Data Visualization with ggplot2 (Part 1)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1){target="_blank"}
 - DataCamp互動式課程2 [Data Visualization with ggplot2 (Part 2)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-2){target="_blank"}
 - DataCamp互動式課程3 [Data Visualization with ggplot2 (Part 3)](https://www.datacamp.com/courses/data-visualization-with-ggplot2-3){target="_blank"}

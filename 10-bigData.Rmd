@@ -178,3 +178,4 @@ head(result)
 ```
 
 ## R + Spark
+http://spark.rstudio.com/

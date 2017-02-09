@@ -100,4 +100,4 @@ knitr::include_graphics("figure/RStudio.png")
 knitr::include_graphics("figure/ed.png")
 ```
 
-
+RStudio的其他使用細節，可參考[RStudio IDE Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf){target="_blank"}
