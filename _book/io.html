@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>資料科學與R語言</title>
-  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。">
+  <meta name="description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍">
   <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="資料科學與R語言" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="資料科學與R語言" />
   
-  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   
 
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-02-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -161,7 +161,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>4.1.5</b> R物件 .rds</a></li>
 <li class="chapter" data-level="4.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>4.1.6</b> R程式 .R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>4.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他格式</a></li>
+<li class="chapter" data-level="4.1.9" data-path="io.html"><a href="io.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 其他讀檔注意事項</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 從網路匯入資料</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
@@ -210,40 +211,79 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
 <li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.1</b> data.table</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 篩選邏輯</a></li>
+<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 觀察值篩選邏輯</a></li>
 <li class="chapter" data-level="6.1.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.1.2</b> j 欄位選擇運算</a></li>
 <li class="chapter" data-level="6.1.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.1.3</b> by 分組依據</a></li>
 <li class="chapter" data-level="6.1.4" data-path="eda.html"><a href="eda.html#section-6.1.4"><i class="fa fa-check"></i><b>6.1.4</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料內容初步分析統計</a></li>
-<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#case-study"><i class="fa fa-check"></i><b>6.3</b> Case study</a></li>
-<li class="chapter" data-level="6.4" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.4</b> dplyr</a></li>
+<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.2</b> dplyr</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>6.2.1</b> select()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>6.2.2</b> filter()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>6.2.3</b> mutate()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>6.2.4</b> summarise()</a></li>
+<li class="chapter" data-level="6.2.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>6.2.5</b> group_by()</a></li>
+<li class="chapter" data-level="6.2.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>6.2.6</b> arrange()</a></li>
+<li class="chapter" data-level="6.2.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>6.2.7</b> rename()</a></li>
+<li class="chapter" data-level="6.2.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>6.2.8</b> 參考文件與資源</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#-1"><i class="fa fa-check"></i><b>7.1.1</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2套件</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>7.1.1</b> qplot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>7.1.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#case-study-1"><i class="fa fa-check"></i><b>7.2</b> Case study</a></li>
+<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>7.2.1</b> Choropleth map</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>7.2.2</b> ggmap</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
-<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
-<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
-<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
-<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
-<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
-<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+<li class="chapter" data-level="7.3" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>7.3</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vis.html"><a href="vis.html#taiwan-1"><i class="fa fa-check"></i><b>7.3.1</b> Taiwan的面量圖</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vis.html"><a href="vis.html#heatmap-"><i class="fa fa-check"></i><b>7.3.2</b> Heatmap 先將資料讀入</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.3.3</b> Treemap</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vis.html"><a href="vis.html#error-bar-"><i class="fa fa-check"></i><b>7.3.4</b> Error bar 誤差線</a></li>
+<li class="chapter" data-level="7.3.5" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.3.5</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
-<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+<li class="chapter" data-level="7.4" data-path="vis.html"><a href="vis.html#case-study"><i class="fa fa-check"></i><b>7.4</b> Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>9</b> 軟體安裝介紹</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>9.1</b> R安裝</a></li>
-<li class="chapter" data-level="9.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.2</b> RStudio安裝</a></li>
-<li class="chapter" data-level="9.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3</b> RStudio使用簡介</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="install.html"><a href="install.html#section-9.3.1"><i class="fa fa-check"></i><b>9.3.1</b> 專案</a></li>
-<li class="chapter" data-level="9.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3.2</b> RStudio介面</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a><ul>
+<li class="chapter" data-level="9.1" data-path="datamining.html"><a href="datamining.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering"><i class="fa fa-check"></i><b>9.2</b> Hierarchical clustering</a></li>
+<li class="chapter" data-level="9.3" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>9.3</b> K-means clustering</a></li>
+<li class="chapter" data-level="9.4" data-path="datamining.html"><a href="datamining.html#kmeans"><i class="fa fa-check"></i><b>9.4</b> <code>kmeans()</code></a><ul>
+<li class="chapter" data-level="9.4.1" data-path="datamining.html"><a href="datamining.html#heatmaps"><i class="fa fa-check"></i><b>9.4.1</b> Heatmaps</a></li>
+<li class="chapter" data-level="9.4.2" data-path="datamining.html"><a href="datamining.html#k-means"><i class="fa fa-check"></i><b>9.4.2</b> K-means注意事項</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="datamining.html"><a href="datamining.html#machine-learning-"><i class="fa fa-check"></i><b>9.5</b> Machine Learning 機器學習</a></li>
+<li class="chapter" data-level="9.6" data-path="datamining.html"><a href="datamining.html#decision-trees-"><i class="fa fa-check"></i><b>9.6</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="9.7" data-path="datamining.html"><a href="datamining.html#association-rules-"><i class="fa fa-check"></i><b>9.7</b> Association Rules 關聯式規則</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="datamining.html"><a href="datamining.html#section-9.7.1"><i class="fa fa-check"></i><b>9.7.1</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="datamining.html"><a href="datamining.html#regression-"><i class="fa fa-check"></i><b>9.8</b> Regression 迴歸</a></li>
+<li class="chapter" data-level="9.9" data-path="datamining.html"><a href="datamining.html#logistic-regression-"><i class="fa fa-check"></i><b>9.9</b> Logistic Regression 邏輯迴歸</a></li>
+<li class="chapter" data-level="9.10" data-path="datamining.html"><a href="datamining.html#decision-trees--1"><i class="fa fa-check"></i><b>9.10</b> Decision Trees 決策樹</a><ul>
+<li class="chapter" data-level="9.10.1" data-path="datamining.html"><a href="datamining.html#section-9.10.1"><i class="fa fa-check"></i><b>9.10.1</b> 模型驗證</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="10.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>10.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="big.html"><a href="big.html#section-10.2.1"><i class="fa fa-check"></i><b>10.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="10.2.2" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>10.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="10.2.3" data-path="big.html"><a href="big.html#section-10.2.3"><i class="fa fa-check"></i><b>10.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="10.2.4" data-path="big.html"><a href="big.html#section-10.2.4"><i class="fa fa-check"></i><b>10.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="10.2.5" data-path="big.html"><a href="big.html#section-10.2.5"><i class="fa fa-check"></i><b>10.2.5</b> 測試</a></li>
+<li class="chapter" data-level="10.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>10.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>10.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="10.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>10.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>11</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="11.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>11.1</b> R安裝</a></li>
+<li class="chapter" data-level="11.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="11.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="install.html"><a href="install.html#section-11.3.1"><i class="fa fa-check"></i><b>11.3.1</b> 專案</a></li>
+<li class="chapter" data-level="11.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3.2</b> RStudio介面</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
@@ -285,11 +325,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="import-dataset-rstudio" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Import Dataset功能 (RStudio)</h3>
 <p><a href="https://www.rstudio.com/" target="_blank">RStudio</a> 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成<code>.csv</code>、<code>Excel</code>以及<code>SAS</code>等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇<strong>Import Dataset</strong>，就會出現檔案格式的選項</p>
-<p><img src="figure/import.png" /><!-- --></p>
+<p><img src="figure/import.png" width="592" /></p>
 <p>以csv檔案為例，在選單中選取<code>From CSV</code>，選取後會跳出資料匯入輔助視窗，點選<code>Browse</code>按鈕開啟檔案選取器，並點選欲匯入之文字檔案</p>
-<p><img src="figure/csv.png" /><!-- --></p>
+<p><img src="figure/csv.png" width="497" /></p>
 <p>檔案選取後，資料匯入輔助視窗有預覽功能，供使用者檢查資料匯入方法是否正確，若需調整各項參數，可利用下方<code>Import Options</code>的選項微調，最常用的調整功能是<code>Delimiter</code>分隔符號與<code>First Row as Names</code>首列是否為欄位名稱。</p>
-<p><img src="figure/csv2.png" /><!-- --></p>
+<p><img src="figure/csv2.png" width="960" /></p>
 <p>如果要匯入的檔案為<strong>tab分隔文字檔</strong>，一樣可以選擇<code>.csv</code>選項，再修改<code>Delimiter</code>參數為<code>Tab</code>即可。</p>
 <p>資料匯入輔助視窗右下方<code>Code Preview:</code>子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。</p>
 </div>
@@ -337,7 +377,22 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <p><code>readLines</code>, 逐行讀取文字資料</p>
 </div>
 <div id="section-4.1.8" class="section level3">
-<h3><span class="header-section-number">4.1.8</span> 其他讀檔注意事項</h3>
+<h3><span class="header-section-number">4.1.8</span> 其他格式</h3>
+<p>透過載入套件，R可讀入許多其他格式的檔案:</p>
+<ul>
+<li>MySQL <code>RMySQL</code></li>
+<li>HDF5 <code>rhdf5</code></li>
+<li>Weka <code>foreign</code></li>
+<li>Stata <code>foreign</code></li>
+<li>SPSS <code>Hmisc</code></li>
+<li>SAS <code>Hmisc</code></li>
+<li>GIS <code>rgdal</code></li>
+<li>Images <code>jpeg</code></li>
+<li>Music <code>tuneR</code></li>
+</ul>
+</div>
+<div id="section-4.1.9" class="section level3">
+<h3><span class="header-section-number">4.1.9</span> 其他讀檔注意事項</h3>
 <p>讀檔的時候R會自動</p>
 <ul>
 <li>跳過#開頭的任何行（Row）</li>
@@ -398,29 +453,29 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 306
+##   ..$ count  : int 304
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  306 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:306] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:306] &quot;Piggy&quot; &quot;爵士&quot; &quot;威利&quot; &quot;&quot; ...
-##   .. ..$ Sex            : chr [1:306] &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; ...
-##   .. ..$ Type           : chr [1:306] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; ...
-##   .. ..$ Build          : chr [1:306] &quot;小&quot; &quot;中&quot; &quot;中&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:306] &quot;成年&quot; &quot;成年&quot; &quot;成年&quot; &quot;老年&quot; ...
-##   .. ..$ Variety        : chr [1:306] &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:306] &quot;民眾不擬續養&quot; &quot;動物救援&quot; &quot;民眾不擬續養&quot; &quot;民眾拾獲&quot; ...
-##   .. ..$ AcceptNum      : chr [1:306] &quot;106020812&quot; &quot;106020702&quot; &quot;106020301&quot; &quot;106012706&quot; ...
-##   .. ..$ ChipNum        : chr [1:306] &quot;900073000086495&quot; &quot;&quot; &quot;965000000263051&quot; &quot;&quot; ...
-##   .. ..$ IsSterilization: chr [1:306] &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; ...
-##   .. ..$ HairType       : chr [1:306] &quot;棕黑&quot; &quot;黑白&quot; &quot;黃白&quot; &quot;黃白&quot; ...
-##   .. ..$ Note           : chr [1:306] &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！&quot; &quot;哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!&quot; &quot;疑似高處掉落 疑似無視覺 血尿&quot; ...
-##   .. ..$ Resettlement   : chr [1:306] &quot;臺北市動物之家 收容編號106020812&quot; &quot;臺北市動物之家 收容編號106020702&quot; &quot;臺北市動物之家 收容編號106020301&quot; &quot;臺北市動物之家 收容編號：106012706&quot; ...
-##   .. ..$ Phone          : chr [1:306] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:306] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:306] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:306] &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  304 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:304] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:304] &quot;Piggy&quot; &quot;爵士&quot; &quot;威利&quot; &quot;&quot; ...
+##   .. ..$ Sex            : chr [1:304] &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; ...
+##   .. ..$ Type           : chr [1:304] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; ...
+##   .. ..$ Build          : chr [1:304] &quot;小&quot; &quot;中&quot; &quot;中&quot; &quot;中&quot; ...
+##   .. ..$ Age            : chr [1:304] &quot;成年&quot; &quot;成年&quot; &quot;成年&quot; &quot;老年&quot; ...
+##   .. ..$ Variety        : chr [1:304] &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:304] &quot;民眾不擬續養&quot; &quot;動物救援&quot; &quot;民眾不擬續養&quot; &quot;民眾拾獲&quot; ...
+##   .. ..$ AcceptNum      : chr [1:304] &quot;106020812&quot; &quot;106020702&quot; &quot;106020301&quot; &quot;106012706&quot; ...
+##   .. ..$ ChipNum        : chr [1:304] &quot;900073000086495&quot; &quot;&quot; &quot;965000000263051&quot; &quot;&quot; ...
+##   .. ..$ IsSterilization: chr [1:304] &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; ...
+##   .. ..$ HairType       : chr [1:304] &quot;棕黑&quot; &quot;黑白&quot; &quot;黃白&quot; &quot;黃白&quot; ...
+##   .. ..$ Note           : chr [1:304] &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！&quot; &quot;哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!&quot; &quot;疑似高處掉落 疑似無視覺 血尿&quot; ...
+##   .. ..$ Resettlement   : chr [1:304] &quot;臺北市動物之家 收容編號106020812&quot; &quot;臺北市動物之家 收容編號106020702&quot; &quot;臺北市動物之家 收容編號106020301&quot; &quot;臺北市動物之家 收容編號：106012706&quot; ...
+##   .. ..$ Phone          : chr [1:304] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:304] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:304] &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
 <pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
@@ -469,7 +524,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           28          104          109           42           23</code></pre>
+##           28          104          108           42           22</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -803,6 +858,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

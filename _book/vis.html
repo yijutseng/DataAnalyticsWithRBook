@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>資料科學與R語言</title>
-  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。">
+  <meta name="description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍">
   <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="資料科學與R語言" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="資料科學與R語言" />
   
-  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   
 
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-02-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="eda.html">
-<link rel="next" href="big.html">
+<link rel="next" href="InteractiveGraphics.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -161,7 +161,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>4.1.5</b> R物件 .rds</a></li>
 <li class="chapter" data-level="4.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>4.1.6</b> R程式 .R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>4.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他格式</a></li>
+<li class="chapter" data-level="4.1.9" data-path="io.html"><a href="io.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 其他讀檔注意事項</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 從網路匯入資料</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
@@ -210,40 +211,79 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
 <li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.1</b> data.table</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 篩選邏輯</a></li>
+<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 觀察值篩選邏輯</a></li>
 <li class="chapter" data-level="6.1.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.1.2</b> j 欄位選擇運算</a></li>
 <li class="chapter" data-level="6.1.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.1.3</b> by 分組依據</a></li>
 <li class="chapter" data-level="6.1.4" data-path="eda.html"><a href="eda.html#section-6.1.4"><i class="fa fa-check"></i><b>6.1.4</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料內容初步分析統計</a></li>
-<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#case-study"><i class="fa fa-check"></i><b>6.3</b> Case study</a></li>
-<li class="chapter" data-level="6.4" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.4</b> dplyr</a></li>
+<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.2</b> dplyr</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>6.2.1</b> select()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>6.2.2</b> filter()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>6.2.3</b> mutate()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>6.2.4</b> summarise()</a></li>
+<li class="chapter" data-level="6.2.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>6.2.5</b> group_by()</a></li>
+<li class="chapter" data-level="6.2.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>6.2.6</b> arrange()</a></li>
+<li class="chapter" data-level="6.2.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>6.2.7</b> rename()</a></li>
+<li class="chapter" data-level="6.2.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>6.2.8</b> 參考文件與資源</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#-1"><i class="fa fa-check"></i><b>7.1.1</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2套件</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>7.1.1</b> qplot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>7.1.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#case-study-1"><i class="fa fa-check"></i><b>7.2</b> Case study</a></li>
+<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>7.2.1</b> Choropleth map</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>7.2.2</b> ggmap</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
-<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
-<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
-<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
-<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
-<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
-<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+<li class="chapter" data-level="7.3" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>7.3</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vis.html"><a href="vis.html#taiwan-1"><i class="fa fa-check"></i><b>7.3.1</b> Taiwan的面量圖</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vis.html"><a href="vis.html#heatmap-"><i class="fa fa-check"></i><b>7.3.2</b> Heatmap 先將資料讀入</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.3.3</b> Treemap</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vis.html"><a href="vis.html#error-bar-"><i class="fa fa-check"></i><b>7.3.4</b> Error bar 誤差線</a></li>
+<li class="chapter" data-level="7.3.5" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.3.5</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
-<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+<li class="chapter" data-level="7.4" data-path="vis.html"><a href="vis.html#case-study"><i class="fa fa-check"></i><b>7.4</b> Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>9</b> 軟體安裝介紹</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>9.1</b> R安裝</a></li>
-<li class="chapter" data-level="9.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.2</b> RStudio安裝</a></li>
-<li class="chapter" data-level="9.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3</b> RStudio使用簡介</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="install.html"><a href="install.html#section-9.3.1"><i class="fa fa-check"></i><b>9.3.1</b> 專案</a></li>
-<li class="chapter" data-level="9.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3.2</b> RStudio介面</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a><ul>
+<li class="chapter" data-level="9.1" data-path="datamining.html"><a href="datamining.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering"><i class="fa fa-check"></i><b>9.2</b> Hierarchical clustering</a></li>
+<li class="chapter" data-level="9.3" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>9.3</b> K-means clustering</a></li>
+<li class="chapter" data-level="9.4" data-path="datamining.html"><a href="datamining.html#kmeans"><i class="fa fa-check"></i><b>9.4</b> <code>kmeans()</code></a><ul>
+<li class="chapter" data-level="9.4.1" data-path="datamining.html"><a href="datamining.html#heatmaps"><i class="fa fa-check"></i><b>9.4.1</b> Heatmaps</a></li>
+<li class="chapter" data-level="9.4.2" data-path="datamining.html"><a href="datamining.html#k-means"><i class="fa fa-check"></i><b>9.4.2</b> K-means注意事項</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="datamining.html"><a href="datamining.html#machine-learning-"><i class="fa fa-check"></i><b>9.5</b> Machine Learning 機器學習</a></li>
+<li class="chapter" data-level="9.6" data-path="datamining.html"><a href="datamining.html#decision-trees-"><i class="fa fa-check"></i><b>9.6</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="9.7" data-path="datamining.html"><a href="datamining.html#association-rules-"><i class="fa fa-check"></i><b>9.7</b> Association Rules 關聯式規則</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="datamining.html"><a href="datamining.html#section-9.7.1"><i class="fa fa-check"></i><b>9.7.1</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="datamining.html"><a href="datamining.html#regression-"><i class="fa fa-check"></i><b>9.8</b> Regression 迴歸</a></li>
+<li class="chapter" data-level="9.9" data-path="datamining.html"><a href="datamining.html#logistic-regression-"><i class="fa fa-check"></i><b>9.9</b> Logistic Regression 邏輯迴歸</a></li>
+<li class="chapter" data-level="9.10" data-path="datamining.html"><a href="datamining.html#decision-trees--1"><i class="fa fa-check"></i><b>9.10</b> Decision Trees 決策樹</a><ul>
+<li class="chapter" data-level="9.10.1" data-path="datamining.html"><a href="datamining.html#section-9.10.1"><i class="fa fa-check"></i><b>9.10.1</b> 模型驗證</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="10.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>10.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="big.html"><a href="big.html#section-10.2.1"><i class="fa fa-check"></i><b>10.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="10.2.2" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>10.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="10.2.3" data-path="big.html"><a href="big.html#section-10.2.3"><i class="fa fa-check"></i><b>10.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="10.2.4" data-path="big.html"><a href="big.html#section-10.2.4"><i class="fa fa-check"></i><b>10.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="10.2.5" data-path="big.html"><a href="big.html#section-10.2.5"><i class="fa fa-check"></i><b>10.2.5</b> 測試</a></li>
+<li class="chapter" data-level="10.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>10.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>10.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="10.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>10.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>11</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="11.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>11.1</b> R安裝</a></li>
+<li class="chapter" data-level="11.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="11.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="install.html"><a href="install.html#section-11.3.1"><i class="fa fa-check"></i><b>11.3.1</b> 專案</a></li>
+<li class="chapter" data-level="11.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3.2</b> RStudio介面</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
@@ -270,53 +310,711 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="vis" class="section level1">
 <h1><span class="header-section-number">7</span> 資料視覺化</h1>
-<p>撰寫中</p>
+<p>撰寫中 延續Ch <a href="eda.html#eda">6</a>，探索式資料分析可分為圖形化Graphical 或 量化Quantitative分析，總括來說<strong>作圖</strong>的目的有:</p>
+<ul>
+<li>了解資料的特性</li>
+<li>尋找資料的模式(patterns)</li>
+<li>建議資料分析與建模的策略</li>
+<li>結果呈現與溝通</li>
+</ul>
+<p>其中前三項屬於探索圖 (Exploratory graphs)，結果呈現與溝通屬於結果圖 (Final graphs)，探索圖屬探索式資料分析，目的是在『看』與『觀察』資料的樣子，所以探索圖有以下特性:</p>
+<ul>
+<li>很快就可以做一張圖</li>
+<li>探索過程中，可能可以做圖</li>
+<li>主要目的是了解資料的樣子</li>
+<li>不用做圖形格式調整美化</li>
+</ul>
+<p>而在製作結果圖 (Final graphs)時，則須考慮以下事項:</p>
+<ul>
+<li>比較，呈現差異
+<ul>
+<li>比較什麼？誰跟誰比較？</li>
+</ul></li>
+<li>呈現因果關係（causality）,機制（mechanism）,結果解釋（explanation）,系統化的結構（systematic structure）
+<ul>
+<li>因果模型？為什麼你想要做這樣的比較</li>
+</ul></li>
+<li>呈現多變數（Multivariate）資料
+<ul>
+<li>多變數（Multivariate）：超過兩個變數就叫多變數</li>
+<li>所有真實事件都是多變數的</li>
+</ul></li>
+<li>將證據整合呈現
+<ul>
+<li>在同一個畫面呈現文字、數字、影像、圖表</li>
+<li>盡量用圖形呈現資料</li>
+</ul></li>
+<li>將圖表做適當的標記與說明，包括xy軸名稱、單位、資料來源等
+<ul>
+<li>資料圖表必須可以呈現你想說的故事</li>
+</ul></li>
+<li>內容才是最重要的
+<ul>
+<li>資料不好，分析不好，圖表再美也沒有用</li>
+</ul></li>
+</ul>
+<p>在R中，有三個常用的畫圖套件，包括基本功能(Base)、<code>lattice</code>以及<code>ggplot2</code>，由於各套件繪圖邏輯不同，本書只介紹最推薦的<code>ggplot2</code>套件的使用方式。</p>
 <div id="ggplot2" class="section level2">
-<h2><span class="header-section-number">7.1</span> ggplot2</h2>
-<p><code>ggplot2</code> <span class="citation">(Wickham and Chang <a href="#ref-R-ggplot2">2016</a>)</span>的開發靈感來自於Dr. Leland Wilkinson的<a href="http://www.springer.com/us/book/9780387245447" target="_blank">Grammar of Graphics</a>，Package是由<a href="http://hadley.nz/" target="_blank">Hadley Wickham</a>開發，還在持續發展更新中，對原始碼有興趣的人可以到<a href="https://github.com/tidyverse/ggplot2" target="_blank">GitHub</a>看一下最新動態。</p>
+<h2><span class="header-section-number">7.1</span> ggplot2套件</h2>
+<p><code>ggplot2</code> <span class="citation">(Wickham and Chang <a href="#ref-R-ggplot2">2016</a>)</span>的開發靈感來自於Dr. Leland Wilkinson的<a href="http://www.springer.com/us/book/9780387245447" target="_blank">Grammar of Graphics</a></p>
+<p>“In brief, the grammar tells us that a statistical graphic is a <code>mapping</code> from data to <code>aesthetic</code> attributes (colour, shape, size) of <code>geometric</code> objects (points, lines, bars). The plot may also contain statistical transformations of the data and is drawn on a specific coordinate system”</p>
+<ul>
+<li>from <code>ggplot2</code> book</li>
+</ul>
+<p><code>ggplot2</code> Package是由<a href="http://hadley.nz/" target="_blank">Hadley Wickham</a>開發，還在持續發展更新中，對原始碼有興趣的人可以到<a href="https://github.com/tidyverse/ggplot2" target="_blank">GitHub</a>看一下最新動態。</p>
 <p><code>ggplot2</code> 是第三個R的畫圖Package。自發表以來一直是最熱門的R packages之一，在開始學ggplot2的核心功能之前，qplot()是ggplot2 Package提供最基本的畫圖方法，跟基本的plot() function很接近，提供一個簡單入門的方法，在這篇就不詳細介紹，有興趣可以看一下網路上的<a href="http://www.ancienteco.com/2012/03/basic-introduction-to-ggplot2.html" target="_blank">教學範例</a>。</p>
 <p>簡單來說，做圖的文法包括兩個最主要元素：</p>
-<p>Aesthetic attributes：包括顏色、形狀、點的大小與線的粗細等 Geometric objects：包括點、線、盒狀圖、直條圖等</p>
+<ul>
+<li><strong>Aesthetic attributes</strong>：包括顏色、形狀、點的大小與線的粗細等</li>
+<li><strong>Geometric objects</strong>：包括點、線、盒狀圖、直條圖等</li>
+</ul>
 <p>其他元素包括：</p>
-<p>Facets：提供在同一張圖內做多個子圖的方法，只要使用Faceting功能設定子圖分類的依據參數即可。 Stats：將資料做統計轉換 Scales：修改點線的顏色、形狀、xy軸的範圍等</p>
-<p>使用ggplot2作圖有以下步驟： 準備好資料。當然要有資料才能畫圖。 設定Aesthetic attributes。使用aes(x, y, …)指定 指定Geometric objects。常用的包括geom_point()、geom_line()、geom_point()、geom_polygon()、geom_errorbar()。</p>
+<ul>
+<li><strong>Facets</strong>：提供在同一張圖內做多個子圖的方法，只要使用Faceting功能設定子圖分類的依據參數即可</li>
+<li><strong>Stats</strong>：將資料做統計轉換</li>
+<li><strong>Scales</strong>：修改點線的顏色、形狀、xy軸的範圍等</li>
+</ul>
+<div id="qplot" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> qplot()</h3>
+<ul>
+<li>Works much like the <code>plot</code> function in base graphics system</li>
+<li>Looks for data in a data frame, similar to lattice</li>
+<li>Plots are made up of <code>aesthetics</code> (size, shape, color) and <code>geoms</code> (points, lines)</li>
+<li>Factors are important for indicating subsets of the data; they should be <code>labeled</code></li>
+<li>The <code>qplot()</code> hides what goes on underneath, which is okay for most operations</li>
+<li><code>ggplot()</code> is the core function and very flexible for doing things <code>qplot()</code> cannot do</li>
+</ul>
+<p>ggplot2 “Hello, world!”</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SportsAnalytics)
+NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)
+<span class="kw">library</span>(ggplot2) <span class="co">#記得將ggplot2 package讀入，如果沒安奘記得先安裝</span>
+<span class="co">#qplot(x軸,y軸,data=使用資料)---&gt;畫散佈圖</span>
+<span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>Modifying aesthetics</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#color=Position, 用守備位置Position著色</span>
+<span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516,<span class="dt">color=</span>Position)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>Adding a geom</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#geom = c(&quot;point&quot;, &quot;smooth&quot;) 在圖上加點與漸進線</span>
+<span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516,
+      <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;smooth&quot;</span>))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>Histograms</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#畫TotalPoints的直方圖/ fill = Position 並用守備位置Position著色</span>
+<span class="kw">qplot</span>(TotalPoints, <span class="dt">data =</span> NBA1516, <span class="dt">fill =</span> Position)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>Facets</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#qplot(x軸,y軸,data=使用資料)---&gt;畫散佈圖</span>
+<span class="co">#facets = . ~ Position 用守備位置Position分群畫圖(橫向)</span>
+<span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516,
+      <span class="dt">facets =</span> . ~<span class="st"> </span>Position)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#facets = . ~ Position 用守備位置Position分群畫圖(直向)</span>
+<span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516,
+      <span class="dt">facets =</span> Position ~<span class="st"> </span>.)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(hwy, <span class="dt">data =</span> mpg, <span class="dt">facets =</span> drv ~<span class="st"> </span>., <span class="dt">binwidth =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-110-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#facets = . ~ Position 用守備位置Position分群畫圖(直向)</span>
+<span class="co">#binwidth = 100 每100分一組</span>
+<span class="kw">qplot</span>(TotalPoints, <span class="dt">data =</span> NBA1516,
+      <span class="dt">facets =</span> Position ~<span class="st"> </span>., <span class="dt">binwidth =</span> <span class="dv">100</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<ul>
+<li>The <code>qplot()</code> function is the analog to <code>plot()</code> but with many built-in features</li>
+<li>Syntax somewhere in between <code>base/lattice</code></li>
+<li>Produces very nice graphics, essentially publication ready (if you like the design)</li>
+<li>Difficult to go against the grain/customize (don’t bother; use full ggplot2 power in that case)</li>
+</ul>
+</div>
+<div id="ggplot" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> ggplot()</h3>
+<p>使用ggplot2作圖有以下步驟：</p>
+<ul>
+<li>準備好資料。當然要有資料才能畫圖</li>
+<li>設定<strong>Aesthetic attributes</strong>。使用<code>aes(x, y, ...)</code>指定</li>
+<li>指定<strong>Geometric objects</strong>。常用的包括<code>geom_point()</code>、<code>geom_line()</code>、<code>geom_point()</code>、<code>geom_polygon()</code>、<code>geom_errorbar()</code></li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
 <p>Generate the data</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gp =</span> <span class="kw">factor</span>(<span class="kw">rep</span>(letters[<span class="dv">1</span>:<span class="dv">3</span>], <span class="dt">each =</span> <span class="dv">10</span>)),<span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">30</span>))</code></pre></div>
-<p>Set Aesthetic attributes and assign Geometric objects</p>
+<p>Set <strong>Aesthetic attributes</strong> and assign <strong>Geometric objects</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> gp, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-96-1.png" width="672" /> 用geom_boxpolt()改畫盒狀圖</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-114-1.png" width="672" /> 用<code>geom_boxpolt()</code>改畫盒狀圖</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> gp, <span class="dt">y =</span> y)) +<span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-97-1.png" width="672" /> 使用Faceting功能</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-115-1.png" width="672" /> 使用Faceting功能</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$z&lt;-df$y+<span class="kw">rnorm</span>(<span class="dv">30</span>)
 <span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-98-1.png" width="672" /> 轉向</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-116-1.png" width="672" /> 轉向</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(.~gp)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-99-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-117-1.png" width="672" /> 用<code>geom_smooth()</code>替xy散佈圖加上趨勢線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>()</code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-100-1.png" width="672" /> 用geom_smooth()替xy散佈圖加上趨勢線，使用linear regresion</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-118-1.png" width="672" /> 用<code>geom_smooth()</code>替xy散佈圖加上趨勢線，使用linear regresion</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-101-1.png" width="672" /> 改用geom_line()畫線</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-119-1.png" width="672" /> 改用<code>geom_line()</code>畫線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_line</span>()+<span class="kw">facet_grid</span>(gp~.)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-102-1.png" width="672" /> 改用顏色分組，使用aes(color=‘group name’)</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-120-1.png" width="672" /> 改用顏色分組，使用<code>aes(color='group name')</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y, <span class="dt">color=</span>gp)) +<span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <p>畫圖前需要注意的幾個小地方：</p>
 <p>提供資料時，把資料修改為想要在圖片顯示的文字。從上面的範例可以發現，ggplot2會直接將資料分組（a/b/c）直接標在圖上，與其之後再來改圖，不如在資料處理時就將a/b/c改為有意義且可以直接使用的文字。 如果是離散性的資料，但卻又是數值時（像是1,2,3）可以用factor()轉換，ggplot會將factor視為離散資料</p>
-<div id="-1" class="section level3">
-<h3><span class="header-section-number">7.1.1</span> 參考文件與資源</h3>
+<p>Building Plots with ggplot2 - When building plots in ggplot2 (rather than using qplot) the “artist’s palette” model may be the closest analogy - Plots are built up in layers - Plot the data - Overlay a summary - Metadata and annotation</p>
+<p>Annotation</p>
+<ul>
+<li>Labels: <code>xlab()</code>, <code>ylab()</code>, <code>labs()</code>, <code>ggtitle()</code></li>
+<li>Each of the “geom” functions has options to modify</li>
+<li>For things that only make sense globally, use <code>theme()</code></li>
+<li>Example: <code>theme(legend.position = &quot;none&quot;)</code></li>
+<li>Two standard appearance themes are included</li>
+<li><code>theme_gray()</code>: The default theme (gray background)</li>
+<li><p><code>theme_bw()</code>: More stark/plain</p></li>
+<li><code>ggthemes</code> packages <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">Website</a></li>
+<li><p><code>xkcd</code> packages <a href="http://xkcd.r-forge.r-project.org/">Website</a></p></li>
+</ul>
+<p>Axis Limits</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">testdat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span>:<span class="dv">100</span>, <span class="dt">y =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>))
+testdat[<span class="dv">50</span>,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">100</span>  ## Outlier!
+<span class="kw">plot</span>(testdat$x, testdat$y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="dv">3</span>,<span class="dv">3</span>))</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(testdat, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y))
+g +<span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g +<span class="st"> </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">ylim</span>(-<span class="dv">3</span>, <span class="dv">3</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g +<span class="st"> </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="dv">3</span>, <span class="dv">3</span>))</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+</div>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">7.2</span> ggplot2+地圖</h2>
+<div id="choropleth-map" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Choropleth map</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Choropleth_map">面量圖</a></li>
+<li>把統計資料用顏色畫在對應的地圖上</li>
+<li><code>choroplethr</code> package</li>
+<li>基於<code>ggplot2</code> package所做的專門畫<code>面量圖</code>的工具</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;choroplethr&#39;</span>)){
+    <span class="kw">install.packages</span>(<span class="st">&quot;choroplethr&quot;</span>)
+    <span class="kw">library</span>(choroplethr)
+}</code></pre></div>
+<p>美國各州人口分布 用到<code>choroplethr</code> package, 記得先讀入 <code>choroplethrMaps</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(df_pop_state) <span class="co">#記載各州人口數的資料</span>
+<span class="kw">state_choropleth</span>(df_pop_state) <span class="co">#把各州人口畫在地圖上</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(continental_us_states)
+<span class="kw">state_choropleth</span>(df_pop_state,<span class="dt">reference_map =</span> <span class="ot">TRUE</span>,
+                 <span class="dt">zoom=</span> continental_us_states) <span class="co">#把各州人口畫在地圖上</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p>世界人口分布 用<code>choroplethr</code> package畫地圖，資料來自<code>WDI</code> package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;WDI&#39;</span>)){
+    <span class="kw">install.packages</span>(<span class="st">&quot;WDI&quot;</span>)
+    <span class="kw">library</span>(WDI)
+}
+<span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.POP.TOTL&quot;</span>, <span class="dt">year=</span><span class="dv">2014</span>, 
+                <span class="dt">title=</span><span class="st">&quot;2016 Population&quot;</span>, <span class="dt">num_colors=</span><span class="dv">1</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>世界平均壽命分布</p>
+<ul>
+<li>用<code>choroplethr</code> package畫地圖，資料來自<code>WDI</code> package</li>
+<li><code>WDI</code>: <a href="http://beta.data.worldbank.org/">World Development Indicators</a>有許多開放資料可參考</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="dt">year=</span><span class="dv">2014</span>, 
+                <span class="dt">title=</span><span class="st">&quot;2014 Life Expectancy&quot;</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>亞洲太平洋人口分布</p>
+<ul>
+<li>用<code>choroplethr</code> package畫地圖，資料來自<code>WDI</code> package</li>
+<li><code>WDI</code>: <a href="http://beta.data.worldbank.org/">World Development Indicators</a></li>
+<li>zoom，只畫這些國家，名字要和country.regions資料完全吻合</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.POP.TOTL&quot;</span>, <span class="dt">year=</span><span class="dv">2014</span>, 
+                <span class="dt">title=</span><span class="st">&quot;2014 Life Expectancy&quot;</span>,
+                <span class="dt">zoom=</span><span class="kw">c</span>(<span class="st">&#39;taiwan&#39;</span>,<span class="st">&#39;japan&#39;</span>,<span class="st">&#39;south korea&#39;</span>,<span class="st">&#39;philippines&#39;</span>))</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+</div>
+<div id="ggmap" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> ggmap</h3>
+<p>install.packages(“ggmap”, type = “source”) 把google map載入</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
+if (!<span class="kw">require</span>(<span class="st">&#39;ggmap&#39;</span>)){
+    <span class="kw">install.packages</span>(<span class="st">&quot;ggmap&quot;</span>)
+    <span class="kw">library</span>(ggmap)
+}
+twmap &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="dt">location =</span> <span class="st">&#39;Taiwan&#39;</span>, <span class="dt">zoom =</span> <span class="dv">7</span>,<span class="dt">language =</span> <span class="st">&quot;zh-TW&quot;</span>)
+<span class="co">#location:可以是地名，也可以是經緯度座標</span>
+<span class="co">#zoom:放大比例</span>
+<span class="co">#language:地圖語言</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggmap</span>(twmap) <span class="co">#基於ggplot2物件，可用相同方式處理</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<p>ggmap實際應用範例-1 台北市水質地圖，資料處理部分</p>
+<p><a href="http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927" class="uri">http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
+WaterData&lt;-<span class="kw">fromJSON</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span>)
+WaterDataFrame&lt;-WaterData$result$results
+WaterDataFrame$longitude&lt;-<span class="kw">as.numeric</span>(WaterDataFrame$longitude)
+WaterDataFrame$latitude&lt;-<span class="kw">as.numeric</span>(WaterDataFrame$latitude)
+WaterDataFrame$qua_cntu&lt;-<span class="kw">as.numeric</span>(WaterDataFrame$qua_cntu)</code></pre></div>
+<p>台北市水質地圖，畫圖部分</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggmap)
+TaipeiMap =<span class="st"> </span><span class="kw">get_map</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="fl">121.43</span>,<span class="fl">24.93</span>,<span class="fl">121.62</span>,<span class="fl">25.19</span>), 
+                    <span class="dt">zoom =</span> <span class="dv">11</span>, <span class="dt">maptype =</span> <span class="st">&#39;roadmap&#39;</span>)
+TaipeiMapO =<span class="st"> </span><span class="kw">ggmap</span>(TaipeiMap)+<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">data=</span><span class="kw">subset</span>(WaterDataFrame,qua_cntu&gt;=<span class="dv">0</span>), 
+               <span class="kw">aes</span>(<span class="dt">x=</span>longitude, <span class="dt">y=</span>latitude,<span class="dt">color=</span>qua_cntu,<span class="dt">size=</span><span class="fl">3.5</span>))+<span class="st"> </span>
+<span class="st">    </span><span class="kw">scale_color_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;yellow&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;red&quot;</span>)+<span class="st"> </span>
+<span class="st">    </span><span class="kw">guides</span>(<span class="dt">size=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>台北市水質地圖，畫圖部分</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TaipeiMapO</code></pre></div>
+</div>
+</div>
+<div id="taiwan" class="section level2">
+<h2><span class="header-section-number">7.3</span> Taiwan的面量圖</h2>
+<ul>
+<li>使用<code>rgdal</code>, <code>rgeos</code>,<code>maptools</code> package處理地圖檔</li>
+<li>使用<code>ggplot2</code> &amp; <code>RColorBrewer</code> 畫圖</li>
+</ul>
+<div id="taiwan-1" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Taiwan的面量圖</h3>
+<ul>
+<li>用台灣的Open Data來畫一次</li>
+<li>還沒有好用的package可用</li>
+<li>只好自己從頭來了</li>
+<li>下載台灣的地圖資料 <a href="http://data.gov.tw/node/7441">政府資料開放平台</a></li>
+<li>鄉鎮市區界線(TWD97經緯度)</li>
+<li>將下載的<code>資料夾</code>解壓縮，放到專案資料夾內</li>
+<li>in <code>shapefile</code> <a href="https://zh.wikipedia.org/zh-tw/Shapefile">Wiki</a></li>
+<li>空間資料開放格式</li>
+<li><a href="http://www.r-bloggers.com/mapping-with-ggplot-create-a-nice-choropleth-map-in-r/">參考資料</a></li>
+</ul>
+<p>將shapefile讀入R</p>
+<p>使用<code>maptools</code> package 的<code>readShapeSpatial</code> function</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;rgdal&#39;</span>)){<span class="co">#for fortify()</span>
+    <span class="kw">install.packages</span>(<span class="st">&quot;rgdal&quot;</span>);<span class="kw">library</span>(rgdal)
+}
+if (!<span class="kw">require</span>(<span class="st">&#39;rgeos&#39;</span>)){<span class="co">#for fortify()</span>
+    <span class="kw">install.packages</span>(<span class="st">&quot;rgeos&quot;</span>);<span class="kw">library</span>(rgeos) 
+}
+if (!<span class="kw">require</span>(<span class="st">&#39;maptools&#39;</span>)){<span class="co">#for readShapeSpatial()</span>
+    <span class="kw">install.packages</span>(<span class="st">&quot;maptools&quot;</span>);<span class="kw">library</span>(maptools) 
+}
+tw_new &lt;-<span class="st"> </span><span class="kw">readShapeSpatial</span>(<span class="st">&quot;Taiwan/Town_MOI_1041215.shp&quot;</span>) <span class="co">#檔名</span>
+<span class="kw">names</span>(tw_new)</code></pre></div>
+<p>處理shapefile-1 - 需要<code>rgdal</code>, <code>rgeos</code>,<code>maptools</code> - fortify: 將<code>shapefile</code>物件轉為<code>data.frame</code> - <a href="http://www.r-bloggers.com/mapping-with-ggplot-create-a-nice-choropleth-map-in-r/">參考資料</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) <span class="co">#for fortify(), ggplot(), ggmap()</span>
+<span class="kw">head</span>(tw_new$Town_ID)
+tw_new.df &lt;-<span class="st"> </span><span class="kw">fortify</span>(tw_new, <span class="dt">region =</span> <span class="st">&quot;T_UID&quot;</span>) <span class="co">#from ggplot2 package</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(tw_new.df,<span class="dv">10</span>)</code></pre></div>
+<p>做一個假資料來畫：著色基準檔</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#做一個假資料來畫</span>
+<span class="co">#prevalence設為亂數rnorm(需要的亂數個數)</span>
+mydata&lt;-<span class="kw">data.frame</span>(<span class="dt">NAME_2=</span>tw_new$T_Name, <span class="dt">id=</span>tw_new$T_UID,
+                   <span class="dt">prevalence=</span><span class="kw">rnorm</span>(<span class="kw">length</span>(tw_new$T_UID)))
+<span class="kw">head</span>(mydata)</code></pre></div>
+<p>中文編碼</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#利用iconv將不知所以然的代碼（\xa6\xa8\xa5\\\xc2\xed）轉為看得懂的中文</span>
+<span class="co">#from big5 to utf-8</span>
+mydata$NAME_2&lt;-<span class="kw">iconv</span>(<span class="kw">as.character</span>(mydata$NAME_2), <span class="co">#NAME_2原本是factor</span>
+                     <span class="dt">from=</span><span class="st">&quot;big5&quot;</span>, <span class="dt">to =</span> <span class="st">&quot;UTF-8&quot;</span>)
+<span class="kw">head</span>(mydata,<span class="dv">10</span>)</code></pre></div>
+<p>合併的圖檔與著色基準檔</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#最後將有prevalence的假數據mydata和經緯度資料tw_new.df合併, 用merge()</span>
+final.plot&lt;-<span class="kw">merge</span>(tw_new.df,mydata,<span class="dt">by=</span><span class="st">&quot;id&quot;</span>,<span class="dt">all.x=</span>T)
+<span class="kw">head</span>(final.plot,<span class="dv">10</span>)</code></pre></div>
+<p>畫台灣面量圖-1</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RColorBrewer) <span class="co">#配色用brewer.pal( 9 , &quot;Reds&quot; )</span>
+twcmap&lt;-<span class="kw">ggplot</span>() +
+<span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> final.plot, 
+                 <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, 
+                     <span class="dt">fill =</span> prevalence), 
+                 <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.25</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">coord_map</span>()+<span class="co">#維持地圖比例</span>
+<span class="st">    </span><span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> <span class="kw">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;Reds&quot;</span>))+
+<span class="st">    </span><span class="kw">theme_void</span>()+
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Prevalence of X in Taiwan&quot;</span>)</code></pre></div>
+<p>畫台灣面量圖-2</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">twcmap</code></pre></div>
+<p>使用google map <code>ggmap</code> package <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;ggmap&#39;</span>)){
+    <span class="kw">install.packages</span>(<span class="st">&quot;ggmap&quot;</span>)
+    <span class="kw">library</span>(ggmap)<span class="co">#for get_map()</span>
+}
+twmap &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="dt">location =</span> <span class="st">&#39;Taiwan&#39;</span>, <span class="dt">zoom =</span> <span class="dv">7</span>,<span class="dt">language =</span> <span class="st">&quot;zh-TW&quot;</span>)
+<span class="co">#location:可以是地名，也可以是經緯度座標</span>
+<span class="co">#zoom:放大比例 2-20</span>
+<span class="co">#language:地圖語言</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggmap</span>(twmap) <span class="co">#基於ggplot2物件，可用相同方式處理</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p>ggmap，maptype</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#maptype:地圖型態，&quot;terrain&quot;, &quot;terrain-background&quot;, &quot;satellite&quot;,</span>
+<span class="co"># &quot;roadmap&quot;,&quot;hybrid&quot; (google maps), &quot;terrain&quot;, &quot;watercolor&quot;, </span>
+<span class="co"># &quot;toner&quot; (stamen maps), </span>
+<span class="co"># or a positive integer for cloudmade maps (see ?get_cloudmademap)</span>
+TaipeiMap =<span class="st"> </span><span class="kw">get_map</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="fl">121.43</span>,<span class="fl">24.93</span>,<span class="fl">121.62</span>,<span class="fl">25.19</span>), 
+                    <span class="dt">zoom =</span> <span class="dv">14</span>, <span class="dt">maptype =</span> <span class="st">&#39;roadmap&#39;</span>)
+<span class="kw">ggmap</span>(TaipeiMap,<span class="dt">extent =</span> <span class="st">&#39;device&#39;</span>) <span class="co">#extent = &#39;device&#39; 滿版</span></code></pre></div>
+<p>ggmap+面量圖</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggmap</span>(twmap)+<span class="st"> </span><span class="co">#ggmap</span>
+<span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> final.plot,  <span class="co">#面量圖</span>
+        <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> prevalence), 
+        <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>,<span class="dt">alpha =</span> <span class="fl">0.5</span>) +<span class="st"> </span>
+<span class="kw">scale_fill_gradientn</span>(<span class="dt">colours =</span> <span class="kw">brewer.pal</span>(<span class="dv">9</span>,<span class="st">&quot;Reds&quot;</span>))</code></pre></div>
+<p>Density Map? 美國人口密度圖 <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>使用 <code>ggplot2</code> + <code>ggmap</code> 來畫人口密度圖 - 資料前處理1</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#取得美國各州中心座標資料</span>
+StateCenter&lt;-<span class="kw">data.frame</span>( 
+    <span class="dt">region=</span><span class="kw">tolower</span>(state.name),<span class="dt">lon=</span>state.center$x,<span class="dt">lat=</span>state.center$y)
+<span class="kw">head</span>(StateCenter,<span class="dv">1</span>)</code></pre></div>
+<pre><code>##    region    lon   lat
+## 1 alabama -86.75 32.59</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#美國各州人口資料</span>
+StatePop&lt;-<span class="kw">merge</span>(df_pop_state,StateCenter,<span class="dt">by=</span><span class="st">&quot;region&quot;</span>) 
+<span class="kw">head</span>(StatePop,<span class="dv">1</span>)</code></pre></div>
+<pre><code>##    region   value    lon   lat
+## 1 alabama 4777326 -86.75 32.59</code></pre>
+<p>使用 <code>ggplot2</code> + <code>ggmap</code> 來畫人口密度圖 - 資料前處理2</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#將人口數值，轉為點！重要！</span>
+PopPoint&lt;-<span class="ot">NULL</span> 
+for(i in <span class="dv">1</span>:<span class="kw">nrow</span>(StatePop)){
+    <span class="co">#每100萬人轉為1點</span>
+    for(j in <span class="dv">1</span>:(StatePop[i,<span class="st">&quot;value&quot;</span>]/<span class="dv">1000000</span>)){
+        PopPoint&lt;-<span class="kw">rbind</span>(PopPoint,StatePop[i,])   
+    }
+}
+<span class="kw">head</span>(PopPoint,<span class="dv">3</span>)</code></pre></div>
+<pre><code>##    region   value    lon   lat
+## 1 alabama 4777326 -86.75 32.59
+## 2 alabama 4777326 -86.75 32.59
+## 3 alabama 4777326 -86.75 32.59</code></pre>
+<p>使用 <code>ggplot2</code> + <code>ggmap</code> 來畫人口密度圖 - 作圖</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">USMap &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class="dt">location =</span> <span class="st">&quot;United States&quot;</span>, <span class="dt">zoom =</span> <span class="dv">4</span>)
+densityMap&lt;-<span class="kw">ggmap</span>(USMap, <span class="dt">extent =</span> <span class="st">&quot;device&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_density2d</span>(<span class="dt">data =</span> PopPoint, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat), <span class="dt">size =</span> <span class="fl">0.3</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">stat_density2d</span>(<span class="dt">data =</span> PopPoint, 
+            <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat, <span class="dt">fill =</span> ..level.., <span class="dt">alpha =</span> ..level..), 
+                <span class="dt">size =</span> <span class="fl">0.01</span>, <span class="dt">bins =</span> <span class="dv">16</span>, <span class="dt">geom =</span> <span class="st">&quot;polygon&quot;</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">guide =</span> <span class="ot">FALSE</span>) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">scale_alpha</span>(<span class="dt">range =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.3</span>), <span class="dt">guide =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>美國人口密度圖 Density Map</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">densityMap</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>ggmap參考資料 - <a href="https://github.com/dkahle/ggmap">ggmap package source code</a> - <a href="https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/ggmap/ggmapCheatsheet.pdf">ggmap cheat sheet</a> - <a href="https://dl.dropboxusercontent.com/u/24648660/ggmap%20useR%202012.pdf">ggmap doc</a></p>
+</div>
+<div id="heatmap-" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Heatmap 先將資料讀入</h3>
+<p><a href="http://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/">參考資料</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#讀.csv檔案</span>
+nba &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://datasets.flowingdata.com/ppg2008.csv&quot;</span>)
+<span class="kw">head</span>(nba)</code></pre></div>
+<pre><code>##             Name  G  MIN  PTS  FGM  FGA   FGP FTM FTA   FTP X3PM X3PA  X3PP ORB
+## 1   Dwyane Wade  79 38.6 30.2 10.8 22.0 0.491 7.5 9.8 0.765  1.1  3.5 0.317 1.1
+## 2  LeBron James  81 37.7 28.4  9.7 19.9 0.489 7.3 9.4 0.780  1.6  4.7 0.344 1.3
+## 3   Kobe Bryant  82 36.2 26.8  9.8 20.9 0.467 5.9 6.9 0.856  1.4  4.1 0.351 1.1
+## 4 Dirk Nowitzki  81 37.7 25.9  9.6 20.0 0.479 6.0 6.7 0.890  0.8  2.1 0.359 1.1
+## 5 Danny Granger  67 36.2 25.8  8.5 19.1 0.447 6.0 6.9 0.878  2.7  6.7 0.404 0.7
+## 6  Kevin Durant  74 39.0 25.3  8.9 18.8 0.476 6.1 7.1 0.863  1.3  3.1 0.422 1.0
+##   DRB TRB AST STL BLK  TO  PF
+## 1 3.9 5.0 7.5 2.2 1.3 3.4 2.3
+## 2 6.3 7.6 7.2 1.7 1.1 3.0 1.7
+## 3 4.1 5.2 4.9 1.5 0.5 2.6 2.3
+## 4 7.3 8.4 2.4 0.8 0.8 1.9 2.2
+## 5 4.4 5.1 2.7 1.0 1.4 2.5 3.1
+## 6 5.5 6.5 2.8 1.3 0.7 3.0 1.8</code></pre>
+<p>Heatmap 資料處理，寬表轉長表</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2) <span class="co">#for melt()</span>
+nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba,<span class="dt">id.vars =</span> <span class="st">&quot;Name&quot;</span>) <span class="co">#寬表轉長表,以名字作依據</span>
+<span class="kw">head</span>(nba.m,<span class="dv">10</span>)</code></pre></div>
+<pre><code>##                Name variable value
+## 1      Dwyane Wade         G    79
+## 2     LeBron James         G    81
+## 3      Kobe Bryant         G    82
+## 4    Dirk Nowitzki         G    81
+## 5    Danny Granger         G    67
+## 6     Kevin Durant         G    74
+## 7     Kevin Martin         G    51
+## 8     Al Jefferson         G    50
+## 9       Chris Paul         G    78
+## 10 Carmelo Anthony         G    66</code></pre>
+<p>Heatmap geom_tile()</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2) <span class="co">#for ggplot()</span>
+<span class="kw">ggplot</span>(nba.m, <span class="kw">aes</span>(variable, Name)) +<span class="st"> </span><span class="co">#aes(x,y)</span>
+<span class="st">    </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> value),<span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>)+<span class="st"> </span><span class="co">#geom_tile: 區塊著色</span>
+<span class="st">    </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="co">#數值低：白色</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p>Heatmap 資料前處理：scale</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(nba,<span class="dv">2</span>)</code></pre></div>
+<pre><code>##            Name  G  MIN  PTS  FGM  FGA   FGP FTM FTA   FTP X3PM X3PA  X3PP ORB
+## 1  Dwyane Wade  79 38.6 30.2 10.8 22.0 0.491 7.5 9.8 0.765  1.1  3.5 0.317 1.1
+## 2 LeBron James  81 37.7 28.4  9.7 19.9 0.489 7.3 9.4 0.780  1.6  4.7 0.344 1.3
+##   DRB TRB AST STL BLK  TO  PF
+## 1 3.9 5.0 7.5 2.2 1.3 3.4 2.3
+## 2 6.3 7.6 7.2 1.7 1.1 3.0 1.7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nba[,<span class="dv">2</span>:<span class="dv">21</span>]&lt;-<span class="kw">apply</span>(nba[,<span class="dv">2</span>:<span class="dv">21</span>], <span class="dv">2</span>, scale) <span class="co">#scale處理，將數值轉為平均=0</span>
+<span class="kw">head</span>(nba,<span class="dv">2</span>)</code></pre></div>
+<pre><code>##            Name      G    MIN   PTS   FGM   FGA    FGP   FTM   FTA     FTP
+## 1  Dwyane Wade  0.6179 1.0020 3.180 2.920 2.597 0.5136 1.917 2.111 -0.7402
+## 2 LeBron James  0.7694 0.6119 2.567 1.957 1.697 0.4649 1.779 1.897 -0.5233
+##     X3PM   X3PA     X3PP      ORB     DRB     TRB   AST   STL    BLK   TO
+## 1 -0.108 0.1304 -0.15749 -0.27214 -0.3466 -0.3287 1.652 2.558 1.2065 1.79
+## 2  0.492 0.6972  0.02739 -0.06118  1.0081  0.6605 1.516 1.367 0.8627 1.06
+##        PF
+## 1 -0.2985
+## 2 -1.3904</code></pre>
+<p>apply() 還記得嗎…. 有類似for迴圈的功能</p>
+<ul>
+<li>apply(Data, MARGIN, FUN,…)
+<ul>
+<li>Data：矩陣（Matrix），Data Frame</li>
+<li>MARGIN：1=row, 2=column</li>
+<li>FUN：函數</li>
+<li>…：函數要用的參數</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co">#針對nba的各column做scale處理--&gt;將數值轉為平均=0</span>
+<span class="kw">apply</span>(nba[,<span class="dv">2</span>:<span class="dv">21</span>], <span class="dv">2</span>, scale)</code></pre></div>
+<pre><code>##              G       MIN      PTS      FGM      FGA      FGP      FTM      FTA
+##  [1,]  0.61793  1.001970  3.17994  2.92002  2.59683  0.51360  1.91748  2.11077
+##  [2,]  0.76938  0.611930  2.56697  1.95719  1.69724  0.46492  1.77873  1.89659
+##  [3,]  0.84511 -0.038137  2.02211  2.04472  2.12562 -0.07059  0.80750  0.55795
+##  [4,]  0.76938  0.611930  1.71563  1.86965  1.74007  0.22151  0.87688  0.45085
+##  [5,] -0.29079 -0.038137  1.68158  0.90682  1.35453 -0.55742  0.87688  0.55795
+##  [6,]  0.23930  1.175321  1.51131  1.25694  1.22602  0.14848  0.94625  0.66504
+##  [7,] -1.50242  0.828619  1.27293 -0.66873 -0.01628 -1.21463  2.95807  2.37850
+##  [8,] -1.57814  0.135214  0.76212  1.95719  1.52589  0.65965 -0.71871 -0.45942
+##  [9,]  0.54220  0.958632  0.65996  0.55669  0.06940  0.80570  0.73813  0.45085
+## [10,] -0.36652 -0.774880  0.65996  0.55669  1.01183 -0.65478  0.59938  0.66504
+## [11,]  0.46648  0.785281  0.62591  0.46916  0.19791  0.41624  1.22374  1.14695
+## [12,]  0.54220  0.395241  0.59185  0.55669  0.41210  0.24585  0.39126  0.34376
+## [13,]  0.76938  0.828619  0.45564  0.73176  0.79764 -0.04625 -0.37184 -0.13815
+## [14,]  0.08784 -0.948231  0.38753  1.25694  0.66913  0.87872 -0.57996 -0.45942
+## [15,] -1.35096  0.221890  0.18321  0.11904 -0.78736  1.68198  0.94625  0.77213
+## [16,]  0.61793  1.392011  0.18321  0.29410  0.88332 -0.80083 -0.64933 -0.67361
+## [17,] -0.13934 -0.081475  0.14916 -0.75626 -0.35898 -0.77649  1.70936  1.57531
+## [18,] -2.86550  0.048538  0.11510  0.03151  0.28359 -0.36269 -0.51059 -0.51297
+## [19,]  0.39075  1.305335  0.04699  0.46916  0.45494  0.05112  0.04440 -0.19169
+## [20,] -1.57814 -0.514853 -0.02111  0.73176  0.66913  0.12414 -0.78808 -0.51297
+## [21,] -0.29079  1.001970 -0.02111 -0.14355  0.11224 -0.41137  0.25252  0.07603
+## [22,]  0.69366  0.221890 -0.02111 -0.05602  0.36926 -0.80083 -0.37184 -0.40588
+## [23,] -0.89660  1.478686 -0.05517 -0.40614  0.41210 -1.36068  0.18315  0.07603
+## [24,]  0.84511  0.135214 -0.05517 -0.14355  0.02656 -0.36269 -0.51059 -0.62006
+## [25,]  0.61793 -0.254826 -0.08922 -0.31861 -1.51560  2.48525  1.15437  2.59268
+## [26,]  0.76938  0.481916 -0.12327 -0.66873 -0.57317 -0.31400  0.66876  0.50440
+## [27,]  0.16357 -0.601529 -0.25949 -0.14355  0.28359 -0.75215 -1.06557 -0.99488
+## [28,] -0.44224  0.785281 -0.39570 -0.93133 -0.10195 -1.45804 -0.09435 -0.29879
+## [29,]  0.46648 -1.164920 -0.39570 -0.05602 -1.08723  1.90106  0.11377 -0.08460
+## [30,]  0.84511 -0.168151 -0.42976 -0.84380 -0.44466 -0.75215  0.25252  0.23667
+## [31,]  0.23930 -1.164920 -0.42976 -0.14355 -0.05912 -0.16796 -1.41244 -1.53034
+## [32,] -0.21506  0.265227 -0.49787 -0.58120 -0.61601  0.02678  0.04440 -0.13815
+## [33,]  0.31502 -1.121583 -0.53192 -0.05602 -0.48750  0.83004 -0.16372  0.29022
+## [34,] -3.47131 -0.298164 -0.63408  0.29410  0.54061 -0.46005 -1.13495 -1.10197
+## [35,]  0.61793  0.438579 -0.66814 -0.23108  0.02656 -0.41137 -0.99620 -0.78070
+## [36,]  0.76938  0.351903 -0.66814 -0.14355 -1.30141  2.36354 -0.37184 -0.24524
+## [37,]  0.84511  1.522024 -0.70219 -0.75626 -0.83020  0.07546 -0.09435  0.29022
+## [38,] -1.50242 -2.248366 -0.77030 -1.54404 -1.51560 -0.21664  1.36249  1.20049
+## [39,]  0.84511  0.741943 -0.80435 -0.49367 -0.14479 -0.77649 -1.20432 -1.31615
+## [40,]  0.61793  0.525254 -0.87246 -0.84380 -0.91587  0.05112 -0.78808 -0.78070
+## [41,] -0.29079 -0.991569 -0.87246 -0.40614 -0.14479 -0.55742 -0.99620 -1.04843
+## [42,]  0.61793  0.005201 -0.90651 -1.01886 -1.17290  0.24585 -1.20432 -1.42325
+## [43,]  0.76938  0.351903 -0.94057 -0.05602 -0.27331  0.34321 -1.06557 -0.94133
+## [44,] -1.42669 -1.901663 -0.97462 -0.58120 -0.35898 -0.46005 -0.99620 -0.88779
+## [45,]  0.76938 -0.558191 -1.04273 -0.84380 -0.87304 -0.07059 -1.48181 -1.63743
+## [46,]  0.31502 -2.681744 -1.04273 -0.58120 -2.02966  3.38588 -0.44121  0.55795
+## [47,]  0.61793 -0.038137 -1.07678 -1.19392 -0.91587 -0.75215 -1.34307 -1.31615
+## [48,]  0.61793 -0.428178 -1.07678 -1.98169 -1.51560 -1.26331  0.39126 -0.03106
+## [49,] -1.04806  0.178552 -1.14489 -1.19392 -0.57317 -1.28766  0.04440  0.12958
+## [50,]  0.23930 -2.768420 -1.24705 -1.19392 -0.87304 -0.80083 -0.92683 -0.99488
+##            FTP   X3PM     X3PA     X3PP      ORB      DRB     TRB      AST
+##  [1,] -0.74017 -0.108  0.13036 -0.15749 -0.27214 -0.34657 -0.3287  1.65225
+##  [2,] -0.52332  0.492  0.69717  0.02739 -0.06118  1.00809  0.6605  1.51615
+##  [3,]  0.57536  0.252  0.41377  0.07532 -0.27214 -0.23368 -0.2526  0.47272
+##  [4,]  1.06688 -0.468 -0.53091  0.13010 -0.27214  1.57254  0.9649 -0.66144
+##  [5,]  0.89341  1.812  1.64184  0.43824 -0.69405 -0.06435 -0.2907 -0.52534
+##  [6,]  0.67656  0.132 -0.05857  0.56149 -0.37761  0.55654  0.2420 -0.47998
+##  [7,]  0.73438  1.332  1.02780  0.51356 -0.79953 -0.85457 -0.8614 -0.52534
+##  [8,] -1.13049 -1.428 -1.47558 -2.32813  2.15388  1.68542  1.9542 -1.02437
+##  [9,]  0.74884 -0.468 -0.43644  0.16434 -0.48309  0.10499 -0.1385  3.24007
+## [10,] -0.33539 -0.228 -0.29474  0.21227  0.25526  0.38721  0.3561 -0.20778
+## [11,]  0.01157 -1.188 -1.23941 -0.65051  1.52101  1.51609  1.5737 -0.61608
+## [12,]  0.11276 -0.108 -0.20027  0.25336 -0.06118 -0.62879 -0.4429  0.56345
+## [13,] -0.89919  0.252  0.31930  0.07532  1.09909  1.12098  1.1552 -0.88828
+## [14,] -0.49441 -1.068 -1.09771 -0.32868 -1.01049 -1.02390 -1.0517  1.38005
+## [15,]  0.27178 -1.308 -1.47558  0.60942  0.88813  0.78232  0.8508 -0.84291
+## [16,]  0.14167  0.852  0.93334  0.13695 -0.58857 -0.51590 -0.5570  0.88102
+## [17,]  0.05493 -0.348 -0.01134 -0.33552 -1.01049 -0.91101 -0.9756  1.38005
+## [18,] -0.03180  1.092  1.21674  0.17803 -0.69405 -1.13679 -1.0136 -0.52534
+## [19,]  0.98014 -1.308 -1.38111 -0.68474  0.78265  1.06454  1.0030 -0.70681
+## [20,] -1.18832 -0.708 -0.62537 -0.06847  1.83744  1.34676  1.6118 -0.79754
+## [21,]  0.60428 -0.228 -0.05857 -0.20542  0.46622 -0.06435  0.1278  0.20052
+## [22,]  0.01157  0.852  0.79164  0.30813 -0.48309 -0.17723 -0.2907  0.38199
+## [23,]  0.14167  0.612  0.93334 -0.01369 -0.16666 -0.34657 -0.2907  1.19858
+## [24,]  0.69102  1.092  0.88610  0.47932 -0.79953 -0.96745 -0.8995 -0.20778
+## [25,] -3.21221 -1.428 -1.52281 -2.32813  3.10319  2.87075  3.0196 -1.11511
+## [26,]  0.19950  0.372  0.27207  0.34922 -0.69405  0.27432 -0.1005 -0.11705
+## [27,] -0.33539  1.332  1.50014  0.16434  0.04430  0.21787  0.1278 -1.11511
+## [28,]  0.80667  1.212  1.35844  0.13695 -1.01049 -1.08034 -1.0897  0.24589
+## [29,]  0.71993 -1.428 -1.52281  4.51931  1.31005  1.51609  1.5357 -0.93364
+## [30,] -0.16191  0.252  0.17760  0.39030 -0.69405 -0.34657 -0.4809 -0.66144
+## [31,]  0.92232  1.332  1.40567  0.17803 -0.90501 -1.47545 -1.3180 -0.20778
+## [32,]  0.47417 -0.228  0.03590 -0.20542 -1.01049 -1.13679 -1.1278  3.10397
+## [33,] -1.79548 -1.428 -1.52281 -2.32813  1.41553  1.96765  1.8401 -0.16241
+## [34,]  0.19950 -1.068 -1.05048 -0.21912 -0.79953 -0.40301 -0.5951 -0.07168
+## [35,] -0.71125 -0.108 -0.05857  0.07532  0.04430 -0.17723 -0.1385 -0.97901
+## [36,] -0.50887 -1.428 -1.52281  1.09559  1.94292  1.06454  1.4215 -0.16241
+## [37,] -1.33288 -0.228 -0.01134 -0.22597 -0.27214  0.04854 -0.0624  0.65418
+## [38,]  0.11276 -0.828 -0.62537 -0.59573 -0.37761  0.04854 -0.1385 -0.93364
+## [39,]  0.90786  0.732  0.64993  0.30129 -0.69405 -0.79812 -0.7853 -0.29851
+## [40,]  0.19950  0.492  0.27207  0.52725 -0.69405 -0.57234 -0.6331 -0.29851
+## [41,]  0.45971 -0.228 -0.20027  0.19173 -0.69405 -1.19323 -1.0517  0.24589
+## [42,]  1.96318  1.572  1.40567  0.47247 -0.58857 -1.02390 -0.8995 -0.47998
+## [43,] -0.50887 -1.308 -1.38111 -0.61627  1.62648  0.04854  0.6225 -0.88828
+## [44,] -0.49441 -0.108 -0.01134  0.03424 -0.27214 -0.34657 -0.2907 -1.02437
+## [45,]  1.38492  1.332  0.93334  0.65735 -0.79953 -0.91101 -0.9375  0.10979
+## [46,] -3.19775 -1.428 -1.52281 -2.32813  1.20457  0.78232  0.9649 -0.97901
+## [47,]  0.28624  1.932  1.78354  0.39030 -0.16666  0.04854 -0.0624 -0.57071
+## [48,]  1.39938  1.092  0.83887  0.46563 -1.01049 -1.08034 -1.0897  1.15322
+## [49,] -0.50887 -0.828 -0.71984 -0.39030 -0.90501 -1.13679 -1.0897  0.51809
+## [50,]  0.35852  0.612  0.93334 -0.10271 -0.06118 -1.08034 -0.7473  0.10979
+##            STL       BLK       TO       PF
+##  [1,]  2.55824  1.206465  1.79045 -0.29846
+##  [2,]  1.36725  0.862742  1.05965 -1.39037
+##  [3,]  0.89086 -0.168424  0.32886 -0.29846
+##  [4,] -0.77652  0.347159 -0.95003 -0.48044
+##  [5,] -0.30013  1.378326  0.14616  1.15743
+##  [6,]  0.41446  0.175298  1.05965 -1.20839
+##  [7,]  0.17627 -0.684007  0.87695 -0.29846
+##  [8,] -0.77652  1.893909 -1.13273  0.61147
+##  [9,]  3.98742 -0.855868  1.05965  0.42949
+## [10,] -0.06193 -0.340285  1.05965  0.97544
+## [11,] -0.53833  0.690881 -0.21924  0.06551
+## [12,] -0.06193 -0.512146 -0.95003 -1.57236
+## [13,]  0.17627 -0.512146 -1.68083  0.42949
+## [14,] -0.53833 -0.855868  0.32886 -1.75434
+## [15,] -0.53833  0.862742  0.69425  1.15743
+## [16,] -0.06193 -0.684007  0.14616 -0.48044
+## [17,]  1.36725 -0.684007  1.24235 -0.11647
+## [18,] -0.06193 -0.855868 -1.49813 -1.93633
+## [19,] -1.25292  0.519020 -0.58464  0.42949
+## [20,] -0.53833 -0.512146 -0.21924  0.42949
+## [21,]  1.12905 -0.512146  1.24235  0.06551
+## [22,] -0.30013 -0.168424 -0.58464  0.79346
+## [23,]  0.89086 -0.168424  2.70394  0.24750
+## [24,] -0.53833 -0.512146 -0.03654 -0.48044
+## [25,] -0.30013  3.956241  1.05965  1.70339
+## [26,] -0.30013 -0.512146  0.69425  0.42949
+## [27,]  0.17627 -0.512146 -0.40194  1.15743
+## [28,] -0.53833 -0.684007 -0.21924 -1.93633
+## [29,] -1.72931  2.237631  1.05965  1.52140
+## [30,] -0.77652 -0.684007 -0.76733  1.15743
+## [31,]  0.41446 -0.512146 -1.49813 -1.02640
+## [32,] -0.06193 -0.512146  1.79045 -0.84441
+## [33,] -1.49111  1.893909 -0.40194 -0.29846
+## [34,]  1.12905 -0.512146  0.51156  0.42949
+## [35,]  0.17627  0.175298  0.32886  0.61147
+## [36,] -1.25292  0.690881 -0.95003 -0.66243
+## [37,]  1.12905 -0.340285  0.51156 -1.02640
+## [38,] -0.53833 -0.684007 -0.03654  2.43133
+## [39,] -0.06193 -0.684007  0.69425  0.06551
+## [40,] -0.06193 -0.512146 -0.58464 -0.29846
+## [41,] -1.25292 -0.855868 -0.76733  0.24750
+## [42,] -0.53833 -0.684007 -1.31543 -0.84441
+## [43,] -0.30013  0.690881 -1.68083  0.24750
+## [44,] -0.06193  0.003437 -1.31543  0.24750
+## [45,] -0.53833 -0.855868 -0.40194  0.42949
+## [46,] -1.01472  1.378326 -0.40194  1.70339
+## [47,] -0.30013  0.003437 -0.76733  0.06551
+## [48,]  0.17627 -0.684007 -0.40194 -0.84441
+## [49,]  0.89086 -0.855868  0.32886 -1.75434
+## [50,]  0.41446 -0.855868 -0.95003  0.61147</code></pre>
+<p>Heatmap 資料前處理：scale</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba)
+<span class="kw">ggplot</span>(nba.m, <span class="kw">aes</span>(variable, Name)) +<span class="st"> </span><span class="co">#aes(x,y)</span>
+<span class="st">    </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> value),<span class="dt">colour =</span> <span class="st">&quot;white&quot;</span>)+<span class="st"> </span><span class="co">#geom_tile: 區塊著色</span>
+<span class="st">    </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="co">#數值低：白色</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+</div>
+<div id="treemap" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Treemap</h3>
+<p>需要<code>treemapify</code> packages <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<p>Treemap -資料處理 - 需要<code>treemapify</code> packages - <a href="https://github.com/wilkox/treemapify">參考資料</a> - <a href="https://en.wikipedia.org/wiki/G-20_major_economies">G20 Dataset</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;treemapify&#39;</span>)){
+    <span class="kw">library</span>(devtools) <span class="co">#install.packages(&quot;devtools&quot;) 沒安裝過記得先裝</span>
+    <span class="kw">install_github</span>(<span class="st">&quot;wilkox/treemapify&quot;</span>) <span class="co">#從GitHub安裝測試版Packages,需要安裝devtools</span>
+    <span class="kw">library</span>(treemapify)
+}
+<span class="kw">data</span>(G20)<span class="co">#範例資料</span>
+<span class="kw">head</span>(G20)</code></pre></div>
+<pre><code>##          Region        Country Trade.mil.USD Nom.GDP.mil.USD   HDI Population
+## 1        Africa   South Africa        208000          384315 0.629   53000000
+## 2 North America  United States       3969000        15684750 0.937  316173000
+## 3 North America         Canada        962600         1819081 0.911   34088000
+## 4 North America         Mexico        756800         1177116 0.775  112211789
+## 5 South America         Brazil        494800         2395968 0.730  201032714
+## 6 South America      Argentina        152690          474954 0.811   40117096
+##   Economic.classification
+## 1              Developing
+## 2                Advanced
+## 3                Advanced
+## 4              Developing
+## 5              Developing
+## 6              Developing</code></pre>
+<p>Treemap -設定Treemap參數</p>
+<pre><code>##    fill           label  xmin  xmax  ymin   ymax         group
+## 1 0.876  European Union  0.00 38.67  0.00  59.00        Europe
+## 2 0.920         Germany 38.67 63.32  0.00  19.17        Europe
+## 3 0.893          France 38.67 63.32 19.17  33.88        Europe
+## 4 0.875  United Kingdom 38.67 63.32 33.88  47.64        Europe
+## 5 0.881           Italy 38.67 63.32 47.64  59.00        Europe
+## 6 0.937   United States  0.00 53.16 59.00 100.00 North America</code></pre>
+<p>Treemap -作圖1 <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p>Treemap -作圖2 好像數字越大顏色越深比較合理？ <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+</div>
+<div id="error-bar-" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Error bar 誤差線</h3>
+<ul>
+<li>終於要扯一點所謂的統計</li>
+<li>通常使用在bar chart, line chart</li>
+<li>比較多組資料的平均值高低時，務必加上Error bar 誤差線</li>
+<li>誤差線計算
+<ul>
+<li>Standard deviation (SD) 標準差：呈現資料本質時使用</li>
+<li>Standard error (SE) 標準誤差：呈現預估平均值的可能誤差時使用</li>
+<li>Confidence interval (CI) 信賴區間：呈現預估平均值的信心時使用</li>
+</ul></li>
+</ul>
+<p>Bar Chart without Error Bar in ggplot2</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(datasets) 
+airquality$Month&lt;-<span class="kw">as.factor</span>(airquality$Month) <span class="co">#將Month轉為因子變項</span>
+airquality.mean&lt;-<span class="kw">aggregate</span>(Ozone~Month,airquality,mean) <span class="co">#計算每月Ozone平均mean</span>
+<span class="kw">ggplot</span>()+<span class="kw">geom_bar</span>(<span class="dt">data=</span>airquality.mean,<span class="kw">aes</span>(<span class="dt">x=</span>Month,<span class="dt">y=</span>Ozone),
+                  <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="co">#stat = &quot;identity&quot; 直接畫數字</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>Bar Chart with Error Bar in ggplot2</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airquality.sd&lt;-<span class="kw">aggregate</span>(Ozone~Month,airquality,sd) <span class="co">#計算每月Ozone標準差sd</span>
+airquality.eb&lt;-<span class="kw">merge</span>(airquality.mean,airquality.sd,<span class="dt">by=</span><span class="st">&quot;Month&quot;</span>)
+<span class="kw">ggplot</span>(<span class="dt">data=</span>airquality.eb)+<span class="st"> </span><span class="co">#資料airquality.eb</span>
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Month,<span class="dt">y=</span>Ozone.x),<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)+
+<span class="st">    </span><span class="kw">geom_errorbar</span>( <span class="co">#ymin低點, ymax高點, Ozone.x=mean, Ozone.y=sd標準差</span>
+        <span class="kw">aes</span>(<span class="dt">x=</span>Month,<span class="dt">ymin=</span>Ozone.x-Ozone.y,<span class="dt">ymax=</span>Ozone.x+Ozone.y), <span class="dt">width=</span>.<span class="dv">1</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+</div>
+<div id="-2" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> 參考文件與資源</h3>
 <ul>
 <li>官方網站<a href="http://docs.ggplot2.org/current/" target="_blank">文件</a></li>
-<li>RStudio製作的<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" target="_blank">ggplot cheat sheet</a></li>
+<li>RStudio製作的<a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf" target="_blank">ggplot cheat sheet</a></li>
 <li>DataCamp互動式課程1 <a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-1" target="_blank">Data Visualization with ggplot2 (Part 1)</a></li>
 <li>DataCamp互動式課程2 <a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-2" target="_blank">Data Visualization with ggplot2 (Part 2)</a></li>
 <li>DataCamp互動式課程3 <a href="https://www.datacamp.com/courses/data-visualization-with-ggplot2-3" target="_blank">Data Visualization with ggplot2 (Part 3)</a></li>
 </ul>
 </div>
 </div>
-<div id="case-study-1" class="section level2">
-<h2><span class="header-section-number">7.2</span> Case study</h2>
+<div id="case-study" class="section level2">
+<h2><span class="header-section-number">7.4</span> Case study</h2>
 
 </div>
 </div>
@@ -332,7 +1030,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="eda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="big.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="InteractiveGraphics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -372,6 +1070,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

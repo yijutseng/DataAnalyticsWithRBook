@@ -102,7 +102,7 @@ grepl("a",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找a�
 ```
 
 
-##子集Subset
+##子集Subset {#subset}
 
 ###一維資料 (向量)
 在向量章節`{#vector}`有介紹使用`[]`取出單一或多個元素的方法

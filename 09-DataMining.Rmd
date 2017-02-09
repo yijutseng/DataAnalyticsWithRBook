@@ -1,9 +1,9 @@
 # 資料探勘 {#datamining}
+撰寫中
 
+## Clustering
 
-# Clustering
-
-## 汽車基本資料
+汽車基本資料
 
 ```{r randomData,fig.height=4,fig.width=3}
 mtcars.mx<-as.matrix(mtcars)
@@ -23,7 +23,7 @@ head(mtcars.mxs,3)
 ```
 
 
-## 各汽車/參數間的相似性？ -heatmap()
+各汽車/參數間的相似性？ -heatmap()
 ```{r,fig.height=4.5,fig.width=6}
 par(mar=rep(0.2,4),mfrow=c(1,1))
 heatmap(mtcars.mxs)
@@ -31,7 +31,7 @@ heatmap(mtcars.mxs)
 
 
 
-## 如何找到相似的物件/事件？
+如何找到相似的物件/事件？
 
 Clustering organizes things that are `close` into groups
 
@@ -40,7 +40,7 @@ Clustering organizes things that are `close` into groups
 - How do we visualize the grouping? 
 - How do we interpret the grouping? 
 
-## Hierarchical clustering
+ Hierarchical clustering
 
 - An agglomerative approach
     - Find closest two things
@@ -55,7 +55,7 @@ Clustering organizes things that are `close` into groups
     - A tree showing how close things are to each other
 
 
-## Hierarchical clustering
+ Hierarchical clustering
 
 - An agglomerative approach
     - Find closest two things
@@ -70,7 +70,7 @@ Clustering organizes things that are `close` into groups
     - A tree showing how close things are to each other
 
 
-## How do we define close? `distance`
+ How do we define close? `distance`
 
 - Most important step
     - Garbage in -> garbage out
@@ -83,13 +83,13 @@ Clustering organizes things that are `close` into groups
 - Pick a distance/similarity that makes sense for your problem
   
 
-## Example distances - Euclidean
+ Example distances - Euclidean
 
 $$\sqrt{(A_1-A_2)^2 + (B_1-B_2)^2 + \ldots + (Z_1-Z_2)^2}$$
 
 <img src="Fig/ED.jpg" width="600px">
 
-## Example distances - Manhattan
+ Example distances - Manhattan
 
 $$|A_1-A_2| + |B_1-B_2| + \ldots + |Z_1-Z_2|$$
 
@@ -114,7 +114,7 @@ Green line: Euclidean, Blue line: Manhattan
 
 
 
-## Merging apporach
+ Merging apporach
 - Agglomerative 聚合
     - Single-linkage：取最小值
     - Complete-linkage：取最大值
@@ -122,7 +122,7 @@ Green line: Euclidean, Blue line: Manhattan
     
 <img src="Fig/Agg.JPG" width="700px">
 
-## Hierarchical clustering - hp vs. mpg
+ Hierarchical clustering - hp vs. mpg
 ```{r, echo=F, fig.height=5.5,fig.width=8}
 par(mfrow=c(1,1),mar=rep(2,4))
 plot(mtcars$hp, mtcars$mpg, col = "blue", pch = 19, cex = 2)
@@ -130,7 +130,7 @@ text(mtcars$hp + 25, mtcars$mpg,
      labels = as.character(rownames(mtcars)))
 ```
 
-## Hierarchical clustering - #1
+Hierarchical clustering - #1
 
 ```{r echo=F,message=F,warning=F, fig.height=5,fig.width=8}
 x<-scale(mtcars$hp[-1]);y<-scale(mtcars$mpg[-1])
@@ -156,7 +156,7 @@ cutDendro <- cut(dendro,h=(hcluster$height[1]+0.00001) )
 plot(cutDendro$lower[[23]],yaxt="n")
 ```
 
-## Hierarchical clustering - #2
+ Hierarchical clustering - #2
 ```{r echo=F, fig.height=6,fig.width=8}
 # Find the index of the points with minimum distance
 ind3 <- which(rdistxy == rdistxy[order(rdistxy)][3],arr.ind=TRUE)
@@ -168,7 +168,7 @@ points(x[ind[1,]],y[ind[1,]],col="orange",pch=19,cex=1)
 points(x[ind3[1,]],y[ind3[1,]],col="red",pch=19,cex=1)
 ```
 
-## Hierarchical clustering - #3
+ Hierarchical clustering - #3
 
 ```{r echo=F,fig.height=5,fig.width=8}
 # Find the index of the points with minimum distance
@@ -190,8 +190,7 @@ plot(cutDendro$lower[[22]],yaxt="n")
 
 ```
 
-
-## Hierarchical clustering
+ Hierarchical clustering
 
 - An agglomerative approach
     - Find closest two things
@@ -207,14 +206,14 @@ plot(cutDendro$lower[[22]],yaxt="n")
 
 
 
-## Hierarchical Clustering -dist()
+ Hierarchical Clustering -dist()
 用`dist()`函數計算距離，使用method=""設定計算距離的依據
 ```{r,fig.height=4,fig.width=6}
 d<-dist(mtcars.mxs) #預設為euclidean
 d
 ```
 
-## Hierarchical Clustering -dist()
+ Hierarchical Clustering -dist()
 用`dist()`函數計算距離，使用method=""設定計算距離的依據，可用方法包括：
  "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"
 ```{r,fig.height=4,fig.width=6}
@@ -223,7 +222,7 @@ d
 ```
 
 
-## Hierarchical Clustering -hclust()
+ Hierarchical Clustering -hclust()
 用`hclust`函數畫圖，必要參數是個觀察職的距離（可用`dist()`函數計算）
 ```{r,fig.height=4,fig.width=6}
 par(mar=rep(2,4),mfrow=c(1,1))
@@ -231,7 +230,7 @@ hc<-hclust(dist(mtcars.mxs)) #可用method參數設定聚合方法，預設為co
 plot(hc)
 ```
 
-## Hierarchical Clustering -hclust()
+Hierarchical Clustering -hclust()
 用`hclust`函數畫圖，必要參數是個觀察職的距離（可用`dist()`函數計算）
 ```{r,fig.height=4,fig.width=6}
 par(mar=rep(2,4),mfrow=c(1,1))
@@ -239,32 +238,32 @@ hc<-hclust(dist(mtcars.mxs),method="average") #聚合方法為計算平均距離
 plot(hc)
 ```
 
-## Hierarchical Clustering -cutree()
+ Hierarchical Clustering -cutree()
 ```{r,fig.height=4,fig.width=6}
 clusterCut <- cutree(hc, k=5) #分5群
 sort(clusterCut)
 ```
 
-## HC- clusters & variables
+ HC- clusters & variables
 ```{r,fig.height=4,fig.width=6}
 ggplot()+geom_point(data=mtcars,
                     aes(x=hp,y=mpg,color=as.factor(clusterCut)))
 ```
 
-## Hierarchical Clustering -cutree(),2
+ Hierarchical Clustering -cutree(),2
 ```{r,fig.height=4,fig.width=6}
 clusterCut <- cutree(hc,h =4) #切在高度=4的地方（距離=4）
 sort(clusterCut)
 ```
 
-## Cluster the data -heatmap(),2
+ Cluster the data -heatmap(),2
 ```{r,fig.height=4.5,fig.width=6}
 par(mar=rep(0.2,4),mfrow=c(1,1))
 heatmap(mtcars.mxs)
 ```
 
 
-## Hierarchical clustering - hclust
+ Hierarchical clustering - hclust
 
 ```{r, fig.height=4,fig.width=4}
 distxy <- dist(mtcars.mxs)
@@ -273,7 +272,7 @@ plot(hClustering)
 ```
 
 
-## Hierarchical clustering: summary
+ Hierarchical clustering: summary
 - 可快速瀏覽觀察值與各欄位的關係
 
 - 分群結果可能被以下參數影響：
@@ -294,8 +293,6 @@ plot(hClustering)
     - 將各個物件/觀察值指定給最近的中心點
     - 依照新的分群計算新的中心點
 
-## K-means clustering
-
 - 輸入
     - 計算距離的資料（數值）
     - 要分成幾群 # of clusters 
@@ -307,19 +304,11 @@ plot(hClustering)
     - 指定每個觀察值所在的’群‘
 
 
-## K-means clustering -  example
-
-
 ```{r, fig.height=4,fig.width=6}
 x<-scale(mtcars$hp[-1]);y<-scale(mtcars$mpg[-1])
 plot(x,y,col="blue",pch=19,cex=2)
 text(x+0.05,y+0.05,labels=labelCar)
 ```
-
-
-
-
-## K-means - starting centroids
 
 
 ```{r,echo=FALSE,fig.height=5,fig.width=5}
@@ -331,9 +320,6 @@ cy <- c(2,0,-1)
 points(cx,cy,col=c("red","orange","purple"),pch=3,cex=2,lwd=2)
 ```
 
-
-
-## K-means - assign to closest centroid
 
 ```{r,echo=FALSE,fig.height=4.5,fig.width=5}
 par(mar=rep(0.2,4))
@@ -354,8 +340,6 @@ points(x,y,pch=19,cex=2,col=cols1[newClust])
 
 
 
-## K-means - recalculate centroids
-
 ```{r,echo=FALSE,fig.height=5,fig.width=5}
 par(mar=rep(0.2,4))
 plot(x,y,col="blue",pch=19,cex=2)
@@ -370,9 +354,6 @@ points(newCx,newCy,col=cols1,pch=3,cex=2,lwd=2)
 ```
 
 
-
-
-## K-means - reassign values
 
 ```{r,echo=FALSE,fig.height=5,fig.width=5}
 par(mar=rep(0.2,4))
@@ -394,10 +375,6 @@ points(x,y,pch=19,cex=2,col=cols1[newClust2])
 
 
 
-
-
-## K-means - update centroids
-
 ```{r,echo=FALSE,fig.height=5,fig.width=5}
 par(mar=rep(0.2,4))
 plot(x,y,col="blue",pch=19,cex=2)
@@ -415,7 +392,7 @@ points(x,y,pch=19,cex=2,col=cols1[newClust2])
 
 
 
-## `kmeans()` -1
+## `kmeans()` 
 
 - Important parameters: `x`, `centers`, `iter.max`, `nstart`
 
@@ -428,8 +405,6 @@ kmeansObj$cluster
 
 
 
-## `kmeans()` -2
-
 ```{r,fig.height=4,fig.width=4}
 par(mar=rep(0.2,4))
 plot(x,y,col=kmeansObj$cluster,pch=19,cex=2)
@@ -438,7 +413,7 @@ points(kmeansObj$centers,col=1:3,pch=3,cex=3,lwd=3)
 
 
 
-## Heatmaps
+### Heatmaps
 
 ```{r,fig.height=3,fig.width=8}
 set.seed(1234)
@@ -450,7 +425,7 @@ image(t(dataMatrix)[,order(kmeansObj$cluster)],yaxt="n")
 ```
 
 
-## K-means注意事項
+### K-means注意事項
 
 - 需要決定# of clusters
     - 用眼睛/人工/特殊要求選
@@ -464,7 +439,7 @@ image(t(dataMatrix)[,order(kmeansObj$cluster)],yaxt="n")
 
 
 
-## `kmeans()`, k=2
+`kmeans()`, k=2
 
 ```{r,echo=F,fig.height=5,fig.width=4}
 x<-scale(mtcars$hp[-1]);y<-scale(mtcars$mpg[-1])
@@ -475,7 +450,7 @@ plot(x,y,col=kmeansObj$cluster,pch=19,cex=2)
 points(kmeansObj$centers,col=1:2,pch=3,cex=3,lwd=3)
 ```
 
-## `kmeans()`, k=3
+ `kmeans()`, k=3
 
 ```{r,echo=F,fig.height=5,fig.width=4}
 x<-scale(mtcars$hp[-1]);y<-scale(mtcars$mpg[-1])
@@ -486,7 +461,7 @@ plot(x,y,col=kmeansObj$cluster,pch=19,cex=2)
 points(kmeansObj$centers,col=1:3,pch=3,cex=3,lwd=3)
 ```
 
-## `kmeans()`, k=4
+`kmeans()`, k=4
 
 ```{r,echo=F,fig.height=5,fig.width=4}
 x<-scale(mtcars$hp[-1]);y<-scale(mtcars$mpg[-1])
@@ -499,7 +474,7 @@ points(kmeansObj$centers,col=1:4,pch=3,cex=3,lwd=3)
 
 
 
-## Use sum of squared error (SSE) scree plot to optimize the number of clusters
+Use sum of squared error (SSE) scree plot to optimize the number of clusters
 
 SSE: The sum of the squared distance between each member of a cluster and its cluster centroid.
 
@@ -507,7 +482,7 @@ SSE: The sum of the squared distance between each member of a cluster and its cl
 
 <img src="Fig/SSE.png" width="500px">
 
-## SSE screen plot `withinss`
+ SSE screen plot `withinss`
 ```{r,fig.height=3,fig.width=8}
 dataMatrix <- as.matrix(dataFrame)[sample(1:12),]
 wss <- (nrow(dataMatrix)-1)*sum(apply(dataMatrix,2,var))
@@ -520,38 +495,14 @@ plot(1:(nrow(dataMatrix)-1), wss, type="b", xlab="Number of Clusters",
 ```
 
 
-## Missing values
+## Machine Learning 機器學習
 
-```{r,error=TRUE}
-dataMatrix2 <- as.matrix(mtcars)
-## Randomly insert some missing data
-dataMatrix2[sample(1:100,size=10,replace=FALSE)] <- NA
-head(dataMatrix2,10)
-```
-
-
-
-
-## Imputing {impute}
-用knn的方法計算空值可能可以帶入的數值
-```{r,fig.height=4,fig.width=8,tidy=FALSE}
-#source("https://bioconductor.org/biocLite.R")
-#biocLite("impute")
-library(impute)
-dataMatrix2 <- impute.knn(dataMatrix2)$data
-head(dataMatrix2,10)
-```
-
-
-
-# Machine Learning 機器學習
-
-## 什麼是Machine Learning？
+ 什麼是Machine Learning？
 - Learning from data
 - `Machine` learning from data
 <img src="Fig/ML.png" width="700px">
 
-## 什麼是Machine Learning？
+ 什麼是Machine Learning？
 - 建立可以從`輸入資料`學習`新資訊`，變成`智慧`的演算法
 - 演算法可以基於`輸入資料`，`預測事件`或`協助決策`
 
@@ -561,13 +512,13 @@ Data ---- `Machine Learning` ----> Skill
 
 Skill: 變準/變好/賺更多...etc
 
-## Machine Learning vs. Artificial Intelligence
+ Machine Learning vs. Artificial Intelligence
 - ML: use data to compute something that improves performance
 - AI: compute something that shows `intelligent` behavior
 
 `ML` is one possible and popular route to realize `AI`
 
-## Machine Learning無所不在
+ Machine Learning無所不在
 - 天氣預測
 - 搜尋建議、購物建議
 - 股市預測
@@ -575,15 +526,15 @@ Skill: 變準/變好/賺更多...etc
 - 垃圾郵件標記
 - 尿布啤酒
 
-## 什麼時候需要ML?
+ 什麼時候需要ML?
 - 有一些模式/模型可`學`
 - 很難定義這些模式/模型
 - 有資料可`學`這些模式/模型
 
-## Machine Learning步驟
+ Machine Learning步驟
 <img src="Fig/MLstep.jpg" width="700px">
 
-## Learning 種類
+ Learning 種類
 - Classification 分類
     - 分兩類（P/N, Yes/No, M/F, Sick/Not sick）
     - 分多類 (A/B/C/D)
@@ -597,7 +548,8 @@ Skill: 變準/變好/賺更多...etc
 - Clustering
     - 分群
 
-## Machine Learning 種類 -1
+ Machine Learning 種類 -1
+ 
 - Supervised learning 監督式學習
     - Regression 迴歸
         - Linear Regression 線性迴歸
@@ -608,27 +560,27 @@ Skill: 變準/變好/賺更多...etc
         - Neural Networks 神經網路
         - K-Nearest Neighbor 
         
-## Supervised learning 監督式學習
+ Supervised learning 監督式學習
 <img src="Fig/SupervisedLearning.png" width="700px">
 
 [出處](http://www.astroml.org/sklearn_tutorial/general_concepts.html)
     
-## Machine Learning 種類 -2
+ Machine Learning 種類 -2
 - Unsupervised learning 非監督式學習
     - Clustering! 分群
         - Hierarchical clustering 階層式分群
         - K-means clustering
     - Association Rules 關聯式規則
             
-## Unsupervised learning 非監督式學習
+ Unsupervised learning 非監督式學習
 <img src="Fig/UnsupervisedLearning.png" width="700px">
 
 [出處](http://www.astroml.org/sklearn_tutorial/general_concepts.html)
 
-## 怎麼選Algorithms?
+ 怎麼選Algorithms?
 <img src="Fig/MLCS.png" width="800px">
 
-## Regression Analysis 迴歸分析
+ Regression Analysis 迴歸分析
 了解兩個或多個變數間`是否相關`、`相關方向與強度`，並建立`數學模型`以便觀察特定變數來預測研究者感興趣的變數
 
 - Linear Regression 線性迴歸
@@ -636,19 +588,20 @@ Skill: 變準/變好/賺更多...etc
 
 [Wiki](https://zh.wikipedia.org/wiki/%E8%BF%B4%E6%AD%B8%E5%88%86%E6%9E%90)
 
-## Linear Regression 線性迴歸
+ Linear Regression 線性迴歸
 <img src="Fig/LR.jpg" width="700px">
 
 [出處](http://www2.cedarcrest.edu/academic/bio/hale/biostat/session24links/regression.html)
 
-## Logistic Regression 邏輯迴歸
+ Logistic Regression 邏輯迴歸
 <img src="Fig/LogR.png" width="800px">
 
-## Regression Analysis 迴歸分析
+ Regression Analysis 迴歸分析
+ 
 - `Linear Regression 線性迴歸`
 - Logistic Regression 羅吉斯迴歸、邏輯迴歸
 
-## 來用在NBA的資料看看！
+ 來用在NBA的資料看看！
 ```{r message=FALSE,warning=FALSE}
 #讀入SportsAnalytics package
 if (!require('SportsAnalytics')){
@@ -659,14 +612,14 @@ if (!require('SportsAnalytics')){
 NBA1516<-fetch_NBAPlayerStatistics("15-16")
 ```
 
-## NBA`得分`與`上場分鐘數`的線性迴歸分析
+ NBA`得分`與`上場分鐘數`的線性迴歸分析
 ```{r warning=F,message=F,fig.height=4}
 library(ggplot2)
 ggplot(NBA1516,aes(x=TotalMinutesPlayed,y=TotalPoints))+
     geom_point()+geom_smooth(method = "glm")
 ```
 
-## 簡單線性迴歸分析- `glm()`
+ 簡單線性迴歸分析- `glm()`
 ```{r warning=F,message=F,fig.height=4.5}
 # formula: Y~X1+X2+...+Xn  Y:依變項 X:自變項
 # data: 資料
@@ -675,7 +628,7 @@ glm(TotalPoints~TotalMinutesPlayed,data =NBA1516)
 
 TotalPoints = `0.4931` * TotalMinutesPlayed `-85.9071`
 
-## 其實`glm()`是廣義線性迴歸模型
+ 其實`glm()`是廣義線性迴歸模型
 - generalized linear models (glm)
 - 包括了線性迴歸模型和邏輯迴歸模型
 - 線性模型也可用`lm()`
@@ -684,17 +637,17 @@ TotalPoints = `0.4931` * TotalMinutesPlayed `-85.9071`
     - `family="binomial"` 邏輯迴歸模型
     - `family="poisson"` 卜瓦松迴歸模型
 
-## Gaussian distribution
+ Gaussian distribution
 高斯函數是`常態分布`的密度函數
 
 <img src="Fig/gaussian.gif" width="700px">
 
-## Binomial distribution
+ Binomial distribution
 二項分布是`n個獨立的是/非試驗中成功的次數`的離散機率分布
 
 <img src="Fig/binomial.gif" width="650px">
 
-## Poisson distribution
+ Poisson distribution
 `次數`分佈
 
 - 某一服務設施在一定時間內受到的服務請求的次數
@@ -705,7 +658,7 @@ TotalPoints = `0.4931` * TotalMinutesPlayed `-85.9071`
 
 <img src="Fig/poisson.png" width="300px">
 
-## `得分`與`上場分鐘數`和`兩分球出手數`的關係 - 多變量線性迴歸分析
+ `得分`與`上場分鐘數`和`兩分球出手數`的關係 - 多變量線性迴歸分析
 
 ```{r warning=F,message=F,fig.height=4.5}
 # e+01: 10^1 / e-04: 10^(-4)
@@ -716,7 +669,7 @@ glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted,
 TotalPoints = `-0.0002347` * TotalMinutesPlayed + `1.255794` *FieldGoalsAttempted  `-17.99`
 
 
-## `得分`與`上場分鐘數`和`兩分球出手數`和`守備位置`的關係 - 多變量線性迴歸分析
+ `得分`與`上場分鐘數`和`兩分球出手數`和`守備位置`的關係 - 多變量線性迴歸分析
 
 ```{r warning=F,message=F,fig.height=4.5}
 glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
@@ -726,7 +679,8 @@ glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
 
 TotalPoints = `-0.0065` * TotalMinutesPlayed + `1.28` *FieldGoalsAttempted  `+22.85` + `22.85` * PositionPF + `-65.03` * PositionPG + `-38.52` * PositionSF + `-52.18` * PositionSG
 
-## 虛擬變項 Dummy Variable 
+ 虛擬變項 Dummy Variable 
+ 
 - PositionPF? PositionPG? PositionSF? PositionSG?
 - 如果是控球後衛（PG），會得到...
     - PositionPF=0
@@ -739,7 +693,8 @@ TotalPoints = `-0.0065` * TotalMinutesPlayed + `1.28` *FieldGoalsAttempted  `+22
     - PositionSF=0
     - PositionSG=0
     
-## 多變量線性迴歸分析
+ 多變量線性迴歸分析
+ 
 - 假設：各變數相互獨立！
 - 若自變項X是類別變項，需要建立`虛擬變項`
 - 在R裡，`類別變項`請記得轉成factor，R會自動建立`虛擬變項`
@@ -751,7 +706,8 @@ levels(NBA1516$Position)
 ```
 
 
-## 用哪個計算比較準？
+ 用哪個計算比較準？
+ 
 - 可能不一定有適合的模型
 - 常用的判斷準則
     - Akaike’s Information Criterion (AIC)
@@ -759,7 +715,7 @@ levels(NBA1516$Position)
 - 數值越小越好
     
     
-## 用哪個計算比較準？
+ 用哪個計算比較準？
 ```{r warning=F,message=F,fig.height=4.5}
 OneVar<-glm(TotalPoints~TotalMinutesPlayed,data =NBA1516)
 TwoVar<-glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted,
@@ -769,36 +725,39 @@ ThreeVar<-glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
 c(OneVar$aic,TwoVar$aic,ThreeVar$aic)
 ```
 
-## 所有參數都有用嗎？
+ 所有參數都有用嗎？
 ```{r warning=F,message=F,fig.height=4.5}
 sum2<-summary(TwoVar)
 sum2$coefficients
 ```
 
-## 所有參數都有用嗎？
+ 所有參數都有用嗎？
 ```{r warning=F,message=F,fig.height=4.5}
 sum3<-summary(ThreeVar)
 sum3$coefficients
 ```
 
-## Regression Analysis 迴歸分析
+ Regression Analysis 迴歸分析
+ 
 - Linear Regression 線性迴歸
 - `Logistic Regression 羅吉斯迴歸`
 
-## Logistic Regression 羅吉斯迴歸
+ Logistic Regression 羅吉斯迴歸
+ 
 - 用在`依變數為二元變數（非0即1）`的場合
 - 生病/沒生病
 - 錄取/不錄取
 - `family="binomial"` 邏輯迴歸模型
 
-## 為什麼錄取/不錄取？
+ 為什麼錄取/不錄取？
+ 
 ```{r warning=F,message=F,fig.height=4.5}
 mydata <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
 # GRE:某考試成績, GPA:在校平均成績, rank:學校聲望
 head(mydata)
 ```
 
-## Hmm....
+ Hmm....
 ```{r warning=F,message=F,fig.height=4.5}
 mydata$rank <- factor(mydata$rank)
 mylogit <- glm(admit ~ gre + gpa + rank, 
@@ -807,20 +766,20 @@ sum<-summary(mylogit)
 sum$coefficients
 ```
 
-# Decision Trees 決策樹
+## Decision Trees 決策樹
 
-## 什麼是決策樹？
+ 什麼是決策樹？
 在`樹狀目錄`中建立一系列分割，以建立模型。這些分割會表示成`「節點」(Node)`。每次發現輸入資料行與可預測資料行有明顯地相互關聯時，此演算法就會在模型中加入一個`節點`。演算法決定分岔的方式不同，視它預測連續資料行或分隔資料行而定。
 
 <img src="Fig/DT.png" width="500px">
 
-## 決策樹的種類
+ 決策樹的種類
 - Classificaiton
 - Regression
 - Classification And Regression Tree (CART)
 
 
-## 用籃板/三分/助攻/抄截來判斷位置
+ 用籃板/三分/助攻/抄截來判斷位置
 ```{r warning=F,message=F,fig.height=4.5}
 if (!require('rpart')){
     install.packages("rpart")
@@ -831,7 +790,7 @@ DT
 #控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）
 ```
 
-## 用籃板/三分/助攻/抄截來判斷位置
+ 用籃板/三分/助攻/抄截來判斷位置
 ```{r warning=F,message=F,fig.height=4.5}
 par(mfrow=c(1,1), mar = rep(1,4)) #下,左,上,右
 plot(DT)
@@ -839,7 +798,7 @@ text(DT, use.n=F, all=F, cex=1)
 #控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）
 ```
 
-## 用籃板/三分/助攻/抄截來判斷位置
+ 用籃板/三分/助攻/抄截來判斷位置
 預設的`plot()`真的太難用，改用`rpart.plot` package裡面的`prp()`
 ```{r warning=F,message=F,fig.height=4.5}
 if (!require('rpart.plot')){
@@ -849,12 +808,12 @@ if (!require('rpart.plot')){
 prp(DT)					# Will plot the tree
 ```
 
-## 用籃板/三分/助攻/抄截來判斷位置
+ 用籃板/三分/助攻/抄截來判斷位置
 ```{r warning=F,message=F,fig.height=5}
 prp(DT)
 ```
 
-## 決策樹演算法怎麼決定`節點`
+ 決策樹演算法怎麼決定`節點`
 - Gini impurity
 - Information gain
 - Variance reduction
@@ -862,18 +821,18 @@ prp(DT)
 ...有機會再說吧......
 
 
-#Association Rules 關聯式規則
+## Association Rules 關聯式規則
 
-## 什麼是關聯式規則？ 
+ 什麼是關聯式規則？ 
 - 用於從大量數據中挖掘出有價值的數據項之間的相關關係
 - 不考慮項目的次序，而僅考慮其組合
 - `購物籃分析 (Market Basket Analysis)`
 - Apriori演算法是挖掘`布林關聯規則` (Boolean association rules) 頻繁項集的算法
 
-## Apriori演算法
+ Apriori演算法
 <img src="Fig/apriori.png" width="700px">
 
-## 超市資料分析：讀取資料
+ 超市資料分析：讀取資料
 
 ```{r warning=F,message=F,fig.height=4.5}
 # Load the libraries
@@ -887,11 +846,11 @@ data(Groceries) # Load the data set
 Groceries@data@Dim #169 種商品，9835筆交易資料
 ```
 
-## 超市資料長這樣
+ 超市資料長這樣
 <img src="Fig/groceries.png" width="700px">
 
 
-## 超市資料分析：關聯式分析`apriori()`
+ 超市資料分析：關聯式分析`apriori()`
 
 ```{r warning=F,message=F,fig.height=4.5}
 # Get the rules
@@ -903,7 +862,7 @@ inspect(rules[1:5]) # Show the top 5 rules
 ```
 
 
-## 如何解讀模型
+ 如何解讀模型
 啤酒=>尿布
 
 - `Support`: 一次交易中，包括規則內的物品的機率。買啤酒同時買尿布的機率。交集
@@ -917,13 +876,13 @@ inspect(rules[1:5]) # Show the top 5 rules
 
 <img src="Fig/lift.png" width="400px">
 
-## 列出最有關連的幾條規則
+ 列出最有關連的幾條規則
 ```{r warning=F,message=F,fig.height=4.5}
 rules<-sort(rules, by="confidence", decreasing=TRUE) #按照confidence排序
 inspect(rules[1:5]) # Show the top 5 rules
 ```
 
-## 特別針對某項商品，右邊
+ 特別針對某項商品，右邊
 買了什麼東西的人，會買`牛奶`呢？
 ```{r warning=F,message=F,fig.height=4.5}
 rulesR<-apriori(data=Groceries, parameter=list(supp=0.001,conf = 0.08), 
@@ -933,7 +892,7 @@ rulesR<-sort(rulesR, decreasing=TRUE,by="confidence") #按照confidence排序
 inspect(rulesR[1:5]) # Show the top 5 rules
 ```
 
-## 特別針對某項商品，左邊
+ 特別針對某項商品，左邊
 買了`牛奶`的人，會買什麼呢？
 ```{r warning=F,message=F,fig.height=4.5}
 rulesL<-apriori(data=Groceries, parameter=list(supp=0.001,conf = 0.15,minlen=2), 
@@ -944,7 +903,7 @@ inspect(rulesL[1:5]) # Show the top 5 rules
 ```
 
 
-## 規則視覺化
+ 規則視覺化
 ```{r eval=F,warning=F,message=F,fig.height=4.5}
 if (!require('arulesViz')){
     install.packages("arulesViz"); library(arulesViz)
@@ -955,14 +914,14 @@ plot(rules,method="graph",interactive=TRUE,shading=NA) #會跑一陣子
 
 <img src="Fig/arulesViz.png" width="400px">  <img src="Fig/arulesVizBig.png" width="300px">
 
-## 參考資料
+### 參考資料
 - 台大資工林軒田教授（田神）：
     - [Machine Learning Foundations](www.coursera.org/course/ntumlone)
     - [Machine Learning Techniques](www.coursera.org/course/ntumltwo)
     
 - [Market Basket Analysis with R](http://www.salemmarafi.com/code/market-basket-analysis-with-r/)
 
-## 模型驗證？！
+ 模型驗證？！
 - Training set, Development set: 讓演算法`學`到`知識`
 - Test set, Validation set: 驗證`學`的怎麼樣
 - 通常會比例分配
@@ -972,7 +931,7 @@ plot(rules,method="graph",interactive=TRUE,shading=NA) #會跑一陣子
 <img src="Fig/SupervisedLearning.png" width="400px">
 
 
-## 把NBA的資料讀入
+ 把NBA的資料讀入
 ```{r message=FALSE,warning=FALSE}
 #讀入SportsAnalytics package
 if (!require('SportsAnalytics')){
@@ -984,9 +943,9 @@ NBA1516<-fetch_NBAPlayerStatistics("15-16")
 NBA1516<-NBA1516[complete.cases(NBA1516),]
 ```
 
-# Regression 迴歸
+## Regression 迴歸
 
-## 哪個模型比較好？
+ 哪個模型比較好？
 ```{r warning=F,message=F,fig.height=4.5}
 OneVar<-glm(TotalPoints~TotalMinutesPlayed,data =NBA1516)
 TwoVar<-glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted,
@@ -996,18 +955,18 @@ ThreeVar<-glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
 c(OneVar$aic,TwoVar$aic,ThreeVar$aic)
 ```
 
-## 好！？
+ 好！？
 - 以Training set來`選看起來最好的模型`
 - 用Test set來`驗證模型是不是真的很好`
 - 想像.....訓練出來題庫答得好的學生，寫到新題目不一定會寫！？
 
-## 隨機抽樣？
+ 隨機抽樣？
 ```{r message=FALSE,warning=FALSE}
 sample(1:10,3) # 從1到10，隨機取三個數字
 sample(1:nrow(NBA1516),nrow(NBA1516)/3) #從第一行到最後一行，隨機取1/3行數
 ```
 
-## 把NBA的資料分成Training 和 Test set
+ 把NBA的資料分成Training 和 Test set
 ```{r message=FALSE,warning=FALSE}
 NBA1516$Test<-F #新增一個參數紀錄分組
 #隨機取1/3當Test set
@@ -1017,7 +976,7 @@ c(sum(NBA1516$Test==F),sum(NBA1516$Test==T))
 ```
 
 
-## 訓練一個多變數線性迴歸模型
+ 訓練一個多變數線性迴歸模型
 ```{r warning=F,message=F,fig.height=4.5}
 fit<-glm(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+
              Position+ThreesAttempted+FreeThrowsAttempted,
@@ -1026,7 +985,7 @@ fit$aic
 summary(fit)$coefficients
 ```
 
-## 逐步選擇模型 stepwise
+逐步選擇模型 stepwise
 後退學習：一開始先將所有參數加到模型裡，再一個一個拿掉
 ```{r warning=F,message=F,fig.height=4.5}
 library(MASS)
@@ -1036,7 +995,7 @@ finalModel_B<-stepAIC(fit,direction = "backward",trace=FALSE)
 summary(finalModel_B)$coefficients
 ```
 
-## 逐步選擇模型 stepwise
+ 逐步選擇模型 stepwise
 往前學習：一開始先做一個沒有參數的模型，再把參數一個一個加進去
 ```{r warning=F,message=F,fig.height=4.5}
 ##根據AIC，做逐步選擇, 往前學習 direction = "forward"
@@ -1044,7 +1003,7 @@ finalModel_F<-stepAIC(fit,direction = "forward",trace=FALSE)
 summary(finalModel_F)$coefficients
 ```
 
-## 逐步選擇模型 stepwise
+ 逐步選擇模型 stepwise
 雙向學習：參數加加減減
 ```{r warning=F,message=F,fig.height=4.5}
 ##根據AIC，做逐步選擇, 雙向學習 direction = "both"
@@ -1053,7 +1012,7 @@ summary(finalModel_Both)$coefficients
 ```
 
 
-## 用Test set來評估模型好不好
+ 用Test set來評估模型好不好
 ```{r warning=F,message=F,fig.height=3}
 predictPoint<-predict(finalModel_Both, #Test==T, test data
                       newdata = NBA1516[NBA1516$Test==T,]) 
@@ -1061,9 +1020,9 @@ cor(x=predictPoint,y=NBA1516[NBA1516$Test==T,]$TotalPoints) #相關係數
 plot(x=predictPoint,y=NBA1516[NBA1516$Test==T,]$TotalPoints) 
 ```
 
-# Logistic Regression 邏輯迴歸
+## Logistic Regression 邏輯迴歸
 
-## 把入學資料分成Training 和 Test set
+ 把入學資料分成Training 和 Test set
 注意：當答案有正反兩面時，`Level 1 要放正面答案`-->有病/錄取...
 ```{r warning=F,message=F,fig.height=4.5}
 mydata <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
@@ -1076,7 +1035,7 @@ c(sum(mydata$Test==F),sum(mydata$Test==T)) # Training set : Test set學生數
 mydata$admit<-factor(mydata$admit,levels=c(1,0))
 ```
 
-## 逐步選擇最好的模型
+ 逐步選擇最好的模型
 ```{r warning=F,message=F,fig.height=4.5}
 # GRE:某考試成績, GPA:在校平均成績, rank:學校聲望
 mylogit <- glm(admit ~ gre + gpa + rank, 
@@ -1085,7 +1044,7 @@ finalFit<-stepAIC(mylogit,direction = "both",trace=FALSE) # 雙向逐步選擇�
 summary(finalFit)
 ```
 
-## 來預測一下新學生可不可以錄取
+ 來預測一下新學生可不可以錄取
 ```{r warning=F,message=F,fig.height=4.5}
 AdmitProb<-predict(finalFit, # 用Training set做的模型
                    newdata = mydata[mydata$Test==T,], #Test==T, test data
@@ -1094,13 +1053,13 @@ head(AdmitProb)
 table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
 ```
 
-## 當答案是二元時：效能指標
+ 當答案是二元時：效能指標
 - Sensitivity 敏感性
 - Specificity 特異性
 - Positive Predictive Value (PPV) 陽性預測值
 - Negative Predictive Value (NPV) 陰性預測值
 
-## 名詞解釋
+ 名詞解釋
 <img src="Fig/Cond.png" width="600px">
 
 - TP: 有病且預測也有病
@@ -1108,7 +1067,7 @@ table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
 - FP: 沒病但是預測有病
 - FN: 有病但預測沒病
 
-## 當答案是二元時：效能指標公式
+ 當答案是二元時：效能指標公式
 <img src="Fig/para.png" width="400px">
 
 - Sensitivity 敏感性：所有`真的有病`的人，被`預測有病`的比例
@@ -1116,14 +1075,14 @@ table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
 - Positive Predictive Value (PPV) 陽性預測值：所有被`預測有病`的人，`真的有病`的比例
 - Negative Predictive Value (NPV) 陰性預測值：所有被`預測沒病`的人，`真的沒病`的比例
 
-## 回想一下剛剛的驗證結果
+ 回想一下剛剛的驗證結果
 ```{r warning=F,message=F,fig.height=4.5}
 table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
 ```
 <img src="Fig/para.png" width="500px">
 
 
-## 計算預測效能參數
+ 計算預測效能參數
 ```{r warning=F,message=F,fig.height=4.5}
 AdmitProb<-predict(finalFit,
                    newdata = mydata[mydata$Test==T,], #Test==T, test data
@@ -1132,7 +1091,7 @@ AdmitAns<-factor(ifelse(AdmitProb<0.5,1,0),levels=c(1,0))
 str(AdmitAns)
 ```
 
-## 計算預測效能參數
+ 計算預測效能參數
 ```{r warning=F,message=F,fig.height=4.5}
 library(caret) # install.packages("caret") #計算參數的packages
 sensitivity(AdmitAns,mydata[mydata$Test==T,]$admit)
@@ -1142,9 +1101,9 @@ negPredValue(AdmitAns,mydata[mydata$Test==T,]$admit)
 ```
 
 
-# Decision Trees 決策樹 
+## Decision Trees 決策樹 
 
-## 阻攻/籃板/三分/助攻/抄截判斷位置-訓練
+ 阻攻/籃板/三分/助攻/抄截判斷位置-訓練
 ```{r warning=F,message=F,fig.height=4.5}
 if (!require('rpart')){
     install.packages("rpart"); library(rpart)
@@ -1155,7 +1114,7 @@ DT<-rpart(Position~Blocks+TotalRebounds+ThreesMade+Assists+Steals,
 DT
 ```
 
-## 阻攻/籃板/三分/助攻/抄截判斷位置-訓練
+阻攻/籃板/三分/助攻/抄截判斷位置-訓練
 預設的`plot()`真的太難用，改用`rpart.plot` package的`prp()`
 ```{r warning=F,message=F,fig.height=4.5}
 if (!require('rpart.plot')){
@@ -1164,12 +1123,12 @@ if (!require('rpart.plot')){
 prp(DT)	# 把決策樹畫出來
 ```
 
-## 阻攻/籃板/三分/助攻/抄截判斷位置-訓練
+ 阻攻/籃板/三分/助攻/抄截判斷位置-訓練
 ```{r warning=F,message=F,fig.height=5}
 prp(DT)
 ```
 
-## 有批球員沒寫守備位置？--預測
+ 有批球員沒寫守備位置？--預測
 ```{r warning=F,message=F,fig.height=5}
 posPred<-predict(DT,newdata= NBA1516[NBA1516$Test==T,]) #Test==T, test data
 # 預設為class probabilities, type = "prob"
@@ -1177,7 +1136,7 @@ head(posPred)
 ```
 
 
-## 有個人沒寫守備位置--對答案
+ 有個人沒寫守備位置--對答案
 ```{r warning=F,message=F,fig.height=5}
 result<-cbind(round(posPred,digits = 2),
               NBA1516[NBA1516$Test==T,]$Name,
@@ -1186,14 +1145,14 @@ head(result)
 ```
 
 
-## 有個人沒寫守備位置--預測-2
+ 有個人沒寫守備位置--預測-2
 ```{r warning=F,message=F,fig.height=5}
 posPredC<-predict(DT,newdata= NBA1516[NBA1516$Test==T,],type = "class") 
 # type = "class" 直接預測類別
 head(posPredC)
 ```
 
-## 有個人沒寫守備位置--對答案-2
+ 有個人沒寫守備位置--對答案-2
 ```{r warning=F,message=F,fig.height=5}
 resultC<-cbind(as.character(posPredC),NBA1516[NBA1516$Test==T,]$Name,
       as.character(NBA1516[NBA1516$Test==T,]$Position))
@@ -1201,7 +1160,7 @@ head(resultC)
 ```
 
 
-## 模型驗證
+### 模型驗證
 - Training set, Development set: 讓演算法`學`到`知識`
 - Test set, Validation set: 驗證`學`的怎麼樣
 - 通常會比例分配
@@ -1212,15 +1171,15 @@ head(resultC)
 - 訓練模型時，不能偷看Test set，才是真正的`驗證`
 
 
-# 一步一步建立預測模型---範例
+ 一步一步建立預測模型---範例
 
-## 完整的模型建立步驟範例
+ 完整的模型建立步驟範例
 - 標題：以聲波撞擊礦石的回聲預測礦石是否為礦物
 - 以Sonar, Mines vs. Rocks為例
 - 不要直接複製貼上，請按照自己被分配到的資料集寫作業～
 
 
-## 步驟1.1:讀資料
+ 步驟1.1:讀資料
 ```{r message=F,warning=F}
 #install.packages("mlbench") # 此package內有很多dataset可練習
 library(mlbench)
@@ -1228,14 +1187,14 @@ data(Sonar)
 str(Sonar) #看一下資料型別，有沒有缺值，類別變項是不是factor
 ```
 
-## 在建立模型之前...別忘了基本的資料分析
+ 在建立模型之前...別忘了基本的資料分析
 在這次的作業內不用包含這個部分
 
 `探索性分析 Exploratory data analysis`，看看資料長怎麼樣
 
 要是有一個參數可以完美的把礦物跟石頭分開，那就不用麻煩了...
 
-## 探索性分析 Exploratory data analysis
+探索性分析 Exploratory data analysis
 ```{r warning=F,message=F,fig.height=4}
 library(ggplot2);library(reshape2) #install.packages(c("ggplot2","reshape2"))
 Sonar.m<-melt(Sonar,id.vars = c("Class"))
@@ -1243,7 +1202,7 @@ ggplot(Sonar.m)+geom_boxplot(aes(x=Class,y=value))+
     facet_wrap(~variable, nrow=5,scales = "free_y") #投影片太小了
 ```
 
-## 步驟1.2: 資料前處理
+ 步驟1.2: 資料前處理
 - 缺值？ 
     - 沒有缺值，不需要處理
 - 答案種類？
@@ -1253,7 +1212,7 @@ ggplot(Sonar.m)+geom_boxplot(aes(x=Class,y=value))+
 - 有沒有無關的參數？
     - 沒有無關的參數，不需要處理
 
-## 步驟2:分成訓練組與測試組
+ 步驟2:分成訓練組與測試組
 該怎麼分可以自己決定，1/3，1/5...都可以
 ```{r}
 Sonar$Test<-F #新增一個參數紀錄分組
@@ -1263,7 +1222,7 @@ Sonar[sample(1:nrow(Sonar),nrow(Sonar)/3),]$Test<-T
 c(sum(Sonar$Test==F),sum(Sonar$Test==T)) 
 ```
 
-## 步驟3:訓練模型
+ 步驟3:訓練模型
 - 注意只能用`訓練組`的資料，`Test`參數==F，忘記可以看前面範例
 - 數值自變項X很多，先用迴歸好了～
 - 要解釋一下模型
@@ -1274,7 +1233,7 @@ summary(finalFit)$coefficients
 ```
 
 
-## 步驟4.1:用測試組驗證模型-預測
+ 步驟4.1:用測試組驗證模型-預測
 
 ```{r warning=F,message=F,fig.height=4.5}
 MinePred<-predict(finalFit,newdata = Sonar[Sonar$Test==T,])
@@ -1284,7 +1243,7 @@ MineAns
 ```
 
 
-## 步驟4.2:用測試組驗證模型-效能
+ 步驟4.2:用測試組驗證模型-效能
 
 ```{r warning=F,message=F,fig.height=4.5}
 library(caret) # install.packages("caret") #計算參數的packages
@@ -1294,14 +1253,14 @@ posPredValue(MineAns,Sonar[Sonar$Test==T,]$Class)
 negPredValue(MineAns,Sonar[Sonar$Test==T,]$Class)
 ```
 
-## 解釋範例 - 資料說明
+ 解釋範例 - 資料說明
 此資料來源為UCI Machine Learning Repository。
 
 記載礦物與石頭接受各個不同角度的聲波撞擊後，接收到的回聲數值，一共有60個參數，代表使用一特別角度的聲波撞擊礦石所得回聲。另外，分類結果為二元分類，包括礦物 (M) 與石頭 (R) 。
 
 
-## 解釋範例 - 模型說明
+解釋範例 - 模型說明
 使用聲波在不同角度撞擊`礦石`所得到的回聲資料，以邏輯迴歸建立模型預測礦石是否為礦物，經最佳化後，模型使用參數為V1 + V2 + V3 + V4 + V7 + V11 + V12 + V13 + V17 + V18 + V22 + V24 + V25 + V26 + V30 + V31 + V32 + V38 + V39 + V48 + V50 + V52 + V53 + V58 + V59，共25個參數，各參數代表從一特別角度所得的礦石回聲
 
-## 解釋範例 - 預測效能說明
+ 解釋範例 - 預測效能說明
 使用聲波在不同角度撞擊`礦石`所得到的回聲資料，以邏輯迴歸模型預測礦石是否為礦物，可得敏感度97%，特異性89%，陽性預測率89%，陰性預測率97%。

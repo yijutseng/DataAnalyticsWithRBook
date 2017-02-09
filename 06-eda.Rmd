@@ -14,32 +14,29 @@
 
 以單變量分析來說，量化的分析方式可包含
 
-- Measures of central tendancy
-    - Mean
-    - Median
-    - Mode
+- 計算集中趨勢 [維基百科](https://zh.wikipedia.org/wiki/%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF)
+    - 平均值 Mean `mean()`
+    - 中位數 Median `median()`
+    - 眾數 Mode，R無內建函數，可直接用`table()`找出現次數最多的資料
 
-- Measures of dispersion
-    - Min
-    - Max
-    - Range
-    - Quartiles
-    - Variance
-    - Standard deviation
+- 計算資料分散程度
+    - 最小值 Min `min()`
+    - 最大值 Max `max()`
+    - 範圍 Range `range()`
+    - 四分位差 Quartiles `quantile()`
+    - 變異數 Variance `var()`
+    - 標準差 Standard deviation `sd()`
 
-- Other measures
-    - Skewness
-    - Kurtosis
+以雙變量分析來說，分析方式可包括:
 
-以雙變量分析來說，分式方式可包括:
+- 列聯表 Crosstabs `table()`, `ftable()`, `prop.table()`
+- 共變數 Covariance `cov()`
+- 相關性 Correlation `cor()`
 
-- Crosstabs
-- Covariance
-- Correlation
-
+量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數...等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹`data.table`[@R-data.table]和`dplyr`[@R-dplyr] packages，這兩個packages各有優點，可依自己喜好選用。
 
 ## data.table {#datatable}
-data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table [@R-data.table] package
+data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table[@R-data.table] package
 ```{r eval=F}
 install.packages("data.table") ##安裝
 ```
@@ -56,6 +53,7 @@ fread("檔案名稱")
 
 ```{r}
 library(SportsAnalytics)
+library(data.table)
 NBA1516<-fetch_NBAPlayerStatistics("15-16")
 NBA1516DT<-data.table(NBA1516)
 class(NBA1516DT)
@@ -65,27 +63,121 @@ class(NBA1516DT)
 
 `data.table`資料型態的特殊結構和語法設計，便於後續資料分析處理，基本語法結構如下：
 
-`DT[i,j,by=]`
+**DT[**`i`**,**`j`**,**`by`**=]**
 
 - `i` 觀察值 (Row) 篩選邏輯
 - `j` 所需欄位 (Column)
 - `by` 分組依據
 
-各參數的使用方法分述如下
+各參數間需要以逗號`,`區隔，但若只需使用前方參數，後方的`,`可省略，如只需使用i和j兩個參數，可以寫成DT[i,j]。
+各參數的使用方法分述如下：
 
-### i 篩選邏輯
+### i 觀察值篩選邏輯
+第一個參數`i`是用來篩選**觀察值**，也就是針對列(Row)做子集。篩選方式與Ch \@ref(subset)雷同，可透過**布林值**的向量或是**元素索引(index)**向量指定篩選條件，透過觀察值的篩選，可保留需要的資料，進行後續分析。
+
+以前述NBA球員資料為例，如需擷取球員姓名包含James字串的資料，可使用下列指令：
 ```{r}
-NBA1516DT
+NBA1516DT[grepl('James',Name)]
 ```
+
+如需篩選所有中鋒，且姓名包含"A"字串的球員資料，可使用下列指令：
+```{r}
+NBA1516DT[grepl('A',Name)&Position=="C"]
+```
+
+如需篩選各隊出場數超過70場的球員資料，可使用下列指令：
+```{r}
+NBA1516DT[GamesPlayed>70]
+```
+
 ### j 欄位選擇運算
+第二個參數`j`是用來決定輸出欄位，輸出的欄位可以是原始欄位，也可以是計算後的欄位，以計算所有球員的平均出場數為例：
+```{r}
+NBA1516DT[,mean(GamesPlayed)] ##因沒有篩選需求，,前方留空
+```
+也可以一次計算多個數值，如同時計算平均出場數、平均犯規次數以及平均抄截次數，此時第二個欄位`j`需要使用`.()`包起來
+```{r}
+NBA1516DT[,.(mean(GamesPlayed),mean(PersonalFouls),mean(Steals))] ##因沒有篩選需求，,前方留空
+```
+由上述輸出可以發現輸出的數字自動被加上欄位名稱V1, V2, V3，可能會造成數據判別錯誤，所以在計算新欄位時，可以在新欄位定義的前方加上`欄位名稱=`，同時替欄位取名字
+```{r}
+NBA1516DT[,.(GamesPlayedMean=mean(GamesPlayed),
+             PersonalFoulsMean=mean(PersonalFouls),
+             StealsMean=mean(Steals))]
+```
+除了計算平均值以外，當然可以帶入其他函式做各式各樣的運算
+```{r}
+NBA1516DT[,.(GamesPlayedMax=max(GamesPlayed), #最大值
+             ThreesMadeMin=min(ThreesMade), #最小值
+             FieldGoalsMadeSD=sd(FieldGoalsMade))] #標準差
+```
+
+若配合第一個參數一起使用，可以計算出所有出場數大於70的球員，平均投進幾顆三分球與兩分球
+```{r}
+NBA1516DT[GamesPlayed>70,
+          .(ThreesMadeMean=mean(ThreesMade), FieldGoalsMadeMean=mean(FieldGoalsMade))]
+```
 
 ### by 分組依據
+第三個參數`by`為分組計算的依據，舉例來說，我們可以計算NBA各隊的球員數與平均助攻數，球員個數的計算在`data.table`內可使用`.N`指令，平均使用`mean()`函數，此時只要在`by=`後方加上分組依據(各隊Team)，即可完成運算
+```{r}
+NBA1516DT[,.(.N,AssistsMean=mean(Assists)),
+          by=Team]
+```
+`.N`在`data.table`內是保留字，用來計算個數
+
+三個參數結合使用，可以輕鬆計算出**NBA各隊的中鋒球員數和他們的平均三分球出手次數**，指令如下：
+```{r}
+NBA1516DT[Position=="C",
+          .(.N,ThreesAttemptedMean=mean(ThreesAttempted)),
+          by=Team]
+```
 
 ### 參考文件與資源
-其他`data.table`教學可見 [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k){target="_blank"}，此外，DataCamp也提供[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial){target="_blank"}，可自行參閱。
+`data.table`還有很多好用的功能，有興趣的話可以參考下列資料
 
-## 資料內容初步分析統計
-
-## Case study
+- [官網](https://github.com/Rdatatable/data.table/wiki){target="_blank"}
+- 指令全集[The data.table R package cheat sheet](https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf){target="_blank"}
+- [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k){target="_blank"}
+- DataCamp[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial){target="_blank"}
 
 ## dplyr
+`dplyr`[@R-dplyr] package是[Hadley Wickham](http://hadley.nz/){target="_blank"}開發的資料處理分析套件，如要使用必須安裝並載入`dplyr` package
+```{r eval=F}
+install.packages("dplyr") ##安裝
+```
+```{r message=F}
+library(dplyr) ##載入
+```
+
+`dplyr`使用以下函數分析整理資料：
+
+- `select()`: 選要分析的欄位，欄位子集 (Column)
+- `filter()`: 選要分析的觀察值，觀察值子集 (Row)
+- `mutate()`: 增加新欄位
+- `summarise()`: 計算統計值
+- `group_by()`: 分組依據
+- `arrange()`: 觀察值排序
+- `rename()`: 欄位重新命名
+- `%>%`: the “pipe” operator 連結上數函式，將所有函示計算串在一起執行
+
+分述如下：
+
+### select()
+
+### filter()
+
+### mutate()
+
+### summarise()
+
+### group_by()
+
+### arrange()
+
+### rename()
+
+
+### 參考文件與資源
+
+- DataCamp互動式教學課程 [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial)

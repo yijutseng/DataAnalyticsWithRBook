@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>資料科學與R語言</title>
-  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。">
+  <meta name="description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍">
   <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="資料科學與R語言" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="資料科學與R語言" />
   
-  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法課程教學使用書籍" />
   
 
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-02-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -161,7 +161,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>4.1.5</b> R物件 .rds</a></li>
 <li class="chapter" data-level="4.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>4.1.6</b> R程式 .R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>4.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他格式</a></li>
+<li class="chapter" data-level="4.1.9" data-path="io.html"><a href="io.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 其他讀檔注意事項</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 從網路匯入資料</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
@@ -210,40 +211,79 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
 <li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.1</b> data.table</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 篩選邏輯</a></li>
+<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 觀察值篩選邏輯</a></li>
 <li class="chapter" data-level="6.1.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.1.2</b> j 欄位選擇運算</a></li>
 <li class="chapter" data-level="6.1.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.1.3</b> by 分組依據</a></li>
 <li class="chapter" data-level="6.1.4" data-path="eda.html"><a href="eda.html#section-6.1.4"><i class="fa fa-check"></i><b>6.1.4</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料內容初步分析統計</a></li>
-<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#case-study"><i class="fa fa-check"></i><b>6.3</b> Case study</a></li>
-<li class="chapter" data-level="6.4" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.4</b> dplyr</a></li>
+<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.2</b> dplyr</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>6.2.1</b> select()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>6.2.2</b> filter()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>6.2.3</b> mutate()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>6.2.4</b> summarise()</a></li>
+<li class="chapter" data-level="6.2.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>6.2.5</b> group_by()</a></li>
+<li class="chapter" data-level="6.2.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>6.2.6</b> arrange()</a></li>
+<li class="chapter" data-level="6.2.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>6.2.7</b> rename()</a></li>
+<li class="chapter" data-level="6.2.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>6.2.8</b> 參考文件與資源</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#-1"><i class="fa fa-check"></i><b>7.1.1</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2套件</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>7.1.1</b> qplot()</a></li>
+<li class="chapter" data-level="7.1.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>7.1.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#case-study-1"><i class="fa fa-check"></i><b>7.2</b> Case study</a></li>
+<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>7.2.1</b> Choropleth map</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>7.2.2</b> ggmap</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
-<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
-<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
-<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
-<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
-<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
-<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+<li class="chapter" data-level="7.3" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>7.3</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vis.html"><a href="vis.html#taiwan-1"><i class="fa fa-check"></i><b>7.3.1</b> Taiwan的面量圖</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vis.html"><a href="vis.html#heatmap-"><i class="fa fa-check"></i><b>7.3.2</b> Heatmap 先將資料讀入</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.3.3</b> Treemap</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vis.html"><a href="vis.html#error-bar-"><i class="fa fa-check"></i><b>7.3.4</b> Error bar 誤差線</a></li>
+<li class="chapter" data-level="7.3.5" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.3.5</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
-<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+<li class="chapter" data-level="7.4" data-path="vis.html"><a href="vis.html#case-study"><i class="fa fa-check"></i><b>7.4</b> Case study</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>9</b> 軟體安裝介紹</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>9.1</b> R安裝</a></li>
-<li class="chapter" data-level="9.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.2</b> RStudio安裝</a></li>
-<li class="chapter" data-level="9.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3</b> RStudio使用簡介</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="install.html"><a href="install.html#section-9.3.1"><i class="fa fa-check"></i><b>9.3.1</b> 專案</a></li>
-<li class="chapter" data-level="9.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3.2</b> RStudio介面</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a><ul>
+<li class="chapter" data-level="9.1" data-path="datamining.html"><a href="datamining.html#clustering"><i class="fa fa-check"></i><b>9.1</b> Clustering</a></li>
+<li class="chapter" data-level="9.2" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering"><i class="fa fa-check"></i><b>9.2</b> Hierarchical clustering</a></li>
+<li class="chapter" data-level="9.3" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>9.3</b> K-means clustering</a></li>
+<li class="chapter" data-level="9.4" data-path="datamining.html"><a href="datamining.html#kmeans"><i class="fa fa-check"></i><b>9.4</b> <code>kmeans()</code></a><ul>
+<li class="chapter" data-level="9.4.1" data-path="datamining.html"><a href="datamining.html#heatmaps"><i class="fa fa-check"></i><b>9.4.1</b> Heatmaps</a></li>
+<li class="chapter" data-level="9.4.2" data-path="datamining.html"><a href="datamining.html#k-means"><i class="fa fa-check"></i><b>9.4.2</b> K-means注意事項</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="datamining.html"><a href="datamining.html#machine-learning-"><i class="fa fa-check"></i><b>9.5</b> Machine Learning 機器學習</a></li>
+<li class="chapter" data-level="9.6" data-path="datamining.html"><a href="datamining.html#decision-trees-"><i class="fa fa-check"></i><b>9.6</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="9.7" data-path="datamining.html"><a href="datamining.html#association-rules-"><i class="fa fa-check"></i><b>9.7</b> Association Rules 關聯式規則</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="datamining.html"><a href="datamining.html#section-9.7.1"><i class="fa fa-check"></i><b>9.7.1</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="datamining.html"><a href="datamining.html#regression-"><i class="fa fa-check"></i><b>9.8</b> Regression 迴歸</a></li>
+<li class="chapter" data-level="9.9" data-path="datamining.html"><a href="datamining.html#logistic-regression-"><i class="fa fa-check"></i><b>9.9</b> Logistic Regression 邏輯迴歸</a></li>
+<li class="chapter" data-level="9.10" data-path="datamining.html"><a href="datamining.html#decision-trees--1"><i class="fa fa-check"></i><b>9.10</b> Decision Trees 決策樹</a><ul>
+<li class="chapter" data-level="9.10.1" data-path="datamining.html"><a href="datamining.html#section-9.10.1"><i class="fa fa-check"></i><b>9.10.1</b> 模型驗證</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="10.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>10.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="big.html"><a href="big.html#section-10.2.1"><i class="fa fa-check"></i><b>10.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="10.2.2" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>10.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="10.2.3" data-path="big.html"><a href="big.html#section-10.2.3"><i class="fa fa-check"></i><b>10.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="10.2.4" data-path="big.html"><a href="big.html#section-10.2.4"><i class="fa fa-check"></i><b>10.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="10.2.5" data-path="big.html"><a href="big.html#section-10.2.5"><i class="fa fa-check"></i><b>10.2.5</b> 測試</a></li>
+<li class="chapter" data-level="10.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>10.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>10.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="10.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>10.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>11</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="11.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>11.1</b> R安裝</a></li>
+<li class="chapter" data-level="11.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="11.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="install.html"><a href="install.html#section-11.3.1"><i class="fa fa-check"></i><b>11.3.1</b> 專案</a></li>
+<li class="chapter" data-level="11.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3.2</b> RStudio介面</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
@@ -271,11 +311,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">資料科學與R語言</h1>
 <h4 class="author"><em>曾意儒 Yi-Ju Tseng</em></h4>
-<h4 class="date"><em>2017-02-09</em></h4>
+<h4 class="date"><em>2017-02-10</em></h4>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1></h1>
-<p><a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚大學資訊管理學系</a> <a href="https://github.com/yijutseng/BigDataCGUIM" target="_blank">大數據分析方法</a>教學使用書籍，內容包括使用<a href="http://www.r-project.org/" target="_blank">R語言</a>做資料擷取、資料清洗與處理、探索式資料分析、資料視覺化與資料探勘等，並介紹R與Hadoop Ecosystems介接方法。</p>
+<p><a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚大學資訊管理學系</a> <a href="https://github.com/yijutseng/BigDataCGUIM" target="_blank">大數據分析方法</a>課程教學使用書籍，內容包括使用<a href="http://www.r-project.org/" target="_blank">R語言</a>完成資料讀取 (檔案、透過API擷取或爬蟲)、資料清洗與處理、探索式資料分析、資料視覺化、互動式資料呈現 (搭配Shiny) 與資料探勘等，並介紹R與Hadoop Ecosystems介接方法。</p>
 <p>目前完成1-5與8-9章，PDF版本與epub版本格式微調中。</p>
 <p>歡迎提供<a href="https://goo.gl/forms/5Htobvwy2vsB7yiF3" target="_blank">建議與回饋</a>。</p>
 
@@ -326,6 +366,17 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

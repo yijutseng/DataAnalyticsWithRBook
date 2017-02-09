@@ -20,7 +20,7 @@ options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 80, digits = 4
 )
 
-pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2','SportsAnalytics','readr','readxl','jsonlite','RCurl','XML','Rfacebook','rvest')
+pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2','SportsAnalytics','readr','readxl','jsonlite','RCurl','XML','Rfacebook','rvest','rgdal','rgeos','maptools','ggmap','choroplethr','choroplethrMaps','WDI','treemapify')
 lapply(c(), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
