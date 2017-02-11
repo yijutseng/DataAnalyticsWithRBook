@@ -1,6 +1,6 @@
 
 #資料科學與R語言
-## 曾意儒 Yi-Ju Tseng
+### 曾意儒 Yi-Ju Tseng
 
 本資源庫存放[資料科學與R語言](http://yijutseng.github.io/DataScienceRBook/)的文字與程式碼，內容包括使用R語言完成以下任務:
 
