@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-11">
+<meta name="date" content="2017-02-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -269,24 +269,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
-<li class="chapter" data-level="11.4" data-path="references.html"><a href="references.html#section-11.4"><i class="fa fa-check"></i><b>11.4</b> 什麼是資料探勘</a></li>
-<li class="chapter" data-level="11.5" data-path="references.html"><a href="references.html#hierarchical-clustering"><i class="fa fa-check"></i><b>11.5</b> Hierarchical clustering</a></li>
-<li class="chapter" data-level="11.6" data-path="references.html"><a href="references.html#k-means-clustering"><i class="fa fa-check"></i><b>11.6</b> K-means clustering</a></li>
-<li class="chapter" data-level="11.7" data-path="references.html"><a href="references.html#kmeans"><i class="fa fa-check"></i><b>11.7</b> <code>kmeans()</code></a><ul>
-<li class="chapter" data-level="11.7.1" data-path="references.html"><a href="references.html#heatmaps"><i class="fa fa-check"></i><b>11.7.1</b> Heatmaps</a></li>
-<li class="chapter" data-level="11.7.2" data-path="references.html"><a href="references.html#k-means"><i class="fa fa-check"></i><b>11.7.2</b> K-means注意事項</a></li>
-</ul></li>
-<li class="chapter" data-level="11.8" data-path="references.html"><a href="references.html#decision-trees-"><i class="fa fa-check"></i><b>11.8</b> Decision Trees 決策樹</a></li>
-<li class="chapter" data-level="11.9" data-path="references.html"><a href="references.html#association-rules-"><i class="fa fa-check"></i><b>11.9</b> Association Rules 關聯式規則</a><ul>
-<li class="chapter" data-level="11.9.1" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>11.9.1</b> 參考資料</a></li>
-</ul></li>
-<li class="chapter" data-level="11.10" data-path="references.html"><a href="references.html#regression-"><i class="fa fa-check"></i><b>11.10</b> Regression 迴歸</a></li>
-<li class="chapter" data-level="11.11" data-path="references.html"><a href="references.html#logistic-regression-"><i class="fa fa-check"></i><b>11.11</b> Logistic Regression 邏輯迴歸</a></li>
-<li class="chapter" data-level="11.12" data-path="references.html"><a href="references.html#decision-trees--1"><i class="fa fa-check"></i><b>11.12</b> Decision Trees 決策樹</a><ul>
-<li class="chapter" data-level="11.12.1" data-path="references.html"><a href="references.html#section-11.12.1"><i class="fa fa-check"></i><b>11.12.1</b> 模型驗證</a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -452,59 +435,59 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 304
+##   ..$ count  : int 302
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  304 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:304] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:304] &quot;Piggy&quot; &quot;&quot; &quot;&quot; &quot;爵士&quot; ...
-##   .. ..$ Sex            : chr [1:304] &quot;雄&quot; &quot;雌&quot; &quot;雌&quot; &quot;雄&quot; ...
-##   .. ..$ Type           : chr [1:304] &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; &quot;犬&quot; ...
-##   .. ..$ Build          : chr [1:304] &quot;小&quot; &quot;中&quot; &quot;幼&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:304] &quot;成年&quot; &quot;老年&quot; &quot;幼齡&quot; &quot;成年&quot; ...
-##   .. ..$ Variety        : chr [1:304] &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:304] &quot;民眾不擬續養&quot; &quot;動物管制&quot; &quot;民眾拾獲&quot; &quot;動物救援&quot; ...
-##   .. ..$ AcceptNum      : chr [1:304] &quot;106020812&quot; &quot;106020803&quot; &quot;106020701&quot; &quot;106020702&quot; ...
-##   .. ..$ ChipNum        : chr [1:304] &quot;900073000086495&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ IsSterilization: chr [1:304] &quot;已絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
-##   .. ..$ HairType       : chr [1:304] &quot;棕黑&quot; &quot;黑白&quot; &quot;黑&quot; &quot;黑白&quot; ...
-##   .. ..$ Note           : chr [1:304] &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;後癱&quot; &quot;鼻氣管炎 跳蚤&quot; &quot;我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！&quot; ...
-##   .. ..$ Resettlement   : chr [1:304] &quot;臺北市動物之家 收容編號106020812&quot; &quot;&quot; &quot;&quot; &quot;臺北市動物之家 收容編號106020702&quot; ...
-##   .. ..$ Phone          : chr [1:304] &quot;02-87913062&quot; &quot;&quot; &quot;&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:304] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;&quot; &quot;&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:304] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:304] &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  302 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:302] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:302] &quot;Dudu&quot; &quot;Piggy&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Sex            : chr [1:302] &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; &quot;雌&quot; ...
+##   .. ..$ Type           : chr [1:302] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; ...
+##   .. ..$ Build          : chr [1:302] &quot;中&quot; &quot;小&quot; &quot;中&quot; &quot;幼&quot; ...
+##   .. ..$ Age            : chr [1:302] &quot;年輕&quot; &quot;成年&quot; &quot;老年&quot; &quot;幼齡&quot; ...
+##   .. ..$ Variety        : chr [1:302] &quot;米克斯&quot; &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:302] &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;動物管制&quot; &quot;民眾拾獲&quot; ...
+##   .. ..$ AcceptNum      : chr [1:302] &quot;106021001&quot; &quot;106020812&quot; &quot;106020803&quot; &quot;106020701&quot; ...
+##   .. ..$ ChipNum        : chr [1:302] &quot;900073000086389&quot; &quot;900073000086495&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ IsSterilization: chr [1:302] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
+##   .. ..$ HairType       : chr [1:302] &quot;三花&quot; &quot;棕黑&quot; &quot;黑白&quot; &quot;黑&quot; ...
+##   .. ..$ Note           : chr [1:302] &quot;歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時&quot;| __truncated__ &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;後癱&quot; &quot;鼻氣管炎 跳蚤&quot; ...
+##   .. ..$ Resettlement   : chr [1:302] &quot;臺北市動物之家 收容編號106021001&quot; &quot;臺北市動物之家 收容編號106020812&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Phone          : chr [1:302] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Email          : chr [1:302] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:302] &quot;http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
 <pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
-## 1   1 Piggy  雄   犬    小 成年  約克夏 民眾不擬續養 106020812 900073000086495
-## 2   2        雌   犬    中 老年  米克斯     動物管制 106020803                
-## 3   3        雌   貓    幼 幼齡  米克斯     民眾拾獲 106020701                
-## 4   4  爵士  雄   犬    中 成年  米克斯     動物救援 106020702                
-## 5   5  威利  雄   犬    中 成年  米克斯 民眾不擬續養 106020301 965000000263051
-## 6   6        雄   貓    中 老年  米克斯     民眾拾獲 106012706                
+## 1   1  Dudu  雌   犬    中 年輕  米克斯 民眾不擬續養 106021001 900073000086389
+## 2   2 Piggy  雄   犬    小 成年  約克夏 民眾不擬續養 106020812 900073000086495
+## 3   3        雌   犬    中 老年  米克斯     動物管制 106020803                
+## 4   4        雌   貓    幼 幼齡  米克斯     民眾拾獲 106020701                
+## 5   5  爵士  雄   犬    中 成年  米克斯     動物救援 106020702                
+## 6   6  威利  雄   犬    中 成年  米克斯 民眾不擬續養 106020301 965000000263051
 ##   IsSterilization HairType
-## 1          已絕育     棕黑
-## 2          未絕育     黑白
-## 3          未絕育       黑
-## 4          未絕育     黑白
-## 5          已絕育     黃白
-## 6          未絕育     黃白
-##                                                                                                                                                         Note
-## 1 皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什麼呢?快來動物之家認養我吧!!
-## 2                                                                                                                                                       後癱
-## 3                                                                                                                                              鼻氣管炎 跳蚤
-## 4                                             我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！
-## 5                                                    哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!
-## 6                                                                                                                               疑似高處掉落 疑似無視覺 血尿
-##                         Resettlement       Phone                      Email
-## 1   臺北市動物之家 收容編號106020812 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 2                                                                          
-## 3                                                                          
-## 4   臺北市動物之家 收容編號106020702 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 5   臺北市動物之家 收容編號106020301 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 6 臺北市動物之家 收容編號：106012706 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 1          未絕育     三花
+## 2          已絕育     棕黑
+## 3          未絕育     黑白
+## 4          未絕育       黑
+## 5          未絕育     黑白
+## 6          已絕育     黃白
+##                                                                                                                                                               Note
+## 1 歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時間耐心教導我\n請來動物之家找我哦！
+## 2       皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什麼呢?快來動物之家認養我吧!!
+## 3                                                                                                                                                             後癱
+## 4                                                                                                                                                    鼻氣管炎 跳蚤
+## 5                                                   我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！
+## 6                                                          哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!
+##                       Resettlement       Phone                      Email
+## 1 臺北市動物之家 收容編號106021001 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 2 臺北市動物之家 收容編號106020812 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 3                                                                        
+## 4                                                                        
+## 5 臺北市動物之家 收容編號106020702 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 6 臺北市動物之家 收容編號106020301 02-87913062 tcapoa8@mail.taipei.gov.tw
 ##   ChildreAnlong AnimalAnlong Bodyweight
 ## 1                                      
 ## 2                                      
@@ -513,17 +496,17 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ## 5                                      
 ## 6                                      
 ##                                                                             ImageName
-## 1 http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg
-## 2 http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg
-## 3 http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg
-## 4 http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg
-## 5 http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg
-## 6 http://163.29.39.183/uploads/images/medium/e07b5bdb-5138-439d-b83e-9e0347a3cb70.jpg</code></pre>
+## 1 http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg
+## 2 http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg
+## 3 http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg
+## 4 http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg
+## 5 http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg
+## 6 http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg</code></pre>
 <p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           28          102          109           42           23</code></pre>
+##           28          102          107           42           23</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -694,7 +677,7 @@ FBData =<span class="st"> </span><span class="kw">GET</span>(
 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">json1$posts$data[[<span class="dv">1</span>]]$message</code></pre></div>
 <pre><code>##[1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;</code></pre>
-<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(<span class="citeproc-not-found" data-reference-id="R-Rfacebook"><strong>???</strong></span>)</span> package來讀取Facebook資料</p>
+<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2017</a>)</span> package來讀取Facebook資料</p>
 <p>Use Rfacebook To Get Info from <code>tsaiingwen</code> Page</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rfacebook)
 token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span>
@@ -812,6 +795,9 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <div id="ref-R-rvest">
 <p>Wickham, Hadley. 2016c. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest" class="uri">https://CRAN.R-project.org/package=rvest</a>.</p>
 </div>
+<div id="ref-R-Rfacebook">
+<p>Barbera, Pablo, Michael Piccirilli, and Andrew Geisler. 2017. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook" class="uri">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
+</div>
 </div>
             </section>
 
@@ -859,17 +845,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

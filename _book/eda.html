@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-11">
+<meta name="date" content="2017-02-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -269,24 +269,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
-<li class="chapter" data-level="11.4" data-path="references.html"><a href="references.html#section-11.4"><i class="fa fa-check"></i><b>11.4</b> 什麼是資料探勘</a></li>
-<li class="chapter" data-level="11.5" data-path="references.html"><a href="references.html#hierarchical-clustering"><i class="fa fa-check"></i><b>11.5</b> Hierarchical clustering</a></li>
-<li class="chapter" data-level="11.6" data-path="references.html"><a href="references.html#k-means-clustering"><i class="fa fa-check"></i><b>11.6</b> K-means clustering</a></li>
-<li class="chapter" data-level="11.7" data-path="references.html"><a href="references.html#kmeans"><i class="fa fa-check"></i><b>11.7</b> <code>kmeans()</code></a><ul>
-<li class="chapter" data-level="11.7.1" data-path="references.html"><a href="references.html#heatmaps"><i class="fa fa-check"></i><b>11.7.1</b> Heatmaps</a></li>
-<li class="chapter" data-level="11.7.2" data-path="references.html"><a href="references.html#k-means"><i class="fa fa-check"></i><b>11.7.2</b> K-means注意事項</a></li>
-</ul></li>
-<li class="chapter" data-level="11.8" data-path="references.html"><a href="references.html#decision-trees-"><i class="fa fa-check"></i><b>11.8</b> Decision Trees 決策樹</a></li>
-<li class="chapter" data-level="11.9" data-path="references.html"><a href="references.html#association-rules-"><i class="fa fa-check"></i><b>11.9</b> Association Rules 關聯式規則</a><ul>
-<li class="chapter" data-level="11.9.1" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>11.9.1</b> 參考資料</a></li>
-</ul></li>
-<li class="chapter" data-level="11.10" data-path="references.html"><a href="references.html#regression-"><i class="fa fa-check"></i><b>11.10</b> Regression 迴歸</a></li>
-<li class="chapter" data-level="11.11" data-path="references.html"><a href="references.html#logistic-regression-"><i class="fa fa-check"></i><b>11.11</b> Logistic Regression 邏輯迴歸</a></li>
-<li class="chapter" data-level="11.12" data-path="references.html"><a href="references.html#decision-trees--1"><i class="fa fa-check"></i><b>11.12</b> Decision Trees 決策樹</a><ul>
-<li class="chapter" data-level="11.12.1" data-path="references.html"><a href="references.html#section-11.12.1"><i class="fa fa-check"></i><b>11.12.1</b> 模型驗證</a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -343,15 +326,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>共變數 Covariance <code>cov()</code></li>
 <li>相關性 Correlation <code>cor()</code></li>
 </ul>
-<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle et al. <a href="#ref-R-data.table">2016</a>)</span>和<code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
+<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span>和<code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
 </div>
 <div id="datatable" class="section level2">
 <h2><span class="header-section-number">6.2</span> data.table</h2>
-<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle et al. <a href="#ref-R-data.table">2016</a>)</span> package</p>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>) ##安裝</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table) ##載入</code></pre></div>
-<pre><code>## 
-## This data.table install has not detected OpenMP support. It will work but slower in single threaded mode.</code></pre>
 <p>使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為<code>fread()</code>，使用方法與一般檔案讀取方法(Ch <a href="io.html#file">4.1</a>)類似</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fread</span>(<span class="st">&quot;檔案名稱&quot;</span>)</code></pre></div>
 <p>如果已經使用其他資料來源將檔案讀成資料框data.frame格式，可以使用<code>data.table()</code>函數將data.frame轉為data.table格式，以先前介紹過的NBA資料為例（Ch <a href="manipulation.html#manCase">5.9</a>，需安裝與載入<code>SportsAnalytics</code>套件）</p>
@@ -1070,7 +1051,7 @@ rename1[<span class="dv">1</span>:<span class="dv">5</span>,<span class="dv">1</
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-data.table">
-<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2016. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+<p>Dowle, Matt, and Arun Srinivasan. 2016. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
 </div>
 <div id="ref-R-dplyr">
 <p>Wickham, Hadley, and Romain Francois. 2016. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
@@ -1122,17 +1103,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
