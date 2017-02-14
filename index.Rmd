@@ -40,7 +40,7 @@ devtools::install_github("yijutseng/DataAnalyticsWithRBook")
 
 本書為[長庚大學資訊管理學系](http://im.cgu.edu.tw/bin/home.php){target="_blank"} [大數據分析方法](https://github.com/yijutseng/BigDataCGUIM){target="_blank"}課程教學使用書籍
 
-如果您想修改文字或範例，歡迎透過[此連結]((https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"})提供建議與回饋。
+如果您想修改文字或範例，歡迎透過[此連結](https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"})提供建議與回饋。
 
 本著作係採用創用 CC 姓名標示-非商業性-禁止改作 3.0 台灣 授權條款授權。
 
