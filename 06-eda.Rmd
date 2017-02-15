@@ -1,6 +1,5 @@
 # 探索式資料分析 {#eda}
-撰寫中
-
+## 什麼是探索式資料分析
 探索式資料分析 (**E**xploratory **D**ata **A**nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料套性獲取資料所包含的資訊、的結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。
 
 探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方項錯誤所造成的時間浪費。
@@ -14,32 +13,29 @@
 
 以單變量分析來說，量化的分析方式可包含
 
-- Measures of central tendancy
-    - Mean
-    - Median
-    - Mode
+- 計算集中趨勢 ([維基百科](https://zh.wikipedia.org/wiki/%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF){target="_blank"})
+    - 平均值 Mean `mean()`
+    - 中位數 Median `median()`
+    - 眾數 Mode，R無內建函數，可直接用`table()`找出現次數最多的資料
 
-- Measures of dispersion
-    - Min
-    - Max
-    - Range
-    - Quartiles
-    - Variance
-    - Standard deviation
+- 計算資料分散程度
+    - 最小值 Min `min()`
+    - 最大值 Max `max()`
+    - 範圍 Range `range()`
+    - 四分位差 Quartiles `quantile()`
+    - 變異數 Variance `var()`
+    - 標準差 Standard deviation `sd()`
 
-- Other measures
-    - Skewness
-    - Kurtosis
+以雙變量分析來說，分析方式可包括:
 
-以雙變量分析來說，分式方式可包括:
+- 列聯表 Crosstabs `table()`, `ftable()`, `prop.table()`
+- 共變數 Covariance `cov()`
+- 相關性 Correlation `cor()`
 
-- Crosstabs
-- Covariance
-- Correlation
-
+量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數...等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹`data.table`[@R-data.table]和`dplyr`[@R-dplyr] packages，這兩個packages各有優點，可依自己喜好選用。
 
 ## data.table {#datatable}
-data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table [@R-data.table] package
+data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table[@R-data.table] package
 ```{r eval=F}
 install.packages("data.table") ##安裝
 ```
@@ -56,6 +52,7 @@ fread("檔案名稱")
 
 ```{r}
 library(SportsAnalytics)
+library(data.table)
 NBA1516<-fetch_NBAPlayerStatistics("15-16")
 NBA1516DT<-data.table(NBA1516)
 class(NBA1516DT)
@@ -65,27 +62,255 @@ class(NBA1516DT)
 
 `data.table`資料型態的特殊結構和語法設計，便於後續資料分析處理，基本語法結構如下：
 
-`DT[i,j,by=]`
+**DT[**`i`**,**`j`**,**`by`**=]**
 
 - `i` 觀察值 (Row) 篩選邏輯
 - `j` 所需欄位 (Column)
 - `by` 分組依據
 
-各參數的使用方法分述如下
+各參數間需要以逗號`,`區隔，但若只需使用前方參數，後方的`,`可省略，如只需使用i和j兩個參數，可以寫成DT[i,j]。
+各參數的使用方法分述如下：
 
-### i 篩選邏輯
+### i 觀察值篩選邏輯
+第一個參數`i`是用來篩選**觀察值**，也就是針對列(Row)做子集。篩選方式與Ch \@ref(subset)雷同，可透過**布林值**的向量或是**元素索引(index)**向量指定篩選條件，透過觀察值的篩選，可保留需要的資料，進行後續分析。
+
+以前述NBA球員資料為例，如需擷取球員姓名包含James字串的資料，可使用下列指令：
 ```{r}
-NBA1516DT
+NBA1516DT[grepl('James',Name)]
 ```
+
+如需篩選所有中鋒，且姓名包含"A"字串的球員資料，可使用下列指令：
+```{r}
+NBA1516DT[grepl('A',Name)&Position=="C"]
+```
+
+如需篩選各隊出場數超過70場的球員資料，可使用下列指令：
+```{r}
+NBA1516DT[GamesPlayed>70]
+```
+
 ### j 欄位選擇運算
+第二個參數`j`是用來決定輸出欄位，輸出的欄位可以是原始欄位，也可以是計算後的欄位，以計算所有球員的平均出場數為例：
+```{r}
+NBA1516DT[,mean(GamesPlayed)] ##因沒有篩選需求，,前方留空
+```
+也可以一次計算多個數值，如同時計算平均出場數、平均犯規次數以及平均抄截次數，此時第二個欄位`j`需要使用`.()`包起來
+```{r}
+NBA1516DT[,.(mean(GamesPlayed),mean(PersonalFouls),mean(Steals))] ##因沒有篩選需求，,前方留空
+```
+由上述輸出可以發現輸出的數字自動被加上欄位名稱V1, V2, V3，可能會造成數據判別錯誤，所以在計算新欄位時，可以在新欄位定義的前方加上`欄位名稱=`，同時替欄位取名字
+```{r}
+NBA1516DT[,.(GamesPlayedMean=mean(GamesPlayed),
+             PersonalFoulsMean=mean(PersonalFouls),
+             StealsMean=mean(Steals))]
+```
+除了計算平均值以外，當然可以帶入其他函式做各式各樣的運算
+```{r}
+NBA1516DT[,.(GamesPlayedMax=max(GamesPlayed), #最大值
+             ThreesMadeMin=min(ThreesMade), #最小值
+             FieldGoalsMadeSD=sd(FieldGoalsMade))] #標準差
+```
+
+若配合第一個參數一起使用，可以計算出所有**出場數大於70**的球員，**平均投進幾顆三分球與兩分球**
+```{r}
+NBA1516DT[GamesPlayed>70,
+          .(ThreesMadeMean=mean(ThreesMade), FieldGoalsMadeMean=mean(FieldGoalsMade))]
+```
 
 ### by 分組依據
+第三個參數`by`為分組計算的依據，舉例來說，我們可以計算NBA各隊的**球員數**與**平均助攻數**，球員個數的計算在`data.table`內可使用`.N`指令，平均使用`mean()`函數，此時只要在`by=`後方加上分組依據(各隊Team)，即可完成運算
+```{r}
+NBA1516DT[,.(.N,AssistsMean=mean(Assists)),
+          by=Team]
+```
+`.N`在`data.table`內是保留字，用來計算個數
+
+三個參數結合使用，可以輕鬆計算出**NBA各隊的中鋒球員數和他們的平均三分球出手次數**，指令如下：
+```{r}
+NBA1516DT[Position=="C",
+          .(.N,ThreesAttemptedMean=mean(ThreesAttempted)),
+          by=Team]
+```
 
 ### 參考文件與資源
-其他`data.table`教學可見 [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k){target="_blank"}，此外，DataCamp也提供[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial){target="_blank"}，可自行參閱。
+`data.table`還有很多好用的功能，有興趣的話可以參考下列資料
 
-## 資料內容初步分析統計
-
-## Case study
+- [官網](https://github.com/Rdatatable/data.table/wiki){target="_blank"}
+- 指令全集[The data.table R package cheat sheet](https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf){target="_blank"}
+- [A data.table R tutorial by DataCamp](https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k){target="_blank"}
+- DataCamp[互動式教學課程](https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial){target="_blank"}
 
 ## dplyr
+`dplyr`[@R-dplyr] package是[Hadley Wickham](http://hadley.nz/){target="_blank"}開發的資料處理分析套件，如要使用必須安裝並載入`dplyr` package
+```{r eval=F}
+install.packages("dplyr") ##安裝
+```
+```{r message=F}
+library(dplyr) ##載入
+```
+
+`dplyr`使用以下函數分析整理資料：
+
+- `select()`: 選要分析的欄位，欄位子集 (Column)
+- `filter()`: 選要分析的觀察值，觀察值子集 (Row)
+- `mutate()`: 增加新欄位
+- `summarise()`: 計算統計值
+- `group_by()`: 分組依據
+- `arrange()`: 觀察值排序
+- `rename()`: 欄位重新命名
+- `%>%`: the “pipe” operator 連結上數函式，將所有函示計算串在一起執行
+
+以上述NBA資料為例，各函數功能分述如下：
+首先先讀入資料
+
+```{r}
+library(SportsAnalytics)
+NBA1516<-fetch_NBAPlayerStatistics("15-16")
+```
+
+### select() 
+使用`select()`函式可選要分析的欄位，也就是針對欄位 (Column)做子集，函式使用方式為`select(資料名稱,欄位條件1,欄位條件2,...)`，其中條件1與條件2是使用**或**的連結概念。另外`dplyr`提供幾個方便篩選名稱的函式：
+
+- `starts_with()`
+- `ends_with()`
+- `contains()`
+- `matches()`
+- `num_range()`
+- `one_of()`
+- `everything()`
+
+詳細說明可在R執行視窗中輸入`?select_helpers`查看。
+
+舉例來說，我們想要篩選欄位名稱為`Name`、`ThreesMade`、`ThreesAttempted`、`FieldGoalsMade`與`FieldGoalsAttempted`的五個欄位，指令範例如下
+```{r select1}
+##等同於
+##NBA1516[,c("Name","ThreesMade","ThreesAttempted","FieldGoalsMade","FieldGoalsAttempted")]
+select1<-select(NBA1516,Name,starts_with("Threes"),starts_with("FieldGoals"))
+head(select1)
+```
+
+若想篩選欄位`Name`到欄位`FreeThrowsAttempted`間的所有欄位，可用`:`串連欄位名稱
+```{r selec2}
+##等同於NBA1516[,2:12]
+select2<-select(NBA1516,Name:FreeThrowsAttempted)
+head(select2)
+##等同於NBA1516[,c(2:4,612)]
+select3<-select(NBA1516,Name:FreeThrowsAttempted,-GamesPlayed)
+head(select3)
+```
+
+### filter() {#filter}
+使用`filter()`函式可選要分析的觀察值，也就是針對列 (Row)做子集，使用方法為`filter(資料名稱,篩選條件)`，舉例來說，如果想要看出場分鐘數超過2850分鐘的球員資料，可用輸入下列指令
+```{r filter1}
+##等同於 NBA1516[NBA1516$TotalMinutesPlayed>2850,]
+filter1<-filter(NBA1516,TotalMinutesPlayed>2850)
+filter1
+```
+
+也可選擇隊伍名稱為"BOS"或"SAN"的球員資料
+```{r filter2}
+##等同於 NBA1516[NBA1516$Team %in% c("BOS","SAN"),]
+filter2<-filter(NBA1516,Team %in% c("BOS","SAN"))
+head(filter2)
+```
+
+在`filter()`函式中可**直接做變數計算**後再篩選
+```{r filter3}
+##等同於
+filter3<-filter(NBA1516,FieldGoalsMade/FieldGoalsAttempted>0.7)
+filter3
+```
+
+也可使用 `&` 和 `|`等符號串連邏輯
+```{r filter4}
+##等同於
+filter4<-filter(NBA1516,FieldGoalsMade/FieldGoalsAttempted>0.7 & GamesPlayed>30)
+filter4
+```
+
+### mutate()
+使用`mutate()`增加新欄位，如需新增新欄位`FieldGoalsRate`，欄位值為`FieldGoalsMade/FieldGoalsAttempted`，指令如下
+```{r mutate1}
+mutate1<-mutate(NBA1516,FieldGoalsRate=FieldGoalsMade/FieldGoalsAttempted)
+mutate1$FieldGoalsRate[1:10]
+```
+
+### summarise() {#summarise}
+`summarise()`函式用來計算統計值，像是**球員個數**、**不重複的隊伍數**以及**不重複的守備位置數**等
+```{r summarise1}
+sum1<-summarise(NBA1516,
+                nPlayer=n(),
+                nTeam=n_distinct(Team),
+                nPosition=n_distinct(Position))
+sum1
+```
+
+計算統計值的功能通常會與其他功能合併使用，像是與前述`filter()`功能 Ch \@ref(filter)合併使用，可計算**出場分鐘數大於2500分鐘**的球員個數、平均投進的兩分球數以及平均投出的兩分球數
+```{r summarise2}
+filter1<-filter(NBA1516,TotalMinutesPlayed>2500)
+sum2<-summarise(filter1,
+                nPlayer=n(),
+                meanFieldGoalsMade=mean(FieldGoalsMade),
+                meanFieldGoalsAttempted=mean(FieldGoalsAttempted))
+sum2
+```
+
+上述分析序列（先篩選再總和），可直接用**pipe**符號`%>%`將指令串連，減少暫存物件（filter1）的生成，主要概念是先篩選後計算
+```{r summarise3}
+sum3<-filter(NBA1516,TotalMinutesPlayed>2500) %>%
+  summarise(nPlayer=n(),meanFieldGoalsMade=mean(FieldGoalsMade),
+                meanFieldGoalsAttempted=mean(FieldGoalsAttempted))
+sum3
+```
+
+
+### group_by()
+`group_by()`函數的功能為設定分組依據，通常會與`summarise()`函式Ch \@ref(summarise)合併使用，例如計算各**隊**（以Team作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數
+```{r group1}
+group1<-group_by(NBA1516,Team)%>%
+  summarise(nPlayer=n(),meanFieldGoalsMade=mean(FieldGoalsMade),
+                meanFieldGoalsAttempted=mean(FieldGoalsAttempted))
+head(group1)
+```
+
+當然也可以設定**多個**分組依據，像是計算各**隊**各**守備位置**（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數
+```{r group2}
+group2<-group_by(NBA1516,Team,Position)%>%
+  summarise(nPlayer=n(),meanFieldGoalsMade=mean(FieldGoalsMade),
+                meanFieldGoalsAttempted=mean(FieldGoalsAttempted))
+head(group2)
+```
+### arrange()
+排序功能，預設為**遞增排序**
+```{r arrange1}
+arrange1<-arrange(NBA1516,TotalMinutesPlayed)
+head(arrange1)
+```
+使用`desc()`將要**遞減排序**的變數包起來，就可以遞減排序
+```{r arrange2}
+arrange2<-arrange(NBA1516,desc(TotalMinutesPlayed),desc(GamesPlayed))
+head(arrange2)
+```
+
+結合`group_by()`、`summarise()`、`arrange()`，可完成一連串的資料分析，例如計算各**隊**各**守備**位置（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數，並依平均投進的兩分球數**由大到小排序**
+```{r arrange3}
+arrange3<-group_by(NBA1516,Team,Position)%>%
+  summarise(nPlayer=n(),meanFieldGoalsMade=mean(FieldGoalsMade),
+                meanFieldGoalsAttempted=mean(FieldGoalsAttempted)) %>%
+  arrange(desc(meanFieldGoalsMade))
+head(arrange3)
+```
+
+### rename()
+`新名稱=舊名稱`
+```{r rename1}
+rename1<-rename(NBA1516,Po=Position)
+rename1[1:5,1:5]
+```
+
+### 參考文件與資源
+
+- [Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html){target="_blank"}
+- DataCamp互動式教學課程 [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial){target="_blank"}
+
+

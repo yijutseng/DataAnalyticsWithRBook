@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>資料科學與R語言</title>
-  <meta name="description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。">
+  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合">
   <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
 
   <meta property="og:title" content="資料科學與R語言" />
   <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://yijutseng.github.io/DataScienceRBook" />
   
-  
-  <meta property="og:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta property="og:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
   <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="資料科學與R語言" />
   
-  <meta name="twitter:description" content="長庚大學資訊管理學系大數據分析方法教學使用書籍。" />
+  <meta name="twitter:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
   
 
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-09">
+<meta name="date" content="2017-02-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -161,7 +161,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>4.1.5</b> R物件 .rds</a></li>
 <li class="chapter" data-level="4.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>4.1.6</b> R程式 .R</a></li>
 <li class="chapter" data-level="4.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>4.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他格式</a></li>
+<li class="chapter" data-level="4.1.9" data-path="io.html"><a href="io.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 其他讀檔注意事項</a></li>
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 從網路匯入資料</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
@@ -198,7 +199,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>5.5.2</b> order</a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="manipulation.html"><a href="manipulation.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 資料組合</a></li>
-<li class="chapter" data-level="5.7" data-path="manipulation.html"><a href="manipulation.html#section-5.7"><i class="fa fa-check"></i><b>5.7</b> 長表與寬表</a></li>
+<li class="chapter" data-level="5.7" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>5.7</b> 長表與寬表</a></li>
 <li class="chapter" data-level="5.8" data-path="manipulation.html"><a href="manipulation.html#section-5.8"><i class="fa fa-check"></i><b>5.8</b> 遺漏值處理</a></li>
 <li class="chapter" data-level="5.9" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>5.9</b> 綜合練習範例Case study</a><ul>
 <li class="chapter" data-level="5.9.1" data-path="manipulation.html"><a href="manipulation.html#section-5.9.1"><i class="fa fa-check"></i><b>5.9.1</b> 載入資料</a></li>
@@ -209,41 +210,62 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
-<li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.1</b> data.table</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.1.1</b> i 篩選邏輯</a></li>
-<li class="chapter" data-level="6.1.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.1.2</b> j 欄位選擇運算</a></li>
-<li class="chapter" data-level="6.1.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.1.3</b> by 分組依據</a></li>
-<li class="chapter" data-level="6.1.4" data-path="eda.html"><a href="eda.html#section-6.1.4"><i class="fa fa-check"></i><b>6.1.4</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.2</b> data.table</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="6.2.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="6.2.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="6.2.4" data-path="eda.html"><a href="eda.html#section-6.2.4"><i class="fa fa-check"></i><b>6.2.4</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料內容初步分析統計</a></li>
-<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#case-study"><i class="fa fa-check"></i><b>6.3</b> Case study</a></li>
-<li class="chapter" data-level="6.4" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.4</b> dplyr</a></li>
+<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.3</b> dplyr</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>6.3.1</b> select()</a></li>
+<li class="chapter" data-level="6.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>6.3.2</b> filter()</a></li>
+<li class="chapter" data-level="6.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>6.3.3</b> mutate()</a></li>
+<li class="chapter" data-level="6.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>6.3.4</b> summarise()</a></li>
+<li class="chapter" data-level="6.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>6.3.5</b> group_by()</a></li>
+<li class="chapter" data-level="6.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>6.3.6</b> arrange()</a></li>
+<li class="chapter" data-level="6.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>6.3.7</b> rename()</a></li>
+<li class="chapter" data-level="6.3.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>6.3.8</b> 參考文件與資源</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.1</b> ggplot2</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="vis.html"><a href="vis.html#-1"><i class="fa fa-check"></i><b>7.1.1</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>7.2.1</b> qplot()</a></li>
+<li class="chapter" data-level="7.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>7.2.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#case-study-1"><i class="fa fa-check"></i><b>7.2</b> Case study</a></li>
+<li class="chapter" data-level="7.3" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>7.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="7.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>7.3.2</b> ggmap()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="vis.html"><a href="vis.html#density-map"><i class="fa fa-check"></i><b>7.3.3</b> Density Map</a></li>
+<li class="chapter" data-level="7.3.4" data-path="vis.html"><a href="vis.html#section-7.3.4"><i class="fa fa-check"></i><b>7.3.4</b> 參考資料</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>8</b> 從小數據到大數據分析</a><ul>
-<li class="chapter" data-level="8.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>8.1</b> R + Hadoop</a></li>
-<li class="chapter" data-level="8.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>8.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="big.html"><a href="big.html#section-8.2.1"><i class="fa fa-check"></i><b>8.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big.html"><a href="big.html#section-8.2.2"><i class="fa fa-check"></i><b>8.2.2</b> 參考資料</a></li>
-<li class="chapter" data-level="8.2.3" data-path="big.html"><a href="big.html#section-8.2.3"><i class="fa fa-check"></i><b>8.2.3</b> 安裝步驟</a></li>
-<li class="chapter" data-level="8.2.4" data-path="big.html"><a href="big.html#section-8.2.4"><i class="fa fa-check"></i><b>8.2.4</b> 測試前，先解決權限問題</a></li>
-<li class="chapter" data-level="8.2.5" data-path="big.html"><a href="big.html#section-8.2.5"><i class="fa fa-check"></i><b>8.2.5</b> 測試</a></li>
-<li class="chapter" data-level="8.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>8.2.6</b> 安裝RStudio Server</a></li>
+<li class="chapter" data-level="7.4" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>7.4</b> Taiwan的面量圖</a></li>
+<li class="chapter" data-level="7.5" data-path="vis.html"><a href="vis.html#heatmap"><i class="fa fa-check"></i><b>7.5</b> Heatmap</a></li>
+<li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
+<li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>8.3</b> RHadoop MapReduce: easy word count</a></li>
-<li class="chapter" data-level="8.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>8.4</b> R + Spark</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
+<li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="10.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>10.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="big.html"><a href="big.html#section-10.2.1"><i class="fa fa-check"></i><b>10.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="10.2.2" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>10.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="10.2.3" data-path="big.html"><a href="big.html#section-10.2.3"><i class="fa fa-check"></i><b>10.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="10.2.4" data-path="big.html"><a href="big.html#section-10.2.4"><i class="fa fa-check"></i><b>10.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="10.2.5" data-path="big.html"><a href="big.html#section-10.2.5"><i class="fa fa-check"></i><b>10.2.5</b> 測試</a></li>
+<li class="chapter" data-level="10.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>10.2.6</b> 安裝RStudio Server</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>9</b> 軟體安裝介紹</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>9.1</b> R安裝</a></li>
-<li class="chapter" data-level="9.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.2</b> RStudio安裝</a></li>
-<li class="chapter" data-level="9.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3</b> RStudio使用簡介</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="install.html"><a href="install.html#section-9.3.1"><i class="fa fa-check"></i><b>9.3.1</b> 專案</a></li>
-<li class="chapter" data-level="9.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>9.3.2</b> RStudio介面</a></li>
+<li class="chapter" data-level="10.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>10.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="10.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>10.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>11</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="11.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>11.1</b> R安裝</a></li>
+<li class="chapter" data-level="11.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="11.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="install.html"><a href="install.html#section-11.3.1"><i class="fa fa-check"></i><b>11.3.1</b> 專案</a></li>
+<li class="chapter" data-level="11.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>11.3.2</b> RStudio介面</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
@@ -270,7 +292,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="eda" class="section level1">
 <h1><span class="header-section-number">6</span> 探索式資料分析</h1>
-<p>撰寫中</p>
+<div id="section-6.1" class="section level2">
+<h2><span class="header-section-number">6.1</span> 什麼是探索式資料分析</h2>
 <p>探索式資料分析 (<strong>E</strong>xploratory <strong>D</strong>ata <strong>A</strong>nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料套性獲取資料所包含的資訊、的結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。</p>
 <p>探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方項錯誤所造成的時間浪費。</p>
 <p>探索式資料分析分為:</p>
@@ -281,147 +304,757 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>圖形化的分析方式包括做圖與列表，量化的分析方式則是資料初步統計，本章節著重於量化的分析方式，圖形化的分析方式請參考Ch <a href="vis.html#vis">7</a>。</p>
 <p>以單變量分析來說，量化的分析方式可包含</p>
 <ul>
-<li>Measures of central tendancy
+<li>計算集中趨勢 (<a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF" target="_blank">維基百科</a>)
 <ul>
-<li>Mean</li>
-<li>Median</li>
-<li>Mode</li>
+<li>平均值 Mean <code>mean()</code></li>
+<li>中位數 Median <code>median()</code></li>
+<li>眾數 Mode，R無內建函數，可直接用<code>table()</code>找出現次數最多的資料</li>
 </ul></li>
-<li>Measures of dispersion
+<li>計算資料分散程度
 <ul>
-<li>Min</li>
-<li>Max</li>
-<li>Range</li>
-<li>Quartiles</li>
-<li>Variance</li>
-<li>Standard deviation</li>
-</ul></li>
-<li>Other measures
-<ul>
-<li>Skewness</li>
-<li>Kurtosis</li>
+<li>最小值 Min <code>min()</code></li>
+<li>最大值 Max <code>max()</code></li>
+<li>範圍 Range <code>range()</code></li>
+<li>四分位差 Quartiles <code>quantile()</code></li>
+<li>變異數 Variance <code>var()</code></li>
+<li>標準差 Standard deviation <code>sd()</code></li>
 </ul></li>
 </ul>
-<p>以雙變量分析來說，分式方式可包括:</p>
+<p>以雙變量分析來說，分析方式可包括:</p>
 <ul>
-<li>Crosstabs</li>
-<li>Covariance</li>
-<li>Correlation</li>
+<li>列聯表 Crosstabs <code>table()</code>, <code>ftable()</code>, <code>prop.table()</code></li>
+<li>共變數 Covariance <code>cov()</code></li>
+<li>相關性 Correlation <code>cor()</code></li>
 </ul>
+<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span>和<code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
+</div>
 <div id="datatable" class="section level2">
-<h2><span class="header-section-number">6.1</span> data.table</h2>
-<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table <span class="citation">(Dowle et al. <a href="#ref-R-data.table">2016</a>)</span> package</p>
+<h2><span class="header-section-number">6.2</span> data.table</h2>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>) ##安裝</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table) ##載入</code></pre></div>
-<pre><code>## 
-## This data.table install has not detected OpenMP support. It will work but slower in single threaded mode.</code></pre>
 <p>使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為<code>fread()</code>，使用方法與一般檔案讀取方法(Ch <a href="io.html#file">4.1</a>)類似</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">fread</span>(<span class="st">&quot;檔案名稱&quot;</span>)</code></pre></div>
 <p>如果已經使用其他資料來源將檔案讀成資料框data.frame格式，可以使用<code>data.table()</code>函數將data.frame轉為data.table格式，以先前介紹過的NBA資料為例（Ch <a href="manipulation.html#manCase">5.9</a>，需安裝與載入<code>SportsAnalytics</code>套件）</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SportsAnalytics)
+<span class="kw">library</span>(data.table)
 NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)
 NBA1516DT&lt;-<span class="kw">data.table</span>(NBA1516)
 <span class="kw">class</span>(NBA1516DT)</code></pre></div>
 <pre><code>## [1] &quot;data.table&quot; &quot;data.frame&quot;</code></pre>
 <p>可以發現轉換後的<code>NBA1516DT</code>資料型態為<code>data.table</code>以及<code>data.frame</code>，這是因為data.table是data.frame資料框型別的延伸，所以是data.table型態的資料，就一定會是data.frame型態。</p>
 <p><code>data.table</code>資料型態的特殊結構和語法設計，便於後續資料分析處理，基本語法結構如下：</p>
-<p><code>DT[i,j,by=]</code></p>
+<p><strong>DT[<strong><code>i</code></strong>,<strong><code>j</code></strong>,<strong><code>by</code></strong>=]</strong></p>
 <ul>
 <li><code>i</code> 觀察值 (Row) 篩選邏輯</li>
 <li><code>j</code> 所需欄位 (Column)</li>
 <li><code>by</code> 分組依據</li>
 </ul>
-<p>各參數的使用方法分述如下</p>
+<p>各參數間需要以逗號<code>,</code>區隔，但若只需使用前方參數，後方的<code>,</code>可省略，如只需使用i和j兩個參數，可以寫成DT[i,j]。 各參數的使用方法分述如下：</p>
 <div id="i-" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> i 篩選邏輯</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT</code></pre></div>
-<pre><code>##      League           Name Team Position GamesPlayed TotalMinutesPlayed
-##   1:    NBA     Quincy Acy  SAC       SF          59                877
-##   2:    NBA   Jordan Adams  MEM       SG           2                 15
-##   3:    NBA   Steven Adams  OKL        C          80               2019
-##   4:    NBA  Arron Afflalo  NYK       SG          71               2359
-##   5:    NBA  Alexis Ajinca  NOR        C          59                863
-##  ---                                                                   
-## 472:    NBA   Joseph Young  IND       PG          41                384
-## 473:    NBA     Nick Young  LAL       SF          54               1036
-## 474:    NBA Thaddeus Young  BRO       SF          73               2413
-## 475:    NBA    Cody Zeller  CHA       PF          73               1773
-## 476:    NBA   Tyler Zeller  BOS        C          60                714
+<h3><span class="header-section-number">6.2.1</span> i 觀察值篩選邏輯</h3>
+<p>第一個參數<code>i</code>是用來篩選<strong>觀察值</strong>，也就是針對列(Row)做子集。篩選方式與Ch <a href="manipulation.html#subset">5.4</a>雷同，可透過<strong>布林值</strong>的向量或是<strong>元素索引(index)</strong>向量指定篩選條件，透過觀察值的篩選，可保留需要的資料，進行後續分析。</p>
+<p>以前述NBA球員資料為例，如需擷取球員姓名包含James字串的資料，可使用下列指令：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[<span class="kw">grepl</span>(<span class="st">&#39;James&#39;</span>,Name)]</code></pre></div>
+<pre><code>##    League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 1:    NBA James Anderson  SAC       SG          51                721
+## 2:    NBA    James Ennis  NOR       SF          22                329
+## 3:    NBA   James Harden  HOU       SG          82               3121
+## 4:    NBA   Lebron James  CLE       SF          76               2710
+## 5:    NBA  James Johnson  TOR       PF          57                924
+## 6:    NBA    James Jones  CLE       SG          48                466
+## 7:    NBA   James Mcadoo  GSW       SG          41                265
+## 8:    NBA    James Young  BOS       SG          29                200
+##    FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1:             67                 178         23              86             22
+## 2:             54                 113         26              58             25
+## 3:            710                1617        236             656            720
+## 4:            737                1416         87             282            359
+## 5:            114                 240         20              66             39
+## 6:             59                 143         41             104             21
+## 7:             45                  84          1               2             26
+## 8:             11                  36          6              26              1
+##    FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1:                  29                13            86      41     21        42
+## 2:                  34                21            42      21     16        19
+## 3:                 837                63           502     612    138       374
+## 4:                 491               111           565     512    104       249
+## 5:                  68                28           126      67     29        54
+## 6:                  26                 8            50      14     11        13
+## 7:                  49                30            58      17     10        16
+## 8:                   4                 4            26       9      6         5
+##    Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1:     14            54                 0         179          0         0
+## 2:      5            28                 1         159          0         0
+## 3:     51           229                 1        2376          2         0
+## 4:     49           143                 0        1920          3         0
+## 5:     33            84                 0         287          0         0
+## 6:     10            50                 0         180          1         0
+## 7:      8            39                 0         117          0         0
+## 8:      1            17                 0          29          0         0
+##    FlagrantFouls GamesStarted
+## 1:             0           15
+## 2:             0            5
+## 3:             0           82
+## 4:             0           76
+## 5:             0           32
+## 6:             0            0
+## 7:             0            1
+## 8:             0            0</code></pre>
+<p>如需篩選所有中鋒，且姓名包含“A”字串的球員資料，可使用下列指令：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[<span class="kw">grepl</span>(<span class="st">&#39;A&#39;</span>,Name)&amp;Position==<span class="st">&quot;C&quot;</span>]</code></pre></div>
+<pre><code>##     League             Name Team Position GamesPlayed TotalMinutesPlayed
+##  1:    NBA     Steven Adams  OKL        C          80               2019
+##  2:    NBA    Alexis Ajinca  NOR        C          59                863
+##  3:    NBA     Cole Aldrich  LAC        C          60                802
+##  4:    NBA     Joel Anthony  DET        C          19                 95
+##  5:    NBA        Omer Asik  NOR        C          68               1181
+##  6:    NBA  Andrea Bargnani  BRO        C          46                634
+##  7:    NBA     Andrew Bogut  GSW        C          70               1452
+##  8:    NBA   Andre Drummond  DET        C          81               2664
+##  9:    NBA     Al Jefferson  CHA        C          47               1096
+## 10:    NBA         Alex Len  PHO        C          78               1820
+## 11:    NBA Anderson Varejao  GSW        C          53                494
+## 12:    NBA    Alan Williams  PHO        C          10                 67
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+##  1:            261                 426          0               0
+##  2:            150                 314          0               1
+##  3:            134                 225          0               0
+##  4:              6                  10          0               0
+##  5:            104                 196          0               0
+##  6:            127                 278          3              15
+##  7:            175                 279          1               1
+##  8:            552                1061          2               6
+##  9:            245                 505          0               0
+## 10:            264                 623          1               7
+## 11:             53                 124          0               1
+## 12:             10                  24          0               0
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+##  1:            114                 196               218           531      61
+##  2:             52                  62                75           269      32
+##  3:             60                  84                86           288      50
+##  4:              6                   8                 8            21       1
+##  5:             61                 112               119           413      26
+##  6:             47                  57                28            97      18
+##  7:             24                  50               121           491     162
+##  8:            208                 586               395          1198      67
+##  9:             72                 111                57           301      70
+## 10:            174                 239               178           594      97
+## 11:             32                  50                37           141      35
+## 12:              9                  14                14            38       5
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+##  1:     42        84     89           223                 2         636
+##  2:     19        54     36           134                 0         352
+##  3:     47        64     68           139                 1         328
+##  4:      2         2     12            15                 0          18
+##  5:     21        60     23           124                 0         269
+##  6:      4        26      9            61                 0         304
+##  7:     32        83    113           221                 4         375
+##  8:    119       154    112           245                 2        1314
+##  9:     30        34     41           117                 1         562
+## 10:     38       145     62           230                 3         703
+## 11:     16        22     10            70                 0         138
+## 12:      4         6      5            15                 0          29
+##     Technicals Ejections FlagrantFouls GamesStarted
+##  1:          2         0             0           80
+##  2:          2         0             0           17
+##  3:          0         0             0            5
+##  4:          0         0             0            0
+##  5:          0         0             0           64
+##  6:          0         0             0            0
+##  7:          0         0             0           66
+##  8:          7         0             0           81
+##  9:          0         0             0           18
+## 10:          1         0             0           46
+## 11:          1         0             0            0
+## 12:          0         0             0            0</code></pre>
+<p>如需篩選各隊出場數超過70場的球員資料，可使用下列指令：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[GamesPlayed&gt;<span class="dv">70</span>]</code></pre></div>
+<pre><code>##      League             Name Team Position GamesPlayed TotalMinutesPlayed
+##   1:    NBA     Steven Adams  OKL        C          80               2019
+##   2:    NBA    Arron Afflalo  NYK       SG          71               2359
+##   3:    NBA Lamarcu Aldridge  SAN       PF          74               2260
+##   4:    NBA      Lavoy Allen  IND       PF          79               1601
+##   5:    NBA  Al-farouq Aminu  POR       SF          82               2342
+##  ---                                                                     
+## 172:    NBA Derrick Williams  NYK       PF          80               1442
+## 173:    NBA  Marvin Williams  CHA       PF          81               2339
+## 174:    NBA  Justise Winslow  MIA       SF          78               2237
+## 175:    NBA   Thaddeus Young  BRO       SF          73               2413
+## 176:    NBA      Cody Zeller  CHA       PF          73               1773
 ##      FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
-##   1:            119                 214         19              49
-##   2:              2                   6          0               1
-##   3:            261                 426          0               0
-##   4:            354                 799         91             238
-##   5:            150                 314          0               1
+##   1:            261                 426          0               0
+##   2:            354                 799         91             238
+##   3:            536                1045          0              16
+##   4:            191                 370          0               0
+##   5:            299                 719        126             349
 ##  ---                                                              
-## 472:             62                 170         10              46
-## 473:            126                 372         77             237
-## 474:            495                 963          7              30
-## 475:            231                 437          1              10
-## 476:            138                 290          0               0
+## 172:            254                 565         44             150
+## 173:            338                 747        152             379
+## 174:            196                 463         32             116
+## 175:            495                 963          7              30
+## 176:            231                 437          1              10
 ##      FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
-##   1:             50                  68                65           188      27
-##   2:              3                   5                 0             2       3
-##   3:            114                 196               218           531      61
-##   4:            110                 131                23           266     145
-##   5:             52                  62                75           269      32
+##   1:            114                 196               218           531      61
+##   2:            110                 131                23           266     145
+##   3:            259                 302               175           631     110
+##   4:             46                  73               162           424      76
+##   5:            115                 156                98           498     138
 ##  ---                                                                           
-## 472:             20                  25                 6            50      65
-## 473:             63                  76                14            97      34
-## 474:            105                 163               177           661     135
-## 475:            175                 232               138           456      71
-## 476:             88                 108                62           178      29
+## 172:            194                 256                47           296      75
+## 173:            120                 144               127           520     110
+## 174:             80                 117                81           403     117
+## 175:            105                 163               177           661     135
+## 176:            175                 232               138           456      71
 ##      Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
-##   1:     29        27     24           103                 0         307
-##   2:      3         2      0             2                 0           7
-##   3:     42        84     89           223                 2         636
-##   4:     25        82     10           142                 1         909
-##   5:     19        54     36           134                 0         352
+##   1:     42        84     89           223                 2         636
+##   2:     25        82     10           142                 1         909
+##   3:     38        99     81           151                 0        1331
+##   4:     26        69     42           147                 1         428
+##   5:     72       120     53           171                 0         839
 ##  ---                                                                    
-## 472:     15        33      0            30                 0         154
-## 473:     23        30      7            50                 0         392
-## 474:    112       136     37           182                 3        1102
-## 475:     57        68     63           204                 4         638
-## 476:     10        46     22            97                 1         364
+## 172:     30        61      9            69                 0         746
+## 173:     58        62     77           133                 1         948
+## 174:     68        95     26           184                 0         504
+## 175:    112       136     37           182                 3        1102
+## 176:     57        68     63           204                 4         638
 ##      Technicals Ejections FlagrantFouls GamesStarted
-##   1:          3         0             0           29
-##   2:          0         0             0            0
-##   3:          2         0             0           80
-##   4:          1         0             0           57
-##   5:          2         0             0           17
+##   1:          2         0             0           80
+##   2:          1         0             0           57
+##   3:          0         0             0           74
+##   4:          0         0             0           28
+##   5:          3         0             0           82
 ##  ---                                                
-## 472:          0         0             0            0
-## 473:          1         0             0            2
-## 474:          1         0             0           73
-## 475:          0         0             0           60
-## 476:          0         0             0            3</code></pre>
+## 172:          0         0             0            9
+## 173:          0         0             0           81
+## 174:          0         0             0            8
+## 175:          1         0             0           73
+## 176:          0         0             0           60</code></pre>
 </div>
 <div id="j-" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> j 欄位選擇運算</h3>
+<h3><span class="header-section-number">6.2.2</span> j 欄位選擇運算</h3>
+<p>第二個參數<code>j</code>是用來決定輸出欄位，輸出的欄位可以是原始欄位，也可以是計算後的欄位，以計算所有球員的平均出場數為例：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[,<span class="kw">mean</span>(GamesPlayed)] ##因沒有篩選需求，,前方留空</code></pre></div>
+<pre><code>## [1] 55</code></pre>
+<p>也可以一次計算多個數值，如同時計算平均出場數、平均犯規次數以及平均抄截次數，此時第二個欄位<code>j</code>需要使用<code>.()</code>包起來</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[,.(<span class="kw">mean</span>(GamesPlayed),<span class="kw">mean</span>(PersonalFouls),<span class="kw">mean</span>(Steals))] ##因沒有篩選需求，,前方留空</code></pre></div>
+<pre><code>##    V1  V2 V3
+## 1: 55 105 41</code></pre>
+<p>由上述輸出可以發現輸出的數字自動被加上欄位名稱V1, V2, V3，可能會造成數據判別錯誤，所以在計算新欄位時，可以在新欄位定義的前方加上<code>欄位名稱=</code>，同時替欄位取名字</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[,.(<span class="dt">GamesPlayedMean=</span><span class="kw">mean</span>(GamesPlayed),
+             <span class="dt">PersonalFoulsMean=</span><span class="kw">mean</span>(PersonalFouls),
+             <span class="dt">StealsMean=</span><span class="kw">mean</span>(Steals))]</code></pre></div>
+<pre><code>##    GamesPlayedMean PersonalFoulsMean StealsMean
+## 1:              55               105         41</code></pre>
+<p>除了計算平均值以外，當然可以帶入其他函式做各式各樣的運算</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[,.(<span class="dt">GamesPlayedMax=</span><span class="kw">max</span>(GamesPlayed), <span class="co">#最大值</span>
+             <span class="dt">ThreesMadeMin=</span><span class="kw">min</span>(ThreesMade), <span class="co">#最小值</span>
+             <span class="dt">FieldGoalsMadeSD=</span><span class="kw">sd</span>(FieldGoalsMade))] <span class="co">#標準差</span></code></pre></div>
+<pre><code>##    GamesPlayedMax ThreesMadeMin FieldGoalsMadeSD
+## 1:             82             0              166</code></pre>
+<p>若配合第一個參數一起使用，可以計算出所有<strong>出場數大於70</strong>的球員，<strong>平均投進幾顆三分球與兩分球</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[GamesPlayed&gt;<span class="dv">70</span>,
+          .(<span class="dt">ThreesMadeMean=</span><span class="kw">mean</span>(ThreesMade), <span class="dt">FieldGoalsMadeMean=</span><span class="kw">mean</span>(FieldGoalsMade))]</code></pre></div>
+<pre><code>##    ThreesMadeMean FieldGoalsMadeMean
+## 1:             76                335</code></pre>
 </div>
 <div id="by-" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> by 分組依據</h3>
+<h3><span class="header-section-number">6.2.3</span> by 分組依據</h3>
+<p>第三個參數<code>by</code>為分組計算的依據，舉例來說，我們可以計算NBA各隊的<strong>球員數</strong>與<strong>平均助攻數</strong>，球員個數的計算在<code>data.table</code>內可使用<code>.N</code>指令，平均使用<code>mean()</code>函數，此時只要在<code>by=</code>後方加上分組依據(各隊Team)，即可完成運算</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[,.(.N,<span class="dt">AssistsMean=</span><span class="kw">mean</span>(Assists)),
+          by=Team]</code></pre></div>
+<pre><code>##     Team  N AssistsMean
+##  1:  SAC 15         134
+##  2:  MEM 22          74
+##  3:  OKL 14         126
+##  4:  NYK 16         105
+##  5:  NOR 21          87
+##  6:  LAC 15         124
+##  7:  SAN 16         130
+##  8:  POR 15         116
+##  9:  IND 15         125
+## 10:  WAS 17         127
+## 11:  DAL 15         124
+## 12:  MIL 17         113
+## 13:  DET 15         105
+## 14:  ORL 15         128
+## 15:  HOU 16         101
+## 16:  LAL 15          99
+## 17:  DEN 15         122
+## 18:  CHI 15         121
+## 19:  GSW 15         158
+## 20:  BRO 16         100
+## 21:  CHA 14         118
+## 22:  ATL 15         142
+## 23:  TOR 16          97
+## 24:  MIN 14         129
+## 25:  PHO 17          97
+## 26:  UTA 17          94
+## 27:  MIA 15         131
+## 28:  BOS 15         128
+## 29:  PHI 16         118
+## 30:  CLE 16         117
+## 31:  OKC  1         160
+##     Team  N AssistsMean</code></pre>
+<p><code>.N</code>在<code>data.table</code>內是保留字，用來計算個數</p>
+<p>三個參數結合使用，可以輕鬆計算出<strong>NBA各隊的中鋒球員數和他們的平均三分球出手次數</strong>，指令如下：</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516DT[Position==<span class="st">&quot;C&quot;</span>,
+          .(.N,<span class="dt">ThreesAttemptedMean=</span><span class="kw">mean</span>(ThreesAttempted)),
+          by=Team]</code></pre></div>
+<pre><code>##     Team N ThreesAttemptedMean
+##  1:  OKL 3                7.00
+##  2:  NOR 4                0.25
+##  3:  LAC 2                0.50
+##  4:  DET 2                3.00
+##  5:  BRO 3               10.00
+##  6:  LAL 3                0.67
+##  7:  WAS 2                1.00
+##  8:  GSW 4               16.00
+##  9:  SAN 3               34.67
+## 10:  HOU 2                3.50
+## 11:  SAC 3               70.67
+## 12:  PHO 3                2.67
+## 13:  ORL 2                4.50
+## 14:  MIN 3               36.00
+## 15:  MEM 2                1.50
+## 16:  UTA 3                1.33
+## 17:  IND 2                0.50
+## 18:  CHA 1                0.00
+## 19:  DEN 2               43.50
+## 20:  POR 2              116.00
+## 21:  CLE 3                2.33
+## 22:  NYK 1                1.00
+## 23:  DAL 3                1.67
+## 24:  MIL 2                0.50
+## 25:  CHI 1                1.00
+## 26:  PHI 2                4.00
+## 27:  TOR 3                6.00
+## 28:  BOS 2              105.00
+## 29:  ATL 1                0.00
+## 30:  MIA 1                0.00
+##     Team N ThreesAttemptedMean</code></pre>
 </div>
-<div id="section-6.1.4" class="section level3">
-<h3><span class="header-section-number">6.1.4</span> 參考文件與資源</h3>
-<p>其他<code>data.table</code>教學可見 <a href="https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k" target="_blank">A data.table R tutorial by DataCamp</a>，此外，DataCamp也提供<a href="https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial" target="_blank">互動式教學課程</a>，可自行參閱。</p>
+<div id="section-6.2.4" class="section level3">
+<h3><span class="header-section-number">6.2.4</span> 參考文件與資源</h3>
+<p><code>data.table</code>還有很多好用的功能，有興趣的話可以參考下列資料</p>
+<ul>
+<li><a href="https://github.com/Rdatatable/data.table/wiki" target="_blank">官網</a></li>
+<li>指令全集<a href="https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf" target="_blank">The data.table R package cheat sheet</a></li>
+<li><a href="https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k" target="_blank">A data.table R tutorial by DataCamp</a></li>
+<li>DataCamp<a href="https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial" target="_blank">互動式教學課程</a></li>
+</ul>
 </div>
-</div>
-<div id="section-6.2" class="section level2">
-<h2><span class="header-section-number">6.2</span> 資料內容初步分析統計</h2>
-</div>
-<div id="case-study" class="section level2">
-<h2><span class="header-section-number">6.3</span> Case study</h2>
 </div>
 <div id="dplyr" class="section level2">
-<h2><span class="header-section-number">6.4</span> dplyr</h2>
+<h2><span class="header-section-number">6.3</span> dplyr</h2>
+<p><code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> package是<a href="http://hadley.nz/" target="_blank">Hadley Wickham</a>開發的資料處理分析套件，如要使用必須安裝並載入<code>dplyr</code> package</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) ##安裝</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr) ##載入</code></pre></div>
+<p><code>dplyr</code>使用以下函數分析整理資料：</p>
+<ul>
+<li><code>select()</code>: 選要分析的欄位，欄位子集 (Column)</li>
+<li><code>filter()</code>: 選要分析的觀察值，觀察值子集 (Row)</li>
+<li><code>mutate()</code>: 增加新欄位</li>
+<li><code>summarise()</code>: 計算統計值</li>
+<li><code>group_by()</code>: 分組依據</li>
+<li><code>arrange()</code>: 觀察值排序</li>
+<li><code>rename()</code>: 欄位重新命名</li>
+<li><code>%&gt;%</code>: the “pipe” operator 連結上數函式，將所有函示計算串在一起執行</li>
+</ul>
+<p>以上述NBA資料為例，各函數功能分述如下： 首先先讀入資料</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SportsAnalytics)
+NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</code></pre></div>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> select()</h3>
+<p>使用<code>select()</code>函式可選要分析的欄位，也就是針對欄位 (Column)做子集，函式使用方式為<code>select(資料名稱,欄位條件1,欄位條件2,...)</code>，其中條件1與條件2是使用<strong>或</strong>的連結概念。另外<code>dplyr</code>提供幾個方便篩選名稱的函式：</p>
+<ul>
+<li><code>starts_with()</code></li>
+<li><code>ends_with()</code></li>
+<li><code>contains()</code></li>
+<li><code>matches()</code></li>
+<li><code>num_range()</code></li>
+<li><code>one_of()</code></li>
+<li><code>everything()</code></li>
+</ul>
+<p>詳細說明可在R執行視窗中輸入<code>?select_helpers</code>查看。</p>
+<p>舉例來說，我們想要篩選欄位名稱為<code>Name</code>、<code>ThreesMade</code>、<code>ThreesAttempted</code>、<code>FieldGoalsMade</code>與<code>FieldGoalsAttempted</code>的五個欄位，指令範例如下</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於
+##NBA1516[,c(&quot;Name&quot;,&quot;ThreesMade&quot;,&quot;ThreesAttempted&quot;,&quot;FieldGoalsMade&quot;,&quot;FieldGoalsAttempted&quot;)]
+select1&lt;-<span class="kw">select</span>(NBA1516,Name,<span class="kw">starts_with</span>(<span class="st">&quot;Threes&quot;</span>),<span class="kw">starts_with</span>(<span class="st">&quot;FieldGoals&quot;</span>))
+<span class="kw">head</span>(select1)</code></pre></div>
+<pre><code>##            Name ThreesMade ThreesAttempted FieldGoalsMade FieldGoalsAttempted
+## 1    Quincy Acy         19              49            119                 214
+## 2  Jordan Adams          0               1              2                   6
+## 3  Steven Adams          0               0            261                 426
+## 4 Arron Afflalo         91             238            354                 799
+## 5 Alexis Ajinca          0               1            150                 314
+## 6  Cole Aldrich          0               0            134                 225</code></pre>
+<p>若想篩選欄位<code>Name</code>到欄位<code>FreeThrowsAttempted</code>間的所有欄位，可用<code>:</code>串連欄位名稱</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於NBA1516[,2:12]
+select2&lt;-<span class="kw">select</span>(NBA1516,Name:FreeThrowsAttempted)
+<span class="kw">head</span>(select2)</code></pre></div>
+<pre><code>##            Name Team Position GamesPlayed TotalMinutesPlayed FieldGoalsMade
+## 1    Quincy Acy  SAC       SF          59                877            119
+## 2  Jordan Adams  MEM       SG           2                 15              2
+## 3  Steven Adams  OKL        C          80               2019            261
+## 4 Arron Afflalo  NYK       SG          71               2359            354
+## 5 Alexis Ajinca  NOR        C          59                863            150
+## 6  Cole Aldrich  LAC        C          60                802            134
+##   FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1                 214         19              49             50
+## 2                   6          0               1              3
+## 3                 426          0               0            114
+## 4                 799         91             238            110
+## 5                 314          0               1             52
+## 6                 225          0               0             60
+##   FreeThrowsAttempted
+## 1                  68
+## 2                   5
+## 3                 196
+## 4                 131
+## 5                  62
+## 6                  84</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於NBA1516[,c(2:4,612)]
+select3&lt;-<span class="kw">select</span>(NBA1516,Name:FreeThrowsAttempted,-GamesPlayed)
+<span class="kw">head</span>(select3)</code></pre></div>
+<pre><code>##            Name Team Position TotalMinutesPlayed FieldGoalsMade
+## 1    Quincy Acy  SAC       SF                877            119
+## 2  Jordan Adams  MEM       SG                 15              2
+## 3  Steven Adams  OKL        C               2019            261
+## 4 Arron Afflalo  NYK       SG               2359            354
+## 5 Alexis Ajinca  NOR        C                863            150
+## 6  Cole Aldrich  LAC        C                802            134
+##   FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1                 214         19              49             50
+## 2                   6          0               1              3
+## 3                 426          0               0            114
+## 4                 799         91             238            110
+## 5                 314          0               1             52
+## 6                 225          0               0             60
+##   FreeThrowsAttempted
+## 1                  68
+## 2                   5
+## 3                 196
+## 4                 131
+## 5                  62
+## 6                  84</code></pre>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> filter()</h3>
+<p>使用<code>filter()</code>函式可選要分析的觀察值，也就是針對列 (Row)做子集，使用方法為<code>filter(資料名稱,篩選條件)</code>，舉例來說，如果想要看出場分鐘數超過2850分鐘的球員資料，可用輸入下列指令</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於 NBA1516[NBA1516$TotalMinutesPlayed&gt;2850,]
+filter1&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed&gt;<span class="dv">2850</span>)
+filter1</code></pre></div>
+<pre><code>##   League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Trevor Ariza  HOU       SF          81               2860
+## 2    NBA    James Harden  HOU       SG          82               3121
+## 3    NBA  Gordon Hayward  UTA       SG          80               2889
+## 4    NBA      Kyle Lowry  TOR       PG          77               2853
+## 5    NBA Khris Middleton  MIL       SF          79               2855
+## 6    NBA   Marcus Morris  DET       SF          80               2852
+## 7    NBA    Kemba Walker  CHA       PG          81               2885
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            357                 858        185             497            126
+## 2            710                1617        236             656            720
+## 3            521                1202        143             410            393
+## 4            512                1198        212             546            398
+## 5            507                1144        143             362            277
+## 6            410                 945        108             297            203
+## 7            568                1332        182             490            371
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 161                67           366     188    161       113
+## 2                 837                63           502     612    138       374
+## 3                 477                61           397     296     95       202
+## 4                 491                55           365     494    158       225
+## 5                 312                45           301     331    131       180
+## 6                 271                91           404     201     67       140
+## 7                 438                56           358     421    127       171
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     26           177                 0        1025          2         0
+## 2     51           229                 1        2376          2         0
+## 3     27           183                 0        1578          0         0
+## 4     34           211                 1        1634          9         0
+## 5     19           204                 1        1434          5         0
+## 6     23           170                 1        1131         11         0
+## 7     39           111                 0        1689          5         0
+##   FlagrantFouls GamesStarted
+## 1             0           81
+## 2             0           82
+## 3             0           80
+## 4             0           77
+## 5             0           79
+## 6             0           80
+## 7             0           81</code></pre>
+<p>也可選擇隊伍名稱為“BOS”或“SAN”的球員資料</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於 NBA1516[NBA1516$Team %in% c(&quot;BOS&quot;,&quot;SAN&quot;),]
+filter2&lt;-<span class="kw">filter</span>(NBA1516,Team %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BOS&quot;</span>,<span class="st">&quot;SAN&quot;</span>))
+<span class="kw">head</span>(filter2)</code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Lamarcu Aldridge  SAN       PF          74               2260
+## 2    NBA    Kyle Anderson  SAN       SF          78               1247
+## 3    NBA      Matt Bonner  SAN        C          30                210
+## 4    NBA    Avery Bradley  BOS       PG          76               2536
+## 5    NBA    Rasual Butler  SAN       SF          46                432
+## 6    NBA      Coty Clarke  BOS     &lt;NA&gt;           4                  8
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            536                1045          0              16            259
+## 2            138                 296         12              37             62
+## 3             29                  58         15              35              3
+## 4            456                1018        147             406             96
+## 5             49                 105         15              49             11
+## 6              2                   4          2               2              0
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 302               175           631     110     38        99
+## 2                  83                25           245     123     60        59
+## 3                   4                 3            27       9      6         3
+## 4                 123                48           220     158    117       109
+## 5                  16                 3            56      24     13         8
+## 6                   0                 0             1       0      0         1
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     81           151                 0        1331          0         0
+## 2     29            97                 0         350          0         0
+## 3      1            16                 0          76          0         0
+## 4     19           164                 2        1155          0         0
+## 5     23            11                 0         124          0         0
+## 6      0             0                 0           6          0         0
+##   FlagrantFouls GamesStarted
+## 1             0           74
+## 2             0           11
+## 3             0            2
+## 4             0           72
+## 5             0            0
+## 6             0            0</code></pre>
+<p>在<code>filter()</code>函式中可<strong>直接做變數計算</strong>後再篩選</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於
+filter3&lt;-<span class="kw">filter</span>(NBA1516,FieldGoalsMade/FieldGoalsAttempted&gt;<span class="fl">0.7</span>)
+filter3</code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Th Antetokounmpo  NYK       SF           3                  7
+## 2    NBA Rakeem Christmas  IND       PF           1                  6
+## 3    NBA   Deandre Jordan  LAC        C          77               2600
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1              3                   4          0               1              0
+## 2              2                   2          0               0              0
+## 3            357                 507          0               1            266
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                   0                 0             1       0      0         0
+## 2                   0                 1             1       0      0         0
+## 3                 619               267          1059      90     52       107
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1      0             2                 0           6          0         0
+## 2      0             1                 0           4          0         0
+## 3    176           207                 1         980         10         0
+##   FlagrantFouls GamesStarted
+## 1             0            0
+## 2             0            0
+## 3             0           77</code></pre>
+<p>也可使用 <code>&amp;</code> 和 <code>|</code>等符號串連邏輯</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##等同於
+filter4&lt;-<span class="kw">filter</span>(NBA1516,FieldGoalsMade/FieldGoalsAttempted&gt;<span class="fl">0.7</span> &amp;<span class="st"> </span>GamesPlayed&gt;<span class="dv">30</span>)
+filter4</code></pre></div>
+<pre><code>##   League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Deandre Jordan  LAC        C          77               2600
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            357                 507          0               1            266
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 619               267          1059      90     52       107
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1    176           207                 1         980         10         0
+##   FlagrantFouls GamesStarted
+## 1             0           77</code></pre>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> mutate()</h3>
+<p>使用<code>mutate()</code>增加新欄位，如需新增新欄位<code>FieldGoalsRate</code>，欄位值為<code>FieldGoalsMade/FieldGoalsAttempted</code>，指令如下</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mutate1&lt;-<span class="kw">mutate</span>(NBA1516,<span class="dt">FieldGoalsRate=</span>FieldGoalsMade/FieldGoalsAttempted)
+mutate1$FieldGoalsRate[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
+<pre><code>##  [1] 0.56 0.33 0.61 0.44 0.48 0.60 0.51 0.50 0.52 0.46</code></pre>
+</div>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">6.3.4</span> summarise()</h3>
+<p><code>summarise()</code>函式用來計算統計值，像是<strong>球員個數</strong>、<strong>不重複的隊伍數</strong>以及<strong>不重複的守備位置數</strong>等</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum1&lt;-<span class="kw">summarise</span>(NBA1516,
+                <span class="dt">nPlayer=</span><span class="kw">n</span>(),
+                <span class="dt">nTeam=</span><span class="kw">n_distinct</span>(Team),
+                <span class="dt">nPosition=</span><span class="kw">n_distinct</span>(Position))
+sum1</code></pre></div>
+<pre><code>##   nPlayer nTeam nPosition
+## 1     476    31         6</code></pre>
+<p>計算統計值的功能通常會與其他功能合併使用，像是與前述<code>filter()</code>功能 Ch <a href="eda.html#filter">6.3.2</a>合併使用，可計算<strong>出場分鐘數大於2500分鐘</strong>的球員個數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filter1&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed&gt;<span class="dv">2500</span>)
+sum2&lt;-<span class="kw">summarise</span>(filter1,
+                <span class="dt">nPlayer=</span><span class="kw">n</span>(),
+                <span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),
+                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))
+sum2</code></pre></div>
+<pre><code>##   nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+## 1      40                512                    1121</code></pre>
+<p>上述分析序列（先篩選再總和），可直接用<strong>pipe</strong>符號<code>%&gt;%</code>將指令串連，減少暫存物件（filter1）的生成，主要概念是先篩選後計算</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum3&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed&gt;<span class="dv">2500</span>) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),
+                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))
+sum3</code></pre></div>
+<pre><code>##   nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+## 1      40                512                    1121</code></pre>
+</div>
+<div id="group_by" class="section level3">
+<h3><span class="header-section-number">6.3.5</span> group_by()</h3>
+<p><code>group_by()</code>函數的功能為設定分組依據，通常會與<code>summarise()</code>函式Ch <a href="eda.html#summarise">6.3.4</a>合併使用，例如計算各<strong>隊</strong>（以Team作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group1&lt;-<span class="kw">group_by</span>(NBA1516,Team)%&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),
+                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))
+<span class="kw">head</span>(group1)</code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##     Team nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fctr&gt;   &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1    ATL      15                215                     471
+## 2    BOS      15                209                     475
+## 3    BRO      16                181                     396
+## 4    CHA      14                199                     451
+## 5    CHI      15                209                     475
+## 6    CLE      16                200                     433</code></pre>
+<p>當然也可以設定<strong>多個</strong>分組依據，像是計算各<strong>隊</strong>各<strong>守備位置</strong>（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">group2&lt;-<span class="kw">group_by</span>(NBA1516,Team,Position)%&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),
+                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))
+<span class="kw">head</span>(group2)</code></pre></div>
+<pre><code>## Source: local data frame [6 x 5]
+## Groups: Team [2]
+## 
+##     Team Position nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fctr&gt;   &lt;fctr&gt;   &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1    ATL        C       1                 11                      19
+## 2    ATL       PF       6                247                     516
+## 3    ATL       PG       2                382                     884
+## 4    ATL       SG       6                161                     364
+## 5    BOS        C       2                196                     423
+## 6    BOS       PF       4                182                     386</code></pre>
+</div>
+<div id="arrange" class="section level3">
+<h3><span class="header-section-number">6.3.6</span> arrange()</h3>
+<p>排序功能，預設為<strong>遞增排序</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrange1&lt;-<span class="kw">arrange</span>(NBA1516,TotalMinutesPlayed)
+<span class="kw">head</span>(arrange1)</code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA     J.j. O&#39;brien  UTA       SF           1                  2
+## 2    NBA Rakeem Christmas  IND       PF           1                  6
+## 3    NBA Th Antetokounmpo  NYK       SF           3                  7
+## 4    NBA       Sam Dekker  HOU       SF           3                  7
+## 5    NBA      Coty Clarke  BOS     &lt;NA&gt;           4                  8
+## 6    NBA     Jordan Adams  MEM       SG           2                 15
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1              0                   1          0               0              0
+## 2              2                   2          0               0              0
+## 3              3                   4          0               1              0
+## 4              0                   0          0               0              0
+## 5              2                   4          2               2              0
+## 6              2                   6          0               1              3
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                   0                 0             0       0      0         0
+## 2                   0                 1             1       0      0         0
+## 3                   0                 0             1       0      0         0
+## 4                   0                 0             1       0      1         0
+## 5                   0                 0             1       0      0         1
+## 6                   5                 0             2       3      3         2
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1      0             0                 0           0          0         0
+## 2      0             1                 0           4          0         0
+## 3      0             2                 0           6          0         0
+## 4      0             0                 0           0          0         0
+## 5      0             0                 0           6          0         0
+## 6      0             2                 0           7          0         0
+##   FlagrantFouls GamesStarted
+## 1             0            0
+## 2             0            0
+## 3             0            0
+## 4             0            0
+## 5             0            0
+## 6             0            0</code></pre>
+<p>使用<code>desc()</code>將要<strong>遞減排序</strong>的變數包起來，就可以遞減排序</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrange2&lt;-<span class="kw">arrange</span>(NBA1516,<span class="kw">desc</span>(TotalMinutesPlayed),<span class="kw">desc</span>(GamesPlayed))
+<span class="kw">head</span>(arrange2)</code></pre></div>
+<pre><code>##   League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    James Harden  HOU       SG          82               3121
+## 2    NBA  Gordon Hayward  UTA       SG          80               2889
+## 3    NBA    Kemba Walker  CHA       PG          81               2885
+## 4    NBA    Trevor Ariza  HOU       SF          81               2860
+## 5    NBA Khris Middleton  MIL       SF          79               2855
+## 6    NBA      Kyle Lowry  TOR       PG          77               2853
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            710                1617        236             656            720
+## 2            521                1202        143             410            393
+## 3            568                1332        182             490            371
+## 4            357                 858        185             497            126
+## 5            507                1144        143             362            277
+## 6            512                1198        212             546            398
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 837                63           502     612    138       374
+## 2                 477                61           397     296     95       202
+## 3                 438                56           358     421    127       171
+## 4                 161                67           366     188    161       113
+## 5                 312                45           301     331    131       180
+## 6                 491                55           365     494    158       225
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     51           229                 1        2376          2         0
+## 2     27           183                 0        1578          0         0
+## 3     39           111                 0        1689          5         0
+## 4     26           177                 0        1025          2         0
+## 5     19           204                 1        1434          5         0
+## 6     34           211                 1        1634          9         0
+##   FlagrantFouls GamesStarted
+## 1             0           82
+## 2             0           80
+## 3             0           81
+## 4             0           81
+## 5             0           79
+## 6             0           77</code></pre>
+<p>結合<code>group_by()</code>、<code>summarise()</code>、<code>arrange()</code>，可完成一連串的資料分析，例如計算各<strong>隊</strong>各<strong>守備</strong>位置（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數，並依平均投進的兩分球數<strong>由大到小排序</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arrange3&lt;-<span class="kw">group_by</span>(NBA1516,Team,Position)%&gt;%
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),
+                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted)) %&gt;%
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(meanFieldGoalsMade))
+<span class="kw">head</span>(arrange3)</code></pre></div>
+<pre><code>## Source: local data frame [6 x 5]
+## Groups: Team [6]
+## 
+##     Team Position nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fctr&gt;   &lt;fctr&gt;   &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1    GSW       PG       2                504                     988
+## 2    CLE       SF       2                440                     864
+## 3    ORL       SG       1                425                     969
+## 4    MIA        C       1                412                     681
+## 5    OKL       PG       2                385                     861
+## 6    ATL       PG       2                382                     884</code></pre>
+</div>
+<div id="rename" class="section level3">
+<h3><span class="header-section-number">6.3.7</span> rename()</h3>
+<p><code>新名稱=舊名稱</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rename1&lt;-<span class="kw">rename</span>(NBA1516,<span class="dt">Po=</span>Position)
+rename1[<span class="dv">1</span>:<span class="dv">5</span>,<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
+<pre><code>##   League          Name Team Po GamesPlayed
+## 1    NBA    Quincy Acy  SAC SF          59
+## 2    NBA  Jordan Adams  MEM SG           2
+## 3    NBA  Steven Adams  OKL  C          80
+## 4    NBA Arron Afflalo  NYK SG          71
+## 5    NBA Alexis Ajinca  NOR  C          59</code></pre>
+</div>
+<div id="-1" class="section level3">
+<h3><span class="header-section-number">6.3.8</span> 參考文件與資源</h3>
+<ul>
+<li><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html" target="_blank">Introduction to dplyr</a></li>
+<li>DataCamp互動式教學課程 <a href="https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial" target="_blank">Data Manipulation in R with dplyr</a></li>
+</ul>
 
+</div>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-data.table">
-<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2016. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+<p>Dowle, Matt, and Arun Srinivasan. 2016. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, and Romain Francois. 2016. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
 </div>
 </div>
             </section>

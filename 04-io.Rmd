@@ -216,7 +216,9 @@ xpathSApply(rootNode,"//longitude",xmlValue)[1:10]
 以[長庚資管系](http://im.cgu.edu.tw/bin/home.php){target="_blank"}網站為例，可直接逐行讀取 `readLines()`
 
 ```{r}
-htmlCode <-readLines(url("http://im.cgu.edu.tw/bin/home.php"))
+con <- url("http://im.cgu.edu.tw/bin/home.php")
+htmlCode <-readLines(con)
+close(con)
 htmlCode[1:5]
 ```
 

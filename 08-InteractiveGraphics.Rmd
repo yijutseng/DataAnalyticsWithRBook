@@ -1,4 +1,8 @@
 # 互動式資料呈現 {#InteractiveGraphics}
-撰寫中
+**撰寫中**
+
+Shiny
 https://www.rstudio.com/wp-content/uploads/2016/01/shiny-cheatsheet.pdf
 http://ggvis.rstudio.com/
+https://plot.ly/
+https://images.plot.ly/plotly-documentation/images/r_cheat_sheet.pdf
