@@ -38,7 +38,7 @@ knitr::include_graphics("figure/csv2.png")
 資料匯入輔助視窗右下方`Code Preview:`子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。
 
 ###分隔文字檔 .txt
-`readr` [@R-readr] package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為**檔案路徑與名稱**，`read_delim()`函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將`delim`參數設定為`\t`，即可用tab將各欄位分開讀取。此外，`col_names`參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為 X1, X2, X3 ...。
+`readr` [@R-readr] package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為**檔案路徑與名稱**，`read_delim()`函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將`delim`參數設定為`\t`，即可用tab將各欄位分開讀取。此外，`col_names`參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會依順序被設定為 X1, X2, X3 ...。
 
 參數整理如下 (可用?read_delim指令閱讀官方說明)：
 
@@ -108,7 +108,7 @@ dataset <- readRDS("檔案路徑與名稱")
 
 ##從網路匯入資料
 ### Open Data
-**開放資料** (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。[維基百科](https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99){target="_blank"}
+**開放資料** (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。([維基百科](https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99){target="_blank"})
 
 台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料
 
@@ -120,8 +120,9 @@ dataset <- readRDS("檔案路徑與名稱")
 Open Data常見的儲存方式為: `CSV`Chapter \@ref(csv)、`JSON`Chapter \@ref(json)、`XML`Chapter \@ref(xml)，開放資料網站通常有提供民眾**直接下載**檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述**由檔案匯入資料** Chapter \@ref(file)方法匯入即可。
 
 ### API (Application programming interfaces) {#api}
-應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。[Wiki](https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3){target="_blank"}
-但若檔案更新頻繁，以[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過**API**下載的服務，透過API下載的資料格式會是JSON格式Chapter \@ref(json)，如[臺北市開放認養動物API資訊](http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&rid=f4a75ba9-7721-4363-884d-c3820b0b917c){target="_blank"}所示，開放資料網站會提供**資料集ID**與**資料RID**
+應用程式介面 Application programming interfaces (API) 通常是特定軟體、程序或系統，廠商或開發人員，為了能夠讓第三方的開發者可以額外開發應用程式來強化他們的產品，所推出可以與他們系統溝通的介面。([維基百科](https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3){target="_blank"})
+
+以下載Open Data為例，若檔案更新頻繁，使用手動下載相當耗時。如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料，更新頻率為每日，所以許多開放資料也提供透過**API**下載的服務，透過API下載的資料格式會是JSON格式Chapter \@ref(json)，如[臺北市開放認養動物API資訊](http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&rid=f4a75ba9-7721-4363-884d-c3820b0b917c){target="_blank"}所示，開放資料網站會提供**資料集ID**與**資料RID**
 
 - **資料集ID**: 紀錄資料的基本參數，如包含欄位、更新頻率等
 - **資料RID**: 資料集
@@ -131,11 +132,11 @@ Open Data常見的儲存方式為: `CSV`Chapter \@ref(csv)、`JSON`Chapter \@ref
 
 
 ###JSON格式檔案 {#json}
-JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交換語言 [Wiki](http://en.wikipedia.org/wiki/JSON){target="_blank"}，特色如下:
+JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交換語言 ([Wiki](http://en.wikipedia.org/wiki/JSON){target="_blank"})，特色如下:
 
 - from **a**pplication **p**rogramming **i**nterfaces (APIs)
 - JavaScript、Java、Node.js應用
-- 一些NoSQL非關係型資料庫用JSON儲存格資料：**MongoDB**
+- 一些NoSQL非關連型資料庫用JSON儲存資料：**MongoDB**
 - 資料儲存格式
     - Numbers (double)
     - Strings (double quoted)
@@ -354,10 +355,9 @@ json1$posts$data[[1]]$message
 ```
 ##[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
 ```
-
-除了直接使用Graph API外，也可使用`Rfacebook`[@R-Rfacebook] package來讀取Facebook資料
-
-Use Rfacebook To Get Info from `tsaiingwen` Page
+### Rfacebook package
+除了直接使用Graph API外，也可使用`Rfacebook`[@R-Rfacebook] package來讀取Facebook資料。
+以下為使用Rfacebook取得 `tsaiingwen` 粉絲頁的資料範例：
 ```{r eval=FALSE}
 library(Rfacebook)
 token<-"your token" #將token複製到此處 
@@ -396,10 +396,9 @@ getPage("tsaiingwen", token,n = 5)
 5 46251501064_10153987095776065       20592            665          269
 ```
 
-How To Get More Data?
-Use **since** and **until**
+由於每次擷取資料的比數有上限（大概是30筆左右），如果需要取得更多更長期的資料，就要使用迴圈協助，分批取得資料，透過設定 **since** 和 **until**參數，可設定資料擷取區間。
 
-Set the dates vector
+首先先取得日期向量，供後續迴圈做使用
 ```{r eval=FALSE}
 lastDate<-Sys.Date()
 DateVector<-seq(as.Date("2017-01-01"),lastDate,by="5 days")
@@ -410,6 +409,7 @@ DateVectorStr
 ## "2017-01-01" "2017-01-06" "2017-01-11" "2017-01-16" "2017-01-21" "2017-01-26" "2017-01-31" "2017-02-05"
 ```
 
+利用上述日期向量資料，搭配迴圈，依序設定**since** 和 **until**參數
 ```{r eval=FALSE}
 totalPage<-NULL
 token<-'your token'
@@ -426,7 +426,7 @@ nrow(totalPage)
 ## [1] 42
 ```
 
-Other Useful Methods in Rfacebook Packages
+Rfacebook Packages提供其他函數可供使用
 
 - getUser()
 - getPost()

@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-12">
+<meta name="date" content="2017-02-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -173,6 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="4.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>4.3.2</b> Rfacebook package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="io.html"><a href="io.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 資料匯出</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>4.4.1</b> 文字檔 .txt</a></li>
@@ -296,7 +297,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.1</span> 向量 vector</h2>
 <p>向量為一維資料的表現和儲存方式，用<code>c()</code>函數可定義向量，如：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec&lt;-<span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;d&#39;</span>,<span class="st">&#39;e&#39;</span>)</code></pre></div>
-<p>a~e為vec向量中的<strong>元素(element)</strong>，各元素向中的順序固定，<code>a</code>為<code>vec</code>向量中的第<strong>1</strong>個元素，<code>b</code>則為第<strong>2</strong>個元素，以此類推，若要將<code>vec</code>向量的第<strong>4</strong>個元素取出，可使用</p>
+<p>a~e為vec向量中的<strong>元素(element)</strong>，各元素在向量中的順序固定，<code>a</code>為<code>vec</code>向量中的第<strong>1</strong>個元素，<code>b</code>則為第<strong>2</strong>個元素，以此類推，若要將<code>vec</code>向量的第<strong>4</strong>個元素取出，可使用</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vec[<span class="dv">4</span>] ## 第4個元素</code></pre></div>
 <pre><code>## [1] &quot;d&quot;</code></pre>
 <p>也可同時取出多個元素</p>

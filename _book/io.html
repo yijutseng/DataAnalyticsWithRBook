@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-12">
+<meta name="date" content="2017-02-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -173,6 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="4.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>4.3.2</b> Rfacebook package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="io.html"><a href="io.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 資料匯出</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>4.4.1</b> 文字檔 .txt</a></li>
@@ -317,7 +318,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="-.txt" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> 分隔文字檔 .txt</h3>
-<p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為<strong>檔案路徑與名稱</strong>，<code>read_delim()</code>函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將<code>delim</code>參數設定為<code>\t</code>，即可用tab將各欄位分開讀取。此外，<code>col_names</code>參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會一順序被設定為 X1, X2, X3 …。</p>
+<p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為<strong>檔案路徑與名稱</strong>，<code>read_delim()</code>函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將<code>delim</code>參數設定為<code>\t</code>，即可用tab將各欄位分開讀取。此外，<code>col_names</code>參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會依順序被設定為 X1, X2, X3 …。</p>
 <p>參數整理如下 (可用?read_delim指令閱讀官方說明)：</p>
 <ul>
 <li><code>file</code>, 檔名</li>
@@ -389,7 +390,7 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <h2><span class="header-section-number">4.2</span> 從網路匯入資料</h2>
 <div id="open-data" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Open Data</h3>
-<p><strong>開放資料</strong> (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。<a href="https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99" target="_blank">維基百科</a></p>
+<p><strong>開放資料</strong> (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。(<a href="https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99" target="_blank">維基百科</a>)</p>
 <p>台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料</p>
 <ul>
 <li><a href="http://data.gov.tw/" target="_blank">政府資料開放平台</a></li>
@@ -401,7 +402,8 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 </div>
 <div id="api" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> API (Application programming interfaces)</h3>
-<p>應用程式介面 Application programming interfaces (API) 是軟體系統不同組成部分銜接的約定。由於近年來軟體的規模日益龐大，常常需要把複雜的系統劃分成小的組成部分，編程介面的設計十分重要。程式設計的實踐中，編程介面的設計首先要使軟體系統的職責得到合理劃分。良好的介面設計可以降低系統各部分的相互依賴，提高組成單元的內聚性，降低組成單元間的耦合程度，從而提高系統的維護性和擴充功能性。<a href="https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank">Wiki</a> 但若檔案更新頻繁，以<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料資料為例，更新頻率為每日，若使用手動下載相當耗時，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">4.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c" target="_blank">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
+<p>應用程式介面 Application programming interfaces (API) 通常是特定軟體、程序或系統，廠商或開發人員，為了能夠讓第三方的開發者可以額外開發應用程式來強化他們的產品，所推出可以與他們系統溝通的介面。(<a href="https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank">維基百科</a>)</p>
+<p>以下載Open Data為例，若檔案更新頻繁，使用手動下載相當耗時。如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，更新頻率為每日，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">4.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c" target="_blank">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
 <ul>
 <li><strong>資料集ID</strong>: 紀錄資料的基本參數，如包含欄位、更新頻率等</li>
 <li><strong>資料RID</strong>: 資料集</li>
@@ -410,11 +412,11 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 </div>
 <div id="json" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> JSON格式檔案</h3>
-<p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otation)是一種輕量級的資料交換語言 <a href="http://en.wikipedia.org/wiki/JSON" target="_blank">Wiki</a>，特色如下:</p>
+<p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otation)是一種輕量級的資料交換語言 (<a href="http://en.wikipedia.org/wiki/JSON" target="_blank">Wiki</a>)，特色如下:</p>
 <ul>
 <li>from <strong>a</strong>pplication <strong>p</strong>rogramming <strong>i</strong>nterfaces (APIs)</li>
 <li>JavaScript、Java、Node.js應用</li>
-<li>一些NoSQL非關係型資料庫用JSON儲存格資料：<strong>MongoDB</strong></li>
+<li>一些NoSQL非關連型資料庫用JSON儲存資料：<strong>MongoDB</strong></li>
 <li>資料儲存格式
 <ul>
 <li>Numbers (double)</li>
@@ -435,59 +437,59 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 302
+##   ..$ count  : int 305
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  302 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:302] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:302] &quot;Dudu&quot; &quot;Piggy&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Sex            : chr [1:302] &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; &quot;雌&quot; ...
-##   .. ..$ Type           : chr [1:302] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;貓&quot; ...
-##   .. ..$ Build          : chr [1:302] &quot;中&quot; &quot;小&quot; &quot;中&quot; &quot;幼&quot; ...
-##   .. ..$ Age            : chr [1:302] &quot;年輕&quot; &quot;成年&quot; &quot;老年&quot; &quot;幼齡&quot; ...
-##   .. ..$ Variety        : chr [1:302] &quot;米克斯&quot; &quot;約克夏&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:302] &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;動物管制&quot; &quot;民眾拾獲&quot; ...
-##   .. ..$ AcceptNum      : chr [1:302] &quot;106021001&quot; &quot;106020812&quot; &quot;106020803&quot; &quot;106020701&quot; ...
-##   .. ..$ ChipNum        : chr [1:302] &quot;900073000086389&quot; &quot;900073000086495&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ IsSterilization: chr [1:302] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
-##   .. ..$ HairType       : chr [1:302] &quot;三花&quot; &quot;棕黑&quot; &quot;黑白&quot; &quot;黑&quot; ...
-##   .. ..$ Note           : chr [1:302] &quot;歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時&quot;| __truncated__ &quot;皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什&quot;| __truncated__ &quot;後癱&quot; &quot;鼻氣管炎 跳蚤&quot; ...
-##   .. ..$ Resettlement   : chr [1:302] &quot;臺北市動物之家 收容編號106021001&quot; &quot;臺北市動物之家 收容編號106020812&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Phone          : chr [1:302] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Email          : chr [1:302] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:302] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:302] &quot;http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  305 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:305] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:305] &quot;仔仔&quot; &quot;寶寶&quot; &quot;旺旺&quot; &quot;露比 &quot; ...
+##   .. ..$ Sex            : chr [1:305] &quot;雄&quot; &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; ...
+##   .. ..$ Type           : chr [1:305] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; ...
+##   .. ..$ Build          : chr [1:305] &quot;小&quot; &quot;小&quot; &quot;小&quot; &quot;中&quot; ...
+##   .. ..$ Age            : chr [1:305] &quot;老年&quot; &quot;老年&quot; &quot;老年&quot; &quot;成年&quot; ...
+##   .. ..$ Variety        : chr [1:305] &quot;貴賓&quot; &quot;貴賓&quot; &quot;貴賓&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:305] &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; ...
+##   .. ..$ AcceptNum      : chr [1:305] &quot;106021505&quot; &quot;106021504&quot; &quot;106021503&quot; &quot;106021204&quot; ...
+##   .. ..$ ChipNum        : chr [1:305] &quot;900073000086633&quot; &quot;900073000086640&quot; &quot;900073000086659&quot; &quot;900073000086011&quot; ...
+##   .. ..$ IsSterilization: chr [1:305] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; ...
+##   .. ..$ HairType       : chr [1:305] &quot;棕&quot; &quot;棕&quot; &quot;棕&quot; &quot;黑&quot; ...
+##   .. ..$ Note           : chr [1:305] &quot;哈囉~我是仔仔，可愛的我個性溫和，親人也親狗的我，正在等你來帶我回家唷!&quot; &quot;削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~&quot; &quot;輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!&quot; &quot;你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~&quot; ...
+##   .. ..$ Resettlement   : chr [1:305] &quot;臺北市動物之家 收容編號106021505&quot; &quot;臺北市動物之家 收容編號106021504&quot; &quot;臺北市動物之家 收容編號106021503&quot; &quot;臺北市動物之家 收容編號106021204&quot; ...
+##   .. ..$ Phone          : chr [1:305] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:305] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:305] &quot;http://163.29.39.183/uploads/images/medium/99337e09-44dd-4ac9-aaf4-4b6e597b7f0b.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
 <pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
-## 1   1  Dudu  雌   犬    中 年輕  米克斯 民眾不擬續養 106021001 900073000086389
-## 2   2 Piggy  雄   犬    小 成年  約克夏 民眾不擬續養 106020812 900073000086495
-## 3   3        雌   犬    中 老年  米克斯     動物管制 106020803                
-## 4   4        雌   貓    幼 幼齡  米克斯     民眾拾獲 106020701                
-## 5   5  爵士  雄   犬    中 成年  米克斯     動物救援 106020702                
-## 6   6  威利  雄   犬    中 成年  米克斯 民眾不擬續養 106020301 965000000263051
+## 1   1  仔仔  雄   犬    小 老年    貴賓 民眾不擬續養 106021505 900073000086633
+## 2   2  寶寶  雌   犬    小 老年    貴賓 民眾不擬續養 106021504 900073000086640
+## 3   3  旺旺  雄   犬    小 老年    貴賓 民眾不擬續養 106021503 900073000086659
+## 4   4 露比   雌   犬    中 成年  米克斯 民眾不擬續養 106021204 900073000086011
+## 5   5  Dudu  雌   犬    中 年輕  米克斯 民眾不擬續養 106021001 900073000086389
+## 6   6        雌   犬    中 老年  米克斯     動物管制 106021010                
 ##   IsSterilization HairType
-## 1          未絕育     三花
-## 2          已絕育     棕黑
-## 3          未絕育     黑白
-## 4          未絕育       黑
-## 5          未絕育     黑白
-## 6          已絕育     黃白
+## 1          未絕育       棕
+## 2          已絕育       棕
+## 3          未絕育       棕
+## 4          已絕育       黑
+## 5          未絕育     三花
+## 6          未絕育       白
 ##                                                                                                                                                               Note
-## 1 歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時間耐心教導我\n請來動物之家找我哦！
-## 2       皮膚病 心絲蟲(+)\n哈囉~我的名字叫Piggy，我的個性活潑好動，聰明的我懂得指令，會坐下握手跟趴下，還會等等唷!這麼優質的我，還在等什麼呢?快來動物之家認養我吧!!
-## 3                                                                                                                                                             後癱
-## 4                                                                                                                                                    鼻氣管炎 跳蚤
-## 5                                                   我是爵士\n我長得很有個性吧\n剛到動物之家所以我還是很緊張、防衛\n雖然我酷酷的\n但還是期待著有人來征服我的心喔！
-## 6                                                          哈囉~我叫威利，我個性溫馴，但對陌生人有戒心，如果比較靠近可能會有攻擊的行為，所以要先多跟我培養感情唷!!
-##                       Resettlement       Phone                      Email
-## 1 臺北市動物之家 收容編號106021001 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 2 臺北市動物之家 收容編號106020812 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 3                                                                        
-## 4                                                                        
-## 5 臺北市動物之家 收容編號106020702 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 6 臺北市動物之家 收容編號106020301 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 1                                                                                           哈囉~我是仔仔，可愛的我個性溫和，親人也親狗的我，正在等你來帶我回家唷!
+## 2                                           削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~
+## 3                                                                         輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!
+## 4                                                                             你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~
+## 5 歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時間耐心教導我\n請來動物之家找我哦！
+## 6                                                                                                                                                     後肢跛行外傷
+##                         Resettlement       Phone                      Email
+## 1   臺北市動物之家 收容編號106021505 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 2   臺北市動物之家 收容編號106021504 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 3   臺北市動物之家 收容編號106021503 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 4   臺北市動物之家 收容編號106021204 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 5   臺北市動物之家 收容編號106021001 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 6 臺北市動物之家 收容編號：106021010 02-87913062 tcapoa8@mail.taipei.gov.tw
 ##   ChildreAnlong AnimalAnlong Bodyweight
 ## 1                                      
 ## 2                                      
@@ -496,17 +498,17 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ## 5                                      
 ## 6                                      
 ##                                                                             ImageName
-## 1 http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg
-## 2 http://163.29.39.183/uploads/images/medium/2d70e05e-d7b2-44e1-a5a2-f78d053a35bf.jpg
-## 3 http://163.29.39.183/uploads/images/medium/50880ebc-ed2c-4c4c-8241-46c0403ff510.jpg
-## 4 http://163.29.39.183/uploads/images/medium/253c4783-45d8-4a10-8429-5c6abbe77609.jpg
-## 5 http://163.29.39.183/uploads/images/medium/03d8404b-2698-42da-b9ef-5a94841fd7d5.jpg
-## 6 http://163.29.39.183/uploads/images/medium/6704940d-e354-478f-b136-2f5e167db2fd.jpg</code></pre>
+## 1 http://163.29.39.183/uploads/images/medium/99337e09-44dd-4ac9-aaf4-4b6e597b7f0b.jpg
+## 2 http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg
+## 3 http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg
+## 4 http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg
+## 5 http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg
+## 6 http://163.29.39.183/uploads/images/medium/8eaa9a67-6919-4c20-9f16-1dcb4a8801c6.jpg</code></pre>
 <p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           28          102          107           42           23</code></pre>
+##           28          100          108           46           23</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -677,8 +679,10 @@ FBData =<span class="st"> </span><span class="kw">GET</span>(
 </code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">json1$posts$data[[<span class="dv">1</span>]]$message</code></pre></div>
 <pre><code>##[1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;</code></pre>
-<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2017</a>)</span> package來讀取Facebook資料</p>
-<p>Use Rfacebook To Get Info from <code>tsaiingwen</code> Page</p>
+</div>
+<div id="rfacebook-package" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Rfacebook package</h3>
+<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2017</a>)</span> package來讀取Facebook資料。 以下為使用Rfacebook取得 <code>tsaiingwen</code> 粉絲頁的資料範例：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rfacebook)
 token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span>
 <span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
@@ -712,13 +716,14 @@ token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將to
 3 46251501064_10154001652641065        9416            920          163
 4 46251501064_10153989358051065       34116           1574          373
 5 46251501064_10153987095776065       20592            665          269</code></pre>
-<p>How To Get More Data? Use <strong>since</strong> and <strong>until</strong></p>
-<p>Set the dates vector</p>
+<p>由於每次擷取資料的比數有上限（大概是30筆左右），如果需要取得更多更長期的資料，就要使用迴圈協助，分批取得資料，透過設定 <strong>since</strong> 和 <strong>until</strong>參數，可設定資料擷取區間。</p>
+<p>首先先取得日期向量，供後續迴圈做使用</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lastDate&lt;-<span class="kw">Sys.Date</span>()
 DateVector&lt;-<span class="kw">seq</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2017-01-01&quot;</span>),lastDate,<span class="dt">by=</span><span class="st">&quot;5 days&quot;</span>)
 DateVectorStr&lt;-<span class="kw">as.character</span>(DateVector)
 DateVectorStr</code></pre></div>
 <pre><code>## &quot;2017-01-01&quot; &quot;2017-01-06&quot; &quot;2017-01-11&quot; &quot;2017-01-16&quot; &quot;2017-01-21&quot; &quot;2017-01-26&quot; &quot;2017-01-31&quot; &quot;2017-02-05&quot;</code></pre>
+<p>利用上述日期向量資料，搭配迴圈，依序設定<strong>since</strong> 和 <strong>until</strong>參數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">totalPage&lt;-<span class="ot">NULL</span>
 token&lt;-<span class="st">&#39;your token&#39;</span>
 numberOfPost&lt;-<span class="dv">30</span>
@@ -730,7 +735,7 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <span class="kw">nrow</span>(totalPage)</code></pre></div>
 <pre><code>## 4 posts 8 posts 10 posts 3 posts 2 posts 14 posts 1 posts
 ## [1] 42</code></pre>
-<p>Other Useful Methods in Rfacebook Packages</p>
+<p>Rfacebook Packages提供其他函數可供使用</p>
 <ul>
 <li>getUser()</li>
 <li>getPost()</li>

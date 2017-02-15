@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-12">
+<meta name="date" content="2017-02-15">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -173,6 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="4.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>4.3.2</b> Rfacebook package</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="io.html"><a href="io.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 資料匯出</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>4.4.1</b> 文字檔 .txt</a></li>
@@ -352,7 +353,7 @@ c</code></pre></div>
 <p>在R語言中，常用的資料型態包括<strong>數值 (numeric)</strong>、<strong>字串 (character)</strong>、<strong>布林變數 (logic)</strong>以及<strong>日期 (Date)</strong>等。</p>
 <div id="-numeric" class="section level3">
 <h3><span class="header-section-number">1.5.1</span> 數值 numeric</h3>
-<p>數值包括整數（沒有小數點）與符點數（有小數點）的數值</p>
+<p>數值包括整數（沒有小數點）與浮點數（有小數點）的數值</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;-<span class="dv">100</span> 
 num2&lt;-<span class="fl">1000.001</span></code></pre></div>
 <p>值得注意的是，若數值長度超過 <code>2^53</code>，必須導入<code>bit64</code> package <span class="citation">(Oehlschlägel <a href="#ref-R-bit64">2015</a>)</span>，將數值長度上限提高為<code>2^63</code>，才能表示完整數值</p>
@@ -386,10 +387,10 @@ boolF1&lt;-F</code></pre></div>
 </div>
 <div id="-date" class="section level3">
 <h3><span class="header-section-number">1.5.4</span> 日期 (Date)</h3>
-<p>用於表示日期，於資料分析中常用，使用<code>Sys.Date()</code>指定可得系統日期。</p>
+<p>用於表示日期，於資料分析中常用，使用<code>Sys.Date()</code>指令可得系統日期。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dateBook&lt;-<span class="kw">Sys.Date</span>()
 dateBook</code></pre></div>
-<pre><code>## [1] &quot;2017-02-12&quot;</code></pre>
+<pre><code>## [1] &quot;2017-02-15&quot;</code></pre>
 <p>日期與字串的相關轉換操作可考慮使用簡單易懂的<code>lubridate</code><span class="citation">(Grolemund, Spinu, and Wickham <a href="#ref-R-lubridate">2016</a>)</span> package，如果想要將<code>年/月/日</code>格式的文字轉換為日期物件，可使用<code>ymd()</code>函數（y表年year，m表月month，d表日day），如果想要將<code>月/日/年</code>格式的文字轉換為日期物件，則使用<code>mdy()</code>函數，以此類推。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
 <span class="kw">ymd</span>(<span class="st">&#39;2012/3/3&#39;</span>)</code></pre></div>
