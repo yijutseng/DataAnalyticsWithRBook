@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-15">
+<meta name="date" content="2017-02-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,19 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
 
 
 <style type="text/css">
@@ -246,7 +259,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
 <li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="8.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>8.1</b> ggvis</a></li>
+<li class="chapter" data-level="8.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>8.2</b> googleVis</a></li>
+<li class="chapter" data-level="8.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>8.3</b> Plot.ly</a></li>
+<li class="chapter" data-level="8.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>8.4</b> Shiny簡介</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
 <li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
@@ -294,17 +312,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">資料科學與R語言</h1>
 <h4 class="author"><em>曾意儒 Yi-Ju Tseng</em></h4>
-<h4 class="date"><em>2017-02-15</em></h4>
+<h4 class="date"><em>2017-02-19</em></h4>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1></h1>
 <p>本書介紹如何使用<a href="http://www.r-project.org/" target="_blank">R語言</a>完成資料讀取 (檔案、透過API擷取或爬蟲)、資料清洗與處理、探索式資料分析、資料視覺化、互動式資料呈現 (搭配Shiny) 與資料探勘等，並介紹R與Hadoop Ecosystems介接方法。</p>
-<p>互動式圖表與資料探勘章節尚未完成，PDF版本與epub版本格式微調中。</p>
+<p>資料探勘章節尚未完成，PDF版本與epub版本格式微調中。</p>
 <p>如要一次安裝所有本書會使用到的套件，可在R內執行以下程式碼：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 devtools::<span class="kw">install_github</span>(<span class="st">&quot;yijutseng/DataAnalyticsWithRBook&quot;</span>)</code></pre></div>
 <p>本書為<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚大學資訊管理學系</a> <a href="https://github.com/yijutseng/BigDataCGUIM" target="_blank">大數據分析方法</a>課程教學使用書籍</p>
-<p>如果您想修改文字或範例，歡迎透過<a href="https://goo.gl/forms/5Htobvwy2vsB7yiF3" target="_blank">此連結</a>)提供建議與回饋。</p>
+<p>如果您想修改文字或範例，歡迎透過<a href="https://goo.gl/forms/5Htobvwy2vsB7yiF3" target="_blank">此連結</a>或是<a href="https://github.com/yijutseng/DataAnalyticsWithRBook/issues" target="_blank">GitHub</a>提供建議與回饋。</p>
 <p>本著作係採用創用 CC 姓名標示-非商業性-禁止改作 3.0 台灣 授權條款授權。</p>
 
 </div>

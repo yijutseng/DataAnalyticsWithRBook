@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-15">
+<meta name="date" content="2017-02-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,19 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
 
 
 <style type="text/css">
@@ -246,7 +259,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
 <li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="8.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>8.1</b> ggvis</a></li>
+<li class="chapter" data-level="8.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>8.2</b> googleVis</a></li>
+<li class="chapter" data-level="8.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>8.3</b> Plot.ly</a></li>
+<li class="chapter" data-level="8.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>8.4</b> Shiny簡介</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
 <li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
@@ -821,7 +839,7 @@ nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba,<span class
 <p>用<code>treemapify()</code>完成資料轉換後，使用<code>ggplotify()</code>函式做圖</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplotify</span>(treeMapCoordinates)</code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/ggplotify1-1.png" width="672" /></p>
-<p>看函式名稱不難了解<code>ggplotify()</code>也是基於<code>ggplot2</code>套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺畫的常理，所以這邊使用<code>ggplot2</code>的<code>scale_fill_gradient()</code>函式指定數值高低所需的顏色</p>
+<p>看函式名稱不難了解<code>ggplotify()</code>也是基於<code>ggplot2</code>套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺化的常理，所以這邊使用<code>ggplot2</code>的<code>scale_fill_gradient()</code>函式指定數值高低所需的顏色</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplotify</span>(treeMapCoordinates)+<span class="st"> </span>
 <span class="st">    </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="co">#指定高低顏色</span></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/ggplotify2-1.png" width="672" /></p>

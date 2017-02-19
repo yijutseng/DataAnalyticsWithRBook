@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-15">
+<meta name="date" content="2017-02-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,19 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
 
 
 <style type="text/css">
@@ -246,7 +259,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
 <li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="8.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>8.1</b> ggvis</a></li>
+<li class="chapter" data-level="8.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>8.2</b> googleVis</a></li>
+<li class="chapter" data-level="8.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>8.3</b> Plot.ly</a></li>
+<li class="chapter" data-level="8.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>8.4</b> Shiny簡介</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
 <li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
@@ -302,10 +320,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Barbera, Pablo, Michael Piccirilli, and Andrew Geisler. 2017. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook" class="uri">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
 </div>
 <div>
+<p>Chang, Winston, and Hadley Wickham. 2016. <em>Ggvis: Interactive Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggvis" class="uri">https://CRAN.R-project.org/package=ggvis</a>.</p>
+</div>
+<div>
+<p>Chang, Winston, Joe Cheng, JJ Allaire, Yihui Xie, and Jonathan McPherson. 2017. <em>Shiny: Web Application Framework for R</em>. <a href="https://CRAN.R-project.org/package=shiny" class="uri">https://CRAN.R-project.org/package=shiny</a>.</p>
+</div>
+<div>
 <p>Dowle, Matt, and Arun Srinivasan. 2016. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
 </div>
 <div>
 <p>Eugster, Manuel J. A. 2013. <em>SportsAnalytics: Infrastructure for Sports Analytics</em>. <a href="https://CRAN.R-project.org/package=SportsAnalytics" class="uri">https://CRAN.R-project.org/package=SportsAnalytics</a>.</p>
+</div>
+<div>
+<p>Gesmann, Markus, and Diego de Castillo. 2017. <em>GoogleVis: R Interface to Google Charts</em>. <a href="https://CRAN.R-project.org/package=googleVis" class="uri">https://CRAN.R-project.org/package=googleVis</a>.</p>
 </div>
 <div>
 <p>Grolemund, Garrett, Vitalie Spinu, and Hadley Wickham. 2016. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate" class="uri">https://CRAN.R-project.org/package=lubridate</a>.</p>
@@ -321,6 +348,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div>
 <p>Ooms, Jeroen, Duncan Temple Lang, and Lloyd Hilaiel. 2016. <em>Jsonlite: A Robust, High Performance Json Parser and Generator for R</em>. <a href="https://CRAN.R-project.org/package=jsonlite" class="uri">https://CRAN.R-project.org/package=jsonlite</a>.</p>
+</div>
+<div>
+<p>Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2016. <em>Plotly: Create Interactive Web Graphics via ’Plotly.js’</em>. <a href="https://CRAN.R-project.org/package=plotly" class="uri">https://CRAN.R-project.org/package=plotly</a>.</p>
 </div>
 <div>
 <p>Temple Lang, Duncan, and the CRAN Team. 2016. <em>XML: Tools for Parsing and Generating Xml Within R and S-Plus</em>. <a href="https://CRAN.R-project.org/package=XML" class="uri">https://CRAN.R-project.org/package=XML</a>.</p>

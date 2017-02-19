@@ -645,7 +645,7 @@ head(treeMapCoordinates)
 ggplotify(treeMapCoordinates)
 ```
 
-看函式名稱不難了解`ggplotify()`也是基於`ggplot2`套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺畫的常理，所以這邊使用`ggplot2`的`scale_fill_gradient()`函式指定數值高低所需的顏色
+看函式名稱不難了解`ggplotify()`也是基於`ggplot2`套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺化的常理，所以這邊使用`ggplot2`的`scale_fill_gradient()`函式指定數值高低所需的顏色
 ```{r ggplotify2,message=FALSE,warning=F,fig.height=4}
 ggplotify(treeMapCoordinates)+ 
     scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色

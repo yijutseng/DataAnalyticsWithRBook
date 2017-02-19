@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-15">
+<meta name="date" content="2017-02-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,19 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
 
 
 <style type="text/css">
@@ -246,7 +259,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
 <li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a></li>
+<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="8.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>8.1</b> ggvis</a></li>
+<li class="chapter" data-level="8.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>8.2</b> googleVis</a></li>
+<li class="chapter" data-level="8.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>8.3</b> Plot.ly</a></li>
+<li class="chapter" data-level="8.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>8.4</b> Shiny簡介</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
 <li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
@@ -437,68 +455,68 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 305
+##   ..$ count  : int 295
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  305 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:305] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:305] &quot;仔仔&quot; &quot;寶寶&quot; &quot;旺旺&quot; &quot;露比 &quot; ...
-##   .. ..$ Sex            : chr [1:305] &quot;雄&quot; &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; ...
-##   .. ..$ Type           : chr [1:305] &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; ...
-##   .. ..$ Build          : chr [1:305] &quot;小&quot; &quot;小&quot; &quot;小&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:305] &quot;老年&quot; &quot;老年&quot; &quot;老年&quot; &quot;成年&quot; ...
-##   .. ..$ Variety        : chr [1:305] &quot;貴賓&quot; &quot;貴賓&quot; &quot;貴賓&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:305] &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; ...
-##   .. ..$ AcceptNum      : chr [1:305] &quot;106021505&quot; &quot;106021504&quot; &quot;106021503&quot; &quot;106021204&quot; ...
-##   .. ..$ ChipNum        : chr [1:305] &quot;900073000086633&quot; &quot;900073000086640&quot; &quot;900073000086659&quot; &quot;900073000086011&quot; ...
-##   .. ..$ IsSterilization: chr [1:305] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; ...
-##   .. ..$ HairType       : chr [1:305] &quot;棕&quot; &quot;棕&quot; &quot;棕&quot; &quot;黑&quot; ...
-##   .. ..$ Note           : chr [1:305] &quot;哈囉~我是仔仔，可愛的我個性溫和，親人也親狗的我，正在等你來帶我回家唷!&quot; &quot;削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~&quot; &quot;輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!&quot; &quot;你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~&quot; ...
-##   .. ..$ Resettlement   : chr [1:305] &quot;臺北市動物之家 收容編號106021505&quot; &quot;臺北市動物之家 收容編號106021504&quot; &quot;臺北市動物之家 收容編號106021503&quot; &quot;臺北市動物之家 收容編號106021204&quot; ...
-##   .. ..$ Phone          : chr [1:305] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:305] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:305] &quot;http://163.29.39.183/uploads/images/medium/99337e09-44dd-4ac9-aaf4-4b6e597b7f0b.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  295 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:295] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:295] &quot;胖丁&quot; &quot;寶寶&quot; &quot;旺旺&quot; &quot;露比 &quot; ...
+##   .. ..$ Sex            : chr [1:295] &quot;雌&quot; &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; ...
+##   .. ..$ Type           : chr [1:295] &quot;貓&quot; &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; ...
+##   .. ..$ Build          : chr [1:295] &quot;中&quot; &quot;小&quot; &quot;小&quot; &quot;中&quot; ...
+##   .. ..$ Age            : chr [1:295] &quot;年輕&quot; &quot;老年&quot; &quot;老年&quot; &quot;成年&quot; ...
+##   .. ..$ Variety        : chr [1:295] &quot;米克斯&quot; &quot;貴賓&quot; &quot;貴賓&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:295] &quot;&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; ...
+##   .. ..$ AcceptNum      : chr [1:295] &quot;106021601&quot; &quot;106021504&quot; &quot;106021503&quot; &quot;106021204&quot; ...
+##   .. ..$ ChipNum        : chr [1:295] &quot;&quot; &quot;900073000086640&quot; &quot;900073000086659&quot; &quot;900073000086011&quot; ...
+##   .. ..$ IsSterilization: chr [1:295] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; ...
+##   .. ..$ HairType       : chr [1:295] &quot;虎斑&quot; &quot;棕&quot; &quot;棕&quot; &quot;黑&quot; ...
+##   .. ..$ Note           : chr [1:295] &quot;\n姓名:胖丁\n性別:女生\n生日:預估生日105年4月底或5月初\n個性愛撒嬌,愛摸不愛抱,有時抱了會大叫,很愛坐人大腿叫人摸他,眼睛二隻瞳孔&quot;| __truncated__ &quot;削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~&quot; &quot;輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!&quot; &quot;你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~&quot; ...
+##   .. ..$ Resettlement   : chr [1:295] &quot;臺北市流浪貓保護協會02-27261079(詢問時直接講貓名,不用講編號)&quot; &quot;臺北市動物之家 收容編號106021504&quot; &quot;臺北市動物之家 收容編號106021503&quot; &quot;臺北市動物之家 收容編號106021204&quot; ...
+##   .. ..$ Phone          : chr [1:295] &quot;0227261079&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:295] &quot;jingyi@so-net.net.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:295] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:295] &quot;可&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:295] &quot;3KG&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:295] &quot;http://163.29.39.183/uploads/images/medium/76da6dd7-66a2-44f2-8982-8e02802380d8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
 <pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
-## 1   1  仔仔  雄   犬    小 老年    貴賓 民眾不擬續養 106021505 900073000086633
+## 1   1  胖丁  雌   貓    中 年輕  米克斯              106021601                
 ## 2   2  寶寶  雌   犬    小 老年    貴賓 民眾不擬續養 106021504 900073000086640
 ## 3   3  旺旺  雄   犬    小 老年    貴賓 民眾不擬續養 106021503 900073000086659
 ## 4   4 露比   雌   犬    中 成年  米克斯 民眾不擬續養 106021204 900073000086011
 ## 5   5  Dudu  雌   犬    中 年輕  米克斯 民眾不擬續養 106021001 900073000086389
 ## 6   6        雌   犬    中 老年  米克斯     動物管制 106021010                
 ##   IsSterilization HairType
-## 1          未絕育       棕
+## 1          未絕育     虎斑
 ## 2          已絕育       棕
 ## 3          未絕育       棕
 ## 4          已絕育       黑
 ## 5          未絕育     三花
 ## 6          未絕育       白
 ##                                                                                                                                                               Note
-## 1                                                                                           哈囉~我是仔仔，可愛的我個性溫和，親人也親狗的我，正在等你來帶我回家唷!
+## 1       \n姓名:胖丁\n性別:女生\n生日:預估生日105年4月底或5月初\n個性愛撒嬌,愛摸不愛抱,有時抱了會大叫,很愛坐人大腿叫人摸他,眼睛二隻瞳孔不在同一個水平上(不影響生活)
 ## 2                                           削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~
 ## 3                                                                         輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!
 ## 4                                                                             你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~
 ## 5 歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時間耐心教導我\n請來動物之家找我哦！
 ## 6                                                                                                                                                     後肢跛行外傷
-##                         Resettlement       Phone                      Email
-## 1   臺北市動物之家 收容編號106021505 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 2   臺北市動物之家 收容編號106021504 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 3   臺北市動物之家 收容編號106021503 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 4   臺北市動物之家 收容編號106021204 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 5   臺北市動物之家 收容編號106021001 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 6 臺北市動物之家 收容編號：106021010 02-87913062 tcapoa8@mail.taipei.gov.tw
-##   ChildreAnlong AnimalAnlong Bodyweight
-## 1                                      
-## 2                                      
-## 3                                      
-## 4                                      
-## 5                                      
-## 6                                      
+##                                                   Resettlement       Phone
+## 1 臺北市流浪貓保護協會02-27261079(詢問時直接講貓名,不用講編號)  0227261079
+## 2                             臺北市動物之家 收容編號106021504 02-87913062
+## 3                             臺北市動物之家 收容編號106021503 02-87913062
+## 4                             臺北市動物之家 收容編號106021204 02-87913062
+## 5                             臺北市動物之家 收容編號106021001 02-87913062
+## 6                           臺北市動物之家 收容編號：106021010 02-87913062
+##                        Email ChildreAnlong AnimalAnlong Bodyweight
+## 1       jingyi@so-net.net.tw                         可        3KG
+## 2 tcapoa8@mail.taipei.gov.tw                                      
+## 3 tcapoa8@mail.taipei.gov.tw                                      
+## 4 tcapoa8@mail.taipei.gov.tw                                      
+## 5 tcapoa8@mail.taipei.gov.tw                                      
+## 6 tcapoa8@mail.taipei.gov.tw                                      
 ##                                                                             ImageName
-## 1 http://163.29.39.183/uploads/images/medium/99337e09-44dd-4ac9-aaf4-4b6e597b7f0b.jpg
+## 1 http://163.29.39.183/uploads/images/medium/76da6dd7-66a2-44f2-8982-8e02802380d8.jpg
 ## 2 http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg
 ## 3 http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg
 ## 4 http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg
@@ -508,7 +526,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           28          100          108           46           23</code></pre>
+##           26           97          105           45           22</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
