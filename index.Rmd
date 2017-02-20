@@ -22,7 +22,8 @@ options(
   htmltools.dir.version = FALSE, formatR.indent = 2, width = 80, digits = 2
 )
 
-pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2','SportsAnalytics','readr','readxl','jsonlite','XML','Rfacebook','rvest','rgdal','rgeos','maptools','ggmap','choroplethr','choroplethrMaps','WDI','treemapify','shiny','plotly','ggvis','googleVis')
+pkg<-c('ggplot2', 'dplyr','lubridate','bit64','bookdown','knitr','rmarkdown','RCurl','data.table','stringr','reshape2','SportsAnalytics','readr','readxl','jsonlite','XML','Rfacebook','rvest','rgdal','rgeos','maptools','ggmap','choroplethr','choroplethrMaps','WDI','treemapify','shiny','plotly','ggvis','googleVis','rpart',
+       'rpart.plot','fields','arules','datasets','arulesViz','MASS','caret')
 lapply(c(), function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })

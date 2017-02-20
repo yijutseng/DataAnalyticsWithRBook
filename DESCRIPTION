@@ -33,5 +33,17 @@ Imports:
   choroplethr,
   choroplethrMaps,
   WDI,
-  treemapify
+  treemapify,
+  shiny,
+  plotly,
+  ggvis,
+  googleVis,
+  rpart,
+  rpart.plot,
+  fields,
+  arules,
+  datasets,
+  arulesViz,
+  MASS,
+  caret
 
