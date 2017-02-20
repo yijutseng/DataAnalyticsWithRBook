@@ -163,7 +163,7 @@ sudo yum install --nogpgcheck rstudio-server-rhel-0.99.896-x86_64.rpm
 
 ## RHadoop MapReduce: easy word count
 ```{r eval=F}
-Debate<-readLines("https://raw.githubusercontent.com/yijutseng/BigDataCGUIM/master/RepDebateMiami.txt")
+Debate<-readLines("https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/104/RepDebateMiami.txt")
 DebateSplit<-unlist(strsplit(tolower(Debate),split = ' |\\.|\\,|\\?'))
 #table(DebateSplit)
 ```
@@ -178,4 +178,82 @@ head(result)
 ```
 
 ## R + Spark
-http://spark.rstudio.com/
+sparklyr
+SparkR 
+
+
+Supports dplyr, Spark ML and H2O
+Distributed on CRAN
+Easy to install
+Extensible
+
+測試環境
+
+- R version 3.3.2 (2016-10-31)
+- Platform: x86_64-w64-mingw32/x64 (64-bit)
+- Running under: Windows >= 8 x64 (build 9200)
+- sparklyr_0.5.3-9002
+
+
+```{r spark1,eval=F}
+install.packages("sparklyr")
+#devtools::install_github("rstudio/sparklyr")
+```
+
+```{r spark2,eval=F}
+library(sparklyr)
+spark_install(version = "2.1.0")
+```
+
+```{r spark3,eval=F}
+#Sys.setenv(SPARK_HOME="C:/Users/yjtseng/AppData/Local/rstudio/spark/Cache/spark-2.0.1-bin-hadoop2.7")
+#Sys.setenv(HADOOP_HOME="C:\\Program Files\\RStudio\\bin\\winutils\\x64\\")
+library(sparklyr)
+library(dplyr)
+sc <- spark_connect(master = "local", version = "2.1.0")
+```
+
+```{r spark4,eval=F}
+install.packages(c("nycflights13", "Lahman"))
+```
+
+```{r spark5,eval=F}
+iris_tbl <- copy_to(sc, iris)
+flights_tbl <- copy_to(sc, nycflights13::flights, "flights")
+batting_tbl <- copy_to(sc, Lahman::Batting, "batting")
+src_tbls(sc)
+flights_tbl %>% filter(dep_delay == 2)
+```
+
+```
+Source:   query [6,233 x 19]
+Database: spark connection master=local[8] app=sparklyr local=TRUE
+
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time arr_delay
+   <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>     <dbl>
+1   2013     1     1      517            515         2      830            819        11
+2   2013     1     1      542            540         2      923            850        33
+3   2013     1     1      702            700         2     1058           1014        44
+4   2013     1     1      715            713         2      911            850        21
+5   2013     1     1      752            750         2     1025           1029        -4
+6   2013     1     1      917            915         2     1206           1211        -5
+7   2013     1     1      932            930         2     1219           1225        -6
+8   2013     1     1     1028           1026         2     1350           1339        11
+9   2013     1     1     1042           1040         2     1325           1326        -1
+10  2013     1     1     1231           1229         2     1523           1529        -6
+# ... with 6,223 more rows, and 10 more variables: carrier <chr>, flight <int>,
+#   tailnum <chr>, origin <chr>, dest <chr>, air_time <dbl>, distance <dbl>, hour <dbl>,
+#   minute <dbl>, time_hour <dbl>
+```
+
+```{r spark6,eval=F}
+spark_disconnect(sc)
+```
+
+在RStudio中有整合Spark連線功能，右上角的Spark頁籤可供使用者開啟特定版本的Spark connections，除此之外，也可使用Spark頁籤瀏覽在Spark中的表格結構與資料的前1000列。
+
+
+參考資料
+
+- http://spark.rstudio.com/
+- https://shiring.github.io/machine_learning/2017/02/19/food_spark
