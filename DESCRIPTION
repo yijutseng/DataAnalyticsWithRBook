@@ -45,5 +45,6 @@ Imports:
   datasets,
   arulesViz,
   MASS,
-  caret
+  caret,
+  purrr
 
