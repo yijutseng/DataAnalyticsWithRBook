@@ -241,7 +241,7 @@ state_choropleth(df_pop_state,reference_map = TRUE,
                  zoom= continental_us_states) #把各州人口畫在地圖上
 ```
 
-除了美國地圖外，使用用`choroplethr` package搭配`WDI`: [World Development Indicators](http://beta.data.worldbank.org/){target="_blank"} 的世界人口分布資料，可以針對世界人口分佈做**面量圖**。
+除了美國地圖外，使用`choroplethr` package搭配`WDI`: [World Development Indicators](http://beta.data.worldbank.org/){target="_blank"} 的世界人口分布資料，可以針對世界人口分佈做**面量圖**。
 世界人口資料的代碼為`SP.POP.TOTL`，代碼查詢可見[World Development Indicators](http://beta.data.worldbank.org/){target="_blank"}
 
 由於需要使用`WDI`的資料，所以需要安裝與載入`WDI`[@R-WDI] package
@@ -249,20 +249,20 @@ state_choropleth(df_pop_state,reference_map = TRUE,
 ```{r,eval=F,warning=F,message=F}
 install.packages("WDI") ##第一次使用前先安裝
 ```
-```{r, warning=F,message=F, fig.height=3}
+```{r choroplethr_wdi_1 , warning=F,message=F, fig.height=3}
 library(WDI)
-choroplethr_wdi(code="SP.POP.TOTL", year=2015, 
+choroplethr_wdi(code="SP.POP.TOTL", year=2014, 
                 title="2015 Population", num_colors=1)
 ```
 
 除了人口資料外，WDI也有世界平均壽命資料，平均壽命的代碼為`SP.DYN.LE00.IN`，代碼查詢可見[World Development Indicators](http://beta.data.worldbank.org/){target="_blank"}
-```{r warning=F,message=F, fig.height=4}
+```{r choroplethr_wdi_2,warning=F,message=F, fig.height=4}
 choroplethr_wdi(code="SP.DYN.LE00.IN", year=2014, 
                 title="2014 Life Expectancy")
 ```
 
 如果只需亞洲太平洋人口分布，可使用`zoom`參數設定想畫的國家，國家的名稱設定必須要和`country.regions`資料完全吻合
-```{r, warning=F,message=F, fig.height=2.5}
+```{r choroplethr_wdi_3,eval=F, warning=F,message=F, fig.height=2.5}
 choroplethr_wdi(code="SP.POP.TOTL", year=2015, 
                 title="2015 Life Expectancy",
                 zoom=c('taiwan','japan','south korea','philippines'))
@@ -602,6 +602,7 @@ Treemap(矩形式樹狀結構繪圖法)是以二維平面的方式展示包含�
 ```{r eval=F, message=FALSE,warning=F,fig.height=4}
 install.packages("devtools")
 library(devtools)
+install_github("wilkox/ggfittext")
 install_github("wilkox/treemapify") 
 ```
 ```{r message=FALSE,warning=F,fig.height=4}
@@ -633,7 +634,7 @@ str(G20)
 - label: 每個方塊分類依據(Country)
 - group: 方塊群組(Region)
 
-```{r treemap1,message=FALSE,warning=F,fig.height=4}
+```{r treemapify1, message=FALSE,warning=F,fig.height=4}
 treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
     area = "Nom.GDP.mil.USD",fill = "HDI", #面積依GDP，顏色用HDI
     label = "Country",group = "Region") #方塊分類依據用國家，再用地區分群
@@ -641,9 +642,10 @@ head(treeMapCoordinates)
 ```
 
 用`treemapify()`完成資料轉換後，使用`ggplotify()`函式做圖
-```{r ggplotify1,message=FALSE,warning=F,fig.height=4}
+```{r ggplotify1, message=FALSE,warning=F,fig.height=4}
 ggplotify(treeMapCoordinates)
 ```
+
 
 看函式名稱不難了解`ggplotify()`也是基於`ggplot2`套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺化的常理，所以這邊使用`ggplot2`的`scale_fill_gradient()`函式指定數值高低所需的顏色
 ```{r ggplotify2,message=FALSE,warning=F,fig.height=4}
@@ -663,6 +665,17 @@ treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
     label = "Country",group = "Region")
 ggplotify(treeMapCoordinates)+ 
     scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色
+```
+
+`treemap`[@R-treemap] package也提供相同的功能
+```{r treemap1,message=FALSE,warning=F,fig.height=4}
+library(treemap)
+data(GNI2014)
+treemap(GNI2014,
+       index=c("continent", "iso3"),
+       vSize="population",
+       vColor="GNI",
+       type="value")
 ```
 
 [參考資料](https://github.com/wilkox/treemapify){target="_blank"}

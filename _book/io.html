@@ -25,14 +25,14 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-02-19">
+<meta name="date" content="2017-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="controlstructure.html">
+<link rel="prev" href="section-4.html">
 <link rel="next" href="manipulation.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -60,6 +60,16 @@
 <link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotlyjs/plotly-latest.min.js"></script>
 <script src="libs/plotly-binding/plotly.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2407708-3', 'auto');
+ga('send', 'pageview');
+
+</script>
 
 
 <style type="text/css">
@@ -164,108 +174,109 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.3" data-path="controlstructure.html"><a href="controlstructure.html#break"><i class="fa fa-check"></i><b>3.2.3</b> break</a></li>
 <li class="chapter" data-level="3.2.4" data-path="controlstructure.html"><a href="controlstructure.html#next"><i class="fa fa-check"></i><b>3.2.4</b> next</a></li>
 </ul></li>
+<li class="chapter" data-level="3.3" data-path="controlstructure.html"><a href="controlstructure.html#purrr"><i class="fa fa-check"></i><b>3.3</b> purrr</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>4</b> 資料讀取與匯出</a><ul>
-<li class="chapter" data-level="4.1" data-path="io.html"><a href="io.html#file"><i class="fa fa-check"></i><b>4.1</b> 從檔案匯入基本資料格式</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="io.html"><a href="io.html#import-dataset-rstudio"><i class="fa fa-check"></i><b>4.1.1</b> Import Dataset功能 (RStudio)</a></li>
-<li class="chapter" data-level="4.1.2" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>4.1.2</b> 分隔文字檔 .txt</a></li>
-<li class="chapter" data-level="4.1.3" data-path="io.html"><a href="io.html#csv"><i class="fa fa-check"></i><b>4.1.3</b> CSV檔案 .csv</a></li>
-<li class="chapter" data-level="4.1.4" data-path="io.html"><a href="io.html#excel-.xls"><i class="fa fa-check"></i><b>4.1.4</b> Excel檔案 .xls</a></li>
-<li class="chapter" data-level="4.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>4.1.5</b> R物件 .rds</a></li>
-<li class="chapter" data-level="4.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>4.1.6</b> R程式 .R</a></li>
-<li class="chapter" data-level="4.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>4.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="4.1.8" data-path="io.html"><a href="io.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 其他格式</a></li>
-<li class="chapter" data-level="4.1.9" data-path="io.html"><a href="io.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="4" data-path="section-4.html"><a href="section-4.html"><i class="fa fa-check"></i><b>4</b> 函數</a></li>
+<li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#file"><i class="fa fa-check"></i><b>5.1</b> 從檔案匯入基本資料格式</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#import-dataset-rstudio"><i class="fa fa-check"></i><b>5.1.1</b> Import Dataset功能 (RStudio)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>5.1.2</b> 分隔文字檔 .txt</a></li>
+<li class="chapter" data-level="5.1.3" data-path="io.html"><a href="io.html#csv"><i class="fa fa-check"></i><b>5.1.3</b> CSV檔案 .csv</a></li>
+<li class="chapter" data-level="5.1.4" data-path="io.html"><a href="io.html#excel-.xls"><i class="fa fa-check"></i><b>5.1.4</b> Excel檔案 .xls</a></li>
+<li class="chapter" data-level="5.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>5.1.5</b> R物件 .rds</a></li>
+<li class="chapter" data-level="5.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>5.1.6</b> R程式 .R</a></li>
+<li class="chapter" data-level="5.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>5.1.7</b> 純文字資料 (無分隔)</a></li>
+<li class="chapter" data-level="5.1.8" data-path="io.html"><a href="io.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 其他格式</a></li>
+<li class="chapter" data-level="5.1.9" data-path="io.html"><a href="io.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 其他讀檔注意事項</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="io.html"><a href="io.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 從網路匯入資料</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>4.2.1</b> Open Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>4.2.2</b> API (Application programming interfaces)</a></li>
-<li class="chapter" data-level="4.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>4.2.3</b> JSON格式檔案</a></li>
-<li class="chapter" data-level="4.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>4.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="4.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>4.2.5</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 從網路匯入資料</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>5.2.1</b> Open Data</a></li>
+<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.2.2</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>5.2.3</b> JSON格式檔案</a></li>
+<li class="chapter" data-level="5.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.2.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>5.2.5</b> 網頁爬蟲 Webscraping</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>4.3</b> Facebook資料擷取</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>4.3.1</b> Graph API in R</a></li>
-<li class="chapter" data-level="4.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>4.3.2</b> Rfacebook package</a></li>
+<li class="chapter" data-level="5.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>5.3</b> Facebook資料擷取</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.3.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.3.2</b> Rfacebook package</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="io.html"><a href="io.html#section-4.4"><i class="fa fa-check"></i><b>4.4</b> 資料匯出</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>4.4.1</b> 文字檔 .txt</a></li>
-<li class="chapter" data-level="4.4.2" data-path="io.html"><a href="io.html#csv-.csv"><i class="fa fa-check"></i><b>4.4.2</b> CSV檔 .csv</a></li>
-<li class="chapter" data-level="4.4.3" data-path="io.html"><a href="io.html#r-.rds-1"><i class="fa fa-check"></i><b>4.4.3</b> R物件 .rds</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>5</b> 資料處理與清洗</a><ul>
-<li class="chapter" data-level="5.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>5.1</b> Tidy Data</a></li>
-<li class="chapter" data-level="5.2" data-path="manipulation.html"><a href="manipulation.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 資料型別轉換處理</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="manipulation.html"><a href="manipulation.html#section-5.2.1"><i class="fa fa-check"></i><b>5.2.1</b> 資料型別檢查</a></li>
-<li class="chapter" data-level="5.2.2" data-path="manipulation.html"><a href="manipulation.html#section-5.2.2"><i class="fa fa-check"></i><b>5.2.2</b> 資料型別轉換</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="manipulation.html"><a href="manipulation.html#section-5.3"><i class="fa fa-check"></i><b>5.3</b> 文字字串處理</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="manipulation.html"><a href="manipulation.html#section-5.3.1"><i class="fa fa-check"></i><b>5.3.1</b> 基本處理</a></li>
-<li class="chapter" data-level="5.3.2" data-path="manipulation.html"><a href="manipulation.html#section-5.3.2"><i class="fa fa-check"></i><b>5.3.2</b> 搜尋字串</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>5.4</b> 子集Subset</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>5.4.1</b> 一維資料 (向量)</a></li>
-<li class="chapter" data-level="5.4.2" data-path="manipulation.html"><a href="manipulation.html#section-5.4.2"><i class="fa fa-check"></i><b>5.4.2</b> 二維資料</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="manipulation.html"><a href="manipulation.html#section-5.5"><i class="fa fa-check"></i><b>5.5</b> 排序</a><ul>
-<li class="chapter" data-level="5.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-"><i class="fa fa-check"></i><b>5.5.1</b> sort 向量排序</a></li>
-<li class="chapter" data-level="5.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>5.5.2</b> order</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="manipulation.html"><a href="manipulation.html#section-5.6"><i class="fa fa-check"></i><b>5.6</b> 資料組合</a></li>
-<li class="chapter" data-level="5.7" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>5.7</b> 長表與寬表</a></li>
-<li class="chapter" data-level="5.8" data-path="manipulation.html"><a href="manipulation.html#section-5.8"><i class="fa fa-check"></i><b>5.8</b> 遺漏值處理</a></li>
-<li class="chapter" data-level="5.9" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>5.9</b> 綜合練習範例Case study</a><ul>
-<li class="chapter" data-level="5.9.1" data-path="manipulation.html"><a href="manipulation.html#section-5.9.1"><i class="fa fa-check"></i><b>5.9.1</b> 載入資料</a></li>
-<li class="chapter" data-level="5.9.2" data-path="manipulation.html"><a href="manipulation.html#section-5.9.2"><i class="fa fa-check"></i><b>5.9.2</b> 資料總覽</a></li>
-<li class="chapter" data-level="5.9.3" data-path="manipulation.html"><a href="manipulation.html#section-5.9.3"><i class="fa fa-check"></i><b>5.9.3</b> 資料排序後篩選</a></li>
-<li class="chapter" data-level="5.9.4" data-path="manipulation.html"><a href="manipulation.html#section-5.9.4"><i class="fa fa-check"></i><b>5.9.4</b> 欄位值篩選</a></li>
-<li class="chapter" data-level="5.9.5" data-path="manipulation.html"><a href="manipulation.html#section-5.9.5"><i class="fa fa-check"></i><b>5.9.5</b> 字串條件搜尋後篩選</a></li>
+<li class="chapter" data-level="5.4" data-path="io.html"><a href="io.html#section-5.4"><i class="fa fa-check"></i><b>5.4</b> 資料匯出</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>5.4.1</b> 文字檔 .txt</a></li>
+<li class="chapter" data-level="5.4.2" data-path="io.html"><a href="io.html#csv-.csv"><i class="fa fa-check"></i><b>5.4.2</b> CSV檔 .csv</a></li>
+<li class="chapter" data-level="5.4.3" data-path="io.html"><a href="io.html#r-.rds-1"><i class="fa fa-check"></i><b>5.4.3</b> R物件 .rds</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>6</b> 探索式資料分析</a><ul>
-<li class="chapter" data-level="6.1" data-path="eda.html"><a href="eda.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 什麼是探索式資料分析</a></li>
-<li class="chapter" data-level="6.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>6.2</b> data.table</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>6.2.1</b> i 觀察值篩選邏輯</a></li>
-<li class="chapter" data-level="6.2.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>6.2.2</b> j 欄位選擇運算</a></li>
-<li class="chapter" data-level="6.2.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>6.2.3</b> by 分組依據</a></li>
-<li class="chapter" data-level="6.2.4" data-path="eda.html"><a href="eda.html#section-6.2.4"><i class="fa fa-check"></i><b>6.2.4</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="6.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="manipulation.html"><a href="manipulation.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 資料型別檢查</a></li>
+<li class="chapter" data-level="6.2.2" data-path="manipulation.html"><a href="manipulation.html#section-6.2.2"><i class="fa fa-check"></i><b>6.2.2</b> 資料型別轉換</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>6.3</b> dplyr</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>6.3.1</b> select()</a></li>
-<li class="chapter" data-level="6.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>6.3.2</b> filter()</a></li>
-<li class="chapter" data-level="6.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>6.3.3</b> mutate()</a></li>
-<li class="chapter" data-level="6.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>6.3.4</b> summarise()</a></li>
-<li class="chapter" data-level="6.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>6.3.5</b> group_by()</a></li>
-<li class="chapter" data-level="6.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>6.3.6</b> arrange()</a></li>
-<li class="chapter" data-level="6.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>6.3.7</b> rename()</a></li>
-<li class="chapter" data-level="6.3.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>6.3.8</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#section-6.3.1"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#section-6.3.2"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>6.4</b> 子集Subset</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>6.4.1</b> 一維資料 (向量)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="manipulation.html"><a href="manipulation.html#section-6.4.2"><i class="fa fa-check"></i><b>6.4.2</b> 二維資料</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="manipulation.html"><a href="manipulation.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 排序</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-"><i class="fa fa-check"></i><b>6.5.1</b> sort 向量排序</a></li>
+<li class="chapter" data-level="6.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>6.5.2</b> order</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="manipulation.html"><a href="manipulation.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 資料組合</a></li>
+<li class="chapter" data-level="6.7" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>6.7</b> 長表與寬表</a></li>
+<li class="chapter" data-level="6.8" data-path="manipulation.html"><a href="manipulation.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 遺漏值處理</a></li>
+<li class="chapter" data-level="6.9" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>6.9</b> 綜合練習範例Case study</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="manipulation.html"><a href="manipulation.html#section-6.9.1"><i class="fa fa-check"></i><b>6.9.1</b> 載入資料</a></li>
+<li class="chapter" data-level="6.9.2" data-path="manipulation.html"><a href="manipulation.html#section-6.9.2"><i class="fa fa-check"></i><b>6.9.2</b> 資料總覽</a></li>
+<li class="chapter" data-level="6.9.3" data-path="manipulation.html"><a href="manipulation.html#section-6.9.3"><i class="fa fa-check"></i><b>6.9.3</b> 資料排序後篩選</a></li>
+<li class="chapter" data-level="6.9.4" data-path="manipulation.html"><a href="manipulation.html#section-6.9.4"><i class="fa fa-check"></i><b>6.9.4</b> 欄位值篩選</a></li>
+<li class="chapter" data-level="6.9.5" data-path="manipulation.html"><a href="manipulation.html#section-6.9.5"><i class="fa fa-check"></i><b>6.9.5</b> 字串條件搜尋後篩選</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>7</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="7.1" data-path="vis.html"><a href="vis.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 資料視覺化的目的</a></li>
-<li class="chapter" data-level="7.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.2</b> ggplot2簡介</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>7.2.1</b> qplot()</a></li>
-<li class="chapter" data-level="7.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>7.2.2</b> ggplot()</a></li>
+<li class="chapter" data-level="7" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>7</b> 探索式資料分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="7.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>7.2</b> data.table</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#section-7.2.4"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>7.3</b> ggplot2+地圖</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>7.3.1</b> Choropleth map面量圖</a></li>
-<li class="chapter" data-level="7.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>7.3.2</b> ggmap()</a></li>
-<li class="chapter" data-level="7.3.3" data-path="vis.html"><a href="vis.html#density-map"><i class="fa fa-check"></i><b>7.3.3</b> Density Map</a></li>
-<li class="chapter" data-level="7.3.4" data-path="vis.html"><a href="vis.html#section-7.3.4"><i class="fa fa-check"></i><b>7.3.4</b> 參考資料</a></li>
+<li class="chapter" data-level="7.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>7.3</b> dplyr</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>7.3.1</b> select()</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>7.3.2</b> filter()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>7.3.3</b> mutate()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>7.3.4</b> summarise()</a></li>
+<li class="chapter" data-level="7.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>7.3.5</b> group_by()</a></li>
+<li class="chapter" data-level="7.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>7.3.6</b> arrange()</a></li>
+<li class="chapter" data-level="7.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>7.3.7</b> rename()</a></li>
+<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>7.4</b> Taiwan的面量圖</a></li>
-<li class="chapter" data-level="7.5" data-path="vis.html"><a href="vis.html#heatmap"><i class="fa fa-check"></i><b>7.5</b> Heatmap</a></li>
-<li class="chapter" data-level="7.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>7.6</b> Treemap</a></li>
-<li class="chapter" data-level="7.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>7.7</b> 參考文件與資源</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>8</b> 互動式資料呈現</a><ul>
-<li class="chapter" data-level="8.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>8.1</b> ggvis</a></li>
-<li class="chapter" data-level="8.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>8.2</b> googleVis</a></li>
-<li class="chapter" data-level="8.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>8.3</b> Plot.ly</a></li>
-<li class="chapter" data-level="8.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>8.4</b> Shiny簡介</a></li>
+<li class="chapter" data-level="8" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>8</b> 資料視覺化</a><ul>
+<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>8.2.1</b> qplot()</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>8.2.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>9</b> 資料探勘</a></li>
+<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="8.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.3.2</b> ggmap()</a></li>
+<li class="chapter" data-level="8.3.3" data-path="vis.html"><a href="vis.html#density-map"><i class="fa fa-check"></i><b>8.3.3</b> Density Map</a></li>
+<li class="chapter" data-level="8.3.4" data-path="vis.html"><a href="vis.html#section-8.3.4"><i class="fa fa-check"></i><b>8.3.4</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a></li>
+<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#heatmap"><i class="fa fa-check"></i><b>8.5</b> Heatmap</a></li>
+<li class="chapter" data-level="8.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.6</b> Treemap</a></li>
+<li class="chapter" data-level="8.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>8.7</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>9</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="9.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>9.1</b> ggvis</a></li>
+<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>9.2</b> googleVis</a></li>
+<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.3</b> Plot.ly</a></li>
+<li class="chapter" data-level="9.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>9.4</b> Shiny簡介</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>10</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="10.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>10.1</b> R + Hadoop</a></li>
 <li class="chapter" data-level="10.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>10.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
@@ -310,8 +321,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="io" class="section level1">
-<h1><span class="header-section-number">4</span> 資料讀取與匯出</h1>
-<p>資料(Data)在<a href="http://en.wikipedia.org/wiki/Data" target="_blank">維基百科</a>的定義是<code>values of qualitative or quantitative variables, belonging to a set of items.</code>，一般來說，在資料分析前會經過多個步驟，包括<strong>資料匯入</strong>Chapter <a href="io.html#io">4</a>、<strong>資料清洗處理</strong>Chapter <a href="manipulation.html#manipulation">5</a>並轉換為Tidy data、<strong>資料分析</strong>Chapter <a href="eda.html#eda">6</a>、<strong>資料呈現與視覺化</strong>Chapter <a href="vis.html#vis">7</a>。</p>
+<h1><span class="header-section-number">5</span> 資料讀取與匯出</h1>
+<p>資料(Data)在<a href="http://en.wikipedia.org/wiki/Data" target="_blank">維基百科</a>的定義是<code>values of qualitative or quantitative variables, belonging to a set of items.</code>，一般來說，在資料分析前會經過多個步驟，包括<strong>資料匯入</strong>Chapter <a href="io.html#io">5</a>、<strong>資料清洗處理</strong>Chapter <a href="manipulation.html#manipulation">6</a>並轉換為Tidy data、<strong>資料分析</strong>Chapter <a href="eda.html#eda">7</a>、<strong>資料呈現與視覺化</strong>Chapter <a href="vis.html#vis">8</a>。</p>
 <p>資料有多種可能來源，包括:</p>
 <ul>
 <li>硬碟</li>
@@ -322,9 +333,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>以下介紹由檔案、網路等來源匯入多種資料格式的匯入方式，以及建議的資料匯出方法。</p>
 <div id="file" class="section level2">
-<h2><span class="header-section-number">4.1</span> 從檔案匯入基本資料格式</h2>
+<h2><span class="header-section-number">5.1</span> 從檔案匯入基本資料格式</h2>
 <div id="import-dataset-rstudio" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> Import Dataset功能 (RStudio)</h3>
+<h3><span class="header-section-number">5.1.1</span> Import Dataset功能 (RStudio)</h3>
 <p><a href="https://www.rstudio.com/" target="_blank">RStudio</a> 1.0版後即提供很好的資料匯入介面，使用者可以不用撰寫任何程式碼，就能完成<code>.csv</code>、<code>Excel</code>以及<code>SAS</code>等檔案匯入。首先選取RStudio四分割視窗右上角的Environment標籤，選擇<strong>Import Dataset</strong>，就會出現檔案格式的選項</p>
 <p><img src="figure/import.png" width="592" /></p>
 <p>以csv檔案為例，在選單中選取<code>From CSV</code>，選取後會跳出資料匯入輔助視窗，點選<code>Browse</code>按鈕開啟檔案選取器，並點選欲匯入之文字檔案</p>
@@ -335,7 +346,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>資料匯入輔助視窗右下方<code>Code Preview:</code>子視窗中會自動產生資料匯入程式碼，如果未來想再使用視窗匯入，希望透過程式碼匯入，可以將此段程式碼複製貼上到R程式碼檔案(.R)，供後續分析使用。</p>
 </div>
 <div id="-.txt" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> 分隔文字檔 .txt</h3>
+<h3><span class="header-section-number">5.1.2</span> 分隔文字檔 .txt</h3>
 <p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package提供完整的文字檔讀取功能，各讀取函數的第一個參數通常為<strong>檔案路徑與名稱</strong>，<code>read_delim()</code>函數可用來讀取所有用分隔符號分隔的文字檔案，以tab分隔為例，只需將<code>delim</code>參數設定為<code>\t</code>，即可用tab將各欄位分開讀取。此外，<code>col_names</code>參數也常被使用，TRUE代表資料內有包含欄位名稱(通常在首列)，預設為TRUE，如果設定為FALSE，欄位名稱則會依順序被設定為 X1, X2, X3 …。</p>
 <p>參數整理如下 (可用?read_delim指令閱讀官方說明)：</p>
 <ul>
@@ -353,32 +364,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 dataset &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>, <span class="dt">delim=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre></div>
 </div>
 <div id="csv" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> CSV檔案 .csv</h3>
+<h3><span class="header-section-number">5.1.3</span> CSV檔案 .csv</h3>
 <p><code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2016</a>)</span> package也提供CSV (逗號分隔)檔案的讀取功能，<code>read_csv()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readr)
 dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</code></pre></div>
 </div>
 <div id="excel-.xls" class="section level3">
-<h3><span class="header-section-number">4.1.4</span> Excel檔案 .xls</h3>
+<h3><span class="header-section-number">5.1.4</span> Excel檔案 .xls</h3>
 <p><code>readxl</code> <span class="citation">(Wickham <a href="#ref-R-readxl">2016</a><a href="#ref-R-readxl">a</a>)</span> package提供讀取Excel檔案 (xls, xlsx)的函數<code>read_excel()</code>，除了常用的<code>col_names</code>參數外，也可使用<code>sheet</code>參數設定要讀取的工作表(sheet)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(readxl)
 dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</code></pre></div>
 </div>
 <div id="r-.rds" class="section level3">
-<h3><span class="header-section-number">4.1.5</span> R物件 .rds</h3>
+<h3><span class="header-section-number">5.1.5</span> R物件 .rds</h3>
 <p>R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用<code>readRDS()</code>函數 (參考資料:<a href="http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/" target="_blank">A better way of saving and loading objects in R</a>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataset &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</code></pre></div>
 </div>
 <div id="r-.r" class="section level3">
-<h3><span class="header-section-number">4.1.6</span> R程式 .R</h3>
+<h3><span class="header-section-number">5.1.6</span> R程式 .R</h3>
 <p><code>source</code>, 讀R的Obejct or script, 執行, ASCII (<code>dump</code>的相反)</p>
 </div>
 <div id="-" class="section level3">
-<h3><span class="header-section-number">4.1.7</span> 純文字資料 (無分隔)</h3>
+<h3><span class="header-section-number">5.1.7</span> 純文字資料 (無分隔)</h3>
 <p><code>readLines</code>, 逐行讀取文字資料</p>
 </div>
-<div id="section-4.1.8" class="section level3">
-<h3><span class="header-section-number">4.1.8</span> 其他格式</h3>
+<div id="section-5.1.8" class="section level3">
+<h3><span class="header-section-number">5.1.8</span> 其他格式</h3>
 <p>透過載入套件，R可讀入許多其他格式的檔案:</p>
 <ul>
 <li>MySQL <code>RMySQL</code></li>
@@ -392,8 +403,8 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <li>Music <code>tuneR</code></li>
 </ul>
 </div>
-<div id="section-4.1.9" class="section level3">
-<h3><span class="header-section-number">4.1.9</span> 其他讀檔注意事項</h3>
+<div id="section-5.1.9" class="section level3">
+<h3><span class="header-section-number">5.1.9</span> 其他讀檔注意事項</h3>
 <p>讀檔的時候R會自動</p>
 <ul>
 <li>跳過#開頭的任何行（Row）</li>
@@ -404,10 +415,10 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <p>如果讀取時已指定<strong>Column類別</strong>以及<strong>把欄位包起來的符號</strong>，讀取速度會快很多。</p>
 </div>
 </div>
-<div id="section-4.2" class="section level2">
-<h2><span class="header-section-number">4.2</span> 從網路匯入資料</h2>
+<div id="section-5.2" class="section level2">
+<h2><span class="header-section-number">5.2</span> 從網路匯入資料</h2>
 <div id="open-data" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Open Data</h3>
+<h3><span class="header-section-number">5.2.1</span> Open Data</h3>
 <p><strong>開放資料</strong> (Open data) 指的是一種經過挑選與許可的資料，這些資料不受著作權、專利權，以及其他管理機制所限制，可以開放給社會公眾，任何人都可以自由出版使用，不論是要拿來出版或是做其他的運用都不加以限制。Open data 運動希望達成的目標與開放原始碼、內容開放、開放獲取等其他「開放」運動類似。Open data 背後的核心思想由來已，但 Open data 這名詞直到近代才出現，拜網際網路崛起而為人所知，尤其是 Data.gov 等 Open data 政府組織的設立。(<a href="https://zh.wikipedia.org/wiki/%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99" target="_blank">維基百科</a>)</p>
 <p>台灣政府從2011年開始大力推動開放政府與開放資料的概念，多個機關與縣市政府架設開放資料平台，供民眾擷取或再利用各項資料</p>
 <ul>
@@ -416,12 +427,12 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <li><a href="http://data.tycg.gov.tw/" target="_blank">開放資料 x 開放桃園</a></li>
 <li><a href="http://data.moi.gov.tw/" target="_blank">內政資料開放平台</a></li>
 </ul>
-<p>Open Data常見的儲存方式為: <code>CSV</code>Chapter <a href="io.html#csv">4.1.3</a>、<code>JSON</code>Chapter <a href="io.html#json">4.2.3</a>、<code>XML</code>Chapter <a href="io.html#xml">4.2.4</a>，開放資料網站通常有提供民眾<strong>直接下載</strong>檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述<strong>由檔案匯入資料</strong> Chapter <a href="io.html#file">4.1</a>方法匯入即可。</p>
+<p>Open Data常見的儲存方式為: <code>CSV</code>Chapter <a href="io.html#csv">5.1.3</a>、<code>JSON</code>Chapter <a href="io.html#json">5.2.3</a>、<code>XML</code>Chapter <a href="io.html#xml">5.2.4</a>，開放資料網站通常有提供民眾<strong>直接下載</strong>檔案的服務，針對可下載的CSV格式資料，可以下載完成後，透過上述<strong>由檔案匯入資料</strong> Chapter <a href="io.html#file">5.1</a>方法匯入即可。</p>
 </div>
 <div id="api" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> API (Application programming interfaces)</h3>
+<h3><span class="header-section-number">5.2.2</span> API (Application programming interfaces)</h3>
 <p>應用程式介面 Application programming interfaces (API) 通常是特定軟體、程序或系統，廠商或開發人員，為了能夠讓第三方的開發者可以額外開發應用程式來強化他們的產品，所推出可以與他們系統溝通的介面。(<a href="https://zh.wikipedia.org/zh-tw/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3" target="_blank">維基百科</a>)</p>
-<p>以下載Open Data為例，若檔案更新頻繁，使用手動下載相當耗時。如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，更新頻率為每日，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">4.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c" target="_blank">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
+<p>以下載Open Data為例，若檔案更新頻繁，使用手動下載相當耗時。如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，更新頻率為每日，所以許多開放資料也提供透過<strong>API</strong>下載的服務，透過API下載的資料格式會是JSON格式Chapter <a href="io.html#json">5.2.3</a>，如<a href="http://data.taipei/opendata/datalist/datasetMeta/outboundDesc?id=6a3e862a-e1cb-4e44-b989-d35609559463&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c" target="_blank">臺北市開放認養動物API資訊</a>所示，開放資料網站會提供<strong>資料集ID</strong>與<strong>資料RID</strong></p>
 <ul>
 <li><strong>資料集ID</strong>: 紀錄資料的基本參數，如包含欄位、更新頻率等</li>
 <li><strong>資料RID</strong>: 資料集</li>
@@ -429,7 +440,7 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 <p>並同時提供擷取範例，如果需要下載原始資料，可直接從範例複製貼上即可，如http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c</p>
 </div>
 <div id="json" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> JSON格式檔案</h3>
+<h3><span class="header-section-number">5.2.3</span> JSON格式檔案</h3>
 <p>JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <strong>N</strong>otation)是一種輕量級的資料交換語言 (<a href="http://en.wikipedia.org/wiki/JSON" target="_blank">Wiki</a>)，特色如下:</p>
 <ul>
 <li>from <strong>a</strong>pplication <strong>p</strong>rogramming <strong>i</strong>nterfaces (APIs)</li>
@@ -455,78 +466,64 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 295
+##   ..$ count  : int 307
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  295 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:295] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:295] &quot;胖丁&quot; &quot;寶寶&quot; &quot;旺旺&quot; &quot;露比 &quot; ...
-##   .. ..$ Sex            : chr [1:295] &quot;雌&quot; &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; ...
-##   .. ..$ Type           : chr [1:295] &quot;貓&quot; &quot;犬&quot; &quot;犬&quot; &quot;犬&quot; ...
-##   .. ..$ Build          : chr [1:295] &quot;中&quot; &quot;小&quot; &quot;小&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:295] &quot;年輕&quot; &quot;老年&quot; &quot;老年&quot; &quot;成年&quot; ...
-##   .. ..$ Variety        : chr [1:295] &quot;米克斯&quot; &quot;貴賓&quot; &quot;貴賓&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:295] &quot;&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; &quot;民眾不擬續養&quot; ...
-##   .. ..$ AcceptNum      : chr [1:295] &quot;106021601&quot; &quot;106021504&quot; &quot;106021503&quot; &quot;106021204&quot; ...
-##   .. ..$ ChipNum        : chr [1:295] &quot;&quot; &quot;900073000086640&quot; &quot;900073000086659&quot; &quot;900073000086011&quot; ...
-##   .. ..$ IsSterilization: chr [1:295] &quot;未絕育&quot; &quot;已絕育&quot; &quot;未絕育&quot; &quot;已絕育&quot; ...
-##   .. ..$ HairType       : chr [1:295] &quot;虎斑&quot; &quot;棕&quot; &quot;棕&quot; &quot;黑&quot; ...
-##   .. ..$ Note           : chr [1:295] &quot;\n姓名:胖丁\n性別:女生\n生日:預估生日105年4月底或5月初\n個性愛撒嬌,愛摸不愛抱,有時抱了會大叫,很愛坐人大腿叫人摸他,眼睛二隻瞳孔&quot;| __truncated__ &quot;削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~&quot; &quot;輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!&quot; &quot;你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~&quot; ...
-##   .. ..$ Resettlement   : chr [1:295] &quot;臺北市流浪貓保護協會02-27261079(詢問時直接講貓名,不用講編號)&quot; &quot;臺北市動物之家 收容編號106021504&quot; &quot;臺北市動物之家 收容編號106021503&quot; &quot;臺北市動物之家 收容編號106021204&quot; ...
-##   .. ..$ Phone          : chr [1:295] &quot;0227261079&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:295] &quot;jingyi@so-net.net.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:295] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:295] &quot;可&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:295] &quot;3KG&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:295] &quot;http://163.29.39.183/uploads/images/medium/76da6dd7-66a2-44f2-8982-8e02802380d8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  307 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:307] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Sex            : chr [1:307] &quot;雌&quot; &quot;雄&quot; &quot;雄&quot; &quot;雄&quot; ...
+##   .. ..$ Type           : chr [1:307] &quot;貓&quot; &quot;貓&quot; &quot;貓&quot; &quot;貓&quot; ...
+##   .. ..$ Build          : chr [1:307] &quot;小&quot; &quot;小&quot; &quot;小&quot; &quot;小&quot; ...
+##   .. ..$ Age            : chr [1:307] &quot;幼齡&quot; &quot;幼齡&quot; &quot;幼齡&quot; &quot;幼齡&quot; ...
+##   .. ..$ Variety        : chr [1:307] &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:307] &quot;民眾拾獲&quot; &quot;民眾拾獲&quot; &quot;民眾拾獲&quot; &quot;民眾拾獲&quot; ...
+##   .. ..$ AcceptNum      : chr [1:307] &quot;106030509&quot; &quot;106030508&quot; &quot;106030507&quot; &quot;106030506&quot; ...
+##   .. ..$ ChipNum        : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ IsSterilization: chr [1:307] &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
+##   .. ..$ HairType       : chr [1:307] &quot;黑黃&quot; &quot;黃白&quot; &quot;黑白&quot; &quot;黑&quot; ...
+##   .. ..$ Note           : chr [1:307] &quot;FRV\n&quot; &quot;&quot; &quot;FRV\n&quot; &quot;&quot; ...
+##   .. ..$ Resettlement   : chr [1:307] &quot;臺北市動物之家 收容編號106030509&quot; &quot;臺北市動物之家 收容編號106030508&quot; &quot;臺北市動物之家 收容編號106030507&quot; &quot;臺北市動物之家 收容編號106030506&quot; ...
+##   .. ..$ Phone          : chr [1:307] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:307] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:307] &quot;http://163.29.39.183/uploads/images/medium/2dfd517b-573f-4ab5-b4d1-fb61b91729d9.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/d764c759-7541-44f2-b543-21960fac57e2.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e66a30e4-e43e-4688-8571-e36cd3d703b2.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/b51b4fa9-b332-4d03-9779-0f005c7a96cd.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
-<pre><code>##   _id  Name Sex Type Build  Age Variety       Reason AcceptNum         ChipNum
-## 1   1  胖丁  雌   貓    中 年輕  米克斯              106021601                
-## 2   2  寶寶  雌   犬    小 老年    貴賓 民眾不擬續養 106021504 900073000086640
-## 3   3  旺旺  雄   犬    小 老年    貴賓 民眾不擬續養 106021503 900073000086659
-## 4   4 露比   雌   犬    中 成年  米克斯 民眾不擬續養 106021204 900073000086011
-## 5   5  Dudu  雌   犬    中 年輕  米克斯 民眾不擬續養 106021001 900073000086389
-## 6   6        雌   犬    中 老年  米克斯     動物管制 106021010                
-##   IsSterilization HairType
-## 1          未絕育     虎斑
-## 2          已絕育       棕
-## 3          未絕育       棕
-## 4          已絕育       黑
-## 5          未絕育     三花
-## 6          未絕育       白
-##                                                                                                                                                               Note
-## 1       \n姓名:胖丁\n性別:女生\n生日:預估生日105年4月底或5月初\n個性愛撒嬌,愛摸不愛抱,有時抱了會大叫,很愛坐人大腿叫人摸他,眼睛二隻瞳孔不在同一個水平上(不影響生活)
-## 2                                           削瘦 脫毛 異位性皮膚炎\n你好~我的名字叫寶寶，個性溫和的我，目前皮膚不是很好，希望有新主人願意帶我回家，給我良好的照顧~
-## 3                                                                         輕微白內障\n大家好~我叫旺旺，雖然我已經7歲以上了~但我還是精力旺盛唷!快來找活潑的我玩吧!!
-## 4                                                                             你好~我是害羞的露比，可以摸摸的我，個性有些怕生需要您多一些的陪伴，讓我來敞開心房喔~
-## 5 歪腰腰\nDudu我又回到動物之家了\n人家我還年輕\n所以對什麼都很好奇\n也會好動想找人玩耍嘛\n如果能夠接受精力旺盛的我\n更願意花上時間耐心教導我\n請來動物之家找我哦！
-## 6                                                                                                                                                     後肢跛行外傷
-##                                                   Resettlement       Phone
-## 1 臺北市流浪貓保護協會02-27261079(詢問時直接講貓名,不用講編號)  0227261079
-## 2                             臺北市動物之家 收容編號106021504 02-87913062
-## 3                             臺北市動物之家 收容編號106021503 02-87913062
-## 4                             臺北市動物之家 收容編號106021204 02-87913062
-## 5                             臺北市動物之家 收容編號106021001 02-87913062
-## 6                           臺北市動物之家 收容編號：106021010 02-87913062
+<pre><code>##   _id Name Sex Type Build  Age Variety   Reason AcceptNum ChipNum
+## 1   1       雌   貓    小 幼齡  米克斯 民眾拾獲 106030509        
+## 2   2       雄   貓    小 幼齡  米克斯 民眾拾獲 106030508        
+## 3   3       雄   貓    小 幼齡  米克斯 民眾拾獲 106030507        
+## 4   4       雄   貓    小 幼齡  米克斯 民眾拾獲 106030506        
+## 5   5       雄   貓    小 年輕  米克斯 動物管制 106030408        
+## 6   6       雄   貓    小 年輕  米克斯          106030406        
+##   IsSterilization HairType  Note                     Resettlement       Phone
+## 1          未絕育     黑黃 FRV\n 臺北市動物之家 收容編號106030509 02-87913062
+## 2          未絕育     黃白       臺北市動物之家 收容編號106030508 02-87913062
+## 3          未絕育     黑白 FRV\n 臺北市動物之家 收容編號106030507 02-87913062
+## 4          未絕育       黑       臺北市動物之家 收容編號106030506 02-87913062
+## 5          未絕育       黑       臺北市動物之家 收容編號106030408 02-87913062
+## 6          未絕育       黑       臺北市動物之家 收容編號106030406 02-87913062
 ##                        Email ChildreAnlong AnimalAnlong Bodyweight
-## 1       jingyi@so-net.net.tw                         可        3KG
+## 1 tcapoa8@mail.taipei.gov.tw                                      
 ## 2 tcapoa8@mail.taipei.gov.tw                                      
 ## 3 tcapoa8@mail.taipei.gov.tw                                      
 ## 4 tcapoa8@mail.taipei.gov.tw                                      
 ## 5 tcapoa8@mail.taipei.gov.tw                                      
 ## 6 tcapoa8@mail.taipei.gov.tw                                      
 ##                                                                             ImageName
-## 1 http://163.29.39.183/uploads/images/medium/76da6dd7-66a2-44f2-8982-8e02802380d8.jpg
-## 2 http://163.29.39.183/uploads/images/medium/2c2ac5b4-2d0e-4be2-a982-8905bc8486c8.jpg
-## 3 http://163.29.39.183/uploads/images/medium/205568d8-3a1a-4317-8a3f-d04f48d9db9e.jpg
-## 4 http://163.29.39.183/uploads/images/medium/a298b400-a8a4-4f27-a2fb-d29d7fce15db.jpg
-## 5 http://163.29.39.183/uploads/images/medium/38aa259e-72a2-40d3-9685-da8211fc3d93.jpg
-## 6 http://163.29.39.183/uploads/images/medium/8eaa9a67-6919-4c20-9f16-1dcb4a8801c6.jpg</code></pre>
+## 1 http://163.29.39.183/uploads/images/medium/2dfd517b-573f-4ab5-b4d1-fb61b91729d9.jpg
+## 2 http://163.29.39.183/uploads/images/medium/d764c759-7541-44f2-b543-21960fac57e2.jpg
+## 3 http://163.29.39.183/uploads/images/medium/e66a30e4-e43e-4688-8571-e36cd3d703b2.jpg
+## 4 http://163.29.39.183/uploads/images/medium/b51b4fa9-b332-4d03-9779-0f005c7a96cd.jpg
+## 5 http://163.29.39.183/uploads/images/medium/c0e4d35e-98a1-4792-a601-4cfb7bfdc560.jpg
+## 6 http://163.29.39.183/uploads/images/medium/d7c33ddd-cb60-47ba-84fc-8d1ee0bcb312.jpg</code></pre>
 <p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
-##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           26           97          105           45           22</code></pre>
+##              民眾不擬續養     民眾拾獲     動物救援     動物管制 
+##           27           45           25           98          112</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -534,7 +531,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <pre><code>## Class &#39;json&#39;  chr &quot;[\n  {\n    \&quot;Sepal.Length\&quot;: 5.1,\n    \&quot;Sepal.Width\&quot;: 3.5,\n    \&quot;Petal.Length\&quot;: 1.4,\n    \&quot;Petal.Width\&quot;: 0.2,\n    \&quot;Spe&quot;| __truncated__</code></pre>
 </div>
 <div id="xml" class="section level3">
-<h3><span class="header-section-number">4.2.4</span> XML 可延伸標記式語言</h3>
+<h3><span class="header-section-number">5.2.4</span> XML 可延伸標記式語言</h3>
 <ul>
 <li>E<strong>x</strong>tensible <strong>m</strong>arkup <strong>l</strong>anguage</li>
 <li>描述<strong>結構化</strong>資料的語言</li>
@@ -581,21 +578,21 @@ rootNode &lt;-<span class="st"> </span><span class="kw">xmlRoot</span>(waterQ) <
 ##  [7] &quot;121.55360&quot; &quot;121.53551&quot; &quot;121.59892&quot; &quot;121.60829&quot;</code></pre>
 </div>
 <div id="-webscraping" class="section level3">
-<h3><span class="header-section-number">4.2.5</span> 網頁爬蟲 Webscraping</h3>
+<h3><span class="header-section-number">5.2.5</span> 網頁爬蟲 Webscraping</h3>
 <p>由於不是每個網站都提供API，但網頁上卻有你想要分析的資料（像是ptt推文！？），除了人工複製貼上以外，也可以將網頁處理程式化，以程式化的方式擷取網頁資料就叫做<strong>網頁爬蟲（Webscraping）</strong>（<a href="http://en.wikipedia.org/wiki/Web_scraping" target="_blank">Webscraping Wiki</a>）。在R中可以直接把HTML檔案當作XML檔案處理分析，也可使用<code>rvest</code><span class="citation">(Wickham <a href="#ref-R-rvest">2016</a><a href="#ref-R-rvest">c</a>)</span> package輔助爬蟲程式撰寫。</p>
 <p>此外，網頁爬蟲可能耗費很多網頁流量和資源，所以在許多網站被視為非法行為，如果一次讀太多太快，很可能被鎖IP。</p>
 <p>以<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚資管系</a>網站為例，可直接逐行讀取 <code>readLines()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">con &lt;-<span class="st"> </span><span class="kw">url</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)
 htmlCode &lt;-<span class="kw">readLines</span>(con)</code></pre></div>
-<pre><code>## Warning in readLines(con): incomplete final line found on &#39;http://im.cgu.edu.tw/
-## bin/home.php&#39;</code></pre>
+<pre><code>## Warning in readLines(con): 於 &#39;http://im.cgu.edu.tw/bin/home.php&#39; 找到不完整的最
+## 後一列</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">close</span>(con)
 htmlCode[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
-<pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt;&quot;                
-## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;zh-tw\&quot;&gt;&quot;                                                                                 
-## [3] &quot;&lt;head&gt;&quot;                                                                                                                                       
-## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                    
-## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;請填寫網站關鍵記事，用半角逗號(,)隔開\&quot; /&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt;&quot;                                                             
+## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;zh-tw\&quot;&gt;&quot;                                                                                                                              
+## [3] &quot;&lt;head&gt;&quot;                                                                                                                                                                                    
+## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                                                                 
+## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;隢‵撖怎雯蝡\x97閮\xba\xbc\xe5\x8d\xa7\u0080\x99\x9f(,)\xe9\x9a\x96\x8b\&quot; /&gt;&quot;</code></pre>
 <p>讀取完網頁後，使用用XML工具分析擷取網頁 (<code>XML</code> package)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
 html &lt;-<span class="st"> </span><span class="kw">htmlTreeParse</span>(<span class="kw">GET</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>), <span class="dt">useInternalNodes=</span>T)</code></pre></div>
@@ -653,11 +650,11 @@ Yahoo_news =<span class="st"> </span><span class="kw">data.frame</span>(<span cl
 </div>
 </div>
 <div id="facebook" class="section level2">
-<h2><span class="header-section-number">4.3</span> Facebook資料擷取</h2>
+<h2><span class="header-section-number">5.3</span> Facebook資料擷取</h2>
 <p>Facebook提供<a href="https://developers.facebook.com/docs/graph-api?locale=zh_TW" target="_blank">Graph API</a>，讓應用程式可透過API讀取與寫入 Facebook相關資料，<strong>Graph API</strong>會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>，讓程式開發人員可以測試資料撈取方法和結果。 在開始使用<strong>Graph API</strong>之前，必須要取得自己的<strong>access token</strong> (存取權杖)，<a href="https://developers.facebook.com/tools/explorer/" target="_blank">Graph API Explorer</a>工具提供<strong>Get Token</strong>按鈕(通常在視窗右上角)，可以讓開發者在不用新增應用程式(Application)的情況下取得暫時的<strong>access token</strong>。</p>
 <p>有關Facebook access token的詳細介紹，可參考<a href="https://developers.facebook.com/docs/facebook-login/access-tokens/?locale=zh_TW" target="_blank">官方文件</a></p>
 <div id="graph-api-in-r" class="section level3">
-<h3><span class="header-section-number">4.3.1</span> Graph API in R</h3>
+<h3><span class="header-section-number">5.3.1</span> Graph API in R</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
 token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將access token複製到此處 </span>
 FBData =<span class="st"> </span><span class="kw">GET</span>(
@@ -699,8 +696,8 @@ FBData =<span class="st"> </span><span class="kw">GET</span>(
 <pre><code>##[1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;</code></pre>
 </div>
 <div id="rfacebook-package" class="section level3">
-<h3><span class="header-section-number">4.3.2</span> Rfacebook package</h3>
-<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2017</a>)</span> package來讀取Facebook資料。 以下為使用Rfacebook取得 <code>tsaiingwen</code> 粉絲頁的資料範例：</p>
+<h3><span class="header-section-number">5.3.2</span> Rfacebook package</h3>
+<p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera, Piccirilli, and Geisler <a href="#ref-R-Rfacebook">2016</a>)</span> package來讀取Facebook資料。 以下為使用Rfacebook取得 <code>tsaiingwen</code> 粉絲頁的資料範例：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rfacebook)
 token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span>
 <span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,<span class="dt">n =</span> <span class="dv">5</span>)</code></pre></div>
@@ -763,11 +760,11 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 </ul>
 </div>
 </div>
-<div id="section-4.4" class="section level2">
-<h2><span class="header-section-number">4.4</span> 資料匯出</h2>
+<div id="section-5.4" class="section level2">
+<h2><span class="header-section-number">5.4</span> 資料匯出</h2>
 <p>在R中完成資料處理後，有多種匯出選擇，如果是要匯出供他人在其他環境(如Excel)使用，建議匯出成tab分隔的文字檔(.txt)或是逗號分隔的文字檔(.csv)；但若是要在R的環境繼續使用，建議匯出成R物件 (.rds)，除了可保留欄位型別設定外，讀取速度與檔案大小皆優於文字檔案。</p>
 <div id="-.txt" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> 文字檔 .txt</h3>
+<h3><span class="header-section-number">5.4.1</span> 文字檔 .txt</h3>
 <p>使用<code>write.table()</code>函數寫入檔案，需要參數有</p>
 <ul>
 <li><code>x</code> 要匯出的檔案，通常為matrix或是data.frame格式</li>
@@ -786,12 +783,12 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">row.names =</span> F,<span class="dt">col.names =</span> T)</code></pre></div>
 </div>
 <div id="csv-.csv" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> CSV檔 .csv</h3>
+<h3><span class="header-section-number">5.4.2</span> CSV檔 .csv</h3>
 <p>與<code>write.table()</code>類似，使用<code>write.csv()</code>函數寫入檔案</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.csv&quot;</span>,<span class="dt">row.names =</span> F)</code></pre></div>
 </div>
 <div id="r-.rds-1" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> R物件 .rds</h3>
+<h3><span class="header-section-number">5.4.3</span> R物件 .rds</h3>
 <p>若是要在R的環境繼續使用，建議匯出成R物件檔案(.rds)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(iris,<span class="st">&quot;iris.rds&quot;</span>)</code></pre></div>
 
@@ -819,7 +816,7 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 <p>Wickham, Hadley. 2016c. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest" class="uri">https://CRAN.R-project.org/package=rvest</a>.</p>
 </div>
 <div id="ref-R-Rfacebook">
-<p>Barbera, Pablo, Michael Piccirilli, and Andrew Geisler. 2017. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook" class="uri">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
+<p>Barbera, Pablo, Michael Piccirilli, and Andrew Geisler. 2016. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook" class="uri">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
 </div>
 </div>
             </section>
@@ -827,7 +824,7 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
           </div>
         </div>
       </div>
-<a href="controlstructure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -860,7 +857,7 @@ gitbook.start({
 "link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/04-io.Rmd",
 "text": "Edit"
 },
-"download": ["DataAnalyticsWithR.pdf", "DataAnalyticsWithR.epub"],
+"download": ["DataAnalyticsWithR.epub"],
 "toc": {
 "collapse": "subsection"
 }
