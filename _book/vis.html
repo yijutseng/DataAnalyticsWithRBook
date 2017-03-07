@@ -400,6 +400,7 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 <p><img src="DataAnalyticsWithR_files/figure-html/qplot2-1.png" width="672" /> 針對做圖的文法的第一個主要元素<strong>Geometric</strong>（包括點、線、盒狀圖、直條圖等），也可透過增加指令修改，如使用<code>geom = c(&quot;point&quot;, &quot;smooth&quot;)</code> 在圖上加點與漸進線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">qplot</span>(FieldGoalsAttempted, TotalPoints, <span class="dt">data =</span> NBA1516,
       <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&quot;point&quot;</span>, <span class="st">&quot;smooth&quot;</span>))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="DataAnalyticsWithR_files/figure-html/qplot3-1.png" width="672" /></p>
 <p>如果輸入的變量並非<strong>雙</strong>變量，而是<strong>單</strong>變量時，預設圖形會從<strong>散佈圖</strong>變為<strong>Histograms直方圖</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#畫TotalPoints的直方圖/ fill = Position 並用守備位置Position著色</span>
@@ -451,6 +452,7 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(.~gp)</code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-120-1.png" width="672" /> 用<code>geom_smooth()</code>替xy散佈圖加上趨勢線</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>()</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-121-1.png" width="672" /> 用<code>geom_smooth()</code>替xy散佈圖加上趨勢線，使用linear regresion</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(df, <span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> y)) +<span class="kw">geom_point</span>()+<span class="kw">facet_grid</span>(gp~.)+<span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&#39;lm&#39;</span>)</code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-122-1.png" width="672" /> 改用<code>geom_line()</code>畫線</p>
@@ -501,10 +503,10 @@ airquality.stat&lt;-<span class="kw">data.table</span>(airquality)[,.(<span clas
 <h2><span class="header-section-number">8.3</span> ggplot2+地圖</h2>
 <div id="choropleth-map" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Choropleth map面量圖</h3>
-<p>Choropleth map<a href="https://en.wikipedia.org/wiki/Choropleth_map" target="_blank">面量圖</a>是指<strong>把統計資料用顏色畫在對應的地圖上</strong>的一種資料視覺化方式，在R中可以使用<code>choroplethr</code><span class="citation">(Lamstein and Johnson <a href="#ref-R-choroplethr">2016</a>)</span> package來畫面量圖， <code>choroplethr</code> package是一個基於<code>ggplot2</code> package的<code>面量圖</code>做圖工具，使用前需要先安裝，建議同時安裝<code>choroplethrMaps</code> package</p>
+<p>Choropleth map<a href="https://en.wikipedia.org/wiki/Choropleth_map" target="_blank">面量圖</a>是指<strong>把統計資料用顏色畫在對應的地圖上</strong>的一種資料視覺化方式，在R中可以使用<code>choroplethr</code><span class="citation">(Lamstein and Johnson <a href="#ref-R-choroplethr">2017</a>)</span> package來畫面量圖， <code>choroplethr</code> package是一個基於<code>ggplot2</code> package的<code>面量圖</code>做圖工具，使用前需要先安裝，建議同時安裝<code>choroplethrMaps</code> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;choroplethr&quot;</span>,<span class="st">&quot;choroplethrMaps&quot;</span>)) ##第一次使用前先安裝</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(choroplethr)</code></pre></div>
-<p><code>choroplethr</code><span class="citation">(Lamstein and Johnson <a href="#ref-R-choroplethr">2016</a>)</span> package內建美國各州地圖與人口學資料，所以可以輕鬆使用<code>state_choropleth()</code>函式畫出美國各州人口分布</p>
+<p><code>choroplethr</code><span class="citation">(Lamstein and Johnson <a href="#ref-R-choroplethr">2017</a>)</span> package內建美國各州地圖與人口學資料，所以可以輕鬆使用<code>state_choropleth()</code>函式畫出美國各州人口分布</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(df_pop_state) <span class="co">#記載各州人口數的資料</span>
 <span class="kw">state_choropleth</span>(df_pop_state) <span class="co">#把各州人口畫在地圖上</span></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-129-1.png" width="672" /> 若在將<code>reference_map</code>設定為<code>= TRUE</code>，可在面量圖的背景加上google地圖</p>
@@ -518,9 +520,11 @@ airquality.stat&lt;-<span class="kw">data.table</span>(airquality)[,.(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(WDI)
 <span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.POP.TOTL&quot;</span>, <span class="dt">year=</span><span class="dv">2014</span>, 
                 <span class="dt">title=</span><span class="st">&quot;2015 Population&quot;</span>, <span class="dt">num_colors=</span><span class="dv">1</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/choroplethr_wdi_1%20-1.png" width="672" /></p>
 <p>除了人口資料外，WDI也有世界平均壽命資料，平均壽命的代碼為<code>SP.DYN.LE00.IN</code>，代碼查詢可見<a href="http://beta.data.worldbank.org/" target="_blank">World Development Indicators</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="dt">year=</span><span class="dv">2014</span>, 
                 <span class="dt">title=</span><span class="st">&quot;2014 Life Expectancy&quot;</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/choroplethr_wdi_2-1.png" width="672" /></p>
 <p>如果只需亞洲太平洋人口分布，可使用<code>zoom</code>參數設定想畫的國家，國家的名稱設定必須要和<code>country.regions</code>資料完全吻合</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">choroplethr_wdi</span>(<span class="dt">code=</span><span class="st">&quot;SP.POP.TOTL&quot;</span>, <span class="dt">year=</span><span class="dv">2015</span>, 
                 <span class="dt">title=</span><span class="st">&quot;2015 Life Expectancy&quot;</span>,
@@ -735,7 +739,7 @@ twmap &lt;-<span class="st"> </span><span class="kw">get_map</span>(<span class=
 nba &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://datasets.flowingdata.com/ppg2008.csv&quot;</span>)
 <span class="kw">head</span>(nba)</code></pre></div>
 <pre><code>##             Name  G MIN PTS  FGM FGA  FGP FTM FTA  FTP X3PM X3PA X3PP ORB DRB
-## 1   Dwyane Wade  79  39  30 10.8  22 0.49 7.5 9.8 0.76  1.1  3.5 0.32 1.1 3.9
+## 1   Dwyane Wade  79  39  30 10.8  22 0.49 7.5 9.8 0.77  1.1  3.5 0.32 1.1 3.9
 ## 2  LeBron James  81  38  28  9.7  20 0.49 7.3 9.4 0.78  1.6  4.7 0.34 1.3 6.3
 ## 3   Kobe Bryant  82  36  27  9.8  21 0.47 5.9 6.9 0.86  1.4  4.1 0.35 1.1 4.1
 ## 4 Dirk Nowitzki  81  38  26  9.6  20 0.48 6.0 6.7 0.89  0.8  2.1 0.36 1.1 7.3
@@ -797,7 +801,7 @@ nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba,<span class
 </div>
 <div id="treemap" class="section level2">
 <h2><span class="header-section-number">8.6</span> Treemap</h2>
-<p>Treemap(矩形式樹狀結構繪圖法)是以二維平面的方式展示包含階層結構（hierarchical）形式的統計資訊，在R中可以使用需要<code>treemapify</code><span class="citation">(<span class="citeproc-not-found" data-reference-id="R-treemapify"><strong>???</strong></span>)</span> packages</p>
+<p>Treemap(矩形式樹狀結構繪圖法)是以二維平面的方式展示包含階層結構（hierarchical）形式的統計資訊，在R中可以使用需要<code>treemapify</code><span class="citation">(Wilkins <a href="#ref-R-treemapify">2016</a>)</span> packages</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 <span class="kw">library</span>(devtools)
 <span class="kw">install_github</span>(<span class="st">&quot;wilkox/ggfittext&quot;</span>)
@@ -817,6 +821,14 @@ nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba,<span class
 <p>首先將資料讀入，並用<code>str()</code>函式觀察資料型態</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(G20)<span class="co">#範例資料</span>
 <span class="kw">str</span>(G20)</code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    20 obs. of  7 variables:
+##  $ Region                 : Factor w/ 8 levels &quot;Africa&quot;,&quot;Asia&quot;,..: 1 6 6 6 8 8 2 2 2 2 ...
+##  $ Country                : Factor w/ 20 levels &quot; Argentina&quot;,&quot; Australia&quot;,..: 15 19 4 12 3 1 5 11 16 8 ...
+##  $ Trade.mil.USD          : int  208000 3969000 962600 756800 494800 152690 3801000 1649800 1068700 809400 ...
+##  $ Nom.GDP.mil.USD        : int  384315 15684750 1819081 1177116 2395968 474954 8227037 5963969 1155872 1824832 ...
+##  $ HDI                    : num  0.629 0.937 0.911 0.775 0.73 0.811 0.699 0.912 0.909 0.554 ...
+##  $ Population             : int  53000000 316173000 34088000 112211789 201032714 40117096 1339724852 127390000 50004441 1210193422 ...
+##  $ Economic.classification: Factor w/ 2 levels &quot;Advanced&quot;,&quot;Developing&quot;: 2 1 1 2 2 2 2 1 1 2 ...</code></pre>
 <p>畫Treemap的第一個步驟是用<code>treemapify()</code>函式將資料轉為畫Treemap所需格式，此格式要包括下列欄位：</p>
 <ul>
 <li>area: 面積來源(GDP)</li>
@@ -828,11 +840,20 @@ nba.m &lt;-<span class="st"> </span><span class="kw">melt</span>(nba,<span class
     <span class="dt">area =</span> <span class="st">&quot;Nom.GDP.mil.USD&quot;</span>,<span class="dt">fill =</span> <span class="st">&quot;HDI&quot;</span>, <span class="co">#面積依GDP，顏色用HDI</span>
     <span class="dt">label =</span> <span class="st">&quot;Country&quot;</span>,<span class="dt">group =</span> <span class="st">&quot;Region&quot;</span>) <span class="co">#方塊分類依據用國家，再用地區分群</span>
 <span class="kw">head</span>(treeMapCoordinates)</code></pre></div>
+<pre><code>##   fill           label xmin xmax ymin ymax         group
+## 1 0.88  European Union    0   39    0   59        Europe
+## 2 0.92         Germany   39   63    0   19        Europe
+## 3 0.89          France   39   63   19   34        Europe
+## 4 0.88  United Kingdom   39   63   34   48        Europe
+## 5 0.88           Italy   39   63   48   59        Europe
+## 6 0.94   United States    0   53   59  100 North America</code></pre>
 <p>用<code>treemapify()</code>完成資料轉換後，使用<code>ggplotify()</code>函式做圖</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplotify</span>(treeMapCoordinates)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/ggplotify1-1.png" width="672" /></p>
 <p>看函式名稱不難了解<code>ggplotify()</code>也是基於<code>ggplot2</code>套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺化的常理，所以這邊使用<code>ggplot2</code>的<code>scale_fill_gradient()</code>函式指定數值高低所需的顏色</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplotify</span>(treeMapCoordinates)+<span class="st"> </span>
 <span class="st">    </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low =</span> <span class="st">&quot;white&quot;</span>,<span class="dt">high =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="co">#指定高低顏色</span></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/ggplotify2-1.png" width="672" /></p>
 <p>完整做圖程式碼如下：</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages(&quot;devtools&quot;) 第一次使用前需要安裝
 ## library(devtools)
@@ -870,16 +891,19 @@ treeMapCoordinates &lt;-<span class="st"> </span><span class="kw">treemapify</sp
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-ggplot2">
-<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: An Implementation of the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
 </div>
 <div id="ref-R-choroplethr">
-<p>Lamstein, Ari, and Brian P Johnson. 2016. <em>Choroplethr: Simplify the Creation of Choropleth Maps in R</em>. <a href="https://CRAN.R-project.org/package=choroplethr" class="uri">https://CRAN.R-project.org/package=choroplethr</a>.</p>
+<p>Lamstein, Ari, and Brian P Johnson. 2017. <em>Choroplethr: Simplify the Creation of Choropleth Maps in R</em>. <a href="https://CRAN.R-project.org/package=choroplethr" class="uri">https://CRAN.R-project.org/package=choroplethr</a>.</p>
 </div>
 <div id="ref-R-WDI">
 <p>Arel-Bundock, Vincent. 2013. <em>WDI: World Development Indicators (World Bank)</em>. <a href="https://CRAN.R-project.org/package=WDI" class="uri">https://CRAN.R-project.org/package=WDI</a>.</p>
 </div>
 <div id="ref-R-ggmap">
 <p>Kahle, David, and Hadley Wickham. 2016. <em>Ggmap: Spatial Visualization with Ggplot2</em>. <a href="https://CRAN.R-project.org/package=ggmap" class="uri">https://CRAN.R-project.org/package=ggmap</a>.</p>
+</div>
+<div id="ref-R-treemapify">
+<p>Wilkins, David. 2016. <em>Treemapify: Draw Treemaps Easily</em>. <a href="https://github.com/wilkox/treemapify" class="uri">https://github.com/wilkox/treemapify</a>.</p>
 </div>
 <div id="ref-R-treemap">
 <p>Tennekes, Martijn. 2016. <em>Treemap: Treemap Visualization</em>. <a href="https://CRAN.R-project.org/package=treemap" class="uri">https://CRAN.R-project.org/package=treemap</a>.</p>

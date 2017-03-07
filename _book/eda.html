@@ -324,8 +324,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">7</span> 探索式資料分析</h1>
 <div id="section-7.1" class="section level2">
 <h2><span class="header-section-number">7.1</span> 什麼是探索式資料分析</h2>
-<p>探索式資料分析 (<strong>E</strong>xploratory <strong>D</strong>ata <strong>A</strong>nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料套性獲取資料所包含的資訊、的結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。</p>
-<p>探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方項錯誤所造成的時間浪費。</p>
+<p>探索式資料分析 (<strong>E</strong>xploratory <strong>D</strong>ata <strong>A</strong>nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料特性，獲取資料所包含的資訊、結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。</p>
+<p>探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方向錯誤所造成的時間浪費。</p>
 <p>探索式資料分析分為:</p>
 <ul>
 <li>圖形化Graphical 或 量化Quantitative</li>
@@ -356,11 +356,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>共變數 Covariance <code>cov()</code></li>
 <li>相關性 Correlation <code>cor()</code></li>
 </ul>
-<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle et al. <a href="#ref-R-data.table">2015</a>)</span>和<code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
+<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組的分析情形（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span>和<code>dplyr</code><span class="citation">(Wickham and Francois <a href="#ref-R-dplyr">2016</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
 </div>
 <div id="datatable" class="section level2">
 <h2><span class="header-section-number">7.2</span> data.table</h2>
-<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle et al. <a href="#ref-R-data.table">2015</a>)</span> package</p>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table">2016</a>)</span> package</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>) ##安裝</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(data.table) ##載入</code></pre></div>
 <p>使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為<code>fread()</code>，使用方法與一般檔案讀取方法(Ch <a href="io.html#file">5.1</a>)類似</p>
@@ -1081,7 +1081,7 @@ rename1[<span class="dv">1</span>:<span class="dv">5</span>,<span class="dv">1</
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-data.table">
-<p>Dowle, M, A Srinivasan, T Short, S Lianoglou with contributions from R Saporta, and E Antonyan. 2015. <em>Data.table: Extension of Data.frame</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
+<p>Dowle, Matt, and Arun Srinivasan. 2016. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a>.</p>
 </div>
 <div id="ref-R-dplyr">
 <p>Wickham, Hadley, and Romain Francois. 2016. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
