@@ -158,7 +158,7 @@ library(dplyr) ##載入
 - `group_by()`: 分組依據
 - `arrange()`: 觀察值排序
 - `rename()`: 欄位重新命名
-- `%>%`: the “pipe” operator 連結上數函式，將所有函示計算串在一起執行
+- `%>%`: the “pipe” operator 連結上數函式，將所有函式計算串在一起執行
 
 以上述NBA資料為例，各函數功能分述如下：
 首先先讀入資料
