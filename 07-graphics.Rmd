@@ -42,7 +42,7 @@
 
 -from `ggplot2` book
 
-`ggplot2` Package是由[Hadley Wickham](http://hadley.nz/){target="_blank"}開發，是第三個R的畫圖Package。自發表以來一直是最熱門的R packages之一，目前還在持續發展更新中，自發表以來一直是最熱門的R packages之一，對原始碼有興趣的人可以到[GitHub](https://github.com/tidyverse/ggplot2){target="_blank"}看一下最新動態。
+`ggplot2` Package是由[Hadley Wickham](http://hadley.nz/){target="_blank"}開發，是第三個R的畫圖Package。自發表以來一直是最熱門的R packages之一，目前還在持續發展更新中，對原始碼有興趣的人可以到[GitHub](https://github.com/tidyverse/ggplot2){target="_blank"}看一下最新動態。
 
 簡單來說，做圖的文法包括兩個最主要元素：
 
@@ -67,12 +67,12 @@ library(ggplot2) #記得將ggplot2 package讀入，如果沒安奘記得先安�
 qplot(FieldGoalsAttempted, TotalPoints, data = NBA1516)
 ```
 
-針對做圖的文法的第一個主要元素**aesthetics**（包括顏色、形狀、點的大小與線的粗細等），可透過增加指令做修改，如加上`color=Position`，表示用守備位置Position著色
+針對做圖的文法的第一個主要元素**Aesthetics**（包括顏色、形狀、點的大小與線的粗細等），可透過增加指令做修改，如加上`color=Position`，表示用守備位置Position著色
 
 ```{r qplot2, fig.height=4}
 qplot(FieldGoalsAttempted, TotalPoints, data = NBA1516,color=Position)
 ```
-針對做圖的文法的第一個主要元素**Geometric**（包括點、線、盒狀圖、直條圖等），也可透過增加指令修改，如使用`geom = c("point", "smooth")` 在圖上加點與漸進線
+針對做圖的文法的第二個主要元素**Geometric**（包括點、線、盒狀圖、直條圖等），也可透過增加指令修改，如使用`geom = c("point", "smooth")` 在圖上加點與漸進線
 
 ```{r qplot3, fig.height=4}
 qplot(FieldGoalsAttempted, TotalPoints, data = NBA1516,
@@ -541,6 +541,7 @@ twcmap
 ```{r echo=FALSE}
 knitr::include_graphics("figure/Taiwan.png")
 ```
+
 ### ggmap+面量圖
 ```{r, eval=F,warning=F,message=F, fig.height=6}
 library(ggmap)
@@ -550,6 +551,9 @@ ggmap(twmap)+ #ggmap
         aes(x = long, y = lat, group = group, fill = prevalence), 
         color = "grey80", size = 0.1,alpha = 0.5) + 
 scale_fill_gradientn(colours = brewer.pal(9,"Reds"))
+```
+```{r echo=FALSE}
+knitr::include_graphics("figure/ggmapTaiwan.png")
 ```
 
 ##Heatmap
@@ -598,7 +602,7 @@ ggplot(nba.m, aes(variable, Name)) +
 以上範例之參考資料為[How to Make a Heatmap – a Quick and Easy Solution](http://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/){target="_blank"}
 
 ## Treemap
-Treemap(矩形式樹狀結構繪圖法)是以二維平面的方式展示包含階層結構（hierarchical）形式的統計資訊，在R中可以使用需要`treemapify`[@R-treemapify] packages
+Treemap(矩形式樹狀結構繪圖法)是以二維平面的方式展示包含階層結構（hierarchical）形式的統計資訊，在R中可以使用`treemapify`[@R-treemapify] packages
 ```{r eval=F, message=FALSE,warning=F,fig.height=4}
 install.packages("devtools")
 library(devtools)
