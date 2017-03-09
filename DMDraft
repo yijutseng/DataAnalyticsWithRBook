@@ -1186,3 +1186,75 @@ https://www.r-bloggers.com/deep-learning-in-r-2/
     - [Machine Learning Techniques](www.coursera.org/course/ntumltwo)
 
 - [Market Basket Analysis with R](http://www.salemmarafi.com/code/market-basket-analysis-with-r/)
+
+
+###Deep learning
+
+TensorFlow
+- Python 3.5.3 **64 bit** [網站](https://www.python.org/downloads/release/python-353/)
+  - Windows x86-64 executable installer
+- TensorFlow 1.0.1 [網站](https://www.tensorflow.org/install/)
+  - pip3 install --upgrade tensorflow
+  - pip3 install --upgrade tensorflow-gpu
+- C/C++ Tool
+  - [R Tools](https://cran.r-project.org/bin/windows/Rtools/) on Windows
+  - [Command Line Tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/) on OS X
+- tensorflow package for R [網站](https://rstudio.github.io/tensorflow/index.html)
+
+```{r eval=F}
+devtools::install_github("rstudio/tensorflow")
+```
+
+TensorFlow for R
+
+- Locating TensorFlow (optional)
+- Hello World
+
+```{r eval=F}
+library(tensorflow)
+sess = tf$Session()
+hello <- tf$constant('Hello, TensorFlow!')
+sess$run(hello)
+```
+
+
+MXNet
+
+Amazon
+[Install MXNet for R](http://mxnet.io/get_started/windows_setup.html#install-mxnet-for-r)
+MXNet for R [Tutorials](http://mxnet.io/tutorials/index.html#r)
+
+MXNet for R
+```{r eval=F}
+install.packages("drat", repos="https://cran.rstudio.com")
+drat:::addRepo("dmlc")
+install.packages("mxnet")
+```
+
+Prophet for R
+- C/C++ Tool
+  - [R Tools](https://cran.r-project.org/bin/windows/Rtools/) on Windows
+  - [Command Line Tools](http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/) on OS X
+
+```{r eval=F}
+install.packages('prophet')
+```
+
+- [R API](https://facebookincubator.github.io/prophet/docs/quick_start.html#r-api)
+
+```{r eval=F}
+library(prophet)
+library(dplyr)
+df <- read.csv('https://raw.githubusercontent.com/facebookincubator/prophet/master/examples/example_wp_peyton_manning.csv') %>%
+    mutate(y = log(y))
+m <- prophet(df)
+future <- make_future_dataframe(m, periods = 365)
+tail(future)
+forecast <- predict(m, future)
+tail(forecast[c('ds', 'yhat', 'yhat_lower', 'yhat_upper')])
+plot(m, forecast)
+prophet_plot_components(m, forecast)
+
+```
+
+
