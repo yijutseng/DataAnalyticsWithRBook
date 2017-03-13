@@ -19,7 +19,7 @@ vec[c(2,3)] ## 第2與第3個元素
 ```{r vector22}
 vec[3]
 vec[3]<-'z' ##第三個元素值設定為“z”
-vec[3] 
+vec
 ```
 ### 快速產生向量函數
 若要產生連續向量，如1~20，可使用`:`來串連首字與最後一字
@@ -70,7 +70,7 @@ listSample
 ```{r}
 listSample$Students ##取得中表中的Students變量
 ```
-也可和向量一樣，使用索引值來擷取資料，和向量不同的是，若要取得**值**，要使用雙中括號`[[]]`
+也可和向量一樣，使用索引值來擷取資料，和向量不同的是，若要取得**值**，要使用雙中括號`[[ ]]`
 ```{r}
 listSample[[1]] ##取得中表中第一個變量的值
 ```
@@ -93,11 +93,19 @@ listSample[[1]]
 listSample$Gender<-c("M","F","M","F","M") ##新增Gender變量，並設定向量值
 ```
 
+若需刪除某變量，可將變量值設定為`NULL`
+```{r}
+listSample$Score<-NULL ##刪除Score變量
+listSample
+```
+
+
 ## 矩陣 matrix
 ```{r matrix1}
 a <- matrix(c(1:6), nrow=3, ncol=2) ##建立3x2的矩陣，分別填入1~6的值
 a
 ```
+
 ## 資料框 data.frame
 資料框是非常常見的二維資料格式，由一系列的欄位（Column）和列（Row）所組成，常見的Excel試算表也是類似的資料表現形式，可使用`data.frame()`來創建新的資料框
 ```{r dataframe1}
@@ -106,7 +114,7 @@ StuDF <- data.frame(StuID=c(1,2,3,4,5), ##欄位名稱=欄位值
                   score=c(80,60,90,70,50))
 StuDF 
 ```
-如範例所示，每個欄位都有名稱（StuID, name, score），若沒有設定欄位名稱，R會自動指派V1~Vn作為欄位名稱。在R中，每個欄位的資料型態必須相同，如StuID和score為數值型態，name為文字型態。每一列也有預設的列名，R自動依序指派1~n作為列名。
+如範例所示，每個欄位都有名稱（StuID, name, score），若沒有設定欄位名稱，R會自動指派 V1 - Vn 作為欄位名稱。在R中，每個欄位的資料型態必須相同，如StuID和score為數值型態，name為文字型態。每一列也有預設的列名，R自動依序指派 1 - n 作為列名。
 如需檢查欄位名稱與列名，可使用`colnames()`和`rownames()`
 
 ```{r}
@@ -117,6 +125,24 @@ rownames(StuDF) ##列名
 如需檢查個欄位之資料型別，可使用`str()`函數
 ```{r}
 str(StuDF) 
+```
+
+
+資料框可用`$`符號做**欄位**資料擷取
+```{r}
+iris$Species ##取得iris資料框中的Species欄位
+```
+
+資料框可用`$`符號做**欄位**資料擷取後，當成**向量**，並使用**[ ]**做資料編輯。
+```{r}
+iris$Species[2]<-"versicolor"
+head(iris$Species)
+```
+
+若需刪除某欄位，可將欄位值設定為`NULL`
+```{r}
+iris$Species<-NULL ##刪除Species欄位
+head(iris)
 ```
 
 
