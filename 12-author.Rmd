@@ -5,7 +5,7 @@
 
 [個人網站](http://yijutseng.github.io){target="_blank"}
 
-Lab: [數位健康實驗室](http://yijutseng.github.io/Lab/){target="_blank"}
+Lab: [數位健康實驗室](https://dhlab-cgu.github.io/){target="_blank"}
 
 歡迎提供[建議與回饋](https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"}
 
