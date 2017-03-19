@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="RDataStructure.html">
+<link rel="prev" href="controlstructure.html">
+<link rel="next" href="io.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -325,269 +325,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">1</span> R語言101</h1>
-<p>本章節介紹學習R語言的基本知識，包括基本指令操作、運算子介紹等。</p>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">1.1</span> 什麼是R語言</h2>
-<p><a href="http://www.r-project.org/" target="_blank">R語言</a>是一種自由軟體程式語言，主要用於資料分析與統計運算，2000年時終於發表R 1.0.0，有關R語言的發展歷史可參考<a href="https://zh.wikipedia.org/wiki/R%E8%AF%AD%E8%A8%80" target="_blank">維基百科</a>。基本的R軟體已經內建多種統計及分析功能，其餘功能可以透過安裝<strong>套件（Packages）</strong>加載，眾多的套件使R的使用者可以【站在巨人的肩膀上(Standing on the shoulders of giants (Hal R. Varian, Google))】做資料分析，截至2017年1月為止，R軟體可另外安裝的套件數目共有10,000個以上 (<a href="https://www.rstudio.com/rviews/2017/01/06/10000-cran-packages/" target="_blank">R Studio報導</a>)。常用的套件清單可參考各項網路資訊，如<a href="https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="_blank">R Studio的整理：Quick list of useful R packages</a></p>
-<p>安裝套件Package的方法如下：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;套件名稱&quot;</span>)</code></pre></div>
-<p>值得注意的是，套件名稱需要加上雙引號，舉例來說，若要安裝<code>ggplot2</code>套件，則要在R的Console視窗內輸入：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre></div>
-<p>若要載入<strong>已安裝</strong>的套件，則輸入<code>library(套件名稱)</code>，範例：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
-<p>載入已安裝的套件時，可以<strong>不用</strong>在套件名稱前後加雙引號，但也可以加 <a href="http://stackoverflow.com/questions/25210455/how-can-library-accept-both-quoted-and-unquoted-strings" target="_blank">參考資料</a>。</p>
-</div>
-<div id="section-1.2" class="section level2">
-<h2><span class="header-section-number">1.2</span> 函數使用</h2>
-<p>在R中有許多內建函數，安裝套件後各套件也會提供各式各樣寫好的函數，函數使用方式為<code>函數名稱(參數1,參數2,....)</code>，以計算平均數為例，可使用<code>mean()</code>函數，範例如下:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)) ##計算1~6的平均數</code></pre></div>
-<pre><code>## [1] 3.5</code></pre>
-<p>若想知道各函數所需參數，可使用<code>?函數名稱</code>觀看函數作者所撰寫的說明文件</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?mean</code></pre></div>
-<p>除非有指定參數名稱，函數的參數設定有順序性，如序列產生函數<code>seq()</code>，參數順序為<code>from, to, by</code>，代表序列起點、序列終點，以及相隔單位。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">1</span>,<span class="dt">to=</span><span class="dv">9</span>,<span class="dt">by=</span><span class="dv">2</span>)<span class="co">#1~9，每隔2產生一數字</span></code></pre></div>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">2</span>)<span class="co">#按照順序輸入參數，可省去參數名稱</span></code></pre></div>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dt">by=</span><span class="dv">2</span>,<span class="dt">to=</span><span class="dv">9</span>,<span class="dt">from=</span><span class="dv">1</span>)<span class="co">#若不想照順序輸入參數，需要指定參數名稱</span></code></pre></div>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-</div>
-<div id="section-1.3" class="section level2">
-<h2><span class="header-section-number">1.3</span> 變數設定</h2>
-<p>在開始深入學習R語言之前，首要任務是學習最基本的R程式碼：<strong>變數設定</strong>，在R語言中，主要使用<code>&lt;-</code>設定變數，設定方法為：<strong>變數名稱</strong><code>&lt;-</code><strong>變數內容(值)</strong>，雖然<strong>變數名稱</strong>可依箭頭方向放置於左側<code>&lt;-</code>或右側<code>-&gt;</code>，但為方便閱讀，<strong>變數名稱</strong>多放置於左側。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a&lt;-<span class="dv">1</span> 
-<span class="dv">2</span>-&gt;b
-a</code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b</code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<p>R語言也接受使用<code>=</code>設定變數，此時<strong>變數名稱</strong>必須在左側，如：<strong>變數名稱</strong><code>=</code><strong>變數內容</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c=<span class="dv">1</span> 
-c</code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<p>除了<strong>變數設定</strong>外，<code>str()</code>函數也為常用基本函數，<code>str()</code>用在檢查與總覽各類變數型態。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d&lt;-<span class="dv">3</span>
-<span class="kw">str</span>(d)</code></pre></div>
-<pre><code>##  num 3</code></pre>
-<p>變數的命名有以下規則:</p>
+<div id="function" class="section level1">
+<h1><span class="header-section-number">4</span> 函數</h1>
+<p><strong>撰寫中</strong></p>
+<p>如果同一段程式碼已經被剪下貼上兩次，那就是寫一個函式(Function)的時機。</p>
+<p>函數包含四個重要的部分:</p>
 <ul>
-<li>不可使用保留字，如break, else, FALSE, for, function, if, Inf, NA, NaN, next, repeat, return, TRUE, while等</li>
-<li>開頭只能是英文字，或 <code>.</code></li>
-<li>大小寫敏感</li>
+<li>名字</li>
+<li>參數</li>
+<li>程式碼本體</li>
+<li>回傳值</li>
 </ul>
-</div>
-<div id="section-1.4" class="section level2">
-<h2><span class="header-section-number">1.4</span> 執行視窗</h2>
-<p>R是可直譯的語言，也就是說，可以在執行視窗(Console)直接打程式碼，在視窗出現<code>&gt;</code>時，表示可輸入指令，若視窗出現<code>+</code>時，表示前面的程式碼還沒打完，必須鍵入完整的程式碼讓R執行。</p>
-</div>
-<div id="DataType" class="section level2">
-<h2><span class="header-section-number">1.5</span> 資料型態</h2>
-<p>在R語言中，常用的資料型態包括<strong>數值 (numeric)</strong>、<strong>字串 (character)</strong>、<strong>布林變數 (logic)</strong>以及<strong>日期 (Date)</strong>等。</p>
-<div id="-numeric" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> 數值 numeric</h3>
-<p>數值包括整數（沒有小數點）與浮點數（有小數點）的數值</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;-<span class="dv">100</span> 
-num2&lt;-<span class="fl">1000.001</span></code></pre></div>
-<p>值得注意的是，若數值長度超過 <code>2^53</code>，必須導入<code>bit64</code> package <span class="citation">(Oehlschlägel <a href="#ref-R-bit64">2015</a>)</span>，將數值長度上限提高為<code>2^63</code>，才能表示完整數值</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="dv">2</span>^<span class="dv">53</span>, <span class="dt">digits=</span><span class="dv">20</span>) </code></pre></div>
-<pre><code>## [1] 9007199254740992</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="dv">2</span>^<span class="dv">53+1</span>, <span class="dt">digits=</span><span class="dv">20</span>) <span class="co"># +1後，數值仍與2^53相同</span></code></pre></div>
-<pre><code>## [1] 9007199254740992</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(bit64) <span class="co"># 導入bit64 package</span>
-<span class="kw">print</span>(<span class="kw">as.integer64</span>(<span class="dv">2</span>)^<span class="dv">53</span>, <span class="dt">digits=</span><span class="dv">20</span>)</code></pre></div>
-<pre><code>## integer64
-## [1] 9007199254740992</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="kw">as.integer64</span>(<span class="dv">2</span>)^<span class="dv">53+1</span>, <span class="dt">digits=</span><span class="dv">20</span>)<span class="co"># 導入bit64後，可得正確答案</span></code></pre></div>
-<pre><code>## integer64
-## [1] 9007199254740993</code></pre>
-</div>
-<div id="-character" class="section level3">
-<h3><span class="header-section-number">1.5.2</span> 字串 character</h3>
-<p>用雙引號<code>&quot;</code>框起的文字會被儲存為字串格式，若在數字前後加上雙引號，數字也會被儲存為文字形式，無法進行數值的加減乘除等運算。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">char1&lt;-<span class="st">&quot;abcTest&quot;</span> 
-char2&lt;-<span class="st">&quot;100&quot;</span>
-char3&lt;-<span class="st">&quot;200&quot;</span>
-<span class="co">#char2+char3 #會輸出Error message: non-numeric argument to binary operator</span></code></pre></div>
-</div>
-<div id="-logic" class="section level3">
-<h3><span class="header-section-number">1.5.3</span> 布林變數 logic</h3>
-<p>用於邏輯判斷，可使用大寫<strong>TRUE</strong>或<strong>T</strong>代表<strong>真</strong>，大寫<strong>FALSE</strong>或<strong>F</strong>代表假。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boolT&lt;-<span class="ot">TRUE</span>
-boolT1&lt;-T
-boolF&lt;-<span class="ot">FALSE</span>
-boolF1&lt;-F</code></pre></div>
-</div>
-<div id="-date" class="section level3">
-<h3><span class="header-section-number">1.5.4</span> 日期 (Date)</h3>
-<p>用於表示日期，於資料分析中常用，使用<code>Sys.Date()</code>指令可得系統日期。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dateBook&lt;-<span class="kw">Sys.Date</span>()
-dateBook</code></pre></div>
-<pre><code>## [1] &quot;2017-03-20&quot;</code></pre>
-<p>日期與字串的相關轉換操作可考慮使用簡單易懂的<code>lubridate</code><span class="citation">(Grolemund, Spinu, and Wickham <a href="#ref-R-lubridate">2016</a>)</span> package，如果想要將<code>年/月/日</code>格式的文字轉換為日期物件，可使用<code>ymd()</code>函數（y表年year，m表月month，d表日day），如果想要將<code>月/日/年</code>格式的文字轉換為日期物件，則使用<code>mdy()</code>函數，以此類推。</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)
-<span class="kw">ymd</span>(<span class="st">&#39;2012/3/3&#39;</span>)</code></pre></div>
-<pre><code>## [1] &quot;2012-03-03&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mdy</span>(<span class="st">&#39;3/3/2012&#39;</span>)</code></pre></div>
-<pre><code>## [1] &quot;2012-03-03&quot;</code></pre>
-<p>其他使用方式可參考 <a href="http://blog.yhat.com/static/pdf/R_date_cheat_sheet.pdf" target="_blank">The Yhat Blog</a>。</p>
-</div>
-</div>
-<div id="section-1.6" class="section level2">
-<h2><span class="header-section-number">1.6</span> 基本運算子</h2>
-<div id="section-1.6.1" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> 數學基本運算</h3>
-<p>在R中，數學運算與其他程式語言相同</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">名字&lt;-function(參數<span class="dv">1</span>,參數<span class="dv">2</span>,...){
+  程式碼本體
+  最後一行的輸出自動設為回傳值
+}</code></pre></div>
+<p>寫函數的四個步驟:</p>
 <ul>
-<li>加 <code>+</code></li>
-<li>減 <code>-</code></li>
-<li>乘 <code>*</code></li>
-<li>除 <code>/</code></li>
-<li>餘數 <code>%%</code></li>
-<li>次方 <code>^</code></li>
+<li>先寫出可以用的程式碼</li>
+<li>將程式碼內可以重複使用的部分指派給臨時變數</li>
+<li>其餘程式碼用臨時變數表示，讓程式碼變簡潔</li>
+<li>把程式碼變成函數function</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;-<span class="dv">1</span>
-num2&lt;-<span class="dv">100</span>
-num1+num2</code></pre></div>
-<pre><code>## [1] 101</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1-num2</code></pre></div>
-<pre><code>## [1] -99</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1*num2</code></pre></div>
-<pre><code>## [1] 100</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1/num2</code></pre></div>
-<pre><code>## [1] 0.01</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span>%%<span class="dv">3</span> ##100除以3後所得餘數</code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span>^<span class="dv">3</span> ##2的3次方</code></pre></div>
-<pre><code>## [1] 8</code></pre>
-</div>
-<div id="section-1.6.2" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> 進階數學函數</h3>
+<p>寫好的函數的方法:</p>
 <ul>
-<li>四捨五入 <code>round()</code></li>
-<li>無條件捨去 <code>floor()</code></li>
-<li>無條件進位 <code>ceiling()</code></li>
+<li>正確</li>
+<li>容易閱讀與理解</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;-<span class="fl">1.568</span>
-num2&lt;-<span class="fl">2.121</span>
-<span class="kw">round</span>(num1,<span class="dt">digits =</span> <span class="dv">2</span>) <span class="co">#四捨五入至小數點第二位</span></code></pre></div>
-<pre><code>## [1] 1.6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(num2,<span class="dt">digits =</span> <span class="dv">1</span>) <span class="co">#四捨五入至小數點第一位</span></code></pre></div>
-<pre><code>## [1] 2.1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">floor</span>(num1) ##1.568</code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ceiling</span>(num2) ##2.121</code></pre></div>
-<pre><code>## [1] 3</code></pre>
-</div>
-<div id="section-1.6.3" class="section level3">
-<h3><span class="header-section-number">1.6.3</span> 邏輯運算</h3>
-<p>常用之邏輯判斷也可在R中直接使用</p>
+<p>函數命名原則:</p>
 <ul>
-<li>大於 <code>&gt;</code></li>
-<li>小於 <code>&lt;</code></li>
-<li>等於 <code>==</code>，為了不與變數設定混淆，判斷兩變數是否相等，要用<strong>雙等號</strong></li>
-<li>大於等於 <code>&gt;=</code></li>
-<li>小於等於 <code>&lt;=</code></li>
+<li>長的函數名稱要遵循一樣的命名樣式</li>
+<li>不要用原本就存在R中的函數名稱</li>
+<li>可以被理解的名稱，通常是<strong>動詞</strong></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;-<span class="dv">1</span>
-num2&lt;-<span class="dv">100</span>
-num1&gt;num2</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num1&lt;num2</code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>文字字串也可比較大小</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">char1&lt;-<span class="st">&quot;abcTest&quot;</span> 
-char2&lt;-<span class="st">&quot;defTest&quot;</span>
-char1&gt;char2</code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<p>邏輯混合判斷，和JAVA等語言不同的是，在R中使用<strong>單符號</strong>即可表示且<code>&amp;</code>和或<code>|</code></p>
+<p>參數命名原則:</p>
 <ul>
-<li>且 <code>&amp;</code></li>
-<li>或 <code>|</code></li>
+<li>可以被理解的名稱</li>
+<li>通常是<strong>名詞</strong></li>
+<li>輸入資料參數通常放在第一個</li>
+<li>其他設定值通常會設定預設值</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> &amp;<span class="st"> </span><span class="ot">TRUE</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> &amp;<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> |<span class="st"> </span><span class="ot">TRUE</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">TRUE</span> |<span class="st"> </span><span class="ot">FALSE</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>反向布林變數<code>!</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">!<span class="ot">TRUE</span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">!<span class="ot">FALSE</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-</div>
-</div>
-<div id="section-1.7" class="section level2">
-<h2><span class="header-section-number">1.7</span> 錯誤訊息</h2>
-<ul>
-<li>Message：有可能的錯誤通知，程式會繼續執行</li>
-<li>Warning：有錯誤，但是不會影響太多，程式會繼續執行</li>
-<li>Error：有錯，而且無法繼續執行程式</li>
-<li>Condition：可能會發生的情況</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(-<span class="dv">1</span>)</code></pre></div>
-<pre><code>## Warning in log(-1): NaNs produced</code></pre>
-<pre><code>## [1] NaN</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mena</span>(<span class="ot">NA</span>)</code></pre></div>
-<pre><code>## Error in eval(expr, envir, enclos): could not find function &quot;mena&quot;</code></pre>
-<p>錯誤訊息範例1:</p>
-<pre><code># Error: could not find function &quot;fetch_NBAPlayerStatistics&quot;
-# 找不到&quot;fetch_NBAPlayerStatistics&quot; function</code></pre>
-<p>可能原因：沒安裝或沒讀入SportsAnalytics package</p>
-<p>錯誤訊息範例2:</p>
-<pre><code># Error in library(knitr): there is no package called &#39;knitr&#39;
-# 找不到&quot;knitr&quot; package</code></pre>
-<p>可能原因：沒安裝knitr package</p>
-</div>
-<div id="help" class="section level2">
-<h2><span class="header-section-number">1.8</span> Help</h2>
-<p>R語言與套件均有完整的文件與範例可以參考，在R的執行視窗中，輸入<code>?函數名稱</code>或<code>?套件名稱</code>即可看到函數或套件的使用說明</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?ggplot2
-?ymd</code></pre></div>
-<p>除此之外，<a href="http://stackoverflow.com/" target="_blank">Stack Overflow</a>中也有許多問答，可直接在網站中搜尋關鍵字與錯誤訊息。</p>
-<p>如果找不到解答，發問時請附上可以重現錯誤的<strong>程式碼</strong>與<strong>資料</strong>，以及系統/套件的版本資訊，版本資訊可以透過執行下列程式碼取得：</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.3.2 (2016-10-31)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
-## Running under: macOS Sierra 10.12.3
-## 
-## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] lubridate_1.6.0 bit64_0.9-5     bit_1.1-12     
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.9     bookdown_0.3.9  digest_0.6.12   rprojroot_1.2  
-##  [5] backports_1.0.5 magrittr_1.5    evaluate_0.10   highr_0.6      
-##  [9] stringi_1.1.2   rstudioapi_0.6  rmarkdown_1.3   tools_3.3.2    
-## [13] stringr_1.1.0   yaml_2.1.14     htmltools_0.3.5 knitr_1.15.1</code></pre>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-bit64">
-<p>Oehlschlägel, Jens. 2015. <em>Bit64: A S3 Class for Vectors of 64bit Integers</em>. <a href="https://CRAN.R-project.org/package=bit64" class="uri">https://CRAN.R-project.org/package=bit64</a>.</p>
-</div>
-<div id="ref-R-lubridate">
-<p>Grolemund, Garrett, Vitalie Spinu, and Hadley Wickham. 2016. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate" class="uri">https://CRAN.R-project.org/package=lubridate</a>.</p>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="RDataStructure.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="controlstructure.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="io.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -616,7 +402,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/01-intro.Rmd",
+"link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/04-function.Rmd",
 "text": "Edit"
 },
 "download": ["DataAnalyticsWithR.epub"],

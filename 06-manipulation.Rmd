@@ -129,7 +129,8 @@ tail(letters,3) ##取出letters向量的後三個元素
 - 輸入布林變數: `dataFrame[c(T,F,T),c(T,F,T)]`
 - 輸入欄位名稱: `dataFrame[row name,column name]`
 
-```{r}
+```{r Species}
+data(iris)
 iris[1,2] ##第一列Row，第二行Column
 iris[1:3,] ##第1~3列Row，所有的行Column
 iris[,"Species"] ##所有的列Row，名稱為Species的行Column

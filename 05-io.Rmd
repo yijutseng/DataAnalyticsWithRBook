@@ -193,19 +193,18 @@ Tags, elements and attributes
 - Attributes are components of the label
     - `<book category="web">`
     
-許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlTreeParse()`函數將檔案匯入。
+許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlParse()`函數將檔案匯入。
 
 ```{r}
 library(XML)
-waterQ <- xmlTreeParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927",useInternal=TRUE)
-rootNode <- xmlRoot(waterQ) #access the top node
+waterQ <- xmlParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927")
 ```
 使用`xpathSApply()`函數取得指定標籤內的資料
 ```{r}
 #取得所有"code_name"標籤內的資料
-xpathSApply(rootNode,"//code_name",xmlValue)[1:10]
+xpathSApply(waterQ,"//code_name",xmlValue)[1:10]
 #取得各監測站的經度
-xpathSApply(rootNode,"//longitude",xmlValue)[1:10]
+xpathSApply(waterQ,"//longitude",xmlValue)[1:10]
 ```
 
 ### 網頁爬蟲 Webscraping
@@ -227,12 +226,12 @@ htmlCode[1:5]
 
 ```{r xmlhtml, warning=F}
 library(httr)
-html <- htmlTreeParse(GET("http://im.cgu.edu.tw/bin/home.php"), useInternalNodes=T)
+html <- htmlParse(GET("http://im.cgu.edu.tw/bin/home.php"))
 xpathSApply(html, "//title", xmlValue)
 xpathSApply(html, "//span[@class='ptname ']", xmlValue)
 ```
 
-除了把HTML檔案當作XML處理外，`rvest`[@R-rvest] package是R語言中最場被使用的爬蟲套件，使用前一樣需要安裝與載入
+除了把HTML檔案當作XML處理外，`rvest`[@R-rvest] package是R語言中最常被使用的爬蟲套件，使用前一樣需要安裝與載入
 ```{r eval=F}
 install.packages("rvest") ##安裝
 ```

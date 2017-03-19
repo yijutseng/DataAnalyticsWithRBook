@@ -1,0 +1,1665 @@
+\documentclass[]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={資料科學與R語言},
+            pdfauthor={曾意儒 Yi-Ju Tseng},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{資料科學與R語言}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{曾意儒 Yi-Ju Tseng}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{2017-03-19}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+
+\usepackage{CJKutf8}
+\usepackage{xeCJK}  %讓中英文字體分開設置
+\setCJKmainfont{微軟正黑體}  
+  %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\XeTeXlinebreaklocale "zh"  
+\XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
+
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\chapter*{}\label{preface}
+\addcontentsline{toc}{chapter}{}
+
+\chapter{R語言101}\label{intro}
+
+\chapter{R 資料結構}\label{RDataStructure}
+
+\chapter{控制流程}\label{controlstructure}
+
+\chapter{函數}\label{function}
+
+\chapter{資料讀取與匯出}\label{io}
+
+\chapter{資料處理與清洗}\label{manipulation}
+
+\section{Tidy Data}\label{tidy-data}
+
+Each column is a variable. Each row is an observation.
+
+\begin{itemize}
+\tightlist
+\item
+  一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
+\item
+  不同的觀察值應該要在不同行（Raw）
+\item
+  一張表裡面，有所有分析需要的資料
+\item
+  如果一定要多張表，中間一定要有index可以把表串起來
+\item
+  One file, one table
+\end{itemize}
+
+\section{資料型別轉換處理}
+
+在資料型態章節Chapter \ref{DataType}中，曾介紹\textbf{數值
+(numeric)}、\textbf{字串 (character)}、\textbf{布林變數
+(logic)}以及\textbf{日期
+(Date)}等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。
+
+\subsection{資料型別檢查}
+
+使用以下\texttt{is.}函數檢查資料型別，回傳布林變數，若為真，回傳TRUE
+
+\begin{itemize}
+\tightlist
+\item
+  是否為\textbf{數字} \texttt{is.numeric(變數名稱)}
+\item
+  是否為\textbf{文字} \texttt{is.character(變數名稱)}
+\item
+  是否為\textbf{布林變數} \texttt{is.logical(變數名稱)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num<-}\DecValTok{100}
+\NormalTok{cha<-}\StringTok{'200'}
+\NormalTok{boo<-T}
+\KeywordTok{is.numeric}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.numeric}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.character}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.character}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.logical}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+或使用\texttt{class(變數名稱)}函數，直接回傳資料型別
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\KeywordTok{Sys.Date}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+\subsection{資料型別轉換}
+
+使用以下\texttt{as.}函數轉換型別
+
+\begin{itemize}
+\tightlist
+\item
+  轉換為\textbf{數字} \texttt{as.numeric(變數名稱)}
+\item
+  轉換為\textbf{文字} \texttt{as.character(變數名稱)}
+\item
+  轉換為\textbf{布林變數} \texttt{as.logical(變數名稱)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(cha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 200
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.character}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "100"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.character}\NormalTok{(boo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "TRUE"
+\end{verbatim}
+
+若無法順利完成轉換，會回傳空值\texttt{NA}，並出現警告訊息\texttt{Warning:\ NAs\ introduced\ by\ coercion，Warning:\ 強制變更過程中產生了\ NA}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{as.numeric}\NormalTok{(}\StringTok{"abc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: NAs introduced by coercion
+\end{verbatim}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+日期的轉換則建議使用\texttt{lubridate}\citep{R-lubridate}
+package，如果想要將\texttt{年/月/日}格式的文字轉換為日期物件，可使用\texttt{ymd()}函數（y表年year，m表月month，d表日day），如果想要將\texttt{月/日/年}格式的文字轉換為日期物件，則使用\texttt{mdy()}函數，以此類推。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate)}
+\KeywordTok{ymd}\NormalTok{(}\StringTok{'2012/3/3'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mdy}\NormalTok{(}\StringTok{'3/3/2012'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2012-03-03"
+\end{verbatim}
+
+\section{文字字串處理}
+
+\subsection{基本處理}
+
+\begin{itemize}
+\tightlist
+\item
+  切割 \texttt{strsplit()}
+\item
+  子集 \texttt{substr()}
+\item
+  大小寫轉換 \texttt{toupper()} \texttt{tolower()}
+\item
+  兩文字連接 \texttt{paste()} \texttt{paste0()}
+\item
+  文字取代 \texttt{gsub()}
+\item
+  前後空白去除 \texttt{str\_trim()}
+  需安裝\texttt{stringr}\citep{R-stringr} package
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{strsplit} \NormalTok{(}\StringTok{"Hello World"}\NormalTok{,}\StringTok{" "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "Hello" "World"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{toupper}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "HELLO WORLD"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tolower}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hello world"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{paste}\NormalTok{(}\StringTok{"Hello"}\NormalTok{, }\StringTok{"World"}\NormalTok{, }\DataTypeTok{sep=}\StringTok{''}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "HelloWorld"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{substr}\NormalTok{(}\StringTok{"Hello World"}\NormalTok{, }\DataTypeTok{start=}\DecValTok{2}\NormalTok{,}\DataTypeTok{stop=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "ell"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{gsub}\NormalTok{(}\StringTok{"o"}\NormalTok{,}\StringTok{"0"}\NormalTok{,}\StringTok{"Hello World"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hell0 W0rld"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stringr)}
+\KeywordTok{str_trim}\NormalTok{(}\StringTok{" Hello World "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello World"
+\end{verbatim}
+
+\subsection{搜尋字串}
+
+搜尋字串函數通常使用在\textbf{比對文字向量}，文字比對\textbf{有分大小寫}，依照回傳值的型態不同，有兩種常用函數，\texttt{grep()}與\texttt{grepl()}:
+
+\begin{itemize}
+\tightlist
+\item
+  回傳符合條件之向量位置(index) \texttt{grep(搜尋條件,要搜尋的向量)}
+\item
+  回傳每個向量是否符合條件(TRUE or FALSE)
+  \texttt{grepl(搜尋條件,要搜尋的向量)}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grep}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找A，回傳包含"A"之元素位置}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grepl}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找A，回傳各元素是否包含"A"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{grepl}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Alex"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"Amy"}\NormalTok{,}\StringTok{"Joy"}\NormalTok{,}\StringTok{"Emma"}\NormalTok{)) ##在姓名文字向量中尋找a，回傳各元素是否包含"a"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE FALSE FALSE FALSE  TRUE
+\end{verbatim}
+
+\section{子集Subset}\label{subset}
+
+\subsection{一維資料 (向量)}\label{-}
+
+在向量章節\texttt{\{\#vector\}}有介紹使用\texttt{{[}{]}}取出單一或多個元素的方法
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters ##R語言內建資料之一}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q"
+## [18] "r" "s" "t" "u" "v" "w" "x" "y" "z"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\DecValTok{1}\NormalTok{] ##取出letters向量的第一個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{] ##取出letters向量的前十個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{)] ##取出letters向量的第1,3,5個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "c" "e"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\KeywordTok{c}\NormalTok{(-}\DecValTok{1}\NormalTok{,-}\DecValTok{3}\NormalTok{,-}\DecValTok{5}\NormalTok{)] ##取出letters向量除了第1,3,5個元素之外的所有元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "b" "d" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t"
+## [18] "u" "v" "w" "x" "y" "z"
+\end{verbatim}
+
+若想要快速取得一向量的開頭與結尾元素，可使用\texttt{head()}和\texttt{tail()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(letters,}\DecValTok{5}\NormalTok{) ##取出letters向量的前五個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c" "d" "e"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(letters,}\DecValTok{3}\NormalTok{) ##取出letters向量的後三個元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x" "y" "z"
+\end{verbatim}
+
+\subsection{二維資料}
+
+最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用\texttt{{[}{]}}，但因應二維資料的需求，以\texttt{,}分隔列與行的篩選條件，資料篩選原則為\textbf{前Row,後Column}，\textbf{前列,後行}，若不想篩選列，則在\texttt{,}前方保持\textbf{空白}即可。
+
+篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)
+
+\begin{itemize}
+\tightlist
+\item
+  輸入位置: \texttt{dataFrame{[}row\ index,column\ index{]}}
+\item
+  輸入布林變數: \texttt{dataFrame{[}c(T,F,T),c(T,F,T){]}}
+\item
+  輸入欄位名稱: \texttt{dataFrame{[}row\ name,column\ name{]}}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{] ##第一列Row，第二行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{,] ##第1~3列Row，所有的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#iris[,"Species"] ##所有的列Row，名稱為Species的行Column}
+\NormalTok{iris[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{,}\KeywordTok{c}\NormalTok{(T,F,T,F,T)] ##第1~10列Row，第1,3,5行Column (TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Petal.Length Species
+## 1           5.1          1.4  setosa
+## 2           4.9          1.4  setosa
+## 3           4.7          1.3  setosa
+## 4           4.6          1.5  setosa
+## 5           5.0          1.4  setosa
+## 6           5.4          1.7  setosa
+## 7           4.6          1.4  setosa
+## 8           5.0          1.5  setosa
+## 9           4.4          1.4  setosa
+## 10          4.9          1.5  setosa
+\end{verbatim}
+
+也可使用\texttt{\$}符號做\textbf{Column的篩選}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Species ##所有的列Row，名稱為Species的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica
+\end{verbatim}
+
+\textbf{Row的篩選}可使用\texttt{subset()}函數，使用方法為\texttt{subset(資料表,篩選邏輯)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(iris,Species==}\StringTok{"virginica"}\NormalTok{) ##Species等於"virginica"的列Row，所有的行Column}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 101          6.3         3.3          6.0         2.5 virginica
+## 102          5.8         2.7          5.1         1.9 virginica
+## 103          7.1         3.0          5.9         2.1 virginica
+## 104          6.3         2.9          5.6         1.8 virginica
+## 105          6.5         3.0          5.8         2.2 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+## 107          4.9         2.5          4.5         1.7 virginica
+## 108          7.3         2.9          6.3         1.8 virginica
+## 109          6.7         2.5          5.8         1.8 virginica
+## 110          7.2         3.6          6.1         2.5 virginica
+## 111          6.5         3.2          5.1         2.0 virginica
+## 112          6.4         2.7          5.3         1.9 virginica
+## 113          6.8         3.0          5.5         2.1 virginica
+## 114          5.7         2.5          5.0         2.0 virginica
+## 115          5.8         2.8          5.1         2.4 virginica
+## 116          6.4         3.2          5.3         2.3 virginica
+## 117          6.5         3.0          5.5         1.8 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 120          6.0         2.2          5.0         1.5 virginica
+## 121          6.9         3.2          5.7         2.3 virginica
+## 122          5.6         2.8          4.9         2.0 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 124          6.3         2.7          4.9         1.8 virginica
+## 125          6.7         3.3          5.7         2.1 virginica
+## 126          7.2         3.2          6.0         1.8 virginica
+## 127          6.2         2.8          4.8         1.8 virginica
+## 128          6.1         3.0          4.9         1.8 virginica
+## 129          6.4         2.8          5.6         2.1 virginica
+## 130          7.2         3.0          5.8         1.6 virginica
+## 131          7.4         2.8          6.1         1.9 virginica
+## 132          7.9         3.8          6.4         2.0 virginica
+## 133          6.4         2.8          5.6         2.2 virginica
+## 134          6.3         2.8          5.1         1.5 virginica
+## 135          6.1         2.6          5.6         1.4 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 137          6.3         3.4          5.6         2.4 virginica
+## 138          6.4         3.1          5.5         1.8 virginica
+## 139          6.0         3.0          4.8         1.8 virginica
+## 140          6.9         3.1          5.4         2.1 virginica
+## 141          6.7         3.1          5.6         2.4 virginica
+## 142          6.9         3.1          5.1         2.3 virginica
+## 143          5.8         2.7          5.1         1.9 virginica
+## 144          6.8         3.2          5.9         2.3 virginica
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+\end{verbatim}
+
+\textbf{Row的篩選}也可搭配字串搜尋函數\texttt{grepl()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr::}\KeywordTok{kable}\NormalTok{(iris[}\KeywordTok{grepl}\NormalTok{(}\StringTok{"color"}\NormalTok{,iris$Species),]) ##Species包含"color"的列，所有的行}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r|l}
+\hline
+  & Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
+\hline
+51 & 7.0 & 3.2 & 4.7 & 1.4 & versicolor\\
+\hline
+52 & 6.4 & 3.2 & 4.5 & 1.5 & versicolor\\
+\hline
+53 & 6.9 & 3.1 & 4.9 & 1.5 & versicolor\\
+\hline
+54 & 5.5 & 2.3 & 4.0 & 1.3 & versicolor\\
+\hline
+55 & 6.5 & 2.8 & 4.6 & 1.5 & versicolor\\
+\hline
+56 & 5.7 & 2.8 & 4.5 & 1.3 & versicolor\\
+\hline
+57 & 6.3 & 3.3 & 4.7 & 1.6 & versicolor\\
+\hline
+58 & 4.9 & 2.4 & 3.3 & 1.0 & versicolor\\
+\hline
+59 & 6.6 & 2.9 & 4.6 & 1.3 & versicolor\\
+\hline
+60 & 5.2 & 2.7 & 3.9 & 1.4 & versicolor\\
+\hline
+61 & 5.0 & 2.0 & 3.5 & 1.0 & versicolor\\
+\hline
+62 & 5.9 & 3.0 & 4.2 & 1.5 & versicolor\\
+\hline
+63 & 6.0 & 2.2 & 4.0 & 1.0 & versicolor\\
+\hline
+64 & 6.1 & 2.9 & 4.7 & 1.4 & versicolor\\
+\hline
+65 & 5.6 & 2.9 & 3.6 & 1.3 & versicolor\\
+\hline
+66 & 6.7 & 3.1 & 4.4 & 1.4 & versicolor\\
+\hline
+67 & 5.6 & 3.0 & 4.5 & 1.5 & versicolor\\
+\hline
+68 & 5.8 & 2.7 & 4.1 & 1.0 & versicolor\\
+\hline
+69 & 6.2 & 2.2 & 4.5 & 1.5 & versicolor\\
+\hline
+70 & 5.6 & 2.5 & 3.9 & 1.1 & versicolor\\
+\hline
+71 & 5.9 & 3.2 & 4.8 & 1.8 & versicolor\\
+\hline
+72 & 6.1 & 2.8 & 4.0 & 1.3 & versicolor\\
+\hline
+73 & 6.3 & 2.5 & 4.9 & 1.5 & versicolor\\
+\hline
+74 & 6.1 & 2.8 & 4.7 & 1.2 & versicolor\\
+\hline
+75 & 6.4 & 2.9 & 4.3 & 1.3 & versicolor\\
+\hline
+76 & 6.6 & 3.0 & 4.4 & 1.4 & versicolor\\
+\hline
+77 & 6.8 & 2.8 & 4.8 & 1.4 & versicolor\\
+\hline
+78 & 6.7 & 3.0 & 5.0 & 1.7 & versicolor\\
+\hline
+79 & 6.0 & 2.9 & 4.5 & 1.5 & versicolor\\
+\hline
+80 & 5.7 & 2.6 & 3.5 & 1.0 & versicolor\\
+\hline
+81 & 5.5 & 2.4 & 3.8 & 1.1 & versicolor\\
+\hline
+82 & 5.5 & 2.4 & 3.7 & 1.0 & versicolor\\
+\hline
+83 & 5.8 & 2.7 & 3.9 & 1.2 & versicolor\\
+\hline
+84 & 6.0 & 2.7 & 5.1 & 1.6 & versicolor\\
+\hline
+85 & 5.4 & 3.0 & 4.5 & 1.5 & versicolor\\
+\hline
+86 & 6.0 & 3.4 & 4.5 & 1.6 & versicolor\\
+\hline
+87 & 6.7 & 3.1 & 4.7 & 1.5 & versicolor\\
+\hline
+88 & 6.3 & 2.3 & 4.4 & 1.3 & versicolor\\
+\hline
+89 & 5.6 & 3.0 & 4.1 & 1.3 & versicolor\\
+\hline
+90 & 5.5 & 2.5 & 4.0 & 1.3 & versicolor\\
+\hline
+91 & 5.5 & 2.6 & 4.4 & 1.2 & versicolor\\
+\hline
+92 & 6.1 & 3.0 & 4.6 & 1.4 & versicolor\\
+\hline
+93 & 5.8 & 2.6 & 4.0 & 1.2 & versicolor\\
+\hline
+94 & 5.0 & 2.3 & 3.3 & 1.0 & versicolor\\
+\hline
+95 & 5.6 & 2.7 & 4.2 & 1.3 & versicolor\\
+\hline
+96 & 5.7 & 3.0 & 4.2 & 1.2 & versicolor\\
+\hline
+97 & 5.7 & 2.9 & 4.2 & 1.3 & versicolor\\
+\hline
+98 & 6.2 & 2.9 & 4.3 & 1.3 & versicolor\\
+\hline
+99 & 5.1 & 2.5 & 3.0 & 1.1 & versicolor\\
+\hline
+100 & 5.7 & 2.8 & 4.1 & 1.3 & versicolor\\
+\hline
+\end{tabular}
+
+若想要快速取得資料框的前幾列(Raw)或後幾列，也可使用\texttt{head()}和\texttt{tail()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris,}\DecValTok{5}\NormalTok{) ##取出iris資料框的前五列}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(iris,}\DecValTok{3}\NormalTok{) ##取出iris資料框的後三列}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+\end{verbatim}
+
+\section{排序}
+
+\subsection{sort 向量排序}\label{sort-}
+
+\texttt{sort()}函數可直接對向量做\textbf{由小到大}的排序
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(islands) ##排序前的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Africa   Antarctica         Asia    Australia Axel Heiberg 
+##        11506         5500        16988         2968           16 
+##       Baffin 
+##          184
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(islands)) ##由小到大排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Vancouver          Hainan Prince of Wales           Timor 
+##              12              13              13              13 
+##          Kyushu          Taiwan 
+##              14              14
+\end{verbatim}
+
+如需\textbf{由大到小}排序，可將\texttt{decreasing}參數設為TRUE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(}\KeywordTok{sort}\NormalTok{(islands,}\DataTypeTok{decreasing =} \NormalTok{T)) ##由大到小排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Asia        Africa North America South America    Antarctica 
+##         16988         11506          9390          6795          5500 
+##        Europe 
+##          3745
+\end{verbatim}
+
+\subsection{order}\label{order}
+
+如需對資料框做排序，可使用\texttt{order()}函數，\texttt{order()}函數可回傳\textbf{由小到大}之\textbf{元素位置}，以\texttt{iris\$Sepal.Length}為例，回傳的第一個位置為\texttt{14}，表示\texttt{iris\$Sepal.Length}中，數值最小的元素為第14個元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(iris$Sepal.Length)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  14   9  39  43  42   4   7  23  48   3  30  12  13  25  31  46   2
+##  [18]  10  35  38  58 107   5   8  26  27  36  41  44  50  61  94   1  18
+##  [35]  20  22  24  40  45  47  99  28  29  33  60  49   6  11  17  21  32
+##  [52]  85  34  37  54  81  82  90  91  65  67  70  89  95 122  16  19  56
+##  [69]  80  96  97 100 114  15  68  83  93 102 115 143  62  71 150  63  79
+##  [86]  84  86 120 139  64  72  74  92 128 135  69  98 127 149  57  73  88
+## [103] 101 104 124 134 137 147  52  75 112 116 129 133 138  55 105 111 117
+## [120] 148  59  76  66  78  87 109 125 141 145 146  77 113 144  53 121 140
+## [137] 142  51 103 110 126 130 108 131 106 118 119 123 136 132
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Sepal.Length[}\DecValTok{14}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.3
+\end{verbatim}
+
+若將\texttt{decreasing}參數設定為TRUE，則會回傳\textbf{由大到小}的元素位置，以\texttt{iris\$Sepal.Length}為例，回傳的第一個位置為\texttt{132}，表示\texttt{iris\$Sepal.Length}中，數值最大的元素為第132個元素。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{order}\NormalTok{(iris$Sepal.Length,}\DataTypeTok{decreasing =} \NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142
+##  [18]  77 113 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117
+##  [35] 148  52  75 112 116 129 133 138  57  73  88 101 104 124 134 137 147
+##  [52]  69  98 127 149  64  72  74  92 128 135  63  79  84  86 120 139  62
+##  [69]  71 150  15  68  83  93 102 115 143  16  19  56  80  96  97 100 114
+##  [86]  65  67  70  89  95 122  34  37  54  81  82  90  91   6  11  17  21
+## [103]  32  85  49  28  29  33  60   1  18  20  22  24  40  45  47  99   5
+## [120]   8  26  27  36  41  44  50  61  94   2  10  35  38  58 107  12  13
+## [137]  25  31  46   3  30   4   7  23  48  42   9  39  43  14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris$Sepal.Length[}\DecValTok{132}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.9
+\end{verbatim}
+
+依照order回傳的元素位置，重新排序iris資料框
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris) ##排序前的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris[}\KeywordTok{order}\NormalTok{(iris$Sepal.Length),]) ##依照Sepal.Length欄位數值大小排序後的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 14          4.3         3.0          1.1         0.1  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 39          4.4         3.0          1.3         0.2  setosa
+## 43          4.4         3.2          1.3         0.2  setosa
+## 42          4.5         2.3          1.3         0.3  setosa
+## 4           4.6         3.1          1.5         0.2  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(iris[}\KeywordTok{order}\NormalTok{(iris$Sepal.Length,}\DataTypeTok{decreasing =} \NormalTok{T),]) ##改為由大到小排序的前六筆資料}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 132          7.9         3.8          6.4         2.0 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+\end{verbatim}
+
+\section{資料組合}
+
+有時需要在資料框新增一列，或新增一行，可以利用資料組合函數完成
+
+\begin{itemize}
+\tightlist
+\item
+  Row 列的組合 \texttt{rbind()}
+\item
+  Column 行的組合 \texttt{cbind()}
+\end{itemize}
+
+\texttt{rbind()}和\texttt{cbind()}的參數可以是向量，也可以是資料框，使用向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\CommentTok{#第一列}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)  }\CommentTok{#第二列}
+      \NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6
+\end{verbatim}
+
+使用資料框與向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{irisAdd<-}\KeywordTok{rbind}\NormalTok{(iris, }\CommentTok{#資料框}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\StringTok{"versicolor"}\NormalTok{)  }\CommentTok{#新增一列}
+      \NormalTok{) }
+\KeywordTok{tail}\NormalTok{(irisAdd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 146          6.7           3          5.2         2.3  virginica
+## 147          6.3         2.5            5         1.9  virginica
+## 148          6.5           3          5.2           2  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9           3          5.1         1.8  virginica
+## 151            1           1            1           1 versicolor
+\end{verbatim}
+
+使用向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cbind}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{), }\CommentTok{#第一行}
+      \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{)  }\CommentTok{#第二行}
+      \NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+\end{verbatim}
+
+使用資料框與向量做資料整合範例:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{irisAdd<-}\KeywordTok{cbind}\NormalTok{(iris, }\CommentTok{#資料框}
+      \KeywordTok{rep}\NormalTok{(}\StringTok{"Add"}\NormalTok{,}\KeywordTok{nrow}\NormalTok{(iris))  }\CommentTok{#新增一行}
+      \NormalTok{) }
+\KeywordTok{tail}\NormalTok{(irisAdd)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+##     rep("Add", nrow(iris))
+## 145                    Add
+## 146                    Add
+## 147                    Add
+## 148                    Add
+## 149                    Add
+## 150                    Add
+\end{verbatim}
+
+\section{長表與寬表}\label{reshape}
+
+在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2\citep{R-reshape2}
+package，提供完整的轉換功能，最常使用的是
+
+\begin{itemize}
+\tightlist
+\item
+  寬表轉長表 \texttt{melt(資料框/寬表,id.vars=需要保留的欄位)}
+\item
+  長表轉寬表
+  \texttt{dcast(資料框/長表,寬表分列依據\textasciitilde{}分欄位依據)}
+\end{itemize}
+
+原來的\texttt{airquality}資料框中，有Ozone, Solar.R, Wind, Temp, Month,
+Day等六個欄位
+(Column)，屬於寬表，以下範例將保留Month和Day兩個欄位，並將其他欄位的名稱整合至variable欄位，數值整合至value欄位，寬表轉長表範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reshape2)}
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airqualityM<-}\KeywordTok{melt}\NormalTok{(airquality,}\DataTypeTok{id.vars =} \KeywordTok{c}\NormalTok{(}\StringTok{"Month"}\NormalTok{,}\StringTok{"Day"}\NormalTok{)) ##欄位需要保留"Month","Day"}
+\KeywordTok{head}\NormalTok{(airqualityM)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Month Day variable value
+## 1     5   1    Ozone    41
+## 2     5   2    Ozone    36
+## 3     5   3    Ozone    12
+## 4     5   4    Ozone    18
+## 5     5   5    Ozone    NA
+## 6     5   6    Ozone    28
+\end{verbatim}
+
+轉換過的長表\texttt{airqualityM}資料框中，剩下Month, Day, variable,
+value等四個欄位
+(Column)，屬於長表，以下範例variable欄位的值轉換為新欄位，並將value欄位填回新增的欄位，長表轉寬表範例如下:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reshape2)}
+\NormalTok{##欄位保留"Month","Day"外，其他欄位數目由variable定義}
+\NormalTok{airqualityCast<-}\KeywordTok{dcast}\NormalTok{(airqualityM, Month +Day~variable) }
+\KeywordTok{head}\NormalTok{(airqualityCast)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Month Day Ozone Solar.R Wind Temp
+## 1     5   1    41     190  7.4   67
+## 2     5   2    36     118  8.0   72
+## 3     5   3    12     149 12.6   74
+## 4     5   4    18     313 11.5   62
+## 5     5   5    NA      NA 14.3   56
+## 6     5   6    28      NA 14.9   66
+\end{verbatim}
+
+\section{遺漏值處理}
+
+遺漏值(Missing
+Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用\texttt{is.na()}來判斷資料是否為空值\texttt{NA}，若為真\texttt{TRUE}，則將資料移除。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{naVec<-}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{,}\StringTok{"b"}\NormalTok{,}\OtherTok{NA}\NormalTok{,}\StringTok{"d"}\NormalTok{,}\StringTok{"e"}\NormalTok{)}
+\KeywordTok{is.na}\NormalTok{(naVec)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE FALSE  TRUE FALSE FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{naVec[!}\KeywordTok{is.na}\NormalTok{(naVec)] ##保留所有在is.na()檢查回傳FALSE的元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "d" "e"
+\end{verbatim}
+
+若資料型態為資料框，可使用\texttt{complete.cases}來選出完整的資料列，如果資料列是完整的，則會回傳真TRUE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(airquality)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{complete.cases}\NormalTok{(airquality) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE
+##  [12]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [23]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [34] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+##  [45] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
+##  [56] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+##  [67]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE FALSE  TRUE  TRUE
+##  [78]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE
+##  [89]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE
+## [100]  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+## [111]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
+## [122]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [133]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [144]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(airquality[}\KeywordTok{complete.cases}\NormalTok{(airquality),]) ##保留所有在complete.cases()檢查回傳TRUE的元素}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 7    23     299  8.6   65     5   7
+## 8    19      99 13.8   59     5   8
+\end{verbatim}
+
+利用演算法補值也是一種解決辦法，可參考\_skydome20\_的\href{http://www.rpubs.com/skydome20/R-Note10-Missing_Value}{R筆記--(10)遺漏值處理(Impute
+Missing Value)}教學。
+
+\section{綜合練習範例Case study}\label{manCase}
+
+在本範例中，介紹使用\texttt{SportsAnalytics} \citep{R-SportsAnalytics}
+package 撈取NBA各球員的數據，並加以觀察分析。
+
+\subsection{載入資料}
+
+首先用\texttt{library()}函數將\texttt{SportsAnalytics}套件載入
+(若尚未安裝此套件者，必須先安裝套件，可參考Chapter
+\ref{intro})，並利用套件內提供的\texttt{fetch\_NBAPlayerStatistics()}函數，將對應年份之資料取出。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(SportsAnalytics)}
+\NormalTok{NBA1516<-}\KeywordTok{fetch_NBAPlayerStatistics}\NormalTok{(}\StringTok{"15-16"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{資料總覽}
+
+資料取出後，可用\texttt{str()}函數總覽\texttt{NBA1516}這個資料框的欄位與欄位類別
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(NBA1516)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    476 obs. of  25 variables:
+##  $ League             : Factor w/ 1 level "NBA": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Name               : chr  "Quincy Acy" "Jordan Adams" "Steven Adams" "Arron Afflalo" ...
+##  $ Team               : Factor w/ 31 levels "ATL","BOS","BRO",..: 27 15 22 20 19 13 28 26 12 15 ...
+##  $ Position           : Factor w/ 5 levels "C","PF","PG",..: 4 5 1 5 1 1 2 2 2 5 ...
+##  $ GamesPlayed        : int  59 2 80 71 59 60 74 9 79 64 ...
+##  $ TotalMinutesPlayed : int  877 15 2019 2359 863 802 2260 37 1601 1622 ...
+##  $ FieldGoalsMade     : int  119 2 261 354 150 134 536 5 191 215 ...
+##  $ FieldGoalsAttempted: int  214 6 426 799 314 225 1045 10 370 469 ...
+##  $ ThreesMade         : int  19 0 0 91 0 0 0 0 0 15 ...
+##  $ ThreesAttempted    : int  49 1 0 238 1 0 16 0 0 42 ...
+##  $ FreeThrowsMade     : int  50 3 114 110 52 60 259 0 46 90 ...
+##  $ FreeThrowsAttempted: int  68 5 196 131 62 84 302 0 73 138 ...
+##  $ OffensiveRebounds  : int  65 0 218 23 75 86 175 2 162 104 ...
+##  $ TotalRebounds      : int  188 2 531 266 269 288 631 6 424 297 ...
+##  $ Assists            : int  27 3 61 145 32 50 110 0 76 70 ...
+##  $ Steals             : int  29 3 42 25 19 47 38 1 26 109 ...
+##  $ Turnovers          : int  27 2 84 82 54 64 99 1 69 78 ...
+##  $ Blocks             : int  24 0 89 10 36 68 81 2 42 18 ...
+##  $ PersonalFouls      : int  103 2 223 142 134 139 151 1 147 175 ...
+##  $ Disqualifications  : int  0 0 2 1 0 1 0 0 1 1 ...
+##  $ TotalPoints        : int  307 7 636 909 352 328 1331 10 428 535 ...
+##  $ Technicals         : int  3 0 2 1 2 0 0 0 0 1 ...
+##  $ Ejections          : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ FlagrantFouls      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ GamesStarted       : int  29 0 80 57 17 5 74 0 28 56 ...
+\end{verbatim}
+
+可以發現此\texttt{NBA1516}資料框內有476筆球員資料(觀察值,
+obs)，每筆資料有25個欄位 (variables)。 \#\#\#資料預覽
+如果想看資料框內容，可用\texttt{head()}和\texttt{tail()}快速瀏覽部分資料
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(NBA1516)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   League          Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Quincy Acy  SAC       SF          59                877
+## 2    NBA  Jordan Adams  MEM       SG           2                 15
+## 3    NBA  Steven Adams  OKL        C          80               2019
+## 4    NBA Arron Afflalo  NYK       SG          71               2359
+## 5    NBA Alexis Ajinca  NOR        C          59                863
+## 6    NBA  Cole Aldrich  LAC        C          60                802
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 1            119                 214         19              49
+## 2              2                   6          0               1
+## 3            261                 426          0               0
+## 4            354                 799         91             238
+## 5            150                 314          0               1
+## 6            134                 225          0               0
+##   FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds
+## 1             50                  68                65           188
+## 2              3                   5                 0             2
+## 3            114                 196               218           531
+## 4            110                 131                23           266
+## 5             52                  62                75           269
+## 6             60                  84                86           288
+##   Assists Steals Turnovers Blocks PersonalFouls Disqualifications
+## 1      27     29        27     24           103                 0
+## 2       3      3         2      0             2                 0
+## 3      61     42        84     89           223                 2
+## 4     145     25        82     10           142                 1
+## 5      32     19        54     36           134                 0
+## 6      50     47        64     68           139                 1
+##   TotalPoints Technicals Ejections FlagrantFouls GamesStarted
+## 1         307          3         0             0           29
+## 2           7          0         0             0            0
+## 3         636          2         0             0           80
+## 4         909          1         0             0           57
+## 5         352          2         0             0           17
+## 6         328          0         0             0            5
+\end{verbatim}
+
+\subsection{資料排序後篩選}
+
+觀察資料框的組成後，我們想要找出\textbf{出場數}最\textbf{高}的前五名選手的所有資料，此時可以利用\texttt{order()}函數先\textbf{由大到小}排序(\texttt{decreasing\ =\ T})後，再用\texttt{{[},{]}}取子集。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516Order<-NBA1516[}\KeywordTok{order}\NormalTok{(NBA1516$GamesPlayed,}\DataTypeTok{decreasing =} \NormalTok{T),]}
+\NormalTok{NBA1516Order[}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{,] ##逗號前方放1~5，表示取1~5列；逗號後方空白，表示要取所有欄位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 11     NBA Al-farouq Aminu  POR       SF          82               2342
+## 37     NBA     Will Barton  DEN       SG          82               2355
+## 48     NBA Bismack Biyombo  TOR       PF          82               1810
+## 62     NBA    Corey Brewer  HOU       SG          82               1670
+## 118    NBA    Gorgui Dieng  MIN        C          82               2222
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 11             299                 719        126             349
+## 37             426                 984        112             324
+## 48             156                 288          0               1
+## 62             212                 552         61             225
+## 118            308                 578          6              20
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds
+## 11             115                 156                98           498
+## 37             216                 268                60           477
+## 48             142                 226               182           655
+## 62             105                 140                42           199
+## 118            205                 248               156           584
+##     Assists Steals Turnovers Blocks PersonalFouls Disqualifications
+## 11      138     72       120     53           171                 0
+## 37      204     71       139     39           147                 0
+## 48       29     19        71    133           225                 2
+## 62      109     84        78     19           168                 1
+## 118     143     94       140     96           219                 0
+##     TotalPoints Technicals Ejections FlagrantFouls GamesStarted
+## 11          839          3         0             0           82
+## 37         1180          2         0             0            1
+## 48          454          3         0             0           22
+## 62          590          0         0             0           12
+## 118         827          1         0             0           39
+\end{verbatim}
+
+如果我們想要出\textbf{出場分鐘數}最\textbf{高}的前十名選手的\textbf{名字}，一樣可以用\texttt{order()}函數先\textbf{由大到小}排序(\texttt{decreasing\ =\ T})後，再用\texttt{{[},{]}}取子集。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516OrderM<-NBA1516[}\KeywordTok{order}\NormalTok{(NBA1516$TotalMinutesPlayed,}\DataTypeTok{decreasing =} \NormalTok{T),]}
+\NormalTok{NBA1516OrderM[}\DecValTok{1}\NormalTok{:}\DecValTok{10}\NormalTok{,}\StringTok{"Name"}\NormalTok{] ##逗號前方取1~10列；逗號後方放"Name"，表示取名稱為Name之欄位}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "James Harden"     "Gordon Hayward"   "Kemba Walker"    
+##  [4] "Trevor Ariza"     "Khris Middleton"  "Kyle Lowry"      
+##  [7] "Marcus Morris"    "Andrew Wiggins"   "Paul George"     
+## [10] "Gi Antetokounmpo"
+\end{verbatim}
+
+\subsection{欄位值篩選}
+
+除了排序取值外，也可用欄位條件搜尋，舉例來說，可以取出所有波士頓賽爾迪克隊的選手資料，使用\texttt{subset()}函數
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{subset}\NormalTok{(NBA1516,Team==}\StringTok{"BOS"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 60     NBA   Avery Bradley  BOS       PG          76               2536
+## 89     NBA     Coty Clarke  BOS     <NA>           4                  8
+## 102    NBA     Jae Crowder  BOS       SF          73               2310
+## 213    NBA     R.j. Hunter  BOS       SG          36                319
+## 228    NBA   Jonas Jerebko  BOS       PF          78               1178
+## 229    NBA    Amir Johnson  BOS       PF          79               1798
+## 300    NBA   Jordan Mickey  BOS       PF          16                 59
+## 340    NBA    Kelly Olynyk  BOS        C          69               1396
+## 382    NBA    Terry Rozier  BOS       PG          39                310
+## 400    NBA    Marcus Smart  BOS       PG          61               1666
+## 416    NBA Jared Sullinger  BOS       PF          81               1917
+## 422    NBA   Isaiah Thomas  BOS       PG          82               2647
+## 433    NBA     Evan Turner  BOS       SG          81               2270
+## 471    NBA     James Young  BOS       SG          29                200
+## 476    NBA    Tyler Zeller  BOS        C          60                714
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 60             456                1018        147             406
+## 89               2                   4          2               2
+## 102            359                 812        122             363
+## 213             36                  98         19              63
+## 228            118                 286         43             108
+## 229            250                 427         10              43
+## 300              8                  22          0               0
+## 340            253                 556         85             210
+## 382             29                 106          6              27
+## 400            184                 529         61             241
+## 416            351                 807         29             104
+## 422            591                1382        167             465
+## 433            343                 753         20              83
+## 471             11                  36          6              26
+## 476            138                 290          0               0
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds
+## 60              96                 123                48           220
+## 89               0                   0                 0             1
+## 102            196                 239                70           373
+## 213              6                   7                 2            37
+## 228             61                  78                77           288
+## 229             69                 121               178           505
+## 300              5                  10                 6            13
+## 340             96                 128                72           281
+## 382              8                  10                24            63
+## 400            129                 166                76           255
+## 416            103                 161               194           673
+## 422            474                 544                46           243
+## 433            148                 179                50           397
+## 471              1                   4                 4            26
+## 476             88                 108                62           178
+##     Assists Steals Turnovers Blocks PersonalFouls Disqualifications
+## 60      158    117       109     19           164                 2
+## 89        0      0         1      0             0                 0
+## 102     135    126        83     35           198                 4
+## 213      13     14        11      4            29                 0
+## 228      62     20        52     24           137                 2
+## 229     137     52        94     83           214                 1
+## 300       1      0         1     11             5                 0
+## 340     105     52        74     33           163                 3
+## 382      37      6        19      1            23                 0
+## 400     186     91        80     18           183                 1
+## 416     187     75       102     47           209                 2
+## 422     509     91       220      9           167                 1
+## 433     359     80       169     28           139                 0
+## 471       9      6         5      1            17                 0
+## 476      29     10        46     22            97                 1
+##     TotalPoints Technicals Ejections FlagrantFouls GamesStarted
+## 60         1155          0         0             0           72
+## 89            6          0         0             0            0
+## 102        1036          3         0             0           73
+## 213          97          0         0             0            0
+## 228         340          1         0             0            0
+## 229         579          0         0             0           76
+## 300          21          0         0             0            0
+## 340         687          1         0             0            8
+## 382          72          0         0             0            0
+## 400         558          2         0             0           10
+## 416         834          2         0             0           73
+## 422        1823          9         0             0           79
+## 433         854          2         0             0           12
+## 471          29          0         0             0            0
+## 476         364          0         0             0            3
+\end{verbatim}
+
+\subsection{字串條件搜尋後篩選}
+
+當然也可以結合\textbf{字串搜尋}函數\texttt{grepl()}，將所有名字裡有``James''的選手資料取出
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NBA1516[}\KeywordTok{grepl}\NormalTok{(}\StringTok{"James"}\NormalTok{,NBA1516$Name),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 15     NBA James Anderson  SAC       SG          51                721
+## 132    NBA    James Ennis  NOR       SF          22                329
+## 178    NBA   James Harden  HOU       SG          82               3121
+## 222    NBA   Lebron James  CLE       SF          76               2710
+## 231    NBA  James Johnson  TOR       PF          57                924
+## 239    NBA    James Jones  CLE       SG          48                466
+## 286    NBA   James Mcadoo  GSW       SG          41                265
+## 471    NBA    James Young  BOS       SG          29                200
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 15              67                 178         23              86
+## 132             54                 113         26              58
+## 178            710                1617        236             656
+## 222            737                1416         87             282
+## 231            114                 240         20              66
+## 239             59                 143         41             104
+## 286             45                  84          1               2
+## 471             11                  36          6              26
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds
+## 15              22                  29                13            86
+## 132             25                  34                21            42
+## 178            720                 837                63           502
+## 222            359                 491               111           565
+## 231             39                  68                28           126
+## 239             21                  26                 8            50
+## 286             26                  49                30            58
+## 471              1                   4                 4            26
+##     Assists Steals Turnovers Blocks PersonalFouls Disqualifications
+## 15       41     21        42     14            54                 0
+## 132      21     16        19      5            28                 1
+## 178     612    138       374     51           229                 1
+## 222     512    104       249     49           143                 0
+## 231      67     29        54     33            84                 0
+## 239      14     11        13     10            50                 0
+## 286      17     10        16      8            39                 0
+## 471       9      6         5      1            17                 0
+##     TotalPoints Technicals Ejections FlagrantFouls GamesStarted
+## 15          179          0         0             0           15
+## 132         159          0         0             0            5
+## 178        2376          2         0             0           82
+## 222        1920          3         0             0           76
+## 231         287          0         0             0           32
+## 239         180          1         0             0            0
+## 286         117          0         0             0            1
+## 471          29          0         0             0            0
+\end{verbatim}
+
+\chapter{探索式資料分析}\label{eda}
+
+\chapter{資料視覺化}\label{vis}
+
+\chapter{互動式資料呈現}\label{InteractiveGraphics}
+
+\chapter{資料探勘}\label{datamining}
+
+\chapter{從小數據到大數據分析}\label{big}
+
+\chapter{軟體安裝介紹}\label{install}
+
+\chapter*{作者資訊}\label{author}
+\addcontentsline{toc}{chapter}{作者資訊}
+
+\chapter{Placeholder}\label{placeholder}
+
+\bibliography{packages.bib,book.bib}
+
+
+\end{document}
