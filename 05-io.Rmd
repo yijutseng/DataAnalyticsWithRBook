@@ -199,12 +199,20 @@ Tags, elements and attributes
 library(XML)
 waterQ <- xmlParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927")
 ```
-使用`xpathSApply()`函數取得指定標籤內的資料
+
+完成資料讀取後，使用`xpathSApply()`函數搭配**XPath**語法取得指定標籤內的資料
 ```{r}
 #取得所有"code_name"標籤內的資料
 xpathSApply(waterQ,"//code_name",xmlValue)[1:10]
 #取得各監測站的經度
 xpathSApply(waterQ,"//longitude",xmlValue)[1:10]
+```
+
+**XPath**是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，**XPath**語法的邏輯，可參考[W3C Schools](https://www.w3schools.com/xml/xpath_syntax.asp){target="_blank"}或是Google搜尋相關中文教學。在此列舉幾個常用的語法:
+
+```
+// : 子結點資料, 如所有連結標籤 //a
+@ : 屬性資料, 如所有連結標籤內的連結網址 //a/@href
 ```
 
 ### 網頁爬蟲 Webscraping
@@ -222,11 +230,10 @@ close(con)
 htmlCode[1:5]
 ```
 
-讀取完網頁後，使用用XML工具分析擷取網頁 (`XML` package)
+或是使用XML工具分析擷取網頁 (`XML` package)，使用方法與XML檔案處理方法類似，搭配**XPath**語言，篩選所需資料
 
 ```{r xmlhtml, warning=F}
-library(httr)
-html <- htmlParse(GET("http://im.cgu.edu.tw/bin/home.php"))
+html <- htmlParse("http://im.cgu.edu.tw/bin/home.php")
 xpathSApply(html, "//title", xmlValue)
 xpathSApply(html, "//span[@class='ptname ']", xmlValue)
 ```
@@ -264,6 +271,7 @@ head(Yahoo_news)
 ```
 
 在`html_nodes()`、`html_text()`和`html_attr()`函數中，擷取條件的撰寫會因網頁語法不同而有差異，必須要使用**Google Chrome開發工具**等工具輔助觀察需要擷取資料的條件。以上述Yahoo新聞為例，需要擷取的資料所在HTML片段如下：
+
 ```
 <ul class="tpl-title yom-list list-style-none" id="yui_3_9_1_1_1486568229946_2408">
 <li class="list-story first" id="yui_3_9_1_1_1486568229946_2407">
@@ -274,7 +282,9 @@ head(Yahoo_news)
 </cite></div></li>
 ....
 ```
-觀察上述程式碼可已發現新聞清單被包含在`ul`標籤下，且css class為`tpl-title yom-list list-style-none`，所以這邊可以使用第一個class`tpl-title`為篩選條件。網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。
+觀察上述程式碼可已發現新聞清單被包含在`ul`標籤下，且css class為`tpl-title yom-list list-style-none`，所以這邊可以使用第一個class`tpl-title`為篩選條件。CSS 標籤的意義可參考[W3C Schools](https://www.w3schools.com/cssref/css_selectors.asp)的教學{target="_blank"}。
+
+網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。
 
 其他爬蟲相關參考資源:
 
