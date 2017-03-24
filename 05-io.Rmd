@@ -149,11 +149,10 @@ JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交�
 許多Open Data也用JSON格式儲存，例如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。
 
 將JSON檔案匯入R可以使用`jsonlite`[@R-jsonlite] package，套件使用前必須安裝，安裝套件方法請參考Chapter \@ref(intro)，載入後，可使用`fromJSON()`函數載入JSON資料。
-如需直接從API網址截取資料，需要載入`RCurl`[@R-RCurl] package，並使用`getURL()`函數處理資料擷取網址。
+如API網址為**httr**類別，需要載入`httr`[@Rhttr] package，並使用`GET()`函數處理資料擷取網址。
 ```{r message=FALSE,warning=FALSE}
 library(jsonlite)
-library(RCurl)
-PetData<-fromJSON(getURL("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c"))
+PetData<-fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c")
 str(PetData)
 ```
 由資料結構可知，經過`fromJSON()`函數匯入的JSON檔案被轉存為`列表list`的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用`$`符號截取元素與子元素
@@ -437,9 +436,9 @@ nrow(totalPage)
 
 Rfacebook Packages提供其他函數可供使用
 
-- getUser()
+- getUsers()
 - getPost()
-- getLikes()
+- searchFacebook()
 - Check https://github.com/pablobarbera/Rfacebook
 - ?Rfacebook
 

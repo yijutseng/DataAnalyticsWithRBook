@@ -21,7 +21,7 @@ install.packages("ggplot2")
 ```{r eval=F}
 library(ggplot2)
 ```
-載入已安裝的套件時，可以**不用**在套件名稱前後加雙引號，但也可以加 [參考資料](http://stackoverflow.com/questions/25210455/how-can-library-accept-both-quoted-and-unquoted-strings){target="_blank"}。
+載入已安裝的套件時，可以**不用**在套件名稱前後加雙引號，但也可以加 （[參考資料](http://stackoverflow.com/questions/25210455/how-can-library-accept-both-quoted-and-unquoted-strings){target="_blank"}）。
 
 ## 函數使用
 在R中有許多內建函數，安裝套件後各套件也會提供各式各樣寫好的函數，函數使用方式為`函數名稱(參數1,參數2,....)`，以計算平均數為例，可使用`mean()`函數，範例如下:
