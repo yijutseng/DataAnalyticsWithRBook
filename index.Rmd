@@ -17,6 +17,7 @@ biblio-style: apalike
 link-citations: yes
 download: no
 github-repo: yijutseng/DataAnalyticsWithRBook
+always_allow_html: yes
 description: "介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合"
 url: 'http\://yijutseng.github.io/DataScienceRBook'
 ---

@@ -149,7 +149,7 @@ JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交�
 許多Open Data也用JSON格式儲存，例如[臺北市開放認養動物](http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463){target="_blank"}資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。
 
 將JSON檔案匯入R可以使用`jsonlite`[@R-jsonlite] package，套件使用前必須安裝，安裝套件方法請參考Chapter \@ref(intro)，載入後，可使用`fromJSON()`函數載入JSON資料。
-如API網址為**httr**類別，需要載入`httr`[@Rhttr] package，並使用`GET()`函數處理資料擷取網址。
+如API網址為**httr**類別，需要載入`httr`[@httr] package，並使用`GET()`函數處理資料擷取網址。
 ```{r message=FALSE,warning=FALSE}
 library(jsonlite)
 PetData<-fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c")

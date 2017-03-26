@@ -25,7 +25,7 @@
 <meta name="author" content="曾意儒 Yi-Ju Tseng">
 
 
-<meta name="date" content="2017-03-20">
+<meta name="date" content="2017-03-25">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -462,68 +462,67 @@ dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span c
 </ul>
 <p><a href="https://api.github.com/users/yijutseng/repos" target="_blank">JSON檔案範例</a></p>
 <p>許多Open Data也用JSON格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。</p>
-<p>將JSON檔案匯入R可以使用<code>jsonlite</code><span class="citation">(Ooms, Temple Lang, and Hilaiel <a href="#ref-R-jsonlite">2016</a>)</span> package，套件使用前必須安裝，安裝套件方法請參考Chapter <a href="intro.html#intro">1</a>，載入後，可使用<code>fromJSON()</code>函數載入JSON資料。 如需直接從API網址截取資料，需要載入<code>RCurl</code><span class="citation">(Temple Lang and CRAN team <a href="#ref-R-RCurl">2016</a>)</span> package，並使用<code>getURL()</code>函數處理資料擷取網址。</p>
+<p>將JSON檔案匯入R可以使用<code>jsonlite</code><span class="citation">(Ooms, Temple Lang, and Hilaiel <a href="#ref-R-jsonlite">2016</a>)</span> package，套件使用前必須安裝，安裝套件方法請參考Chapter <a href="intro.html#intro">1</a>，載入後，可使用<code>fromJSON()</code>函數載入JSON資料。 如API網址為<strong>httr</strong>類別，需要載入<code>httr</code><span class="citation">(<span class="citeproc-not-found" data-reference-id="Rhttr"><strong>???</strong></span>)</span> package，並使用<code>GET()</code>函數處理資料擷取網址。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(jsonlite)
-<span class="kw">library</span>(RCurl)
-PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c&quot;</span>))
+PetData&lt;-<span class="kw">fromJSON</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c&quot;</span>)
 <span class="kw">str</span>(PetData)</code></pre></div>
 <pre><code>## List of 1
 ##  $ result:List of 5
 ##   ..$ offset : int 0
 ##   ..$ limit  : int 10000
-##   ..$ count  : int 305
+##   ..$ count  : int 307
 ##   ..$ sort   : chr &quot;&quot;
-##   ..$ results:&#39;data.frame&#39;:  305 obs. of  20 variables:
-##   .. ..$ _id            : chr [1:305] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
-##   .. ..$ Name           : chr [1:305] &quot;花俏&quot; &quot;麥茶&quot; &quot;&quot; &quot;金兒&quot; ...
-##   .. ..$ Sex            : chr [1:305] &quot;雌&quot; &quot;雄&quot; &quot;雌&quot; &quot;雌&quot; ...
-##   .. ..$ Type           : chr [1:305] &quot;貓&quot; &quot;貓&quot; &quot;犬&quot; &quot;貓&quot; ...
-##   .. ..$ Build          : chr [1:305] &quot;中&quot; &quot;中&quot; &quot;幼&quot; &quot;中&quot; ...
-##   .. ..$ Age            : chr [1:305] &quot;成年&quot; &quot;成年&quot; &quot;幼齡&quot; &quot;成年&quot; ...
-##   .. ..$ Variety        : chr [1:305] &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
-##   .. ..$ Reason         : chr [1:305] &quot;動物救援&quot; &quot;動物管制&quot; &quot;民眾拾獲&quot; &quot;動物管制&quot; ...
-##   .. ..$ AcceptNum      : chr [1:305] &quot;106031204&quot; &quot;106031003&quot; &quot;106031021&quot; &quot;106030705&quot; ...
-##   .. ..$ ChipNum        : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ IsSterilization: chr [1:305] &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
-##   .. ..$ HairType       : chr [1:305] &quot;三花&quot; &quot;黃白&quot; &quot;黑&quot; &quot;三花&quot; ...
-##   .. ..$ Note           : chr [1:305] &quot;大家好~我的名字叫花俏，漂亮的我想要找個長期飯票，這個人會是你嗎?讓我們給彼此一個機會吧!!\n&quot; &quot;大家好，我叫麥茶，\n淡淡憂鬱的我有吸引你嗎？\n個性有點緊張、怕人，\n要花時間慢慢培養感情，等待我熟悉，\n你願意給我機會，讓我進&quot;| __truncated__ &quot;&quot; &quot;你好，我叫金兒。\n個性緊張，不會靠人很近，\n因為貓咪很獨立，需要好長時間適應。\n但我還是想要在心情好的時候有人陪伴，\n你可以來&quot;| __truncated__ ...
-##   .. ..$ Resettlement   : chr [1:305] &quot;臺北市動物之家 收容編號106031204&quot; &quot;臺北市動物之家 收容編號106031003&quot; &quot;臺北市動物之家 收容編號106031021&quot; &quot;臺北市動物之家 收容編號106030705&quot; ...
-##   .. ..$ Phone          : chr [1:305] &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
-##   .. ..$ Email          : chr [1:305] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
-##   .. ..$ ChildreAnlong  : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ AnimalAnlong   : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ Bodyweight     : chr [1:305] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
-##   .. ..$ ImageName      : chr [1:305] &quot;http://163.29.39.183/uploads/images/medium/e0de6dfd-332e-459b-b157-36b006a1924c.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/c5983ea5-b55a-4bd1-bb3b-2c03f8e496a2.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/c9318c07-988d-4ac4-b7ba-ddba0968759c.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/dc71f0d8-74fd-4ffb-b41d-2c4aa62a49db.jpg&quot; ...</code></pre>
+##   ..$ results:&#39;data.frame&#39;:  307 obs. of  20 variables:
+##   .. ..$ _id            : chr [1:307] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##   .. ..$ Name           : chr [1:307] &quot;&quot; &quot;&quot; &quot;花俏&quot; &quot;麥茶&quot; ...
+##   .. ..$ Sex            : chr [1:307] &quot;雄&quot; &quot;雌&quot; &quot;雌&quot; &quot;雄&quot; ...
+##   .. ..$ Type           : chr [1:307] &quot;貓&quot; &quot;犬&quot; &quot;貓&quot; &quot;貓&quot; ...
+##   .. ..$ Build          : chr [1:307] &quot;中&quot; &quot;中&quot; &quot;中&quot; &quot;中&quot; ...
+##   .. ..$ Age            : chr [1:307] &quot;成年&quot; &quot;老年&quot; &quot;成年&quot; &quot;成年&quot; ...
+##   .. ..$ Variety        : chr [1:307] &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; &quot;米克斯&quot; ...
+##   .. ..$ Reason         : chr [1:307] &quot;動物救援&quot; &quot;動物救援&quot; &quot;動物救援&quot; &quot;動物管制&quot; ...
+##   .. ..$ AcceptNum      : chr [1:307] &quot;106032203&quot; &quot;106031503&quot; &quot;106031204&quot; &quot;106031003&quot; ...
+##   .. ..$ ChipNum        : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ IsSterilization: chr [1:307] &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; &quot;未絕育&quot; ...
+##   .. ..$ HairType       : chr [1:307] &quot;黃白&quot; &quot;黑&quot; &quot;三花&quot; &quot;黃白&quot; ...
+##   .. ..$ Note           : chr [1:307] &quot;神經症狀&quot; &quot;虛弱、瘦、左側大範圍外傷、無法站立&quot; &quot;大家好~我的名字叫花俏，漂亮的我想要找個長期飯票，這個人會是你嗎?讓我們給彼此一個機會吧!!\n&quot; &quot;大家好，我叫麥茶，\n淡淡憂鬱的我有吸引你嗎？\n個性有點緊張、怕人，\n要花時間慢慢培養感情，等待我熟悉，\n你願意給我機會，讓我進&quot;| __truncated__ ...
+##   .. ..$ Resettlement   : chr [1:307] &quot;臺北市動物之家 收容編號106032203&quot; &quot;臺北市動物之家 收容編號：106031503&quot; &quot;臺北市動物之家 收容編號106031204&quot; &quot;臺北市動物之家 收容編號106031003&quot; ...
+##   .. ..$ Phone          : chr [1:307] &quot;02-87913063&quot; &quot;02-8791-3063&quot; &quot;02-87913062&quot; &quot;02-87913062&quot; ...
+##   .. ..$ Email          : chr [1:307] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
+##   .. ..$ ChildreAnlong  : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ AnimalAnlong   : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ Bodyweight     : chr [1:307] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   .. ..$ ImageName      : chr [1:307] &quot;http://163.29.39.183/uploads/images/medium/9fe8fb19-ed6f-41a2-b25c-719a80559085.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/6b77ae0f-e893-4bca-af97-c6e9afd36d2e.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/e0de6dfd-332e-459b-b157-36b006a1924c.jpg&quot; &quot;http://163.29.39.183/uploads/images/medium/c5983ea5-b55a-4bd1-bb3b-2c03f8e496a2.jpg&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(PetData$result$results)</code></pre></div>
 <pre><code>##   _id Name Sex Type Build  Age Variety   Reason AcceptNum ChipNum
-## 1   1 花俏  雌   貓    中 成年  米克斯 動物救援 106031204        
-## 2   2 麥茶  雄   貓    中 成年  米克斯 動物管制 106031003        
-## 3   3       雌   犬    幼 幼齡  米克斯 民眾拾獲 106031021        
-## 4   4 金兒  雌   貓    中 成年  米克斯 動物管制 106030705        
-## 5   5       雄   犬    大 老年  米克斯 動物管制 106030702        
-## 6   6 溫蒂  雌   貓    中 成年  米克斯 動物管制 106030616        
+## 1   1       雄   貓    中 成年  米克斯 動物救援 106032203        
+## 2   2       雌   犬    中 老年  米克斯 動物救援 106031503        
+## 3   3 花俏  雌   貓    中 成年  米克斯 動物救援 106031204        
+## 4   4 麥茶  雄   貓    中 成年  米克斯 動物管制 106031003        
+## 5   5 山姆  雄   貓    中 成年  米克斯 民眾拾獲 106031002        
+## 6   6       雌   犬    幼 幼齡  米克斯 民眾拾獲 106031021        
 ##   IsSterilization HairType
-## 1          未絕育     三花
-## 2          未絕育     黃白
-## 3          未絕育       黑
-## 4          未絕育     三花
-## 5          未絕育       黑
-## 6          未絕育   虎斑白
+## 1          未絕育     黃白
+## 2          未絕育       黑
+## 3          未絕育     三花
+## 4          未絕育     黃白
+## 5          未絕育   黃虎斑
+## 6          未絕育       黑
 ##                                                                                                                                                                    Note
-## 1                                                                            大家好~我的名字叫花俏，漂亮的我想要找個長期飯票，這個人會是你嗎?讓我們給彼此一個機會吧!!\n
-## 2 大家好，我叫麥茶，\n淡淡憂鬱的我有吸引你嗎？\n個性有點緊張、怕人，\n要花時間慢慢培養感情，等待我熟悉，\n你願意給我機會，讓我進入你的家庭嗎，\n歡迎來動物之家看看我唷!
-## 3                                                                                                                                                                      
-## 4                               你好，我叫金兒。\n個性緊張，不會靠人很近，\n因為貓咪很獨立，需要好長時間適應。\n但我還是想要在心情好的時候有人陪伴，\n你可以來看看我嗎!
-## 5                                                                                                                                                                      
-## 6                                                                                                  嗨~我叫溫蒂，我想要一個溫暖安穩的家，您可以來認養我，完成我的願望嗎?
-##                       Resettlement       Phone                      Email
-## 1 臺北市動物之家 收容編號106031204 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 2 臺北市動物之家 收容編號106031003 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 3 臺北市動物之家 收容編號106031021 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 4 臺北市動物之家 收容編號106030705 02-87913062 tcapoa8@mail.taipei.gov.tw
-## 5                                                                        
-## 6 臺北市動物之家 收容編號106030616 02-87913062 tcapoa8@mail.taipei.gov.tw
+## 1                                                                                                                                                              神經症狀
+## 2                                                                                                                                    虛弱、瘦、左側大範圍外傷、無法站立
+## 3                                                                            大家好~我的名字叫花俏，漂亮的我想要找個長期飯票，這個人會是你嗎?讓我們給彼此一個機會吧!!\n
+## 4 大家好，我叫麥茶，\n淡淡憂鬱的我有吸引你嗎？\n個性有點緊張、怕人，\n要花時間慢慢培養感情，等待我熟悉，\n你願意給我機會，讓我進入你的家庭嗎，\n歡迎來動物之家看看我唷!
+## 5                                                                                          臉傷。\n嗨~我的名字叫山姆，我的個性比較緊張，請多給我一點時間適應新環境唷!\n
+## 6                                                                                                                                                                      
+##                         Resettlement        Phone                      Email
+## 1   臺北市動物之家 收容編號106032203  02-87913063 tcapoa8@mail.taipei.gov.tw
+## 2 臺北市動物之家 收容編號：106031503 02-8791-3063 tcapoa8@mail.taipei.gov.tw
+## 3   臺北市動物之家 收容編號106031204  02-87913062 tcapoa8@mail.taipei.gov.tw
+## 4   臺北市動物之家 收容編號106031003  02-87913062 tcapoa8@mail.taipei.gov.tw
+## 5   臺北市動物之家 收容編號106031002  02-87913062 tcapoa8@mail.taipei.gov.tw
+## 6   臺北市動物之家 收容編號106031021  02-87913062 tcapoa8@mail.taipei.gov.tw
 ##   ChildreAnlong AnimalAnlong Bodyweight
 ## 1                                      
 ## 2                                      
@@ -532,17 +531,17 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 ## 5                                      
 ## 6                                      
 ##                                                                             ImageName
-## 1 http://163.29.39.183/uploads/images/medium/e0de6dfd-332e-459b-b157-36b006a1924c.jpg
-## 2 http://163.29.39.183/uploads/images/medium/c5983ea5-b55a-4bd1-bb3b-2c03f8e496a2.jpg
-## 3 http://163.29.39.183/uploads/images/medium/c9318c07-988d-4ac4-b7ba-ddba0968759c.jpg
-## 4 http://163.29.39.183/uploads/images/medium/dc71f0d8-74fd-4ffb-b41d-2c4aa62a49db.jpg
-## 5 http://163.29.39.183/uploads/images/medium/4d5c0ba3-37d0-4c5c-9f01-0d3574eb4d56.jpg
-## 6 http://163.29.39.183/uploads/images/medium/2aa99d15-6ead-4824-9725-090a79844788.jpg</code></pre>
+## 1 http://163.29.39.183/uploads/images/medium/9fe8fb19-ed6f-41a2-b25c-719a80559085.jpg
+## 2 http://163.29.39.183/uploads/images/medium/6b77ae0f-e893-4bca-af97-c6e9afd36d2e.jpg
+## 3 http://163.29.39.183/uploads/images/medium/e0de6dfd-332e-459b-b157-36b006a1924c.jpg
+## 4 http://163.29.39.183/uploads/images/medium/c5983ea5-b55a-4bd1-bb3b-2c03f8e496a2.jpg
+## 5 http://163.29.39.183/uploads/images/medium/478ca5ce-4bc2-46c7-a22f-dd8c2bf7ed77.jpg
+## 6 http://163.29.39.183/uploads/images/medium/c9318c07-988d-4ac4-b7ba-ddba0968759c.jpg</code></pre>
 <p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(PetData$result$results$Reason)</code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
-##           26           94          120           44           21</code></pre>
+##           26           93          121           44           23</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myjson &lt;-<span class="st"> </span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)
@@ -582,7 +581,7 @@ PetData&lt;-<span class="kw">fromJSON</span>(<span class="kw">getURL</span>(<spa
 <p>許多Open Data也用XML格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927" target="_blank">臺北市水質監測資訊</a>。如需將XML檔案匯入R中，需要安裝<code>XML</code> <span class="citation">(Temple Lang and CRAN Team <a href="#ref-R-XML">2016</a>)</span> package，使用<code>xmlParse()</code>函數將檔案匯入。</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(XML)
 waterQ &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span>)</code></pre></div>
-<p>使用<code>xpathSApply()</code>函數取得指定標籤內的資料</p>
+<p>完成資料讀取後，使用<code>xpathSApply()</code>函數搭配<strong>XPath</strong>語法取得指定標籤內的資料</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#取得所有&quot;code_name&quot;標籤內的資料</span>
 <span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//code_name&quot;</span>,xmlValue)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
 <pre><code>##  [1] &quot;雙溪淨水場&quot;               &quot;衛理女中&quot;                
@@ -594,6 +593,9 @@ waterQ &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span clas
 <span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//longitude&quot;</span>,xmlValue)[<span class="dv">1</span>:<span class="dv">10</span>]</code></pre></div>
 <pre><code>##  [1] &quot;121.56094&quot; &quot;121.54401&quot; &quot;121.55557&quot; &quot;121.53476&quot; &quot;121.54043&quot; &quot;121.55661&quot;
 ##  [7] &quot;121.55360&quot; &quot;121.53551&quot; &quot;121.59892&quot; &quot;121.60829&quot;</code></pre>
+<p><strong>XPath</strong>是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，<strong>XPath</strong>語法的邏輯，可參考<a href="https://www.w3schools.com/xml/xpath_syntax.asp" target="_blank">W3C Schools</a>或是Google搜尋相關中文教學。在此列舉幾個常用的語法:</p>
+<pre><code>// : 子結點資料, 如所有連結標籤 //a
+@ : 屬性資料, 如所有連結標籤內的連結網址 //a/@href</code></pre>
 </div>
 <div id="-webscraping" class="section level3">
 <h3><span class="header-section-number">5.2.5</span> 網頁爬蟲 Webscraping</h3>
@@ -611,11 +613,9 @@ htmlCode[<span class="dv">1</span>:<span class="dv">5</span>]</code></pre></div>
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                       
 ## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                    
 ## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;請填寫網站關鍵記事，用半角逗號(,)隔開\&quot; /&gt;&quot;</code></pre>
-<p>讀取完網頁後，使用用XML工具分析擷取網頁 (<code>XML</code> package)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(httr)
-html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="kw">GET</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>))</code></pre></div>
-<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//title&quot;</span>, xmlValue)</code></pre></div>
+<p>或是使用XML工具分析擷取網頁 (<code>XML</code> package)，使用方法與XML檔案處理方法類似，搭配<strong>XPath</strong>語言，篩選所需資料</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)
+<span class="kw">xpathSApply</span>(html, <span class="st">&quot;//title&quot;</span>, xmlValue)</code></pre></div>
 <pre><code>## [1] &quot;長庚大學 資訊管理學系 &quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//span[@class=&#39;ptname &#39;]&quot;</span>, xmlValue)</code></pre></div>
 <pre><code>##  [1] &quot;畢業專題成果展&quot;       &quot;碩士班計畫書審查&quot;     &quot;畢業校友資料登錄&quot;    
@@ -656,7 +656,8 @@ Yahoo_news =<span class="st"> </span><span class="kw">data.frame</span>(<span cl
 &lt;span class=&quot;provider&quot; id=&quot;yui_3_9_1_1_1486568229946_2404&quot;&gt;Yahoo奇摩娛樂新聞&lt;/span&gt;
 &lt;/cite&gt;&lt;/div&gt;&lt;/li&gt;
 ....</code></pre>
-<p>觀察上述程式碼可已發現新聞清單被包含在<code>ul</code>標籤下，且css class為<code>tpl-title yom-list list-style-none</code>，所以這邊可以使用第一個class<code>tpl-title</code>為篩選條件。網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。</p>
+<p>觀察上述程式碼可已發現新聞清單被包含在<code>ul</code>標籤下，且css class為<code>tpl-title yom-list list-style-none</code>，所以這邊可以使用第一個class<code>tpl-title</code>為篩選條件。CSS 標籤的意義可參考<a href="https://www.w3schools.com/cssref/css_selectors.asp">W3C Schools</a>的教學{target=“_blank“}。</p>
+<p>網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。</p>
 <p>其他爬蟲相關參考資源:</p>
 <ul>
 <li><a href="https://www.slideshare.net/secret/mdfHLPgvIW1kPR" target="_blank">網路爬蟲實作 - 用 r 語言打造自己的爬蟲程式</a></li>
@@ -770,9 +771,9 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 ## [1] 42</code></pre>
 <p>Rfacebook Packages提供其他函數可供使用</p>
 <ul>
-<li>getUser()</li>
+<li>getUsers()</li>
 <li>getPost()</li>
-<li>getLikes()</li>
+<li>searchFacebook()</li>
 <li>Check <a href="https://github.com/pablobarbera/Rfacebook" class="uri">https://github.com/pablobarbera/Rfacebook</a></li>
 <li>?Rfacebook</li>
 </ul>
@@ -823,9 +824,6 @@ for(i in <span class="dv">1</span>:(<span class="kw">length</span>(DateVectorStr
 </div>
 <div id="ref-R-jsonlite">
 <p>Ooms, Jeroen, Duncan Temple Lang, and Lloyd Hilaiel. 2016. <em>Jsonlite: A Robust, High Performance Json Parser and Generator for R</em>. <a href="https://CRAN.R-project.org/package=jsonlite" class="uri">https://CRAN.R-project.org/package=jsonlite</a>.</p>
-</div>
-<div id="ref-R-RCurl">
-<p>Temple Lang, Duncan, and the CRAN team. 2016. <em>RCurl: General Network (Http/Ftp/.) Client Interface for R</em>. <a href="https://CRAN.R-project.org/package=RCurl" class="uri">https://CRAN.R-project.org/package=RCurl</a>.</p>
 </div>
 <div id="ref-R-XML">
 <p>Temple Lang, Duncan, and the CRAN Team. 2016. <em>XML: Tools for Parsing and Generating Xml Within R and S-Plus</em>. <a href="https://CRAN.R-project.org/package=XML" class="uri">https://CRAN.R-project.org/package=XML</a>.</p>
