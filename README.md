@@ -1,5 +1,5 @@
 
-#資料科學與R語言
+# 資料科學與R語言
 ### 曾意儒 Yi-Ju Tseng
 
 本資源庫存放[資料科學與R語言](http://yijutseng.github.io/DataScienceRBook/)的文字與程式碼，內容包括使用R語言完成以下任務:
@@ -22,7 +22,7 @@ devtools::install_github("yijutseng/DataAnalyticsWithRBook")
 
 本書為[長庚大學資訊管理學系](http://im.cgu.edu.tw/bin/home.php) [大數據分析方法](https://github.com/yijutseng/BigDataCGUIM)課程教學參考書籍
 
-歡迎提供[建議與回饋](https://goo.gl/forms/5Htobvwy2vsB7yiF3)。
+歡迎提供[建議與回饋](https://goo.gl/forms/5Htobvwy2vsB7yiF3)，也可透過[GitHub issues](https://github.com/yijutseng/DataAnalyticsWithRBook/issues)或是直接Fork修改有誤的地方。
 
 
 
