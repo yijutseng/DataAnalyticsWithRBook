@@ -281,8 +281,14 @@ head(Yahoo_news)
 </cite></div></li>
 ....
 ```
-觀察上述程式碼可已發現新聞清單被包含在`ul`標籤下，且css class為`tpl-title yom-list list-style-none`，所以這邊可以使用第一個class`tpl-title`為篩選條件。CSS 標籤的意義可參考[W3C Schools](https://www.w3schools.com/cssref/css_selectors.asp)的教學{target="_blank"}。
+觀察上述程式碼可已發現新聞清單被包含在`ul`標籤下，且css class為`tpl-title yom-list list-style-none`，所以這邊可以使用第一個class`tpl-title`為篩選條件。CSS 標籤的意義可參考[W3C Schools](https://www.w3schools.com/cssref/css_selectors.asp)的教學{target="_blank"}。在此整理常用的語法：
 
+- CSS Selector 常見語法 [參考資料](https://www.w3schools.com/cssref/css_selectors.asp)
+    - **.**xxx：select elements with class="xxx"
+    - **#**xxx：select elements with id="xxx"
+    - **[**yyy**]**：select elements with attribute yyy
+    - **[**yyy=zzz**]**：select elements with attribute yyy="zzz"
+    
 網頁爬蟲需要多做觀察與練習，才可熟知篩選技巧。
 
 其他爬蟲相關參考資源:
@@ -292,6 +298,7 @@ head(Yahoo_news)
 - R Bloggers 有很多[爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping){target="_blank"}（英文）
 - [Ptt爬蟲實作](http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html){target="_blank"} 
 - [大數學堂 網頁爬蟲課程](http://www.largitdata.com/course_list/1){target="_blank"}
+- [搭配結巴中文斷詞的使用範例](https://github.com/CGUIM-BigDataAnalysis/BigDataCGUIM/blob/master/105/JiebaR.md){target="_blank"}
 
 ## Facebook資料擷取
 Facebook提供[Graph API](https://developers.facebook.com/docs/graph-api?locale=zh_TW){target="_blank"}，讓應用程式可透過API讀取與寫入 Facebook相關資料，**Graph API**會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供[Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="_blank"}，讓程式開發人員可以測試資料撈取方法和結果。

@@ -43,7 +43,7 @@ install.packages("data.table") ##安裝
 library(data.table) ##載入
 ```
 
-使用`data.table`讀取大型資料的速度比使用資料框快上數倍，讀取資料的函數為`fread()`，使用方法與一般檔案讀取方法(Ch \@ref(file))類似
+使用`data.table`讀取大型資料的速度比使用資料框快上數倍，效能比較可參考[Benchmarks : Grouping](https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping)，讀取資料的函數為`fread()`，使用方法與一般檔案讀取方法(Ch \@ref(file))類似
 ```{r eval=F}
 fread("檔案名稱")
 ```
@@ -75,18 +75,27 @@ class(NBA1516DT)
 第一個參數`i`是用來篩選**觀察值**，也就是針對列(Row)做子集。篩選方式與Ch \@ref(subset)雷同，可透過**布林值**的向量或是**元素索引(index)**向量指定篩選條件，透過觀察值的篩選，可保留需要的資料，進行後續分析。
 
 以前述NBA球員資料為例，如需擷取球員姓名包含James字串的資料，可使用下列指令：
-```{r}
+```{r eval=F}
 NBA1516DT[grepl('James',Name)]
+```
+```{r echo=F}
+knitr::kable(NBA1516DT[grepl('James',Name)]) 
 ```
 
 如需篩選所有中鋒，且姓名包含"A"字串的球員資料，可使用下列指令：
-```{r}
+```{r  eval=F}
 NBA1516DT[grepl('A',Name)&Position=="C"]
 ```
+```{r echo=F}
+knitr::kable(NBA1516DT[grepl('A',Name)&Position=="C"]) 
+```
 
-如需篩選各隊出場數超過70場的球員資料，可使用下列指令：
-```{r}
-NBA1516DT[GamesPlayed>70]
+如需篩選各隊出場數超過80場的球員資料，可使用下列指令：
+```{r eval=F}
+NBA1516DT[GamesPlayed>80]
+```
+```{r echo=F}
+knitr::kable(NBA1516DT[GamesPlayed>80]) 
 ```
 
 ### j 欄位選擇運算

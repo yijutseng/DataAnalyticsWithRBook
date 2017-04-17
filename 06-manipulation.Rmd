@@ -4,7 +4,7 @@
 Each column is a variable. Each row is an observation.
 
 - 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
-- 不同的觀察值應該要在不同行（Raw）
+- 不同的觀察值應該要在不同行（Row）
 - 一張表裡面，有所有分析需要的資料
 - 如果一定要多張表，中間一定要有index可以把表串起來
 - One file, one table
@@ -101,6 +101,124 @@ grepl("A",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找A�
 grepl("a",c("Alex","Tom","Amy","Joy","Emma")) ##在姓名文字向量中尋找a，回傳各元素是否包含"a"
 ```
 
+### 正規表示式 (Regular Expression)
+
+字串處理通常會搭配正規表示式 (Regular Expression)
+
+Regular Expression (正規表示式)是指一組能用來表示字串共同格式 (common structure)的樣式 (Pattern)，像是`@`符號會固定出現在email中，或是手機號碼固定是10碼，等等樣式。
+在所有的程式語言中，只要用到**字串比對**與**字串取代**等字串相關功能，都會用到正規表示式。雖然正規表示式在不同程式語言中會有些許差異，但核心概念是相同的。
+
+以下是常見的範例:
+
+|語法          |正則表達式    |範例          |
+|--------------|--------------|--------------|
+|整數|[0-9]+|5815|
+|浮點數|[0-9]+\.[0-9]+|58.15|
+|純英文字串|[A-Za-z]+|CGUIM|
+|Email|[a-zA-Z0-9_]+@[a-zA-Z0-9._]+|`im@mail.cgu.edu.tw`|
+|URL|`http://[a-zA-Z0-9./_]+`|`http://www.is.cgu.edu.tw/`|
+
+
+可以用正規表示式的R函數如下：
+
+- grep()
+- grepl()
+- gsub()
+- str_split()
+- stringr package中的諸多函數
+
+正規表示式的常用語法分類如下：
+
+- 逃脫字元
+- 表示數量 
+- 表示位置
+- 運算子
+- 特殊符號
+
+#### 逃脫字元
+
+**\**
+
+#### 表示數量的語法
+
+- `*`: 出現0~無限多次
+- `+`: 出現1~無限多次
+- `?`: 出現0~1次
+- `{n}`: 出現n次
+- `{n,}`: 出現n~無限多次
+- `{n,m}`: 出現n~m次
+
+```{r}
+stringVector<-c("a","abc","ac","abbc","abbbc","abbbbc")
+grep("ab*",stringVector,value=T)
+grep("ab+",stringVector,value=T)
+grep("ab?c",stringVector,value=T)
+grep("ab{2}c",stringVector,value=T)
+grep("ab{2,}c",stringVector,value=T)
+grep("ab{2,3}c",stringVector,value=T)
+```
+
+#### 表示位置的語法
+
+- `^`: 出現在字串開始的位置
+- `$`: 出現在字串結束ˇ的位置
+- `\b`: 出現空字串(空白)開始或結束的位置
+- `\B`: 出現非字串開始或結束的位置
+
+```{r}
+stringVector<-c("abc","bcd","cde","def","abc def","bcdefg abc")
+grep("^bc",stringVector,value=T)
+grep("bc$",stringVector,value=T)
+grep("\\bde",stringVector,value=T)
+grep("\\Bde",stringVector,value=T)
+```
+
+#### 運算子
+
+- `.`: 出現所有的字元一次，包括空字串
+- `[...]`: 出現字元清單(...)中的字元一次，可用`-`表示範圍，如`[A-Z]`，`[a-z]`，`[0-9]`
+- `[^...]`: 不出現字元清單(...)中的字元
+- `\`: 要搜尋字串中的特殊字元時，前方須加上`\`
+- `|`: 或
+
+```{r}
+stringVector<-c("03-2118800","02-23123456","0988123456",
+                "07-118","0-888","csim@mail.cgu.edu.tw","csim@.","csim@",
+                "http://www.is.cgu.edu.tw/")
+grep("[0-9]{2}-[0-9]{7,8}",stringVector,value=T)
+grep("[0-9]{10}",stringVector,value=T)
+grep("02|03",stringVector,value=T)
+grep("[a-zA-Z0-9_]+@[a-zA-Z0-9._]+",stringVector,value=T)
+```
+
+#### 特殊符號
+
+- `\d`: 數字，等於 [0-9]
+- `\D`: 非數字，等於 [^0-9]
+- `[:lower:]`: 小寫字，等於 [a-z]
+- `[:upper:]`: 大寫字，等於 [A-Z]
+- `[:alpha:]`: 所有英文字，等於 [[:lower:][:upper:]] or [A-z]
+- `[:alnum:]`: 所有英文字和數字，等於 [[:alpha:][:digit:]] or [A-z0-9]
+- `\w`: 文字數字與底線，等於 [[:alnum:]_] or [A-z0-9_]
+- `\W`: 非文字數字與底線，等於 [^A-z0-9_]
+- `[:blank:]`: 空白字元，包括空白和tab
+- `\s`: 空白字元, ` `
+- `\S`: 非空白字元
+- `[:punct:]`: 標點符號 ! " # $ % & ’ ( ) * + , - . / : ; < = > ? @ [  ] ^ _ ` { | } ~.
+
+```{r}
+stringVector<-c("03-2118800","02-23123456","0988123456",
+                "07-118","0-888","csim@mail.cgu.edu.tw","http://www.is.cgu.edu.tw/")
+grep("\\d{2}-\\d{7,8}",stringVector,value=T)
+grep("\\d{10}",stringVector,value=T)
+grep("\\w+@[a-zA-Z0-9._]+",stringVector,value=T)
+```
+
+#### 參考資料
+
+- [Regular Expression 詳論](https://dotblogs.com.tw/johnny/archive/2010/01/25/13301.aspx)
+- [RegExLib.com](http://regexlib.com/)
+- [Regular Expression in R](http://stat545.com/block022_regular-expression.html)
 
 ##子集Subset {#subset}
 
@@ -154,7 +272,7 @@ subset(iris,Species=="virginica") ##Species等於"virginica"的列Row，所有�
 knitr::kable(iris[grepl("color",iris$Species),]) ##Species包含"color"的列，所有的行
 ```
 
-若想要快速取得資料框的前幾列(Raw)或後幾列，也可使用`head()`和`tail()`函數
+若想要快速取得資料框的前幾列(Row)或後幾列，也可使用`head()`和`tail()`函數
 ```{r}
 head(iris,5) ##取出iris資料框的前五列
 tail(iris,3) ##取出iris資料框的後三列
@@ -226,6 +344,103 @@ irisAdd<-cbind(iris, #資料框
 tail(irisAdd)
 ```
 
+
+##資料結合 (Join)
+
+除了按照行列順序的組合外，更常有的情形是依照某個欄位的值作為結合依據，如：
+
+- 用學號把以下兩個資料框結合成一個資料框
+    - 學號與姓名資料框
+    - 學號與宿舍床位資料框
+- 用縣市名稱與年度將人口資料與醫療資源資料結合
+
+原生的R環境可以用`merge()`函數將資料框結合，使用方法為`merge(資料框1,資料框2,by="結合依據欄位")`
+
+```{r}
+nameDF<-data.frame(ID=c(1,2,3,4,5),
+                  Name=c("Amy","Bob","Chris","David","Emma"))
+scoreDF<-data.frame(ID=c(1,2,4),
+                  Score=c(60,90,50))
+```
+
+```{r, eval=F}
+nameDF
+```
+```{r, echo=F}
+knitr::kable(nameDF)
+```
+
+```{r, eval=F}
+scoreDF
+```
+```{r, echo=F}
+knitr::kable(scoreDF)
+```
+
+```{r,eval=F}
+merge(nameDF,scoreDF,by="ID")
+```
+```{r,echo=F}
+knitr::kable(merge(nameDF,scoreDF,by="ID"))
+```
+
+按照上述輸出結果可知，merge函數預設只保留兩資料框都有對應到的資料，如果不想要merge函數將沒對應到的資料刪除，可以設定參數`all`，`all.x`或是`all.y`，來保留沒對應到的資料列。
+
+`merge(資料框1,資料框2,by="結合依據欄位",all=T)`
+
+`merge(資料框1,資料框2,by="結合依據欄位",all.x=T)`
+
+`merge(資料框1,資料框2,by="結合依據欄位",all.y=T)`
+
+```{r,eval=F}
+merge(nameDF,scoreDF,by="ID",all=T)
+```
+```{r,echo=F}
+knitr::kable(merge(nameDF,scoreDF,by="ID",all=T))
+```
+
+`dplyr`套件提供更有效率的資料結合方法，包括:
+
+- inner_join()：保留有對應到的資料
+- left_join()：保留左邊資料框的所有資料
+- right_join()：保留右邊資料框的所有資料
+- full_join()：保留所有資料
+- semi_join()
+- anti_join()
+
+
+inner_join()：只保留兩張表都有的列，使用方法為 `inner_join(x, y, by = )`
+
+```{r}
+library(dplyr) #使用前須先載入套件
+inner_join(nameDF,scoreDF,by="ID")
+```
+
+left_join()：保留左邊的表所有的列，使用方法文為 `left_join(x, y, by = )`
+
+```{r}
+left_join(nameDF,scoreDF,by="ID")
+```
+
+right_join()：保留右邊的表所有的列。使用方法為 `right_join(x, y, by = )`
+
+```{r}
+right_join(nameDF,scoreDF,by="ID")
+```
+
+
+full_join()：保留所有的列。使用方法為 `full_join(x, y, by = )`
+
+```{r}
+full_join(nameDF,scoreDF,by="ID")
+```
+
+
+semi_join()：留下左邊的ID也有出現在右邊的表的列，右表資料不會輸出。使用方法為 `semi_join(x, y, by = )`
+
+```{r}
+semi_join(nameDF,scoreDF,by="ID")
+```
 
 
 ##長表與寬表{#reshape}
