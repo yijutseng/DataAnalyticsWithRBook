@@ -199,7 +199,8 @@ library(XML)
 waterQ <- xmlParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927")
 ```
 
-完成資料讀取後，使用`xpathSApply()`函數搭配**XPath**語法取得指定標籤內的資料
+完成資料讀取後，使用`xpathSApply()`函數搭配**XPath**語法取得指定標籤內的資料，依需求也可改用`xpathApply()`函數，差別在於`xpathSApply()`函數回傳的物件是Vector 向量
+，而`xpathApply()`回傳的物件是List 列表。
 ```{r}
 #取得所有"code_name"標籤內的資料
 xpathSApply(waterQ,"//code_name",xmlValue)[1:10]
@@ -207,7 +208,7 @@ xpathSApply(waterQ,"//code_name",xmlValue)[1:10]
 xpathSApply(waterQ,"//longitude",xmlValue)[1:10]
 ```
 
-**XPath**是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，**XPath**語法的邏輯，可參考[W3C Schools](https://www.w3schools.com/xml/xpath_syntax.asp){target="_blank"}或是Google搜尋相關中文教學。在此列舉幾個常用的語法:
+在`xpathApply()`與`xpathSApply()`函數中，第二個參數為**XPath**，**XPath**是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，**XPath**語法的邏輯，可參考[W3C Schools](https://www.w3schools.com/xml/xpath_syntax.asp){target="_blank"}或是Google搜尋相關中文教學，如[lxml、XPath 常用語法](http://tech-marsw.logdown.com/blog/2016/01/11/parsing-lxml-xpath-sheet){target="_blank"}。在此列舉幾個常用的語法:
 
 ```
 // : 子結點資料, 如所有連結標籤 //a

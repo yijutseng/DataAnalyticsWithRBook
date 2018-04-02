@@ -167,7 +167,6 @@ num1/num2
 ```{r math2}
 num1<-1.568
 num2<-2.121
-round(num1,digits = 2) #四捨五入至小數點第二位
 round(num2,digits = 1) #四捨五入至小數點第一位
 floor(num1) ##1.568
 ceiling(num2) ##2.121
