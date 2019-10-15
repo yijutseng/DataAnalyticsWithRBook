@@ -1,6 +1,6 @@
 Package: DataAnalyticsWithRBook
 Title: Data Analytics With R
-Version: 0.5
+Version: 0.9
 Authors@R: c(
   person("Yi-Ju", "Tseng", , "yjtseng@mail.cgu.edu.tw", c("aut", "cre"))
   )

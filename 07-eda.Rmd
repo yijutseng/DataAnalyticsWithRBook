@@ -151,6 +151,9 @@ NBA1516DT[Position=="C",
 
 ## dplyr
 `dplyr`[@R-dplyr] package是[Hadley Wickham](http://hadley.nz/){target="_blank"}開發的資料處理分析套件，如要使用必須安裝並載入`dplyr` package
+```{r echo=F}
+select <- dplyr::select 
+```
 ```{r eval=F}
 install.packages("dplyr") ##安裝
 ```
@@ -203,7 +206,7 @@ head(select1)
 ##等同於NBA1516[,2:12]
 select2<-select(NBA1516,Name:FreeThrowsAttempted)
 head(select2)
-##等同於NBA1516[,c(2:4,612)]
+##等同於NBA1516[,c(2:4,6:12)]
 select3<-select(NBA1516,Name:FreeThrowsAttempted,-GamesPlayed)
 head(select3)
 ```

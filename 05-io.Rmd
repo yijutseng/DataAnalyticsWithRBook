@@ -151,8 +151,7 @@ JSON (**J**ava**s**cript **O**bject **N**otation)是一種輕量級的資料交�
 將JSON檔案匯入R可以使用`jsonlite`[@R-jsonlite] package，套件使用前必須安裝，安裝套件方法請參考Chapter \@ref(intro)，載入後，可使用`fromJSON()`函數載入JSON資料。
 如API網址為**httr**類別，需要載入`httr`[@httr] package，並使用`GET()`函數處理資料擷取網址。
 ```{r message=FALSE,warning=FALSE}
-library(jsonlite)
-PetData<-fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c")
+PetData<-jsonlite::fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=f4a75ba9-7721-4363-884d-c3820b0b917c")
 str(PetData)
 ```
 由資料結構可知，經過`fromJSON()`函數匯入的JSON檔案被轉存為`列表list`的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用`$`符號截取元素與子元素
@@ -167,7 +166,7 @@ table(PetData$result$results$Reason)
 
 如果需要將資料框轉換成JSON檔案可以使用`jsonlite` package所提供的`toJSON()`函數。
 ```{r writeJSON}
-myjson <- toJSON(iris, pretty=TRUE)
+myjson <- jsonlite::toJSON(iris, pretty=TRUE)
 str(myjson)
 ```
 
@@ -192,11 +191,12 @@ Tags, elements and attributes
 - Attributes are components of the label
     - `<book category="web">`
     
-許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlParse()`函數將檔案匯入。
+許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlParse()`函數將檔案匯入。若出現`Error: 1: Unknown IO error2: failed to load external entity`，是因為XML套件處理http轉https的功能的不好，載入httr套件後，先使用GET()功能取用網址，再放入xmlParse()就不會有問題。
 
 ```{r}
 library(XML)
-waterQ <- xmlParse("http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927")
+library(httr)
+waterQ <- xmlParse(GET("https://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927"))
 ```
 
 完成資料讀取後，使用`xpathSApply()`函數搭配**XPath**語法取得指定標籤內的資料，依需求也可改用`xpathApply()`函數，差別在於`xpathSApply()`函數回傳的物件是Vector 向量

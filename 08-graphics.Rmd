@@ -234,9 +234,13 @@ library(choroplethr)
 data(df_pop_state) #記載各州人口數的資料
 state_choropleth(df_pop_state) #把各州人口畫在地圖上
 ```
-若在將`reference_map`設定為` = TRUE`，可在面量圖的背景加上google地圖
+
+若將`reference_map`設定為` = TRUE`，可在面量圖的背景加上google地圖，因google地圖需要使用API key，因此須先使用ggmap套件的`register_google(key = "your key")`，帶入google金鑰設定授權金鑰。以下金鑰為示範金鑰，目前已失效，請自行至[Google Cloud Platform](https://console.cloud.google.com/){target="_blank"}，點選API及服務申請Maps Static API後，複製API key。
+
 ```{r, warning=F,message=F, fig.height=3.5}
 data(continental_us_states)
+library(ggmap)
+register_google(key = "AIzaSyC7JRppSZtZuzpy9SdsVbpK5Nhf_oh2xl0")
 state_choropleth(df_pop_state,reference_map = TRUE,
                  zoom= continental_us_states) #把各州人口畫在地圖上
 ```
@@ -249,20 +253,20 @@ state_choropleth(df_pop_state,reference_map = TRUE,
 ```{r,eval=F,warning=F,message=F}
 install.packages("WDI") ##第一次使用前先安裝
 ```
-```{r choroplethr_wdi_1 , warning=F,message=F, fig.height=3}
+```{r choroplethr_wdi_1 , warning=F,message=F, fig.height=3,eval=F}
 library(WDI)
-choroplethr_wdi(code="SP.POP.TOTL", year=2014, 
-                title="2015 Population", num_colors=1)
+choroplethr_wdi(code="SP.POP.TOTL", year=2016, 
+                title="2016 Population", num_colors=1)
 ```
 
 除了人口資料外，WDI也有世界平均壽命資料，平均壽命的代碼為`SP.DYN.LE00.IN`，代碼查詢可見[World Development Indicators](http://beta.data.worldbank.org/){target="_blank"}
-```{r choroplethr_wdi_2,warning=F,message=F, fig.height=4}
-choroplethr_wdi(code="SP.DYN.LE00.IN", year=2014, 
-                title="2014 Life Expectancy")
+```{r choroplethr_wdi_2,warning=F,message=F, fig.height=4,eval=F}
+choroplethr_wdi(code="SP.DYN.LE00.IN", year=2016, 
+                title="2016 Life Expectancy")
 ```
 
 如果只需亞洲太平洋人口分布，可使用`zoom`參數設定想畫的國家，國家的名稱設定必須要和`country.regions`資料完全吻合
-```{r choroplethr_wdi_3,eval=F, warning=F,message=F, fig.height=2.5}
+```{r choroplethr_wdi_3,eval=F, warning=F,message=F, fig.height=2.5,eval=F}
 choroplethr_wdi(code="SP.POP.TOTL", year=2015, 
                 title="2015 Life Expectancy",
                 zoom=c('taiwan','japan','south korea','philippines'))
@@ -276,15 +280,21 @@ choroplethr_wdi(code="SP.POP.TOTL", year=2015,
 ```{r,eval=F,warning=F,message=F}
 install.packages("ggmap", type = "source") ##第一次使用前先安裝
 ```
-載入`ggmap`[@R-ggmap] package後，可以使用`get_map()`函式取得google map圖層，並用`ggmap()`函式將取得的圖層畫出來，`get_map()`函式需要設定的參數如下：
+載入`ggmap`[@R-ggmap] package後，可以使用`get_googlemap()`函式取得google map圖層，並用`ggmap()`函式將取得的圖層畫出來，使用google map的資源時，必須先使用register_google(key = "your key")帶入google金鑰。
+投影片金鑰已失效，請自行至Google Cloud Platform，點選API及服務申請Maps Static API後，複製API key。
 
-- location 地點，可以是地名，也可以是經緯度座標
+`get_googlemap()`函式需要設定的參數如下：
+
+- center 中心點經緯度座標
 - zoom 放大倍率
 - language 地圖語言
 
 ```{r, warning=F,message=F, fig.height=4}
 library(ggmap)
-twmap <- get_map(location = 'Taiwan', zoom = 7,language = "zh-TW")
+register_google(key = "AIzaSyC7JRppSZtZuzpy9SdsVbpK5Nhf_oh2xl0")
+twmap <- get_googlemap(center = c(lon=120.58,lat=23.58), 
+                  zoom = 7,
+                  language = "zh-TW")
 ggmap(twmap)
 ```
 
@@ -300,12 +310,15 @@ WaterDataFrame$latitude<-as.numeric(WaterDataFrame$latitude)
 WaterDataFrame$qua_cntu<-as.numeric(WaterDataFrame$qua_cntu)
 ##結合ggmap
 library(ggmap)
-TaipeiMap = get_map(location = c(121.43,24.93,121.62,25.19), 
-                    zoom = 11, maptype = 'roadmap')
-TaipeiMapO = ggmap(TaipeiMap)+ 
-    geom_point(data=WaterDataFrame[WaterDataFrame$qua_cntu>=0,], 
-               aes(x=longitude, y=latitude,color=qua_cntu,size=3.5))+ 
-    scale_color_continuous(low = "yellow",high = "red")+ 
+TaipeiMap <- get_googlemap(
+    center  = c(lon=121.50,lat=25.06), 
+    zoom = 11, maptype = 'roadmap')
+TaipeiMapO <- ggmap(TaipeiMap)+ 
+    geom_point(data=WaterDataClean, 
+               aes(x=longitude, y=latitude,
+                   color=qua_cntu),size=3.5)+ 
+    scale_color_continuous(
+        low = "yellow",high = "red")+ 
     guides(size=FALSE)
 TaipeiMapO
 ```
@@ -327,8 +340,6 @@ knitr::include_graphics("figure/waterQ.png")
 透過設定`extent`參數可將地圖輸出樣式改為滿版
 ```{r eval=F,warning=F,message=F, fig.height=3}
 library(ggmap)
-TaipeiMap = get_map(location = c(121.43,24.93,121.62,25.19), 
-                    zoom = 14, maptype = 'roadmap')
 ggmap(TaipeiMap,extent = 'device') #extent = 'device' 滿版
 ```
 
@@ -345,7 +356,7 @@ for(i in 1:nrow(StatePop)){
         PopPoint<-rbind(PopPoint,StatePop[i,])   
     }
 }
-USMap <- get_map(location = "United States", zoom = 4)
+USMap <- get_googlemap(center = c(lon=-99.582,lat=40.091), zoom = 4)
 densityMap<-ggmap(USMap, extent = "device") + 
     geom_density2d(data = PopPoint, aes(x = lon, y = lat), size = 0.3) + 
     stat_density2d(data = PopPoint, 
@@ -382,7 +393,7 @@ head(PopPoint,3)
 
 第三個步驟是作圖
 ```{r warning=F,message=F}
-USMap <- get_map(location = "United States", zoom = 4)
+USMap <- get_googlemap(center = c(lon=-99.582,lat=40.091), zoom = 4)
 densityMap<-ggmap(USMap, extent = "device") + 
     geom_density2d(data = PopPoint, aes(x = lon, y = lat), size = 0.3) + 
     stat_density2d(data = PopPoint, 
@@ -631,30 +642,28 @@ data(G20)#範例資料
 str(G20)
 ```
 
-畫Treemap的第一個步驟是用`treemapify()`函式將資料轉為畫Treemap所需格式，此格式要包括下列欄位：
-
-- area: 面積來源(GDP)
-- fill: 著色來源(HDI)
-- label: 每個方塊分類依據(Country)
-- group: 方塊群組(Region)
-
-```{r treemapify1, message=FALSE,warning=F,fig.height=4}
-treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
-    area = "Nom.GDP.mil.USD",fill = "HDI", #面積依GDP，顏色用HDI
-    label = "Country",group = "Region") #方塊分類依據用國家，再用地區分群
-head(treeMapCoordinates)
-```
-
-用`treemapify()`完成資料轉換後，使用`ggplotify()`函式做圖
+用搭配`ggplot()`函數，使用`geom_treemap()`做圖
 ```{r ggplotify1, message=FALSE,warning=F,fig.height=4}
-ggplotify(treeMapCoordinates)
+ggplot(G20, aes(area = gdp_mil_usd, fill = hdi)) +
+  geom_treemap()
 ```
 
 
 看函式名稱不難了解`ggplotify()`也是基於`ggplot2`套件開發，所以可以使用ggplot2的圖形設定參數改變圖形樣式，由於數字越大顏色越深比較符合視覺化的常理，所以這邊使用`ggplot2`的`scale_fill_gradient()`函式指定數值高低所需的顏色
 ```{r ggplotify2,message=FALSE,warning=F,fig.height=4}
-ggplotify(treeMapCoordinates)+ 
+ggplot(G20, aes(area = gdp_mil_usd, fill = hdi, label = country)) +
+  geom_treemap() + 
     scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色
+```
+
+也可使用`geom_treemap_text()`加上文字標籤。
+
+```{r ggplotify3,message=FALSE,warning=F,fig.height=4}
+ggplot(G20, aes(area = gdp_mil_usd, fill = hdi, label = country)) +
+  geom_treemap() + 
+  scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色+
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre",
+                    grow = TRUE)
 ```
 
 完整做圖程式碼如下：
@@ -664,11 +673,11 @@ ggplotify(treeMapCoordinates)+
 ## install_github("wilkox/treemapify") 
 library(treemapify)
 data(G20)#載入範例資料
-treeMapCoordinates <- treemapify(data=G20, #data=資料來源(G20)
-    area = "Nom.GDP.mil.USD",fill = "HDI",
-    label = "Country",group = "Region")
-ggplotify(treeMapCoordinates)+ 
-    scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色
+ggplot(G20, aes(area = gdp_mil_usd, fill = hdi, label = country)) +
+  geom_treemap() + 
+  scale_fill_gradient(low = "white",high = "steelblue") #指定高低顏色+
+  geom_treemap_text(fontface = "italic", colour = "white", place = "centre",
+                    grow = TRUE)
 ```
 
 `treemap`[@R-treemap] package也提供相同的功能
@@ -676,9 +685,9 @@ ggplotify(treeMapCoordinates)+
 library(treemap)
 data(GNI2014)
 treemap(GNI2014,
-       index=c("continent", "iso3"),
-       vSize="population",
-       vColor="GNI",
+       index=c("continent", "iso3"), #分組依據
+       vSize="population", #區塊大小
+       vColor="GNI", #顏色深淺
        type="value")
 ```
 

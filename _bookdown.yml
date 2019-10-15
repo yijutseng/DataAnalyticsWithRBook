@@ -1,4 +1,7 @@
-book_filename: "DataAnalyticsWithR"
+book_filename: DataAnalyticsWithR
+repo: https://github.com/yijutseng/DataAnalyticsWithRBook/
+output_dir: "_book"
+delete_merged_file: true
 language:
   label:
     fig: 'Figure '

@@ -365,7 +365,7 @@ plot(cutDendro$lower[[22]],yaxt="n")
 ```
 
 可用`dist()`函數計算距離，使用method=""設定計算距離的依據
-```{r,fig.height=4,fig.width=6}
+```{r,fig.height=4,fig.width=6,warning=F,message=F}
 mtcars.mxs<-as.matrix(mtcars)
 d<-dist(mtcars.mxs) #預設為euclidean
 head(d)
@@ -373,7 +373,7 @@ head(d)
 
 `dist()`函數可用方法包括：
  "euclidean", "maximum", "manhattan", "canberra", "binary" or "minkowski"
-```{r,fig.height=4,fig.width=6}
+```{r,fig.height=4,fig.width=6,warning=F,message=F}
 d<-dist(mtcars.mxs, method="manhattan") #計算manhattan距離
 head(d)
 ```
@@ -880,7 +880,7 @@ mydata <- read.csv("https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigD
 mydata$admit <- factor(mydata$admit) # 類別變項要轉為factor
 mydata$rank <- factor(mydata$rank) # 類別變項要轉為factor
 mydata$Test<-F #新增一個參數紀錄分組
-mydata[sample(1:nrow(mydata),nrow(mydata)/3),]$Test<-T #隨機取1/3當Test set
+mydata[sample(1:nrow(mydata),nrow(mydata)/3),"Test"]<-T #隨機取1/3當Test set
 c(sum(mydata$Test==F),sum(mydata$Test==T)) # Training set : Test set學生數
 #修改一下factor的level: 改成Level 1為錄取，2為不錄取-->Level 1 要放正面答案
 mydata$admit<-factor(mydata$admit,levels=c(1,0))
