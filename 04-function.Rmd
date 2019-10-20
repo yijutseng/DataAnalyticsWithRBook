@@ -1,5 +1,4 @@
 # 函數 {#function}
-**撰寫中**
 
 ## 為什麼需要函數
 在[R for Data Science](https://r4ds.had.co.nz/functions.html){target="_blank"}中提到，要變成傑出的資料科學家，學習如何撰寫函數（function）是非常好的方法，函數的優點包括：
