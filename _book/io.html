@@ -373,19 +373,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>comment</code>, 備註標示符號，在備註標示符號之後的文字不會被讀入</li>
 <li><code>skip</code>, 要跳過幾行？</li>
 </ul>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb244-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>, <span class="dt">delim=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb248-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>, <span class="dt">delim=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
 <p>###CSV檔案 .csv {#csv}
 <code>readr</code> <span class="citation">(Wickham, Hester, and Francois <a href="#ref-R-readr">2018</a>)</span> package也提供CSV (逗號分隔)檔案的讀取功能，<code>read_csv()</code></p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
-<a class="sourceLine" id="cb245-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb249-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
 <p>###Excel檔案 .xls
 <code>readxl</code> <span class="citation">(Wickham and Bryan <a href="#ref-R-readxl">2019</a>)</span> package提供讀取Excel檔案 (xls, xlsx)的函數<code>read_excel()</code>，除了常用的<code>col_names</code>參數外，也可使用<code>sheet</code>參數設定要讀取的工作表(sheet)</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb250-2" data-line-number="2">dataset &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
 <p>###R物件 .rds
 R物件有檔案小與讀取快速的優點，如果在R程式處理資料後必須儲存一份以供後續分析的話，使用R物件儲存是最佳的方式，讀取R物件有多種函數可供選擇，推薦使用<code>readRDS()</code>函數 (參考資料:<a href="http://www.fromthebottomoftheheap.net/2012/04/01/saving-and-loading-r-objects/" target="_blank">A better way of saving and loading objects in R</a>)</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">dataset &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">dataset &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;檔案路徑與名稱&quot;</span>)</a></code></pre></div>
 <p>###R程式 .R
 <code>source</code>, 讀R的Obejct or script, 執行, ASCII (<code>dump</code>的相反)</p>
 <div id="純文字資料-無分隔" class="section level3">
@@ -455,8 +455,8 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <p>許多Open Data也用JSON格式儲存，例如<a href="http://data.taipei/opendata/datalist/datasetMeta?oid=6a3e862a-e1cb-4e44-b989-d35609559463" target="_blank">臺北市開放認養動物</a>資料，根據資料的API資訊，可得資料擷取網址http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c 。</p>
 <p>將JSON檔案匯入R可以使用<code>jsonlite</code><span class="citation">(Ooms, Temple Lang, and Hilaiel <a href="#ref-R-jsonlite">2018</a>)</span> package，套件使用前必須安裝，安裝套件方法請參考Chapter <a href="intro.html#intro">1</a>，載入後，可使用<code>fromJSON()</code>函數載入JSON資料。
 如API網址為<strong>httr</strong>類別，需要載入<code>httr</code><span class="citation">(<span class="citeproc-not-found" data-reference-id="httr"><strong>???</strong></span>)</span> package，並使用<code>GET()</code>函數處理資料擷取網址。</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">PetData&lt;-jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c&quot;</span>)</a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="kw">str</span>(PetData)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">PetData&lt;-jsonlite<span class="op">::</span><span class="kw">fromJSON</span>(<span class="st">&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=f4a75ba9-7721-4363-884d-c3820b0b917c&quot;</span>)</a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">str</span>(PetData)</a></code></pre></div>
 <pre><code>## List of 1
 ##  $ result:List of 5
 ##   ..$ limit  : int 1000
@@ -485,7 +485,7 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 ##   .. ..$ Email          : chr [1:365] &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; &quot;tcapoa8@mail.taipei.gov.tw&quot; ...
 ##   .. ..$ Bodyweight     : chr [1:365] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...</code></pre>
 <p>由資料結構可知，經過<code>fromJSON()</code>函數匯入的JSON檔案被轉存為<code>列表list</code>的型態，且在result元素中包含五個子元素(offset, limit, count, sort, results)，其中，results子元素的類別為資料框data.frame，內含開放認養動物清單，因此，可使用<code>$</code>符號截取元素與子元素</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">head</span>(PetData<span class="op">$</span>result<span class="op">$</span>results)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">head</span>(PetData<span class="op">$</span>result<span class="op">$</span>results)</a></code></pre></div>
 <pre><code>##   AcceptNum IsSterilization Name Variety  Age ChildreAnlong
 ## 1 106060601          未絕育       米克斯 成年              
 ## 2 106060401          已絕育       米克斯 成年              
@@ -536,14 +536,14 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 ## 5 tcapoa8@mail.taipei.gov.tw           
 ## 6 tcapoa8@mail.taipei.gov.tw</code></pre>
 <p>results資料框中包含20個欄位，可以像分析資料框一樣，針對此資料框做分析，舉例來說，可分析各項<strong>開放認養理由</strong>出現次數</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">table</span>(PetData<span class="op">$</span>result<span class="op">$</span>results<span class="op">$</span>Reason)</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">table</span>(PetData<span class="op">$</span>result<span class="op">$</span>results<span class="op">$</span>Reason)</a></code></pre></div>
 <pre><code>## 
 ##                  動物救援     動物管制 民眾不擬續養     民眾拾獲 
 ##           28          109          155           50           23</code></pre>
 <p>分析可知開放認養理由以動物管制與未填寫居多。</p>
 <p>如果需要將資料框轉換成JSON檔案可以使用<code>jsonlite</code> package所提供的<code>toJSON()</code>函數。</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">myjson &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">str</span>(myjson)</a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1">myjson &lt;-<span class="st"> </span>jsonlite<span class="op">::</span><span class="kw">toJSON</span>(iris, <span class="dt">pretty=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="kw">str</span>(myjson)</a></code></pre></div>
 <pre><code>##  &#39;json&#39; chr &quot;[\n  {\n    \&quot;Sepal.Length\&quot;: 5.1,\n    \&quot;Sepal.Width\&quot;: 3.5,\n    \&quot;Petal.Length\&quot;: 1.4,\n    \&quot;Petal.Width\&quot;:&quot;| __truncated__</code></pre>
 </div>
 <div id="xml" class="section level3">
@@ -580,20 +580,20 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <div id="xml-套件" class="section level4">
 <h4><span class="header-section-number">5.0.4.1</span> XML 套件</h4>
 <p>如需將XML檔案匯入R中，需要安裝<code>XML</code> <span class="citation">(Temple Lang and CRAN Team <a href="#ref-R-XML">2019</a>)</span> package，使用<code>xmlParse()</code>函數將檔案匯入。若出現<code>Error: 1: Unknown IO error2: failed to load external entity</code>，是因為XML套件處理http轉https的功能的不好，載入httr套件後，先使用GET()功能取用網址，再放入xmlParse()就不會有問題。</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">library</span>(XML)</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="kw">library</span>(httr)</a>
-<a class="sourceLine" id="cb256-3" data-line-number="3">waterQ &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="kw">GET</span>(<span class="st">&quot;https://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">library</span>(XML)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="kw">library</span>(httr)</a>
+<a class="sourceLine" id="cb260-3" data-line-number="3">waterQ &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="kw">GET</span>(<span class="st">&quot;https://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span>))</a></code></pre></div>
 <p>完成資料讀取後，使用<code>xpathSApply()</code>函數搭配<strong>XPath</strong>語法取得指定標籤內的資料，依需求也可改用<code>xpathApply()</code>函數，差別在於<code>xpathSApply()</code>函數回傳的物件是Vector 向量
 ，而<code>xpathApply()</code>回傳的物件是List 列表。</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="co">#取得所有&quot;code_name&quot;標籤內的資料</span></a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//code_name&quot;</span>,xmlValue)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="co">#取得所有&quot;code_name&quot;標籤內的資料</span></a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//code_name&quot;</span>,xmlValue)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;雙溪淨水場&quot;               &quot;衛理女中&quot;                
 ##  [3] &quot;雙溪國小                &quot; &quot;華興加壓站&quot;              
 ##  [5] &quot;長興淨水場&quot;               &quot;市政大樓&quot;                
 ##  [7] &quot;市議會&quot;                   &quot;捷運忠孝復興站&quot;          
 ##  [9] &quot;南港高工&quot;                 &quot;南港加壓站&quot;</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="co">#取得各監測站的經度</span></a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//longitude&quot;</span>,xmlValue)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="co">#取得各監測站的經度</span></a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="kw">xpathSApply</span>(waterQ,<span class="st">&quot;//longitude&quot;</span>,xmlValue)[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;121.569433&quot; &quot;121.55231&quot;  &quot;121.563886&quot; &quot;121.544384&quot; &quot;121.547873&quot;
 ##  [6] &quot;121.563997&quot; &quot;121.561975&quot; &quot;121.54342&quot;  &quot;121.607462&quot; &quot;121.616217&quot;</code></pre>
 <p>在<code>xpathApply()</code>與<code>xpathSApply()</code>函數中，第二個參數為<strong>XPath</strong>，<strong>XPath</strong>是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，<strong>XPath</strong>語法的邏輯，可參考<a href="https://www.w3schools.com/xml/xpath_syntax.asp" target="_blank">W3C Schools</a>或是Google搜尋相關中文教學，如<a href="http://tech-marsw.logdown.com/blog/2016/01/11/parsing-lxml-xpath-sheet" target="_blank">lxml、XPath 常用語法</a>。在此列舉幾個常用的語法:</p>
@@ -605,23 +605,23 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <div id="xml2-套件" class="section level4">
 <h4><span class="header-section-number">5.0.4.2</span> xml2 套件</h4>
 <p>除了XML套件外，也可使用<code>xml2</code><span class="citation">(Wickham, Hester, and Ooms <a href="#ref-R-xml2">2019</a>)</span>套件來處理XML格式的檔案，同樣使用<a href="http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927">臺北市水質監測資訊</a>為例，首先透過<code>read_xml()</code>函數將XML檔案匯入：</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">library</span>(xml2)</a>
-<a class="sourceLine" id="cb263-2" data-line-number="2">waterURL&lt;-<span class="st">&quot;http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3">waterQ &lt;-<span class="st"> </span><span class="kw">read_xml</span>(waterURL)</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">library</span>(xml2)</a>
+<a class="sourceLine" id="cb267-2" data-line-number="2">waterURL&lt;-<span class="st">&quot;http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&amp;rid=190796c8-7c56-42e0-8068-39242b8ec927&quot;</span></a>
+<a class="sourceLine" id="cb267-3" data-line-number="3">waterQ &lt;-<span class="st"> </span><span class="kw">read_xml</span>(waterURL)</a></code></pre></div>
 <p>完成讀取後，使用<code>xml_find_all()</code>以及<code>xml_text()</code>函數取得指定標籤內的資料：</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="co">#取得所有&quot;code_name&quot;標籤內的資料</span></a>
-<a class="sourceLine" id="cb264-2" data-line-number="2">code_name_xml&lt;-<span class="kw">xml_find_all</span>(waterQ, <span class="st">&quot;.//code_name&quot;</span>)</a>
-<a class="sourceLine" id="cb264-3" data-line-number="3">code_name&lt;-<span class="kw">xml_text</span>(code_name_xml)</a>
-<a class="sourceLine" id="cb264-4" data-line-number="4">code_name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="co">#取得所有&quot;code_name&quot;標籤內的資料</span></a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">code_name_xml&lt;-<span class="kw">xml_find_all</span>(waterQ, <span class="st">&quot;.//code_name&quot;</span>)</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3">code_name&lt;-<span class="kw">xml_text</span>(code_name_xml)</a>
+<a class="sourceLine" id="cb268-4" data-line-number="4">code_name[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;雙溪淨水場&quot;               &quot;衛理女中&quot;                
 ##  [3] &quot;雙溪國小                &quot; &quot;華興加壓站&quot;              
 ##  [5] &quot;長興淨水場&quot;               &quot;市政大樓&quot;                
 ##  [7] &quot;市議會&quot;                   &quot;捷運忠孝復興站&quot;          
 ##  [9] &quot;南港高工&quot;                 &quot;南港加壓站&quot;</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="co">#取得各監測站的經度longitude</span></a>
-<a class="sourceLine" id="cb266-2" data-line-number="2">longitude_xml&lt;-<span class="kw">xml_find_all</span>(waterQ, <span class="st">&quot;.//longitude&quot;</span>)</a>
-<a class="sourceLine" id="cb266-3" data-line-number="3">longitude&lt;-<span class="kw">xml_text</span>(longitude_xml)</a>
-<a class="sourceLine" id="cb266-4" data-line-number="4">longitude[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="co">#取得各監測站的經度longitude</span></a>
+<a class="sourceLine" id="cb270-2" data-line-number="2">longitude_xml&lt;-<span class="kw">xml_find_all</span>(waterQ, <span class="st">&quot;.//longitude&quot;</span>)</a>
+<a class="sourceLine" id="cb270-3" data-line-number="3">longitude&lt;-<span class="kw">xml_text</span>(longitude_xml)</a>
+<a class="sourceLine" id="cb270-4" data-line-number="4">longitude[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;121.569433&quot; &quot;121.55231&quot;  &quot;121.563886&quot; &quot;121.544384&quot; &quot;121.547873&quot;
 ##  [6] &quot;121.563997&quot; &quot;121.561975&quot; &quot;121.54342&quot;  &quot;121.607462&quot; &quot;121.616217&quot;</code></pre>
 <p>以上兩種套件均可完成XML檔案的處理，可依喜好選擇幾喜歡的套件。</p>
@@ -632,22 +632,22 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <p>由於不是每個網站都提供API，但網頁上卻有你想要分析的資料（像是ptt推文！？），除了人工複製貼上以外，也可以將網頁處理程式化，以程式化的方式擷取網頁資料就叫做<strong>網頁爬蟲（Webscraping）</strong>（<a href="http://en.wikipedia.org/wiki/Web_scraping" target="_blank">Webscraping Wiki</a>）。在R中可以直接把HTML檔案當作XML檔案處理分析，也可使用<code>rvest</code><span class="citation">(Wickham <a href="#ref-R-rvest">2019</a><a href="#ref-R-rvest">a</a>)</span> package輔助爬蟲程式撰寫。</p>
 <p>此外，網頁爬蟲可能耗費很多網頁流量和資源，所以在許多網站被視為非法行為，如果一次讀太多太快，很可能被鎖IP。</p>
 <p>以<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚資管系</a>網站為例，可直接逐行讀取 <code>readLines()</code></p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">con &lt;-<span class="st"> </span><span class="kw">url</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)</a>
-<a class="sourceLine" id="cb268-2" data-line-number="2">htmlCode &lt;-<span class="kw">readLines</span>(con)</a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">con &lt;-<span class="st"> </span><span class="kw">url</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)</a>
+<a class="sourceLine" id="cb272-2" data-line-number="2">htmlCode &lt;-<span class="kw">readLines</span>(con)</a></code></pre></div>
 <pre><code>## Warning in readLines(con): incomplete final line found on &#39;http://im.cgu.edu.tw/
 ## bin/home.php&#39;</code></pre>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">close</span>(con)</a>
-<a class="sourceLine" id="cb270-2" data-line-number="2">htmlCode[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">close</span>(con)</a>
+<a class="sourceLine" id="cb274-2" data-line-number="2">htmlCode[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD XHTML 1.0 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\&quot;&gt;&quot;                
 ## [2] &quot;&lt;html xmlns=\&quot;http://www.w3.org/1999/xhtml\&quot; lang=\&quot;zh-tw\&quot;&gt;&quot;                                                                                 
 ## [3] &quot;&lt;head&gt;&quot;                                                                                                                                       
 ## [4] &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt;&quot;                                                                    
 ## [5] &quot;&lt;meta http-equiv=\&quot;X-UA-Compatible\&quot; content=\&quot;IE=EmulateIE7\&quot; /&gt;&lt;meta name=\&quot;keywords\&quot; content=\&quot;請填寫網站關鍵記事，用半角逗號(,)隔開\&quot; /&gt;&quot;</code></pre>
 <p>或是使用XML工具分析擷取網頁 (<code>XML</code> package)，使用方法與XML檔案處理方法類似，搭配<strong>XPath</strong>語言，篩選所需資料</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)</a>
-<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//title&quot;</span>, xmlValue)</a></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="st">&quot;http://im.cgu.edu.tw/bin/home.php&quot;</span>)</a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//title&quot;</span>, xmlValue)</a></code></pre></div>
 <pre><code>## [1] &quot;長庚大學 資訊管理學系 &quot;</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//span[@class=&#39;ptname &#39;]&quot;</span>, xmlValue)</a></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//span[@class=&#39;ptname &#39;]&quot;</span>, xmlValue)</a></code></pre></div>
 <pre><code>##  [1] &quot;大數據資料科學與產業應用學程&quot;       &quot;資訊與醫療安全學程&quot;                
 ##  [3] &quot;物聯網產業創新應用學程&quot;             &quot;機器人智能互動與創新應用(暑期)學程&quot;
 ##  [5] &quot;校務資訊系統&quot;                       &quot;人事教育訓練資訊網&quot;                
@@ -659,8 +659,8 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 ## [17] &quot;企業管理研究所博士班&quot;               &quot;商管專業學院&quot;                      
 ## [19] &quot;長庚大學行事曆&quot;</code></pre>
 <p>除了把HTML檔案當作XML處理外，<code>rvest</code><span class="citation">(Wickham <a href="#ref-R-rvest">2019</a><a href="#ref-R-rvest">a</a>)</span> package是R語言中最常被使用的爬蟲套件，使用前一樣需要安裝與載入</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>) <span class="co">##安裝</span></a></code></pre></div>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">library</span>(rvest) <span class="co">##載入</span></a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rvest&quot;</span>) <span class="co">##安裝</span></a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">library</span>(rvest) <span class="co">##載入</span></a></code></pre></div>
 <p>載入<code>rvest</code>套件後，經由以下步驟進行網站解析：</p>
 <ul>
 <li>使用<code>read_html(“欲擷取的網站網址”)</code>函數讀取網頁</li>
@@ -668,11 +668,11 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <li>使用<code>html_text()</code>函數處理/清洗擷取內容，留下需要的資料</li>
 <li>使用<code>html_attr()</code>函數擷取資料參數（如連結url）</li>
 </ul>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">YahooNewsurl=<span class="st">&quot;https://tw.news.yahoo.com/&quot;</span></a>
-<a class="sourceLine" id="cb278-2" data-line-number="2">news_title =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</a>
-<a class="sourceLine" id="cb278-3" data-line-number="3">news_url =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</a>
-<a class="sourceLine" id="cb278-4" data-line-number="4">Yahoo_news =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">title =</span> news_title, <span class="dt">url=</span>news_url)</a>
-<a class="sourceLine" id="cb278-5" data-line-number="5"><span class="kw">head</span>(Yahoo_news)</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">YahooNewsurl=<span class="st">&quot;https://tw.news.yahoo.com/&quot;</span></a>
+<a class="sourceLine" id="cb282-2" data-line-number="2">news_title =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_text</span>()</a>
+<a class="sourceLine" id="cb282-3" data-line-number="3">news_url =<span class="st"> </span><span class="kw">read_html</span>(YahooNewsurl) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_nodes</span>(<span class="st">&quot;.tpl-title a&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">html_attr</span>(<span class="st">&quot;href&quot;</span>)</a>
+<a class="sourceLine" id="cb282-4" data-line-number="4">Yahoo_news =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">title =</span> news_title, <span class="dt">url=</span>news_url)</a>
+<a class="sourceLine" id="cb282-5" data-line-number="5"><span class="kw">head</span>(Yahoo_news)</a></code></pre></div>
 <pre><code>                                    title                                                           url
 1         曾1妻5妾好風光 男星慘賣豪宅還債 /從1妻5妾的風光到變賣豪宅還債-網友噓雷洪：活該-091741737.html
 2          美報告：美棄「一中」台灣更危險               /美報告-美拋棄-中-台灣處境更危險-081036215.html
@@ -718,20 +718,20 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <p>有關Facebook access token的詳細介紹，可參考<a href="https://developers.facebook.com/docs/facebook-login/access-tokens/?locale=zh_TW" target="_blank">官方文件</a></p>
 <div id="graph-api-in-r" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Graph API in R</h3>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">library</span>(httr)</a>
-<a class="sourceLine" id="cb281-2" data-line-number="2">token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將access token複製到此處 </span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3">FBData =<span class="st"> </span><span class="kw">GET</span>(</a>
-<a class="sourceLine" id="cb281-4" data-line-number="4">    <span class="kw">paste0</span>(<span class="st">&quot;https://graph.facebook.com/v2.8/tsaiingwen?fields=posts%7Bmessage%7D&amp;access_token=&quot;</span>,</a>
-<a class="sourceLine" id="cb281-5" data-line-number="5">           token))</a>
-<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="kw">names</span>(FBData)</a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">library</span>(httr)</a>
+<a class="sourceLine" id="cb285-2" data-line-number="2">token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將access token複製到此處 </span></a>
+<a class="sourceLine" id="cb285-3" data-line-number="3">FBData =<span class="st"> </span><span class="kw">GET</span>(</a>
+<a class="sourceLine" id="cb285-4" data-line-number="4">    <span class="kw">paste0</span>(<span class="st">&quot;https://graph.facebook.com/v2.8/tsaiingwen?fields=posts%7Bmessage%7D&amp;access_token=&quot;</span>,</a>
+<a class="sourceLine" id="cb285-5" data-line-number="5">           token))</a>
+<a class="sourceLine" id="cb285-6" data-line-number="6"><span class="kw">names</span>(FBData)</a></code></pre></div>
 <pre><code>## [1] &quot;url&quot;         &quot;status_code&quot; &quot;headers&quot;     &quot;all_headers&quot; &quot;cookies&quot;     &quot;content&quot;     &quot;date&quot;       
 ## [8] &quot;times&quot;       &quot;request&quot;     &quot;handle&quot;    </code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1">json1 =<span class="st"> </span><span class="kw">content</span>(FBData)</a>
-<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="kw">names</span>(json1)</a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">json1 =<span class="st"> </span><span class="kw">content</span>(FBData)</a>
+<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="kw">names</span>(json1)</a></code></pre></div>
 <pre><code>## [1] &quot;posts&quot; &quot;id&quot;</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">names</span>(json1<span class="op">$</span>posts)</a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">names</span>(json1<span class="op">$</span>posts)</a></code></pre></div>
 <pre><code>## [1] &quot;data&quot;   &quot;paging&quot;</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">head</span>(json1<span class="op">$</span>posts<span class="op">$</span>data,<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">head</span>(json1<span class="op">$</span>posts<span class="op">$</span>data,<span class="dv">3</span>)</a></code></pre></div>
 <pre><code>[[1]]
 [[1]]$message
 [1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;
@@ -755,7 +755,7 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 [[3]]$id
 [1] &quot;46251501064_10154001652641065&quot;
 </code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">json1<span class="op">$</span>posts<span class="op">$</span>data[[<span class="dv">1</span>]]<span class="op">$</span>message</a></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">json1<span class="op">$</span>posts<span class="op">$</span>data[[<span class="dv">1</span>]]<span class="op">$</span>message</a></code></pre></div>
 <pre><code>##[1] &quot;「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。&quot;</code></pre>
 </div>
 <div id="rfacebook-package" class="section level3">
@@ -763,9 +763,9 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <p><strong>在2018年的風波後，Graph API若要用在爬取公開粉專，須經過FB審核</strong></p>
 <p>除了直接使用Graph API外，也可使用<code>Rfacebook</code><span class="citation">(Barbera et al. <a href="#ref-R-Rfacebook">2017</a>)</span> package來讀取Facebook資料。
 以下為使用Rfacebook取得 <code>tsaiingwen</code> 粉絲頁的資料範例：</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">library</span>(Rfacebook)</a>
-<a class="sourceLine" id="cb291-2" data-line-number="2">token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span></a>
-<a class="sourceLine" id="cb291-3" data-line-number="3"><span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,<span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">library</span>(Rfacebook)</a>
+<a class="sourceLine" id="cb295-2" data-line-number="2">token&lt;-<span class="st">&quot;your token&quot;</span> <span class="co">#將token複製到此處 </span></a>
+<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,<span class="dt">n =</span> <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>5 posts       from_id           from_name
 1 46251501064 蔡英文 Tsai Ing-wen
 2 46251501064 蔡英文 Tsai Ing-wen
@@ -798,21 +798,21 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 5 46251501064_10153987095776065       20592            665          269</code></pre>
 <p>由於每次擷取資料的比數有上限（大概是30筆左右），如果需要取得更多更長期的資料，就要使用迴圈協助，分批取得資料，透過設定 <strong>since</strong> 和 <strong>until</strong>參數，可設定資料擷取區間。</p>
 <p>首先先取得日期向量，供後續迴圈做使用</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">lastDate&lt;-<span class="kw">Sys.Date</span>()</a>
-<a class="sourceLine" id="cb293-2" data-line-number="2">DateVector&lt;-<span class="kw">seq</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2017-01-01&quot;</span>),lastDate,<span class="dt">by=</span><span class="st">&quot;5 days&quot;</span>)</a>
-<a class="sourceLine" id="cb293-3" data-line-number="3">DateVectorStr&lt;-<span class="kw">as.character</span>(DateVector)</a>
-<a class="sourceLine" id="cb293-4" data-line-number="4">DateVectorStr</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">lastDate&lt;-<span class="kw">Sys.Date</span>()</a>
+<a class="sourceLine" id="cb297-2" data-line-number="2">DateVector&lt;-<span class="kw">seq</span>(<span class="kw">as.Date</span>(<span class="st">&quot;2017-01-01&quot;</span>),lastDate,<span class="dt">by=</span><span class="st">&quot;5 days&quot;</span>)</a>
+<a class="sourceLine" id="cb297-3" data-line-number="3">DateVectorStr&lt;-<span class="kw">as.character</span>(DateVector)</a>
+<a class="sourceLine" id="cb297-4" data-line-number="4">DateVectorStr</a></code></pre></div>
 <pre><code>## &quot;2017-01-01&quot; &quot;2017-01-06&quot; &quot;2017-01-11&quot; &quot;2017-01-16&quot; &quot;2017-01-21&quot; &quot;2017-01-26&quot; &quot;2017-01-31&quot; &quot;2017-02-05&quot;</code></pre>
 <p>利用上述日期向量資料，搭配迴圈，依序設定<strong>since</strong> 和 <strong>until</strong>參數</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">totalPage&lt;-<span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">token&lt;-<span class="st">&#39;your token&#39;</span></a>
-<a class="sourceLine" id="cb295-3" data-line-number="3">numberOfPost&lt;-<span class="dv">30</span></a>
-<a class="sourceLine" id="cb295-4" data-line-number="4"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">length</span>(DateVectorStr)<span class="op">-</span><span class="dv">1</span>)){</a>
-<a class="sourceLine" id="cb295-5" data-line-number="5">    tempPage&lt;-<span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,</a>
-<a class="sourceLine" id="cb295-6" data-line-number="6">                      <span class="dt">since =</span> DateVectorStr[i],<span class="dt">until =</span> DateVectorStr[i<span class="op">+</span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb295-7" data-line-number="7">    totalPage&lt;-<span class="kw">rbind</span>(totalPage,tempPage)</a>
-<a class="sourceLine" id="cb295-8" data-line-number="8">}</a>
-<a class="sourceLine" id="cb295-9" data-line-number="9"><span class="kw">nrow</span>(totalPage)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">totalPage&lt;-<span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb299-2" data-line-number="2">token&lt;-<span class="st">&#39;your token&#39;</span></a>
+<a class="sourceLine" id="cb299-3" data-line-number="3">numberOfPost&lt;-<span class="dv">30</span></a>
+<a class="sourceLine" id="cb299-4" data-line-number="4"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">length</span>(DateVectorStr)<span class="op">-</span><span class="dv">1</span>)){</a>
+<a class="sourceLine" id="cb299-5" data-line-number="5">    tempPage&lt;-<span class="kw">getPage</span>(<span class="st">&quot;tsaiingwen&quot;</span>, token,</a>
+<a class="sourceLine" id="cb299-6" data-line-number="6">                      <span class="dt">since =</span> DateVectorStr[i],<span class="dt">until =</span> DateVectorStr[i<span class="op">+</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb299-7" data-line-number="7">    totalPage&lt;-<span class="kw">rbind</span>(totalPage,tempPage)</a>
+<a class="sourceLine" id="cb299-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb299-9" data-line-number="9"><span class="kw">nrow</span>(totalPage)</a></code></pre></div>
 <pre><code>## 4 posts 8 posts 10 posts 3 posts 2 posts 14 posts 1 posts
 ## [1] 42</code></pre>
 <p>Rfacebook Packages提供其他函數可供使用</p>
@@ -844,17 +844,17 @@ JSON (<strong>J</strong>ava<strong>s</strong>cript <strong>O</strong>bject <stro
 <li><code>qmethod</code> 逃脫字串設定</li>
 <li><code>fileEncoding</code> 編碼設定</li>
 </ul>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw">write.table</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">row.names =</span> F,<span class="dt">col.names =</span> T)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">write.table</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">row.names =</span> F,<span class="dt">col.names =</span> T)</a></code></pre></div>
 </div>
 <div id="csv檔-.csv" class="section level3">
 <h3><span class="header-section-number">5.2.2</span> CSV檔 .csv</h3>
 <p>與<code>write.table()</code>類似，使用<code>write.csv()</code>函數寫入檔案</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="kw">write.csv</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.csv&quot;</span>,<span class="dt">row.names =</span> F)</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">write.csv</span>(iris,<span class="dt">file=</span><span class="st">&quot;iris.csv&quot;</span>,<span class="dt">row.names =</span> F)</a></code></pre></div>
 </div>
 <div id="r物件-.rds" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> R物件 .rds</h3>
 <p>若是要在R的環境繼續使用，建議匯出成R物件檔案(.rds)</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">saveRDS</span>(iris,<span class="st">&quot;iris.rds&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">saveRDS</span>(iris,<span class="st">&quot;iris.rds&quot;</span>)</a></code></pre></div>
 
 </div>
 </div>

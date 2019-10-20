@@ -9,13 +9,13 @@
 
 也因此，如果同一段程式碼已經被剪下貼上兩次，那就是寫一個函式(Function)的時機。
 
-舉例來說，若我們要計算iris資料中Sepal.Length和Sepal.Width的比例，以及Petal.Length和Petal.Width的比例，並且四捨五入到小數點第一位，沒有使用函數的程式碼如下：
+舉例來說，若我們要計算`iris`資料中`Sepal.Length`和`Sepal.Width`的比例，以及`Petal.Length`和`Petal.Width`的比例，並且四捨五入到小數點第一位，沒有使用函數的程式碼如下：
 ```{r}
 round(iris$Sepal.Length/iris$Sepal.Width,1)[1:5]
 round(iris$Petal.Length/iris$Petal.Width,1)[1:5]
 ```
 
-每次計算都需指定**,1**以完成四捨五入到小數點第一位的任務。
+每次計算都需指定 **,1** ，以完成四捨五入到小數點第一位的任務。
 
 ## 函數組成
 
@@ -76,7 +76,7 @@ cube(6)
 ```
 
 ## 函數命名原則
-根據上述兩個簡單的函數，可以發現寫好的函數的方法是先確保城市的正確性，再確保函數是否容易閱讀與理解，為了達成函數的易理解性，函數有以下建議的命名原則:
+根據上述兩個簡單的函數，可以發現寫好的函數的方法是先確保程式的正確性，再確保函數是否容易閱讀與理解，為了達成函數的易理解性，函數有以下建議的命名原則:
 
 - 長的函數名稱要遵循一樣的命名樣式
 - 不要用原本就存在R中的函數名稱
@@ -108,6 +108,7 @@ cal_bmi(1.6,50)
 ## 函式編程Functional programming
 
 函式編程（Functional programming）的技巧可以用在所有支援函數為一等公民（First Class）的程式語言，其中包括：
+
 - 可以將函數指定為一個變數 Assign a function to a variable
 - 可以將函數當作參數傳遞 Pass a function as an argument
 - 可以回傳一個函數 Return a function
@@ -173,6 +174,13 @@ good_teacher_score(ori_score_list[2])
 knitr::include_graphics("figure/map.png")
 ```
 [圖片來源](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf)
+
+學生原始成績存在ori_score_list變數內：
+```{r}
+ori_score_list
+```
+
+使用`map_dbl`將每位學生的成績加分：
 ```{r}
 library(purrr)
 new_score_list<-
@@ -204,14 +212,24 @@ knitr::include_graphics("figure/map2.png")
 
 [圖片來源](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf)
 
-以計算加權成績為例，我們有一組學生的國文成績chi_score以及英文成績eng_score，並且希望將這些成績以（國文成績+2*英文成績）的方式做加權計算，首先，我們須先將加權的程式碼撰寫成`weight_score()`函數，並使用`map2`家族函數，完成逐一計算的任務。`map2`家族函數的使用方法為`map2_dbl(需逐一計算的向量1,需逐一計算的向量2,計算所需的函數)`，如下列程式碼：
+以計算加權成績為例，我們有一組學生的國文成績chi_score以及英文成績eng_score，並且希望將這些成績以（國文成績+2*英文成績）的方式做加權計算，首先，我們須先將加權的程式碼撰寫成`weight_score()`函數，並使用`map2`家族函數，完成逐一計算的任務。`map2`家族函數的使用方法為`map2_dbl(需逐一計算的向量1,需逐一計算的向量2,計算所需的函數)`。
+
+首先建立國文成績chi_score以及英文成績eng_score向量：
 ```{r}
 chi_score<-c(60,50,40)
 eng_score<-c(60,50,40)
+```
+
+完成向量值的指定後，撰寫（國文成績+2*英文成績）加權計算函數`weight_score()`：
+```{r}
 weight_score<-function(chi,eng){
     final_score<-chi+eng*2
     return(final_score)
 }
+```
+
+使用`map2`家族函數，完成逐一計算的任務：
+```{r}
 weight_score_list<-
     map2_dbl(chi_score,
              eng_score,
@@ -232,6 +250,6 @@ knitr::kable(data.frame(chi_score,
 
 ## 參考資料
 
-- [R for Data Science](https://r4ds.had.co.nz/functions.html)
-- [Advanced R](https://adv-r.hadley.nz/functionals.html)
-- [purrr package](https://purrr.tidyverse.org/)
+- [R for Data Science](https://r4ds.had.co.nz/functions.html){target="_blank"}
+- [Advanced R](https://adv-r.hadley.nz/functionals.html){target="_blank"}
+- [purrr package](https://purrr.tidyverse.org/){target="_blank"}

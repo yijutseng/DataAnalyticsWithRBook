@@ -488,12 +488,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ score: num  80 60 90 70 50</code></pre>
 <p>資料框可用<code>$</code>符號做<strong>欄位</strong>資料擷取</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">iris<span class="op">$</span>Species <span class="co">##取得iris資料框中的Species欄位</span></a></code></pre></div>
-<pre><code>## NULL</code></pre>
+<pre><code>##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica</code></pre>
 <p>資料框可用<code>$</code>符號做<strong>欄位</strong>資料擷取後，當成<strong>向量</strong>，並使用<strong><a href="index.html#preface"></a></strong>做資料編輯。</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">iris<span class="op">$</span>Species[<span class="dv">2</span>]&lt;-<span class="st">&quot;versicolor&quot;</span></a>
 <a class="sourceLine" id="cb142-2" data-line-number="2"><span class="kw">head</span>(iris<span class="op">$</span>Species)</a></code></pre></div>
-<pre><code>## [1] NA           &quot;versicolor&quot; NA           &quot;versicolor&quot; NA          
-## [6] &quot;versicolor&quot;</code></pre>
+<pre><code>## [1] setosa     versicolor setosa     setosa     setosa     setosa    
+## Levels: setosa versicolor virginica</code></pre>
 <p>若需刪除某欄位，可將欄位值設定為<code>NULL</code></p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">iris<span class="op">$</span>Species&lt;-<span class="ot">NULL</span> <span class="co">##刪除Species欄位</span></a>
 <a class="sourceLine" id="cb144-2" data-line-number="2"><span class="kw">head</span>(iris)</a></code></pre></div>

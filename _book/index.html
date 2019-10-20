@@ -420,15 +420,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [70] dendextend_1.12.0    packrat_0.5.0        nlme_3.1-140        
 ##  [73] mime_0.7             compiler_3.6.1       rstudioapi_0.10     
 ##  [76] png_0.1-7            e1071_1.7-2          tibble_2.1.3        
-##  [79] stringi_1.4.3        highr_0.8            classInt_0.4-2      
-##  [82] vctrs_0.2.0          pillar_1.4.2         lifecycle_0.1.0     
-##  [85] lmtest_0.9-37        seriation_1.2-8      R6_2.4.0            
-##  [88] latticeExtra_0.6-28  promises_1.1.0       TSP_1.1-7           
-##  [91] KernSmooth_2.23-15   gridExtra_2.3        codetools_0.2-16    
-##  [94] gtools_3.8.1         assertthat_0.2.1     withr_2.1.2         
-##  [97] hms_0.5.1            timeDate_3043.102    tidyr_1.0.0         
-## [100] class_7.3-15         sf_0.8-0             scatterplot3d_0.3-41
-## [103] base64enc_0.1-3</code></pre>
+##  [79] stringi_1.4.3        classInt_0.4-2       vctrs_0.2.0         
+##  [82] pillar_1.4.2         lifecycle_0.1.0      lmtest_0.9-37       
+##  [85] seriation_1.2-8      R6_2.4.0             latticeExtra_0.6-28 
+##  [88] promises_1.1.0       TSP_1.1-7            KernSmooth_2.23-15  
+##  [91] gridExtra_2.3        codetools_0.2-16     gtools_3.8.1        
+##  [94] assertthat_0.2.1     withr_2.1.2          hms_0.5.1           
+##  [97] timeDate_3043.102    tidyr_1.0.0          class_7.3-15        
+## [100] sf_0.8-0             scatterplot3d_0.3-41 base64enc_0.1-3</code></pre>
 <p>本書使用套件版本：</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pkgInfo&lt;-<span class="kw">lapply</span>(pkg, packageDescription, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Version&quot;</span>))</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(<span class="dt">Package=</span><span class="kw">sapply</span>(pkgInfo, <span class="st">`</span><span class="dt">[[</span><span class="st">`</span>, <span class="dv">1</span>),</a>

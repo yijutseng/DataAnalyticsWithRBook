@@ -50,6 +50,22 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -184,10 +200,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
 <li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
 <li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
-<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>5.0.3</b> Open Data</a></li>
-<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.4</b> API (Application programming interfaces)</a></li>
-<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.5</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="5.0.6" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.6</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
 <li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
 <li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
@@ -333,12 +348,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>程式碼可以重複使用</li>
 </ul>
 <p>也因此，如果同一段程式碼已經被剪下貼上兩次，那就是寫一個函式(Function)的時機。</p>
-<p>舉例來說，若我們要計算iris資料中Sepal.Length和Sepal.Width的比例，以及Petal.Length和Petal.Width的比例，並且四捨五入到小數點第一位，沒有使用函數的程式碼如下：</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">round</span>(iris<span class="op">$</span>Sepal.Length<span class="op">/</span>iris<span class="op">$</span>Sepal.Width,<span class="dv">1</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<p>舉例來說，若我們要計算<code>iris</code>資料中<code>Sepal.Length</code>和<code>Sepal.Width</code>的比例，以及<code>Petal.Length</code>和<code>Petal.Width</code>的比例，並且四捨五入到小數點第一位，沒有使用函數的程式碼如下：</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">round</span>(iris<span class="op">$</span>Sepal.Length<span class="op">/</span>iris<span class="op">$</span>Sepal.Width,<span class="dv">1</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] 1.5 1.6 1.5 1.5 1.4</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">round</span>(iris<span class="op">$</span>Petal.Length<span class="op">/</span>iris<span class="op">$</span>Petal.Width,<span class="dv">1</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">round</span>(iris<span class="op">$</span>Petal.Length<span class="op">/</span>iris<span class="op">$</span>Petal.Width,<span class="dv">1</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] 7.0 7.0 6.5 7.5 7.0</code></pre>
-<p>每次計算都需指定<strong>,1</strong>以完成四捨五入到小數點第一位的任務。</p>
+<p>每次計算都需指定 <strong>,1</strong> ，以完成四捨五入到小數點第一位的任務。</p>
 </div>
 <div id="函數組成" class="section level2">
 <h2><span class="header-section-number">4.2</span> 函數組成</h2>
@@ -349,10 +364,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>程式碼本體 Function Body</li>
 <li>回傳值 Return Value, optional <code>return_value</code></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">名字&lt;-<span class="cf">function</span>(參數1,參數2,...){</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  程式碼本體</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">  最後一行的輸出自動設為回傳值</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1">名字&lt;-<span class="cf">function</span>(參數1,參數2,...){</a>
+<a class="sourceLine" id="cb202-2" data-line-number="2">  程式碼本體</a>
+<a class="sourceLine" id="cb202-3" data-line-number="3">  最後一行的輸出自動設為回傳值</a>
+<a class="sourceLine" id="cb202-4" data-line-number="4">}</a></code></pre></div>
 <p>而撰寫函數有四個重要步驟:</p>
 <ul>
 <li>先寫出可以用的程式碼</li>
@@ -361,36 +376,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>把程式碼變成函數function</li>
 </ul>
 <p>以常見的函數<code>mean()</code>為例，其實就是將輸入向量加總後，除以個數，完成平均值的計算</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" data-line-number="1"><span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">+</span><span class="dv">4</span><span class="op">+</span><span class="dv">5</span><span class="op">+</span><span class="dv">6</span>)<span class="op">/</span><span class="dv">6</span></a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span><span class="op">+</span><span class="dv">3</span><span class="op">+</span><span class="dv">4</span><span class="op">+</span><span class="dv">5</span><span class="op">+</span><span class="dv">6</span>)<span class="op">/</span><span class="dv">6</span></a></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)<span class="op">/</span><span class="kw">length</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">sum</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)<span class="op">/</span><span class="kw">length</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
 <p>也因此，若我們想要自己撰寫一個計算平均值的函數<code>myMean()</code>，只要將上述邏輯寫入function內即可</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">myMean&lt;-<span class="cf">function</span>(vec){</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">    m&lt;-<span class="kw">sum</span>(vec)<span class="op">/</span><span class="kw">length</span>(vec)</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="kw">return</span>(m)</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">myMean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">myMean&lt;-<span class="cf">function</span>(vec){</a>
+<a class="sourceLine" id="cb209-2" data-line-number="2">    m&lt;-<span class="kw">sum</span>(vec)<span class="op">/</span><span class="kw">length</span>(vec)</a>
+<a class="sourceLine" id="cb209-3" data-line-number="3">    <span class="kw">return</span>(m)</a>
+<a class="sourceLine" id="cb209-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb209-5" data-line-number="5"><span class="kw">myMean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)</a></code></pre></div>
 <pre><code>## [1] 3.5</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">myMean</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="kw">myMean</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>又以計算三次方為例，其實就是將輸入數字<code>x</code>自乘三次，程式碼如下：</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">cube&lt;-<span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">    x_cube&lt;-x<span class="op">*</span>x<span class="op">*</span>x</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="kw">return</span>(x_cube)</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">cube</span>(<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1">cube&lt;-<span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb213-2" data-line-number="2">    x_cube&lt;-x<span class="op">*</span>x<span class="op">*</span>x</a>
+<a class="sourceLine" id="cb213-3" data-line-number="3">    <span class="kw">return</span>(x_cube)</a>
+<a class="sourceLine" id="cb213-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb213-5" data-line-number="5"><span class="kw">cube</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">cube</span>(<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="kw">cube</span>(<span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 64</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">cube</span>(<span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">cube</span>(<span class="dv">6</span>)</a></code></pre></div>
 <pre><code>## [1] 216</code></pre>
 </div>
 <div id="函數命名原則" class="section level2">
 <h2><span class="header-section-number">4.3</span> 函數命名原則</h2>
-<p>根據上述兩個簡單的函數，可以發現寫好的函數的方法是先確保城市的正確性，再確保函數是否容易閱讀與理解，為了達成函數的易理解性，函數有以下建議的命名原則:</p>
+<p>根據上述兩個簡單的函數，可以發現寫好的函數的方法是先確保程式的正確性，再確保函數是否容易閱讀與理解，為了達成函數的易理解性，函數有以下建議的命名原則:</p>
 <ul>
 <li>長的函數名稱要遵循一樣的命名樣式</li>
 <li>不要用原本就存在R中的函數名稱</li>
@@ -407,44 +422,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="函數範例" class="section level2">
 <h2><span class="header-section-number">4.4</span> 函數範例</h2>
 <p>接下來的範例使用兩個參數，<code>height</code>與<code>weight</code>，計算BMI值，並且考慮到輸入身高的單位可能會是公分的情況，邏輯為假設輸入的身高&gt;5，因正常人身高不可能大於5公尺，因此假設輸入之單位為公分，需要在函數內將公分換算為公尺：</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">cal_bmi&lt;-<span class="cf">function</span>(height,weight){</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">    <span class="cf">if</span>(height<span class="op">&gt;</span><span class="dv">5</span>){</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3">        height &lt;-<span class="st"> </span>height<span class="op">/</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">    }</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">    bmi &lt;-<span class="st"> </span>weight <span class="op">/</span><span class="st"> </span>height<span class="op">**</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">    <span class="kw">return</span>(bmi)</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="kw">cal_bmi</span>(<span class="dv">160</span>,<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">cal_bmi&lt;-<span class="cf">function</span>(height,weight){</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2">    <span class="cf">if</span>(height<span class="op">&gt;</span><span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb219-3" data-line-number="3">        height &lt;-<span class="st"> </span>height<span class="op">/</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">    }</a>
+<a class="sourceLine" id="cb219-5" data-line-number="5">    bmi &lt;-<span class="st"> </span>weight <span class="op">/</span><span class="st"> </span>height<span class="op">**</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb219-6" data-line-number="6">    <span class="kw">return</span>(bmi)</a>
+<a class="sourceLine" id="cb219-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb219-8" data-line-number="8"><span class="kw">cal_bmi</span>(<span class="dv">160</span>,<span class="dv">50</span>)</a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">cal_bmi</span>(<span class="fl">1.6</span>,<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="kw">cal_bmi</span>(<span class="fl">1.6</span>,<span class="dv">50</span>)</a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 </div>
 <div id="函式編程functional-programming" class="section level2">
 <h2><span class="header-section-number">4.5</span> 函式編程Functional programming</h2>
-<p>函式編程（Functional programming）的技巧可以用在所有支援函數為一等公民（First Class）的程式語言，其中包括：
-- 可以將函數指定為一個變數 Assign a function to a variable
-- 可以將函數當作參數傳遞 Pass a function as an argument
-- 可以回傳一個函數 Return a function</p>
+<p>函式編程（Functional programming）的技巧可以用在所有支援函數為一等公民（First Class）的程式語言，其中包括：</p>
+<ul>
+<li>可以將函數指定為一個變數 Assign a function to a variable</li>
+<li>可以將函數當作參數傳遞 Pass a function as an argument</li>
+<li>可以回傳一個函數 Return a function</li>
+</ul>
 <p>其中，可以將函數指定為一個變數在前述程式碼中其實已經出現過，在<code>cal_bmi</code> 函數中，我們就是將<code>cal_bmi</code> 變數設定為<code>cal_bmi</code>函數：</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">cal_bmi&lt;-<span class="cf">function</span>(height,weight){</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">    <span class="cf">if</span>(height<span class="op">&gt;</span><span class="dv">5</span>){</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">        height &lt;-<span class="st"> </span>height<span class="op">/</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">    }</a>
-<a class="sourceLine" id="cb26-5" data-line-number="5">    bmi &lt;-<span class="st"> </span>weight <span class="op">/</span><span class="st"> </span>height<span class="op">**</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">    <span class="kw">return</span>(bmi)</a>
-<a class="sourceLine" id="cb26-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="kw">cal_bmi</span>(<span class="dv">160</span>,<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">cal_bmi&lt;-<span class="cf">function</span>(height,weight){</a>
+<a class="sourceLine" id="cb223-2" data-line-number="2">    <span class="cf">if</span>(height<span class="op">&gt;</span><span class="dv">5</span>){</a>
+<a class="sourceLine" id="cb223-3" data-line-number="3">        height &lt;-<span class="st"> </span>height<span class="op">/</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb223-4" data-line-number="4">    }</a>
+<a class="sourceLine" id="cb223-5" data-line-number="5">    bmi &lt;-<span class="st"> </span>weight <span class="op">/</span><span class="st"> </span>height<span class="op">**</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb223-6" data-line-number="6">    <span class="kw">return</span>(bmi)</a>
+<a class="sourceLine" id="cb223-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb223-8" data-line-number="8"><span class="kw">cal_bmi</span>(<span class="dv">160</span>,<span class="dv">50</span>)</a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">cal_bmi</span>(<span class="fl">1.6</span>,<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="kw">cal_bmi</span>(<span class="fl">1.6</span>,<span class="dv">50</span>)</a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>而將函數當作參數並且傳遞的功能，在R中是非常實用且必須要學習的功能，在purrr<span class="citation">(Henry and Wickham <a href="#ref-R-purrr">2019</a>)</span>套件中，此功能被大量應用。最後則是將函數回傳的功能，以下以<code>hello()</code>以及<code>sayHello()</code>函數為例，在<code>sayHello()</code>函數中，回傳值即為<code>hello()</code>函數。</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">hello&lt;-<span class="cf">function</span>(){</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">    <span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb30-4" data-line-number="4">sayHello &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">    <span class="kw">return</span>(<span class="kw">hello</span>())</a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="kw">sayHello</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">hello&lt;-<span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb227-2" data-line-number="2">    <span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</a>
+<a class="sourceLine" id="cb227-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb227-4" data-line-number="4">sayHello &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb227-5" data-line-number="5">    <span class="kw">return</span>(<span class="kw">hello</span>())</a>
+<a class="sourceLine" id="cb227-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb227-7" data-line-number="7"><span class="kw">sayHello</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;Hello&quot;</code></pre>
 </div>
 <div id="purrr" class="section level2">
@@ -453,32 +470,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="figure/map.png" width="666" /></p>
 <p><a href="https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf">圖片來源</a></p>
 <p>以下為將學生成績開根號乘以10的函數，可以發現若輸入的原始成績是30分，輸出則是加分後的成績，若原始成績是50分，輸出成績就會及格，如果只是要算兩位同學的成績，一筆一筆輸入不是什麼大問題，但若要計算30名學生的成績，要打30次程式碼，還是非常麻煩的。</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">good_teacher_score&lt;-<span class="cf">function</span>(ori_score){</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">    better_score&lt;-<span class="kw">sqrt</span>(ori_score)<span class="op">*</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">    <span class="kw">return</span>(better_score)</a>
-<a class="sourceLine" id="cb32-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="kw">good_teacher_score</span>(<span class="dv">30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">good_teacher_score&lt;-<span class="cf">function</span>(ori_score){</a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">    better_score&lt;-<span class="kw">sqrt</span>(ori_score)<span class="op">*</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb229-3" data-line-number="3">    <span class="kw">return</span>(better_score)</a>
+<a class="sourceLine" id="cb229-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb229-5" data-line-number="5"><span class="kw">good_teacher_score</span>(<span class="dv">30</span>)</a></code></pre></div>
 <pre><code>## [1] 55</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">good_teacher_score</span>(<span class="dv">50</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">good_teacher_score</span>(<span class="dv">50</span>)</a></code></pre></div>
 <pre><code>## [1] 71</code></pre>
 <p>以下為計算30個學生的成績時的程式碼，可以看到每筆成績都需要耗費一行程式碼來處理，十分麻煩。</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">ori_score_list&lt;-<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2">ori_score_list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1] 45 72 33</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">1</span>])</a></code></pre></div>
-<pre><code>## [1] 67</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">2</span>])</a></code></pre></div>
-<pre><code>## [1] 85</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="co">#.....</span></a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">ori_score_list&lt;-<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb233-2" data-line-number="2">ori_score_list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 46 16 51</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">1</span>])</a></code></pre></div>
+<pre><code>## [1] 68</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">2</span>])</a></code></pre></div>
+<pre><code>## [1] 40</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="co">#.....</span></a></code></pre></div>
 <p>此時若能妥善利用<code>purrr</code>套件的<code>map_dbl</code>功能，就能將程式碼縮短，並且提升易讀性。map()函數家族的使用概念為<code>map(需逐一計算的向量,計算所需的函數)</code>，如下所示，我們需要計算的學生原始成績存在<code>ori_score_list</code>向量中，而加分的函數為<code>good_teacher_score()</code>：
 <img src="figure/map.png" width="666" />
 <a href="https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf">圖片來源</a></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">library</span>(purrr)</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">new_score_list&lt;-</a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">    </span><span class="kw">map_dbl</span>(ori_score_list,</a>
-<a class="sourceLine" id="cb43-4" data-line-number="4">            good_teacher_score)</a></code></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">data.frame</span>(ori_score_list,</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">           new_score_list)</a></code></pre></div>
+<p>學生原始成績存在ori_score_list變數內：</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">ori_score_list</a></code></pre></div>
+<pre><code>##  [1] 46 16 51  8  6  4 81 20 61 59 36 39 87 35 31 54 72 71 12 26 37 70 18 85 27
+## [26] 47 80 50 38 45</code></pre>
+<p>使用<code>map_dbl</code>將每位學生的成績加分：</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb242-2" data-line-number="2">new_score_list&lt;-</a>
+<a class="sourceLine" id="cb242-3" data-line-number="3"><span class="st">    </span><span class="kw">map_dbl</span>(ori_score_list,</a>
+<a class="sourceLine" id="cb242-4" data-line-number="4">            good_teacher_score)</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">data.frame</span>(ori_score_list,</a>
+<a class="sourceLine" id="cb243-2" data-line-number="2">           new_score_list)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -488,124 +510,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">45</td>
-<td align="right">67</td>
-</tr>
-<tr class="even">
-<td align="right">72</td>
-<td align="right">85</td>
-</tr>
-<tr class="odd">
-<td align="right">33</td>
-<td align="right">57</td>
-</tr>
-<tr class="even">
-<td align="right">21</td>
-<td align="right">46</td>
-</tr>
-<tr class="odd">
-<td align="right">96</td>
-<td align="right">98</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="right">88</td>
-<td align="right">94</td>
-</tr>
-<tr class="even">
-<td align="right">78</td>
-<td align="right">88</td>
-</tr>
-<tr class="odd">
-<td align="right">31</td>
-<td align="right">56</td>
-</tr>
-<tr class="even">
-<td align="right">67</td>
-<td align="right">82</td>
-</tr>
-<tr class="odd">
-<td align="right">13</td>
-<td align="right">36</td>
-</tr>
-<tr class="even">
-<td align="right">22</td>
-<td align="right">47</td>
-</tr>
-<tr class="odd">
-<td align="right">63</td>
-<td align="right">79</td>
-</tr>
-<tr class="even">
-<td align="right">90</td>
-<td align="right">95</td>
-</tr>
-<tr class="odd">
-<td align="right">71</td>
-<td align="right">84</td>
-</tr>
-<tr class="even">
-<td align="right">98</td>
-<td align="right">99</td>
-</tr>
-<tr class="odd">
-<td align="right">37</td>
-<td align="right">61</td>
-</tr>
-<tr class="even">
 <td align="right">46</td>
 <td align="right">68</td>
-</tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="right">30</td>
-</tr>
-<tr class="even">
-<td align="right">62</td>
-<td align="right">79</td>
-</tr>
-<tr class="odd">
-<td align="right">29</td>
-<td align="right">54</td>
-</tr>
-<tr class="even">
-<td align="right">73</td>
-<td align="right">85</td>
-</tr>
-<tr class="odd">
-<td align="right">57</td>
-<td align="right">76</td>
 </tr>
 <tr class="even">
 <td align="right">16</td>
 <td align="right">40</td>
 </tr>
 <tr class="odd">
-<td align="right">14</td>
+<td align="right">51</td>
+<td align="right">71</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">28</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">24</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">81</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">45</td>
+</tr>
+<tr class="odd">
+<td align="right">61</td>
+<td align="right">78</td>
+</tr>
+<tr class="even">
+<td align="right">59</td>
+<td align="right">77</td>
+</tr>
+<tr class="odd">
+<td align="right">36</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="right">39</td>
+<td align="right">62</td>
+</tr>
+<tr class="odd">
+<td align="right">87</td>
+<td align="right">93</td>
+</tr>
+<tr class="even">
+<td align="right">35</td>
+<td align="right">59</td>
+</tr>
+<tr class="odd">
+<td align="right">31</td>
+<td align="right">56</td>
+</tr>
+<tr class="even">
+<td align="right">54</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">72</td>
+<td align="right">85</td>
+</tr>
+<tr class="even">
+<td align="right">71</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">26</td>
+<td align="right">51</td>
+</tr>
+<tr class="odd">
 <td align="right">37</td>
+<td align="right">61</td>
+</tr>
+<tr class="even">
+<td align="right">70</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="right">18</td>
+<td align="right">42</td>
+</tr>
+<tr class="even">
+<td align="right">85</td>
+<td align="right">92</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="right">52</td>
 </tr>
 <tr class="even">
 <td align="right">47</td>
 <td align="right">69</td>
 </tr>
 <tr class="odd">
-<td align="right">15</td>
-<td align="right">39</td>
+<td align="right">80</td>
+<td align="right">89</td>
 </tr>
 <tr class="even">
-<td align="right">91</td>
-<td align="right">95</td>
+<td align="right">50</td>
+<td align="right">71</td>
 </tr>
 <tr class="odd">
-<td align="right">23</td>
-<td align="right">48</td>
+<td align="right">38</td>
+<td align="right">62</td>
 </tr>
 <tr class="even">
-<td align="right">76</td>
-<td align="right">87</td>
+<td align="right">45</td>
+<td align="right">67</td>
 </tr>
 </tbody>
 </table>
@@ -617,20 +639,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="figure/map.png" width="666" />
 <img src="figure/map2.png" width="664" /></p>
 <p><a href="https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf">圖片來源</a></p>
-<p>以計算加權成績為例，我們有一組學生的國文成績chi_score以及英文成績eng_score，並且希望將這些成績以（國文成績+2*英文成績）的方式做加權計算，首先，我們須先將加權的程式碼撰寫成<code>weight_score()</code>函數，並使用<code>map2</code>家族函數，完成逐一計算的任務。<code>map2</code>家族函數的使用方法為<code>map2_dbl(需逐一計算的向量1,需逐一計算的向量2,計算所需的函數)</code>，如下列程式碼：</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">chi_score&lt;-<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">eng_score&lt;-<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">40</span>)</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">weight_score&lt;-<span class="cf">function</span>(chi,eng){</a>
-<a class="sourceLine" id="cb45-4" data-line-number="4">    final_score&lt;-chi<span class="op">+</span>eng<span class="op">*</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5">    <span class="kw">return</span>(final_score)</a>
-<a class="sourceLine" id="cb45-6" data-line-number="6">}</a>
-<a class="sourceLine" id="cb45-7" data-line-number="7">weight_score_list&lt;-</a>
-<a class="sourceLine" id="cb45-8" data-line-number="8"><span class="st">    </span><span class="kw">map2_dbl</span>(chi_score,</a>
-<a class="sourceLine" id="cb45-9" data-line-number="9">             eng_score,</a>
-<a class="sourceLine" id="cb45-10" data-line-number="10">            weight_score)</a></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">data.frame</span>(chi_score,</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">           eng_score,</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">           weight_score_list)</a></code></pre></div>
+<p>以計算加權成績為例，我們有一組學生的國文成績chi_score以及英文成績eng_score，並且希望將這些成績以（國文成績+2*英文成績）的方式做加權計算，首先，我們須先將加權的程式碼撰寫成<code>weight_score()</code>函數，並使用<code>map2</code>家族函數，完成逐一計算的任務。<code>map2</code>家族函數的使用方法為<code>map2_dbl(需逐一計算的向量1,需逐一計算的向量2,計算所需的函數)</code>。</p>
+<p>首先建立國文成績chi_score以及英文成績eng_score向量：</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">chi_score&lt;-<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">40</span>)</a>
+<a class="sourceLine" id="cb244-2" data-line-number="2">eng_score&lt;-<span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">50</span>,<span class="dv">40</span>)</a></code></pre></div>
+<p>完成向量值的指定後，撰寫（國文成績+2*英文成績）加權計算函數<code>weight_score()</code>：</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">weight_score&lt;-<span class="cf">function</span>(chi,eng){</a>
+<a class="sourceLine" id="cb245-2" data-line-number="2">    final_score&lt;-chi<span class="op">+</span>eng<span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3">    <span class="kw">return</span>(final_score)</a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">}</a></code></pre></div>
+<p>使用<code>map2</code>家族函數，完成逐一計算的任務：</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">weight_score_list&lt;-</a>
+<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="st">    </span><span class="kw">map2_dbl</span>(chi_score,</a>
+<a class="sourceLine" id="cb246-3" data-line-number="3">             eng_score,</a>
+<a class="sourceLine" id="cb246-4" data-line-number="4">            weight_score)</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">data.frame</span>(chi_score,</a>
+<a class="sourceLine" id="cb247-2" data-line-number="2">           eng_score,</a>
+<a class="sourceLine" id="cb247-3" data-line-number="3">           weight_score_list)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -661,9 +686,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="參考資料" class="section level2">
 <h2><span class="header-section-number">4.8</span> 參考資料</h2>
 <ul>
-<li><a href="https://r4ds.had.co.nz/functions.html">R for Data Science</a></li>
-<li><a href="https://adv-r.hadley.nz/functionals.html">Advanced R</a></li>
-<li><a href="https://purrr.tidyverse.org/">purrr package</a></li>
+<li><a href="https://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science</a></li>
+<li><a href="https://adv-r.hadley.nz/functionals.html" target="_blank">Advanced R</a></li>
+<li><a href="https://purrr.tidyverse.org/" target="_blank">purrr package</a></li>
 </ul>
 
 </div>
@@ -727,6 +752,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
