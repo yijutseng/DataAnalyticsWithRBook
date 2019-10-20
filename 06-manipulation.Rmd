@@ -4,7 +4,7 @@
 Each column is a variable. Each row is an observation.
 
 - 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
-- 不同的觀察值應該要在不同行（Row）
+- 不同的觀察值應該要在不同列（Row）
 - 一張表裡面，有所有分析需要的資料
 - 如果一定要多張表，中間一定要有index可以把表串起來
 - One file, one table

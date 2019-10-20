@@ -191,7 +191,10 @@ Tags, elements and attributes
 - Attributes are components of the label
     - `<book category="web">`
     
-許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlParse()`函數將檔案匯入。若出現`Error: 1: Unknown IO error2: failed to load external entity`，是因為XML套件處理http轉https的功能的不好，載入httr套件後，先使用GET()功能取用網址，再放入xmlParse()就不會有問題。
+許多Open Data也用XML格式儲存，例如[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927){target="_blank"}。
+
+#### XML 套件
+如需將XML檔案匯入R中，需要安裝`XML` [@R-XML] package，使用`xmlParse()`函數將檔案匯入。若出現`Error: 1: Unknown IO error2: failed to load external entity`，是因為XML套件處理http轉https的功能的不好，載入httr套件後，先使用GET()功能取用網址，再放入xmlParse()就不會有問題。
 
 ```{r}
 library(XML)
@@ -211,9 +214,42 @@ xpathSApply(waterQ,"//longitude",xmlValue)[1:10]
 在`xpathApply()`與`xpathSApply()`函數中，第二個參數為**XPath**，**XPath**是XML路徑語言（XML Path Language），基於XML的樹狀結構，提供在資料結構樹中找尋節點的能力，**XPath**語法的邏輯，可參考[W3C Schools](https://www.w3schools.com/xml/xpath_syntax.asp){target="_blank"}或是Google搜尋相關中文教學，如[lxml、XPath 常用語法](http://tech-marsw.logdown.com/blog/2016/01/11/parsing-lxml-xpath-sheet){target="_blank"}。在此列舉幾個常用的語法:
 
 ```
-// : 子結點資料, 如所有連結標籤 //a
-@ : 屬性資料, 如所有連結標籤內的連結網址 //a/@href
+// 
 ```
+子結點資料, 如所有連結標籤 `//a`
+
+```
+@ 
+```
+屬性資料, 如所有連結標籤內的連結網址 `//a/@href`
+
+#### xml2 套件
+
+除了XML套件外，也可使用`xml2`[@R-xml2]套件來處理XML格式的檔案，同樣使用[臺北市水質監測資訊](http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927)為例，首先透過`read_xml()`函數將XML檔案匯入：
+
+```{r}
+library(xml2)
+waterURL<-"http://data.taipei/opendata/datalist/datasetMeta/download?id=961ca397-4a59-45e8-b312-697f26b059dc&rid=190796c8-7c56-42e0-8068-39242b8ec927"
+waterQ <- read_xml(waterURL)
+```
+
+完成讀取後，使用`xml_find_all()`以及`xml_text()`函數取得指定標籤內的資料：
+```{r}
+#取得所有"code_name"標籤內的資料
+code_name_xml<-xml_find_all(waterQ, ".//code_name")
+code_name<-xml_text(code_name_xml)
+code_name[1:10]
+```
+
+
+```{r}
+#取得各監測站的經度longitude
+longitude_xml<-xml_find_all(waterQ, ".//longitude")
+longitude<-xml_text(longitude_xml)
+longitude[1:10]
+```
+
+以上兩種套件均可完成XML檔案的處理，可依喜好選擇幾喜歡的套件。
 
 ### 網頁爬蟲 Webscraping
 
@@ -296,12 +332,14 @@ head(Yahoo_news)
 
 - [網路爬蟲實作 - 用 r 語言打造自己的爬蟲程式](https://www.slideshare.net/secret/mdfHLPgvIW1kPR){target="_blank"} 
 - [rvest GitHub](https://github.com/hadley/rvest){target="_blank"} 
-- R Bloggers 有很多[爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping){target="_blank"}（英文）
+- R Bloggers 有很多 [爬蟲範例](http://www.r-bloggers.com/?s=Web+Scraping){target="_blank"}（英文）
 - [Ptt爬蟲實作](http://bryannotes.blogspot.tw/2014/08/r-ptt-wantedsocial-network-analysis.html){target="_blank"} 
 - [大數學堂 網頁爬蟲課程](http://www.largitdata.com/course_list/1){target="_blank"}
 - [搭配結巴中文斷詞的使用範例](https://github.com/CGUIM-BigDataAnalysis/BigDataCGUIM/blob/master/105/JiebaR.md){target="_blank"}
 
 ## Facebook資料擷取
+**在2018年的風波後，Graph API若要用在爬取公開粉專，須經過FB審核**
+
 Facebook提供[Graph API](https://developers.facebook.com/docs/graph-api?locale=zh_TW){target="_blank"}，讓應用程式可透過API讀取與寫入 Facebook相關資料，**Graph API**會根據篩選條件，回傳JSON格式的資料。除此之外，Facebook還提供[Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="_blank"}，讓程式開發人員可以測試資料撈取方法和結果。
 在開始使用**Graph API**之前，必須要取得自己的**access token** (存取權杖)，[Graph API Explorer](https://developers.facebook.com/tools/explorer/){target="_blank"}工具提供**Get Token**按鈕(通常在視窗右上角)，可以讓開發者在不用新增應用程式(Application)的情況下取得暫時的**access token**。
 
@@ -371,7 +409,10 @@ json1$posts$data[[1]]$message
 ```
 ##[1] "「國機國造」不是夢想，而是一個行動。今天啟動的高級教練機「自研自製」任務，是國防自主的重要里程碑。我們不只要讓戰機起飛，更要讓產業起飛。\n\n國防產業同樣是「5+2」關鍵產業之一，所以，除了要如期、如質完成新式高教機的「自研自製」外，也要重新厚植台灣的航太工業人才鏈，以及加強相關產業的連結、轉型和升級。\n\n國防自主沒有捷徑，只有努力再努力、堅持再堅持。今天，我們重新跨出歷史性的一步。"
 ```
+
 ### Rfacebook package
+**在2018年的風波後，Graph API若要用在爬取公開粉專，須經過FB審核**
+
 除了直接使用Graph API外，也可使用`Rfacebook`[@R-Rfacebook] package來讀取Facebook資料。
 以下為使用Rfacebook取得 `tsaiingwen` 粉絲頁的資料範例：
 ```{r eval=FALSE}
@@ -448,13 +489,19 @@ Rfacebook Packages提供其他函數可供使用
 - getPost()
 - searchFacebook()
 - Check https://github.com/pablobarbera/Rfacebook
-- ?Rfacebook
 
 
-##資料匯出
+
+
+
+## 資料匯出
+
 在R中完成資料處理後，有多種匯出選擇，如果是要匯出供他人在其他環境(如Excel)使用，建議匯出成tab分隔的文字檔(.txt)或是逗號分隔的文字檔(.csv)；但若是要在R的環境繼續使用，建議匯出成R物件 (.rds)，除了可保留欄位型別設定外，讀取速度與檔案大小皆優於文字檔案。
 
-###文字檔 .txt
+
+
+### 文字檔 .txt
+
 使用`write.table()`函數寫入檔案，需要參數有
 
 - `x` 要匯出的檔案，通常為matrix或是data.frame格式
@@ -474,13 +521,17 @@ Rfacebook Packages提供其他函數可供使用
 write.table(iris,file="iris.txt",sep=",",row.names = F,col.names = T)
 ```
 
-###CSV檔 .csv
+
+### CSV檔 .csv
+
 與`write.table()`類似，使用`write.csv()`函數寫入檔案
 ```{r eval=FALSE}
 write.csv(iris,file="iris.csv",row.names = F)
 ```
 
-###R物件 .rds
+
+### R物件 .rds
+
 若是要在R的環境繼續使用，建議匯出成R物件檔案(.rds)
 ```{r eval=FALSE}
 saveRDS(iris,"iris.rds")

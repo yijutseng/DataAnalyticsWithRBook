@@ -1,4 +1,4 @@
-require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
+gitbook.require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
 
   var gs = gitbook.storage;
 
@@ -16,6 +16,19 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
       }
     });
 
+    // add the History button (file history on Github)
+    var history = config.history;
+    if (history && history.link) gitbook.toolbar.createButton({
+      icon: 'fa fa-history',
+      label: history.text || 'History',
+      position: 'left',
+      onClick: function(e) {
+        e.preventDefault();
+        window.open(history.link);
+      }
+    });
+
+    // add the Download button
     var down = config.download;
     var normalizeDownload = function() {
       if (!down || !(down instanceof Array) || down.length === 0) return;
@@ -51,6 +64,23 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
         })
       });
     }
+
+    // add the Information button
+    var info = ['Keyboard shortcuts (<> indicates arrow keys):',
+      '<left>/<right>: navigate to previous/next page',
+      's: Toggle sidebar'];
+    if (config.search !== false) info.push('f: Toggle search input ' +
+      '(use <up>/<down>/Enter in the search input to navigate through search matches; ' +
+      'press Esc to cancel search)');
+    gitbook.toolbar.createButton({
+      icon: 'fa fa-info',
+      label: 'Information about the toolbar',
+      position: 'left',
+      onClick: function(e) {
+        e.preventDefault();
+        window.alert(info.join('\n\n'));
+      }
+    });
 
     // highlight the current section in TOC
     var href = window.location.pathname;
@@ -175,13 +205,16 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
   });
 
   var bookBody = $('.book-body'), bookInner = bookBody.find('.body-inner');
+  var chapterTitle = function() {
+    return bookInner.find('.page-inner').find('h1,h2').first().text();
+  };
   var saveScrollPos = function(e) {
     // save scroll position before page is reloaded
     gs.set('bodyScrollTop', {
       body: bookBody.scrollTop(),
       inner: bookInner.scrollTop(),
       focused: document.hasFocus(),
-      title: bookInner.find('.page-inner').find('h1,h2').first().text()
+      title: chapterTitle()
     });
   };
   $(document).on('servr:reload', saveScrollPos);
@@ -199,12 +232,12 @@ require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
   $(function(e) {
     var pos = gs.get('bodyScrollTop');
     if (pos) {
-      if (pos.title === bookInner.find('.page-inner').find('h1,h2').first().text()) {
+      if (pos.title === chapterTitle()) {
         if (pos.body !== 0) bookBody.scrollTop(pos.body);
         if (pos.inner !== 0) bookInner.scrollTop(pos.inner);
       }
-      if (pos.focused) bookInner.find('.page-wrapper').focus();
     }
+    if ((pos && pos.focused) || !inIFrame()) bookInner.find('.page-wrapper').focus();
     // clear book body scroll position
     gs.remove('bodyScrollTop');
   });

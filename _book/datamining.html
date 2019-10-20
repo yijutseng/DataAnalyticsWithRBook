@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>資料科學與R語言</title>
-  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合">
-  <meta name="generator" content="bookdown 0.3.9 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 資料探勘 | 資料科學與R語言</title>
+  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="資料科學與R語言" />
+  <meta property="og:title" content="10 資料探勘 | 資料科學與R語言" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="http://yijutseng.github.io/DataScienceRBook" />
   
@@ -17,29 +16,33 @@
   <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="資料科學與R語言" />
+  <meta name="twitter:title" content="10 資料探勘 | 資料科學與R語言" />
   
   <meta name="twitter:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
   
 
-<meta name="author" content="曾意儒 Yi-Ju Tseng">
+<meta name="author" content="曾意儒 Yi-Ju Tseng" />
 
 
-<meta name="date" content="2017-05-14">
+<meta name="date" content="2019-10-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="InteractiveGraphics.html">
-<link rel="next" href="big.html">
+<link rel="prev" href="InteractiveGraphics.html"/>
+<link rel="next" href="big.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -57,57 +60,75 @@
 <link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
 <script src="libs/ggvis/js/ggvis.js"></script>
 <script src="libs/htmlwidgets/htmlwidgets.js"></script>
-<link href="libs/plotlyjs/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs/plotly-latest.min.js"></script>
 <script src="libs/plotly-binding/plotly.js"></script>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-2407708-3', 'auto');
-ga('send', 'pageview');
-
-</script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -128,122 +149,73 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="divider"></li>
 <li><a href="index.html#preface"></a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R語言101</a><ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>1.1</b> 什麼是R語言</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#section-1.2"><i class="fa fa-check"></i><b>1.2</b> 函數使用</a></li>
-<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#section-1.3"><i class="fa fa-check"></i><b>1.3</b> 變數設定</a></li>
-<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#section-1.4"><i class="fa fa-check"></i><b>1.4</b> 執行視窗</a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#什麼是r語言"><i class="fa fa-check"></i><b>1.1</b> 什麼是R語言</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#函數使用"><i class="fa fa-check"></i><b>1.2</b> 函數使用</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#變數設定"><i class="fa fa-check"></i><b>1.3</b> 變數設定</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#執行視窗"><i class="fa fa-check"></i><b>1.4</b> 執行視窗</a></li>
 <li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#DataType"><i class="fa fa-check"></i><b>1.5</b> 資料型態</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#-numeric"><i class="fa fa-check"></i><b>1.5.1</b> 數值 numeric</a></li>
-<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#-character"><i class="fa fa-check"></i><b>1.5.2</b> 字串 character</a></li>
-<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#-logic"><i class="fa fa-check"></i><b>1.5.3</b> 布林變數 logic</a></li>
-<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#-date"><i class="fa fa-check"></i><b>1.5.4</b> 日期 (Date)</a></li>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#數值-numeric"><i class="fa fa-check"></i><b>1.5.1</b> 數值 numeric</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#字串-character"><i class="fa fa-check"></i><b>1.5.2</b> 字串 character</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#布林變數-logic"><i class="fa fa-check"></i><b>1.5.3</b> 布林變數 logic</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#日期-date"><i class="fa fa-check"></i><b>1.5.4</b> 日期 (Date)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#section-1.6"><i class="fa fa-check"></i><b>1.6</b> 基本運算子</a><ul>
-<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#section-1.6.1"><i class="fa fa-check"></i><b>1.6.1</b> 數學基本運算</a></li>
-<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#section-1.6.2"><i class="fa fa-check"></i><b>1.6.2</b> 進階數學函數</a></li>
-<li class="chapter" data-level="1.6.3" data-path="intro.html"><a href="intro.html#section-1.6.3"><i class="fa fa-check"></i><b>1.6.3</b> 邏輯運算</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#基本運算子"><i class="fa fa-check"></i><b>1.6</b> 基本運算子</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#數學基本運算"><i class="fa fa-check"></i><b>1.6.1</b> 數學基本運算</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#邏輯運算"><i class="fa fa-check"></i><b>1.6.2</b> 邏輯運算</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#section-1.7"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#錯誤訊息"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.8</b> Help</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R 資料結構</a><ul>
-<li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.1.1"><i class="fa fa-check"></i><b>2.1.1</b> 快速產生向量函數</a></li>
-<li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.1.2"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
+<li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#向量-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="RDataStructure.html"><a href="RDataStructure.html#快速產生向量函數"><i class="fa fa-check"></i><b>2.1.1</b> 快速產生向量函數</a></li>
+<li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#向量運算"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
-<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.3.1"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
-<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.3.2"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
+<li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#因子-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
+<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#列表-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料擷取"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
+<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料編輯設定"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
-<li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
-<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
-<li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#section-2.7"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
+<li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#矩陣-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#資料框-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
+<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#資料表-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
+<li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#資料屬性查詢函數"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>3</b> 控制流程</a><ul>
-<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#section-3.1"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
+<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#條件判斷"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else敘述"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
 <li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
-<li class="chapter" data-level="3.1.3" data-path="controlstructure.html"><a href="controlstructure.html#if"><i class="fa fa-check"></i><b>3.1.3</b> 巢狀if</a></li>
-<li class="chapter" data-level="3.1.4" data-path="controlstructure.html"><a href="controlstructure.html#ifelse"><i class="fa fa-check"></i><b>3.1.4</b> ifelse()</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="controlstructure.html"><a href="controlstructure.html#section-3.2"><i class="fa fa-check"></i><b>3.2</b> 迴圈</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="controlstructure.html"><a href="controlstructure.html#for"><i class="fa fa-check"></i><b>3.2.1</b> for</a></li>
-<li class="chapter" data-level="3.2.2" data-path="controlstructure.html"><a href="controlstructure.html#while"><i class="fa fa-check"></i><b>3.2.2</b> while</a></li>
-<li class="chapter" data-level="3.2.3" data-path="controlstructure.html"><a href="controlstructure.html#break"><i class="fa fa-check"></i><b>3.2.3</b> break</a></li>
-<li class="chapter" data-level="3.2.4" data-path="controlstructure.html"><a href="controlstructure.html#next"><i class="fa fa-check"></i><b>3.2.4</b> next</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="controlstructure.html"><a href="controlstructure.html#purrr"><i class="fa fa-check"></i><b>3.3</b> purrr</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a></li>
 <li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
-<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#file"><i class="fa fa-check"></i><b>5.1</b> 從檔案匯入基本資料格式</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#import-dataset-rstudio"><i class="fa fa-check"></i><b>5.1.1</b> Import Dataset功能 (RStudio)</a></li>
-<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>5.1.2</b> 分隔文字檔 .txt</a></li>
-<li class="chapter" data-level="5.1.3" data-path="io.html"><a href="io.html#csv"><i class="fa fa-check"></i><b>5.1.3</b> CSV檔案 .csv</a></li>
-<li class="chapter" data-level="5.1.4" data-path="io.html"><a href="io.html#excel-.xls"><i class="fa fa-check"></i><b>5.1.4</b> Excel檔案 .xls</a></li>
-<li class="chapter" data-level="5.1.5" data-path="io.html"><a href="io.html#r-.rds"><i class="fa fa-check"></i><b>5.1.5</b> R物件 .rds</a></li>
-<li class="chapter" data-level="5.1.6" data-path="io.html"><a href="io.html#r-.r"><i class="fa fa-check"></i><b>5.1.6</b> R程式 .R</a></li>
-<li class="chapter" data-level="5.1.7" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>5.1.7</b> 純文字資料 (無分隔)</a></li>
-<li class="chapter" data-level="5.1.8" data-path="io.html"><a href="io.html#section-5.1.8"><i class="fa fa-check"></i><b>5.1.8</b> 其他格式</a></li>
-<li class="chapter" data-level="5.1.9" data-path="io.html"><a href="io.html#section-5.1.9"><i class="fa fa-check"></i><b>5.1.9</b> 其他讀檔注意事項</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#section-5.2"><i class="fa fa-check"></i><b>5.2</b> 從網路匯入資料</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>5.2.1</b> Open Data</a></li>
-<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.2.2</b> API (Application programming interfaces)</a></li>
-<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#json"><i class="fa fa-check"></i><b>5.2.3</b> JSON格式檔案</a></li>
-<li class="chapter" data-level="5.2.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.2.4</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="5.2.5" data-path="io.html"><a href="io.html#-webscraping"><i class="fa fa-check"></i><b>5.2.5</b> 網頁爬蟲 Webscraping</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="io.html"><a href="io.html#facebook"><i class="fa fa-check"></i><b>5.3</b> Facebook資料擷取</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.3.1</b> Graph API in R</a></li>
-<li class="chapter" data-level="5.3.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.3.2</b> Rfacebook package</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="io.html"><a href="io.html#section-5.4"><i class="fa fa-check"></i><b>5.4</b> 資料匯出</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="io.html"><a href="io.html#-.txt"><i class="fa fa-check"></i><b>5.4.1</b> 文字檔 .txt</a></li>
-<li class="chapter" data-level="5.4.2" data-path="io.html"><a href="io.html#csv-.csv"><i class="fa fa-check"></i><b>5.4.2</b> CSV檔 .csv</a></li>
-<li class="chapter" data-level="5.4.3" data-path="io.html"><a href="io.html#r-.rds-1"><i class="fa fa-check"></i><b>5.4.3</b> R物件 .rds</a></li>
+<li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
+<li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
 <li class="chapter" data-level="6.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy Data</a></li>
-<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="manipulation.html"><a href="manipulation.html#section-6.2.1"><i class="fa fa-check"></i><b>6.2.1</b> 資料型別檢查</a></li>
-<li class="chapter" data-level="6.2.2" data-path="manipulation.html"><a href="manipulation.html#section-6.2.2"><i class="fa fa-check"></i><b>6.2.2</b> 資料型別轉換</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#section-6.3.1"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
-<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#section-6.3.2"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
-<li class="chapter" data-level="6.3.3" data-path="manipulation.html"><a href="manipulation.html#-regular-expression"><i class="fa fa-check"></i><b>6.3.3</b> 正規表示式 (Regular Expression)</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>6.4</b> 子集Subset</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="io.html"><a href="io.html#-"><i class="fa fa-check"></i><b>6.4.1</b> 一維資料 (向量)</a></li>
-<li class="chapter" data-level="6.4.2" data-path="manipulation.html"><a href="manipulation.html#section-6.4.2"><i class="fa fa-check"></i><b>6.4.2</b> 二維資料</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="manipulation.html"><a href="manipulation.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 排序</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-"><i class="fa fa-check"></i><b>6.5.1</b> sort 向量排序</a></li>
-<li class="chapter" data-level="6.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>6.5.2</b> order</a></li>
-</ul></li>
-<li class="chapter" data-level="6.6" data-path="manipulation.html"><a href="manipulation.html#section-6.6"><i class="fa fa-check"></i><b>6.6</b> 資料組合</a></li>
-<li class="chapter" data-level="6.7" data-path="manipulation.html"><a href="manipulation.html#-join"><i class="fa fa-check"></i><b>6.7</b> 資料結合 (Join)</a></li>
-<li class="chapter" data-level="6.8" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>6.8</b> 長表與寬表</a></li>
-<li class="chapter" data-level="6.9" data-path="manipulation.html"><a href="manipulation.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 遺漏值處理</a></li>
-<li class="chapter" data-level="6.10" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>6.10</b> 綜合練習範例Case study</a><ul>
-<li class="chapter" data-level="6.10.1" data-path="manipulation.html"><a href="manipulation.html#section-6.10.1"><i class="fa fa-check"></i><b>6.10.1</b> 載入資料</a></li>
-<li class="chapter" data-level="6.10.2" data-path="manipulation.html"><a href="manipulation.html#section-6.10.2"><i class="fa fa-check"></i><b>6.10.2</b> 資料總覽</a></li>
-<li class="chapter" data-level="6.10.3" data-path="manipulation.html"><a href="manipulation.html#section-6.10.3"><i class="fa fa-check"></i><b>6.10.3</b> 資料排序後篩選</a></li>
-<li class="chapter" data-level="6.10.4" data-path="manipulation.html"><a href="manipulation.html#section-6.10.4"><i class="fa fa-check"></i><b>6.10.4</b> 欄位值篩選</a></li>
-<li class="chapter" data-level="6.10.5" data-path="manipulation.html"><a href="manipulation.html#section-6.10.5"><i class="fa fa-check"></i><b>6.10.5</b> 字串條件搜尋後篩選</a></li>
+<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換處理"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a></li>
+<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#文字字串處理"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#基本處理"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#搜尋字串"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
+<li class="chapter" data-level="6.3.3" data-path="manipulation.html"><a href="manipulation.html#正規表示式-regular-expression"><i class="fa fa-check"></i><b>6.3.3</b> 正規表示式 (Regular Expression)</a></li>
+<li class="chapter" data-level="6.3.4" data-path="manipulation.html"><a href="manipulation.html#載入資料"><i class="fa fa-check"></i><b>6.3.4</b> 載入資料</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>7</b> 探索式資料分析</a><ul>
-<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#section-7.1"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#什麼是探索式資料分析"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
 <li class="chapter" data-level="7.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>7.2</b> data.table</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
-<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
-<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
-<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#section-7.2.4"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-觀察值篩選邏輯"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-欄位選擇運算"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-分組依據"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>7.3</b> dplyr</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>7.3.1</b> select()</a></li>
@@ -253,79 +225,75 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="7.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>7.3.5</b> group_by()</a></li>
 <li class="chapter" data-level="7.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>7.3.6</b> arrange()</a></li>
 <li class="chapter" data-level="7.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>7.3.7</b> rename()</a></li>
-<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#參考文件與資源-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>8</b> 資料視覺化</a><ul>
-<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#section-8.1"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
-<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#資料視覺化的目的"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2簡介"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
 <li class="chapter" data-level="8.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>8.2.1</b> qplot()</a></li>
 <li class="chapter" data-level="8.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>8.2.2</b> ggplot()</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2地圖"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map面量圖"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
 <li class="chapter" data-level="8.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.3.2</b> ggmap()</a></li>
-<li class="chapter" data-level="8.3.3" data-path="vis.html"><a href="vis.html#density-map"><i class="fa fa-check"></i><b>8.3.3</b> Density Map</a></li>
-<li class="chapter" data-level="8.3.4" data-path="eda.html"><a href="eda.html#-1"><i class="fa fa-check"></i><b>8.3.4</b> 參考資料</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a><ul>
-<li class="chapter" data-level="8.4.1" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.4.1</b> ggmap+面量圖</a></li>
+<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan的面量圖"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vis.html"><a href="vis.html#ggmap面量圖"><i class="fa fa-check"></i><b>8.4.1</b> ggmap+面量圖</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#heatmap"><i class="fa fa-check"></i><b>8.5</b> Heatmap</a></li>
-<li class="chapter" data-level="8.6" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.6</b> Treemap</a></li>
-<li class="chapter" data-level="8.7" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>8.7</b> 參考文件與資源</a></li>
+<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.5</b> Treemap</a></li>
+<li class="chapter" data-level="8.6" data-path="vis.html"><a href="vis.html#參考文件與資源-2"><i class="fa fa-check"></i><b>8.6</b> 參考文件與資源</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>9</b> 互動式資料呈現</a><ul>
 <li class="chapter" data-level="9.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>9.1</b> ggvis</a></li>
-<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#googlevis"><i class="fa fa-check"></i><b>9.2</b> googleVis</a></li>
-<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.3</b> Plot.ly</a></li>
-<li class="chapter" data-level="9.4" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny"><i class="fa fa-check"></i><b>9.4</b> Shiny簡介</a></li>
+<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.2</b> Plot.ly</a></li>
+<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny簡介"><i class="fa fa-check"></i><b>9.3</b> Shiny簡介</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>10</b> 資料探勘</a><ul>
-<li class="chapter" data-level="10.1" data-path="datamining.html"><a href="datamining.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 什麼是資料探勘</a></li>
-<li class="chapter" data-level="10.2" data-path="datamining.html"><a href="datamining.html#regression-"><i class="fa fa-check"></i><b>10.2</b> Regression 迴歸</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="datamining.html"><a href="datamining.html#linear-regression-"><i class="fa fa-check"></i><b>10.2.1</b> Linear Regression 線性迴歸</a></li>
-<li class="chapter" data-level="10.2.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-"><i class="fa fa-check"></i><b>10.2.2</b> Logistic Regression 羅吉斯迴歸</a></li>
-<li class="chapter" data-level="10.2.3" data-path="datamining.html"><a href="datamining.html#section-10.2.3"><i class="fa fa-check"></i><b>10.2.3</b> 最佳模型篩選</a></li>
+<li class="chapter" data-level="10.1" data-path="datamining.html"><a href="datamining.html#什麼是資料探勘"><i class="fa fa-check"></i><b>10.1</b> 什麼是資料探勘</a></li>
+<li class="chapter" data-level="10.2" data-path="datamining.html"><a href="datamining.html#regression-迴歸"><i class="fa fa-check"></i><b>10.2</b> Regression 迴歸</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datamining.html"><a href="datamining.html#linear-regression-線性迴歸"><i class="fa fa-check"></i><b>10.2.1</b> Linear Regression 線性迴歸</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-羅吉斯迴歸"><i class="fa fa-check"></i><b>10.2.2</b> Logistic Regression 羅吉斯迴歸</a></li>
+<li class="chapter" data-level="10.2.3" data-path="datamining.html"><a href="datamining.html#最佳模型篩選"><i class="fa fa-check"></i><b>10.2.3</b> 最佳模型篩選</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="datamining.html"><a href="datamining.html#decision-trees-"><i class="fa fa-check"></i><b>10.3</b> Decision Trees 決策樹</a></li>
-<li class="chapter" data-level="10.4" data-path="datamining.html"><a href="datamining.html#clustering-"><i class="fa fa-check"></i><b>10.4</b> Clustering 分群</a><ul>
-<li class="chapter" data-level="10.4.1" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering-"><i class="fa fa-check"></i><b>10.4.1</b> Hierarchical clustering 階層式分群</a></li>
+<li class="chapter" data-level="10.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹"><i class="fa fa-check"></i><b>10.3</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="10.4" data-path="datamining.html"><a href="datamining.html#clustering-分群"><i class="fa fa-check"></i><b>10.4</b> Clustering 分群</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering-階層式分群"><i class="fa fa-check"></i><b>10.4.1</b> Hierarchical clustering 階層式分群</a></li>
 <li class="chapter" data-level="10.4.2" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4.2</b> K-means clustering</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="datamining.html"><a href="datamining.html#association-rules-"><i class="fa fa-check"></i><b>10.5</b> Association Rules 關聯式規則</a></li>
+<li class="chapter" data-level="10.5" data-path="datamining.html"><a href="datamining.html#association-rules-關聯式規則"><i class="fa fa-check"></i><b>10.5</b> Association Rules 關聯式規則</a></li>
 <li class="chapter" data-level="10.6" data-path="datamining.html"><a href="datamining.html#open-source-packages"><i class="fa fa-check"></i><b>10.6</b> Open Source Packages</a><ul>
 <li class="chapter" data-level="10.6.1" data-path="datamining.html"><a href="datamining.html#prophet"><i class="fa fa-check"></i><b>10.6.1</b> Prophet</a></li>
 <li class="chapter" data-level="10.6.2" data-path="datamining.html"><a href="datamining.html#tensorflow"><i class="fa fa-check"></i><b>10.6.2</b> TensorFlow</a></li>
 <li class="chapter" data-level="10.6.3" data-path="datamining.html"><a href="datamining.html#mxnet"><i class="fa fa-check"></i><b>10.6.3</b> MXNet</a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="datamining.html"><a href="datamining.html#section-10.7"><i class="fa fa-check"></i><b>10.7</b> 模型驗證</a><ul>
-<li class="chapter" data-level="10.7.1" data-path="datamining.html"><a href="datamining.html#regression-"><i class="fa fa-check"></i><b>10.7.1</b> Regression 迴歸驗證</a></li>
-<li class="chapter" data-level="10.7.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-"><i class="fa fa-check"></i><b>10.7.2</b> Logistic Regression 邏輯迴歸驗證</a></li>
-<li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
+<li class="chapter" data-level="10.7" data-path="datamining.html"><a href="datamining.html#模型驗證"><i class="fa fa-check"></i><b>10.7</b> 模型驗證</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datamining.html"><a href="datamining.html#regression-迴歸驗證"><i class="fa fa-check"></i><b>10.7.1</b> Regression 迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-邏輯迴歸驗證"><i class="fa fa-check"></i><b>10.7.2</b> Logistic Regression 邏輯迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹驗證"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
 </ul></li>
 <li class="chapter" data-level="10.8" data-path="datamining.html"><a href="datamining.html#case-study"><i class="fa fa-check"></i><b>10.8</b> Case Study</a></li>
-<li class="chapter" data-level="10.9" data-path="vis.html"><a href="vis.html#-2"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
+<li class="chapter" data-level="10.9" data-path="datamining.html"><a href="datamining.html#參考資料-1"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>11</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="11.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>11.1</b> R + Hadoop</a></li>
-<li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#section-11.2.1"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="11.2.2" data-path="big.html"><a href="big.html#-3"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
-<li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#section-11.2.3"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
-<li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#section-11.2.4"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
-<li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#section-11.2.5"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
-<li class="chapter" data-level="11.2.6" data-path="big.html"><a href="big.html#rstudio-server"><i class="fa fa-check"></i><b>11.2.6</b> 安裝RStudio Server</a></li>
+<li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop安裝測試流程-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#系統軟體版本資訊"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="11.2.2" data-path="big.html"><a href="big.html#參考資料-2"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#安裝步驟"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#測試前先解決權限問題"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#測試"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
+<li class="chapter" data-level="11.2.6" data-path="big.html"><a href="big.html#安裝rstudio-server"><i class="fa fa-check"></i><b>11.2.6</b> 安裝RStudio Server</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>11.3</b> RHadoop MapReduce: easy word count</a></li>
 <li class="chapter" data-level="11.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>11.4</b> R + Spark</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>12</b> 軟體安裝介紹</a><ul>
-<li class="chapter" data-level="12.1" data-path="intro.html"><a href="intro.html#r"><i class="fa fa-check"></i><b>12.1</b> R安裝</a></li>
-<li class="chapter" data-level="12.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>12.2</b> RStudio安裝</a></li>
-<li class="chapter" data-level="12.3" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>12.3</b> RStudio使用簡介</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#section-12.3.1"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
-<li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
+<li class="chapter" data-level="12.1" data-path="install.html"><a href="install.html#r安裝"><i class="fa fa-check"></i><b>12.1</b> R安裝</a></li>
+<li class="chapter" data-level="12.2" data-path="install.html"><a href="install.html#rstudio安裝"><i class="fa fa-check"></i><b>12.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="12.3" data-path="install.html"><a href="install.html#rstudio使用簡介"><i class="fa fa-check"></i><b>12.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#專案"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
+<li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio介面"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
@@ -353,7 +321,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="datamining" class="section level1">
 <h1><span class="header-section-number">10</span> 資料探勘</h1>
 <p><strong>撰寫中</strong></p>
-<div id="section-10.1" class="section level2">
+<div id="什麼是資料探勘" class="section level2">
 <h2><span class="header-section-number">10.1</span> 什麼是資料探勘</h2>
 <p><strong>資料探勘（Data mining）</strong>是用人工智慧、機器學習、統計學的交叉方法，在相對較大型的資料集中發現模式的計算過程。使用資料探勘技術可以建立從<strong>輸入資料</strong>學習新資訊，變成智慧的<strong>演算法</strong>或<strong>資料模式</strong>，用來<strong>預測事件</strong>或<strong>協助決策</strong>。所以，當資料太<code>少</code>或<code>太髒</code>的時候，資料探勘的效力會被影響。</p>
 <p>資料探勘要派上用場，必須有以下條件：</p>
@@ -404,26 +372,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>以下介紹在R中使用各類演算法的方法</p>
 </div>
-<div id="regression-" class="section level2">
+<div id="regression-迴歸" class="section level2">
 <h2><span class="header-section-number">10.2</span> Regression 迴歸</h2>
 <p>Regression Analysis 迴歸分析主要用在了解兩個或多個變數間<code>是否相關</code>、<code>相關方向與強度</code>，並建立<code>數學模型</code>以便觀察特定變數來預測研究者感興趣的變數，常見的迴歸分析演算法包括：</p>
 <ul>
 <li>Linear Regression 線性迴歸</li>
 <li>Logistic Regression 羅吉斯迴歸、邏輯迴歸</li>
 </ul>
-<div id="linear-regression-" class="section level3">
+<div id="linear-regression-線性迴歸" class="section level3">
 <h3><span class="header-section-number">10.2.1</span> Linear Regression 線性迴歸</h3>
 <p>首先，嘗試將Linear Regression 線性迴歸用在NBA的資料看看，做NBA<code>得分</code>與<code>上場分鐘數</code>的線性迴歸觀察</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#讀入SportsAnalytics package</span>
-<span class="kw">library</span>(SportsAnalytics)
-<span class="co">#擷取2015-2016年球季球員資料</span>
-NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">ggplot</span>(NBA1516,<span class="kw">aes</span>(<span class="dt">x=</span>TotalMinutesPlayed,<span class="dt">y=</span>TotalPoints))+
-<span class="st">    </span><span class="kw">geom_point</span>()+<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb595-1" data-line-number="1"><span class="co">#讀入SportsAnalytics package</span></a>
+<a class="sourceLine" id="cb595-2" data-line-number="2"><span class="kw">library</span>(SportsAnalytics)</a>
+<a class="sourceLine" id="cb595-3" data-line-number="3"><span class="co">#擷取2015-2016年球季球員資料</span></a>
+<a class="sourceLine" id="cb595-4" data-line-number="4">NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb596-2" data-line-number="2"><span class="kw">ggplot</span>(NBA1516,<span class="kw">aes</span>(<span class="dt">x=</span>TotalMinutesPlayed,<span class="dt">y=</span>TotalPoints))<span class="op">+</span></a>
+<a class="sourceLine" id="cb596-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>()<span class="op">+</span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;glm&quot;</span>)</a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/linear2-1.png" width="672" /></p>
 <p>在R中，最基本的簡單線性迴歸分析為<code>lm()</code>，使用方法為<code>lm(formula,data=資料名稱)</code>，搭配formula使用，formula的撰寫方法為：依變項~自變項1＋自變項2＋….</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(TotalPoints~TotalMinutesPlayed,<span class="dt">data =</span>NBA1516)</code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb597-1" data-line-number="1"><span class="kw">lm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed,<span class="dt">data =</span>NBA1516)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = TotalPoints ~ TotalMinutesPlayed, data = NBA1516)
@@ -433,7 +401,8 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 ##            -85.907               0.493</code></pre>
 <p>由此可知總得分數TotalPoints等於<code>0.4931</code> * 總出場分鐘數 <code>-85.9071</code></p>
 <p>TotalPoints = <code>0.4931</code> * TotalMinutesPlayed <code>-85.9071</code></p>
-<p>更被廣泛使用的是廣義線性迴歸模型generalized linear models (glm)，函數為<code>glm()</code>，使用方法與<code>lm()</code>類似，包括了線性迴歸模型和邏輯迴歸模型。 如果需要修改預設模型，可設定family參數：</p>
+<p>更被廣泛使用的是廣義線性迴歸模型generalized linear models (glm)，函數為<code>glm()</code>，使用方法與<code>lm()</code>類似，包括了線性迴歸模型和邏輯迴歸模型。
+如果需要修改預設模型，可設定family參數：</p>
 <pre><code>- `family=&quot;gaussian&quot;` 線性模型模型
 - `family=&quot;binomial&quot;` 邏輯迴歸模型
 - `family=&quot;poisson&quot;` 卜瓦松迴歸模型</code></pre>
@@ -448,9 +417,9 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 <li>DNA序列的變異數…..</li>
 </ul>
 <p>以下為使用多變量線性迴歸來分析<code>得分</code>與<code>上場分鐘數</code>和<code>兩分球出手數</code>的關係範例</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># e+01: 10^1 / e-04: 10^(-4)</span>
-<span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted,
-    <span class="dt">data =</span>NBA1516)</code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb600-1" data-line-number="1"><span class="co"># e+01: 10^1 / e-04: 10^(-4)</span></a>
+<a class="sourceLine" id="cb600-2" data-line-number="2"><span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed<span class="op">+</span>FieldGoalsAttempted,</a>
+<a class="sourceLine" id="cb600-3" data-line-number="3">    <span class="dt">data =</span>NBA1516)</a></code></pre></div>
 <pre><code>## 
 ## Call:  glm(formula = TotalPoints ~ TotalMinutesPlayed + FieldGoalsAttempted, 
 ##     data = NBA1516)
@@ -462,10 +431,11 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 ## Degrees of Freedom: 475 Total (i.e. Null);  473 Residual
 ## Null Deviance:       9.9e+07 
 ## Residual Deviance: 2160000   AIC: 5370</code></pre>
-<p>由此可知總得分數等於<code>-0.0002347</code> * 總出場分鐘數 + <code>1.255794</code> * 兩分球出手數 <code>-17.99</code> TotalPoints = <code>-0.0002347</code> * TotalMinutesPlayed + <code>1.255794</code> * FieldGoalsAttempted <code>-17.99</code></p>
+<p>由此可知總得分數等於<code>-0.0002347</code> * 總出場分鐘數 + <code>1.255794</code> * 兩分球出手數 <code>-17.99</code>
+TotalPoints = <code>-0.0002347</code> * TotalMinutesPlayed + <code>1.255794</code> * FieldGoalsAttempted <code>-17.99</code></p>
 <p>如需使用多變量線性迴歸來分析<code>得分</code>與<code>上場分鐘數</code>和<code>兩分球出手數</code>和<code>守備位置</code>的關係，可修改formula</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
-    <span class="dt">data =</span>NBA1516)</code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" data-line-number="1"><span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed<span class="op">+</span>FieldGoalsAttempted<span class="op">+</span>Position,</a>
+<a class="sourceLine" id="cb602-2" data-line-number="2">    <span class="dt">data =</span>NBA1516)</a></code></pre></div>
 <pre><code>## 
 ## Call:  glm(formula = TotalPoints ~ TotalMinutesPlayed + FieldGoalsAttempted + 
 ##     Position, data = NBA1516)
@@ -482,8 +452,9 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 ##   (1 observation deleted due to missingness)
 ## Null Deviance:       9.9e+07 
 ## Residual Deviance: 2e+06     AIC: 5320</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># e+01: 10^1 / e-04: 10^(-4)</span></code></pre></div>
-<p>由此可知總得分數TotalPoints和<code>上場分鐘數</code>和<code>兩分球出手數</code>和<code>守備位置</code>的關係為： TotalPoints = <code>-0.0065</code> * TotalMinutesPlayed + <code>1.28</code> <em>FieldGoalsAttempted <code>+22.85</code> + <code>22.85</code> </em> PositionPF + <code>-65.03</code> * PositionPG + <code>-38.52</code> * PositionSF + <code>-52.18</code> * PositionSG</p>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb604-1" data-line-number="1"><span class="co"># e+01: 10^1 / e-04: 10^(-4)</span></a></code></pre></div>
+<p>由此可知總得分數TotalPoints和<code>上場分鐘數</code>和<code>兩分球出手數</code>和<code>守備位置</code>的關係為：
+TotalPoints = <code>-0.0065</code> * TotalMinutesPlayed + <code>1.28</code> <em>FieldGoalsAttempted <code>+22.85</code> + <code>22.85</code> </em> PositionPF + <code>-65.03</code> * PositionPG + <code>-38.52</code> * PositionSF + <code>-52.18</code> * PositionSG</p>
 <p>由上述結果可發現，<code>守備位置</code>的變項被轉為<strong>虛擬變項 Dummy Variable</strong>：PositionPF、PositionPG、PositionSF、PositionSG，如果是控球後衛（PG），會得到：</p>
 <ul>
 <li>PositionPF=0</li>
@@ -506,13 +477,16 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 <li>用在<code>依變數為連續變數</code>，<code>自變數為連續變數或虛擬變數</code>的場合</li>
 </ul>
 </div>
-<div id="logistic-regression-" class="section level3">
+<div id="logistic-regression-羅吉斯迴歸" class="section level3">
 <h3><span class="header-section-number">10.2.2</span> Logistic Regression 羅吉斯迴歸</h3>
-<p>Logistic Regression 羅吉斯迴歸常用在<code>依變數為二元變數（非0即1）</code>的場合，如： - 生病/沒生病 - 錄取/不錄取 - <code>family=&quot;binomial&quot;</code> 邏輯迴歸模型</p>
+<p>Logistic Regression 羅吉斯迴歸常用在<code>依變數為二元變數（非0即1）</code>的場合，如：
+- 生病/沒生病
+- 錄取/不錄取
+- <code>family=&quot;binomial&quot;</code> 邏輯迴歸模型</p>
 <p>以分數資料為例，分析為什麼錄取/不錄取？</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/binary.csv&quot;</span>)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GRE:某考試成績, GPA:在校平均成績, rank:學校聲望</span>
-<span class="kw">head</span>(mydata)</code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" data-line-number="1">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/binary.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb606-1" data-line-number="1"><span class="co"># GRE:某考試成績, GPA:在校平均成績, rank:學校聲望</span></a>
+<a class="sourceLine" id="cb606-2" data-line-number="2"><span class="kw">head</span>(mydata)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -561,11 +535,11 @@ NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata$rank &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata$rank)
-mylogit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit ~<span class="st"> </span>gre +<span class="st"> </span>gpa +<span class="st"> </span>rank,
-               <span class="dt">data =</span> mydata, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
-sum&lt;-<span class="kw">summary</span>(mylogit)
-sum$coefficients</code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" data-line-number="1">mydata<span class="op">$</span>rank &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata<span class="op">$</span>rank)</a>
+<a class="sourceLine" id="cb607-2" data-line-number="2">mylogit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit <span class="op">~</span><span class="st"> </span>gre <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>rank,</a>
+<a class="sourceLine" id="cb607-3" data-line-number="3">               <span class="dt">data =</span> mydata, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb607-4" data-line-number="4">sum&lt;-<span class="kw">summary</span>(mylogit)</a>
+<a class="sourceLine" id="cb607-5" data-line-number="5">sum<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##             Estimate Std. Error z value Pr(&gt;|z|)
 ## (Intercept)  -3.9900     1.1400    -3.5  0.00047
 ## gre           0.0023     0.0011     2.1  0.03847
@@ -574,7 +548,7 @@ sum$coefficients</code></pre></div>
 ## rank3        -1.3402     0.3453    -3.9  0.00010
 ## rank4        -1.5515     0.4178    -3.7  0.00020</code></pre>
 </div>
-<div id="section-10.2.3" class="section level3">
+<div id="最佳模型篩選" class="section level3">
 <h3><span class="header-section-number">10.2.3</span> 最佳模型篩選</h3>
 <p>到底該用哪個模型來預測，會得到最準確的結果？在迴歸模型中，常用的判斷準則包括：</p>
 <ul>
@@ -582,22 +556,22 @@ sum$coefficients</code></pre></div>
 <li>Bayesian Information Criterion (BIC)</li>
 </ul>
 <p>AIC和BIC都是數值越小越好，以下建立三個模型，並比較其AIC，</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">OneVar&lt;-<span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed,<span class="dt">data =</span>NBA1516)
-TwoVar&lt;-<span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted,
-            <span class="dt">data =</span>NBA1516)
-ThreeVar&lt;-<span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+Position,
-              <span class="dt">data =</span>NBA1516)
-<span class="kw">c</span>(OneVar$aic,TwoVar$aic,ThreeVar$aic)</code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb609-1" data-line-number="1">OneVar&lt;-<span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed,<span class="dt">data =</span>NBA1516)</a>
+<a class="sourceLine" id="cb609-2" data-line-number="2">TwoVar&lt;-<span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed<span class="op">+</span>FieldGoalsAttempted,</a>
+<a class="sourceLine" id="cb609-3" data-line-number="3">            <span class="dt">data =</span>NBA1516)</a>
+<a class="sourceLine" id="cb609-4" data-line-number="4">ThreeVar&lt;-<span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed<span class="op">+</span>FieldGoalsAttempted<span class="op">+</span>Position,</a>
+<a class="sourceLine" id="cb609-5" data-line-number="5">              <span class="dt">data =</span>NBA1516)</a>
+<a class="sourceLine" id="cb609-6" data-line-number="6"><span class="kw">c</span>(OneVar<span class="op">$</span>aic,TwoVar<span class="op">$</span>aic,ThreeVar<span class="op">$</span>aic)</a></code></pre></div>
 <pre><code>## [1] 6339 5367 5322</code></pre>
 <p>在建立迴歸模型時，常會遇到到底該放多少參數？所有參數都有用嗎？這類的問題，我們可以藉由觀察coefficients來判斷參數在模型中的“實用程度”</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum2&lt;-<span class="kw">summary</span>(TwoVar)
-sum2$coefficients</code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb611-1" data-line-number="1">sum2&lt;-<span class="kw">summary</span>(TwoVar)</a>
+<a class="sourceLine" id="cb611-2" data-line-number="2">sum2<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)         -1.8e+01     5.6598  -3.178  1.6e-03
 ## TotalMinutesPlayed  -2.3e-04     0.0095  -0.025  9.8e-01
 ## FieldGoalsAttempted  1.3e+00     0.0222  56.467 2.5e-212</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum3&lt;-<span class="kw">summary</span>(ThreeVar)
-sum3$coefficients</code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb613-1" data-line-number="1">sum3&lt;-<span class="kw">summary</span>(ThreeVar)</a>
+<a class="sourceLine" id="cb613-2" data-line-number="2">sum3<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
 ## (Intercept)          22.8522     9.0147    2.53  1.2e-02
 ## TotalMinutesPlayed   -0.0065     0.0092   -0.71  4.8e-01
@@ -608,16 +582,16 @@ sum3$coefficients</code></pre></div>
 ## PositionSG          -52.1751     9.9853   -5.23  2.6e-07</code></pre>
 </div>
 </div>
-<div id="decision-trees-" class="section level2">
+<div id="decision-trees-決策樹" class="section level2">
 <h2><span class="header-section-number">10.3</span> Decision Trees 決策樹</h2>
 <p>決策樹是在<code>樹狀目錄</code>中建立一系列分割，以建立模型。這些分割會表示成<code>「節點」(Node)</code>。每次發現輸入資料行與可預測資料行有明顯地相互關聯時，此演算法就會在模型中加入一個<code>節點</code>。演算法決定分岔的方式不同，視它預測連續資料行或分隔資料行而定。</p>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
-<p>以下介紹常見的Classification And Regression Tree (CART)，使用前須先安裝<code>rpart</code> packages <span class="citation">(Therneau, Atkinson, and Ripley <a href="#ref-R-rpart">2015</a>)</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rpart&quot;</span>)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>以下介紹常見的Classification And Regression Tree (CART)，使用前須先安裝<code>rpart</code> packages <span class="citation">(Therneau and Atkinson <a href="#ref-R-rpart">2019</a>)</span></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb615-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rpart&quot;</span>)</a></code></pre></div>
 <p>以前述NBA資料為例，嘗試用用籃板/三分/助攻/抄截數據來判斷守備位置，建立決策樹的函數為<code>rpart()</code>，使用方式為<code>rpart(formula, data)</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart)
-DT&lt;-<span class="kw">rpart</span>(Position~Blocks+ThreesMade+Assists+Steals,<span class="dt">data=</span>NBA1516)
-DT</code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" data-line-number="1"><span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb616-2" data-line-number="2">DT&lt;-<span class="kw">rpart</span>(Position<span class="op">~</span>Blocks<span class="op">+</span>ThreesMade<span class="op">+</span>Assists<span class="op">+</span>Steals,<span class="dt">data=</span>NBA1516)</a>
+<a class="sourceLine" id="cb616-3" data-line-number="3">DT</a></code></pre></div>
 <pre><code>## n=475 (1 observation deleted due to missingness)
 ## 
 ## node), split, n, loss, yval, (yprob)
@@ -646,16 +620,16 @@ DT</code></pre></div>
 ##          31) Assists&gt;=82 57  31 SG (0.018 0.035 0.33 0.16 0.46)  
 ##            62) ThreesMade&lt; 37 17   5 PG (0 0.12 0.71 0.059 0.12) *
 ##            63) ThreesMade&gt;=37 40  16 SG (0.025 0 0.17 0.2 0.6) *</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="co">#下,左,上,右</span>
-<span class="kw">plot</span>(DT)
-<span class="kw">text</span>(DT, <span class="dt">use.n=</span>F, <span class="dt">all=</span>F, <span class="dt">cex=</span><span class="dv">1</span>)</code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" data-line-number="1"><span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span></a></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb619-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">4</span>)) <span class="co">#下,左,上,右</span></a>
+<a class="sourceLine" id="cb619-2" data-line-number="2"><span class="kw">plot</span>(DT)</a>
+<a class="sourceLine" id="cb619-3" data-line-number="3"><span class="kw">text</span>(DT, <span class="dt">use.n=</span>F, <span class="dt">all=</span>F, <span class="dt">cex=</span><span class="dv">1</span>)</a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/rpart3-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span></code></pre></div>
-<p>可以看出預設的<code>plot()</code>畫出來的圖很難看懂，可以改用<code>rpart.plot</code> package <span class="citation">(Milborrow <a href="#ref-R-rpart.plot">2016</a>)</span>裡面的<code>prp()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rpart.plot&quot;</span>) <span class="co">#第一次使用前須先安裝</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rpart.plot)
-<span class="kw">prp</span>(DT) </code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" data-line-number="1"><span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span></a></code></pre></div>
+<p>可以看出預設的<code>plot()</code>畫出來的圖很難看懂，可以改用<code>rpart.plot</code> package <span class="citation">(Milborrow <a href="#ref-R-rpart.plot">2019</a>)</span>裡面的<code>prp()</code></p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;rpart.plot&quot;</span>) <span class="co">#第一次使用前須先安裝</span></a></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" data-line-number="1"><span class="kw">library</span>(rpart.plot)</a>
+<a class="sourceLine" id="cb622-2" data-line-number="2"><span class="kw">prp</span>(DT) </a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/rpart4-1.png" width="672" /></p>
 <p>決策樹演算法決定<code>節點</code>的方式如下：</p>
 <ul>
@@ -665,7 +639,7 @@ DT</code></pre></div>
 </ul>
 <p>細節可參考<a href="https://en.wikipedia.org/wiki/Decision_tree_learning">維基百科</a></p>
 </div>
-<div id="clustering-" class="section level2">
+<div id="clustering-分群" class="section level2">
 <h2><span class="header-section-number">10.4</span> Clustering 分群</h2>
 <p>Clustering 分群的目的是將相近的觀察值作做分群，分群過程中，可能會遇到以下問題：</p>
 <ul>
@@ -674,7 +648,7 @@ DT</code></pre></div>
 <li>如何視覺化？</li>
 <li>如何解釋分群？</li>
 </ul>
-<div id="hierarchical-clustering-" class="section level3">
+<div id="hierarchical-clustering-階層式分群" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Hierarchical clustering 階層式分群</h3>
 <ul>
 <li>An agglomerative approach
@@ -716,32 +690,35 @@ DT</code></pre></div>
 <li>Average-linkage：取平均值</li>
 </ul></li>
 </ul>
-<p>Hierarchical clustering - hp vs. mpg <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-190-1.png" width="768" /></p>
+<p>Hierarchical clustering - hp vs. mpg
+<img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-191-1.png" width="768" /></p>
 <p>Hierarchical clustering - #1</p>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-191-1.png" width="768" /></p>
-<p>Hierarchical clustering - #2 <img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-192-1.png" width="768" /></p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-192-1.png" width="768" /></p>
+<p>Hierarchical clustering - #2
+<img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-193-1.png" width="768" /></p>
 <p>Hierarchical clustering - #3</p>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-193-1.png" width="768" /></p>
-<p>可用<code>dist()</code>函數計算距離，使用method=“”設定計算距離的依據</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars.mxs&lt;-<span class="kw">as.matrix</span>(mtcars)
-d&lt;-<span class="kw">dist</span>(mtcars.mxs) <span class="co">#預設為euclidean</span>
-<span class="kw">head</span>(d)</code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-194-1.png" width="768" /></p>
+<p>可用<code>dist()</code>函數計算距離，使用method=&quot;&quot;設定計算距離的依據</p>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" data-line-number="1">mtcars.mxs&lt;-<span class="kw">as.matrix</span>(mtcars)</a>
+<a class="sourceLine" id="cb623-2" data-line-number="2">d&lt;-<span class="kw">dist</span>(mtcars.mxs) <span class="co">#預設為euclidean</span></a>
+<a class="sourceLine" id="cb623-3" data-line-number="3"><span class="kw">head</span>(d)</a></code></pre></div>
 <pre><code>## [1]   0.62  54.91  98.11 210.34  65.47 241.41</code></pre>
-<p><code>dist()</code>函數可用方法包括： “euclidean”, “maximum”, “manhattan”, “canberra”, “binary” or “minkowski”</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d&lt;-<span class="kw">dist</span>(mtcars.mxs, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>) <span class="co">#計算manhattan距離</span>
-<span class="kw">head</span>(d)</code></pre></div>
+<p><code>dist()</code>函數可用方法包括：
+“euclidean”, “maximum”, “manhattan”, “canberra”, “binary” or “minkowski”</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb625-1" data-line-number="1">d&lt;-<span class="kw">dist</span>(mtcars.mxs, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>) <span class="co">#計算manhattan距離</span></a>
+<a class="sourceLine" id="cb625-2" data-line-number="2"><span class="kw">head</span>(d)</a></code></pre></div>
 <pre><code>## [1]   0.81  79.30 108.80 275.43  84.64 347.96</code></pre>
 <p>用<code>hclust</code>函數畫圖，必要參數是各觀察值的距離（可用<code>dist()</code>函數計算）</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs)) <span class="co">#可用method參數設定聚合方法，預設為complete</span>
-<span class="kw">plot</span>(hc)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-196-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs),<span class="dt">method=</span><span class="st">&quot;average&quot;</span>) <span class="co">#聚合方法為計算平均距離</span>
-<span class="kw">plot</span>(hc)</code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb627-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb627-2" data-line-number="2">hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs)) <span class="co">#可用method參數設定聚合方法，預設為complete</span></a>
+<a class="sourceLine" id="cb627-3" data-line-number="3"><span class="kw">plot</span>(hc)</a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-197-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clusterCut &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc, <span class="dt">k=</span><span class="dv">5</span>) <span class="co">#分5群</span>
-<span class="kw">sort</span>(clusterCut)</code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb628-2" data-line-number="2">hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs),<span class="dt">method=</span><span class="st">&quot;average&quot;</span>) <span class="co">#聚合方法為計算平均距離</span></a>
+<a class="sourceLine" id="cb628-3" data-line-number="3"><span class="kw">plot</span>(hc)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-198-1.png" width="576" /></p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb629-1" data-line-number="1">clusterCut &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc, <span class="dt">k=</span><span class="dv">5</span>) <span class="co">#分5群</span></a>
+<a class="sourceLine" id="cb629-2" data-line-number="2"><span class="kw">sort</span>(clusterCut)</a></code></pre></div>
 <pre><code>##           Mazda RX4       Mazda RX4 Wag          Datsun 710           Merc 240D 
 ##                   1                   1                   1                   1 
 ##            Merc 230            Merc 280           Merc 280C            Fiat 128 
@@ -758,11 +735,11 @@ hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs),<
 ##                   3                   3                   3                   3 
 ##  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial       Maserati Bora 
 ##                   4                   4                   4                   5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>()+<span class="kw">geom_point</span>(<span class="dt">data=</span>mtcars,
-                    <span class="kw">aes</span>(<span class="dt">x=</span>hp,<span class="dt">y=</span>mpg,<span class="dt">color=</span><span class="kw">as.factor</span>(clusterCut)))</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-199-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">clusterCut &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc,<span class="dt">h =</span><span class="dv">4</span>) <span class="co">#切在高度=4的地方（距離=4）</span>
-<span class="kw">sort</span>(clusterCut)</code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb631-1" data-line-number="1"><span class="kw">ggplot</span>()<span class="op">+</span><span class="kw">geom_point</span>(<span class="dt">data=</span>mtcars,</a>
+<a class="sourceLine" id="cb631-2" data-line-number="2">                    <span class="kw">aes</span>(<span class="dt">x=</span>hp,<span class="dt">y=</span>mpg,<span class="dt">color=</span><span class="kw">as.factor</span>(clusterCut)))</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-200-1.png" width="576" /></p>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb632-1" data-line-number="1">clusterCut &lt;-<span class="st"> </span><span class="kw">cutree</span>(hc,<span class="dt">h =</span><span class="dv">4</span>) <span class="co">#切在高度=4的地方（距離=4）</span></a>
+<a class="sourceLine" id="cb632-2" data-line-number="2"><span class="kw">sort</span>(clusterCut)</a></code></pre></div>
 <pre><code>##           Mazda RX4       Mazda RX4 Wag          Datsun 710      Hornet 4 Drive 
 ##                   1                   1                   2                   3 
 ##   Hornet Sportabout             Valiant          Duster 360           Merc 240D 
@@ -779,14 +756,15 @@ hc&lt;-<span class="kw">hclust</span>(<span class="kw">dist</span>(mtcars.mxs),<
 ##                  21                  22                  23                  24 
 ##      Ford Pantera L        Ferrari Dino       Maserati Bora          Volvo 142E 
 ##                  25                  26                  27                  28</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="fl">0.2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))
-<span class="kw">heatmap</span>(mtcars.mxs)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-201-1.png" width="576" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">distxy &lt;-<span class="st"> </span><span class="kw">dist</span>(mtcars.mxs)
-hClustering &lt;-<span class="st"> </span><span class="kw">hclust</span>(distxy)
-<span class="kw">plot</span>(hClustering)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-202-1.png" width="384" /></p>
-<p>Hierarchical clustering: summary - 可快速瀏覽觀察值與各欄位的關係</p>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb634-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="fl">0.2</span>,<span class="dv">4</span>),<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb634-2" data-line-number="2"><span class="kw">heatmap</span>(mtcars.mxs)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-202-1.png" width="576" /></p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb635-1" data-line-number="1">distxy &lt;-<span class="st"> </span><span class="kw">dist</span>(mtcars.mxs)</a>
+<a class="sourceLine" id="cb635-2" data-line-number="2">hClustering &lt;-<span class="st"> </span><span class="kw">hclust</span>(distxy)</a>
+<a class="sourceLine" id="cb635-3" data-line-number="3"><span class="kw">plot</span>(hClustering)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-203-1.png" width="384" /></p>
+<p>Hierarchical clustering: summary
+- 可快速瀏覽觀察值與各欄位的關係</p>
 <ul>
 <li>分群結果可能被以下參數影響：
 <ul>
@@ -822,38 +800,38 @@ hClustering &lt;-<span class="st"> </span><span class="kw">hclust</span>(distxy)
 <li>指定每個觀察值所在的’群‘</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw">scale</span>(mtcars$hp[-<span class="dv">1</span>]);y&lt;-<span class="kw">scale</span>(mtcars$mpg[-<span class="dv">1</span>])
-<span class="kw">plot</span>(x,y,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="dv">2</span>)
-<span class="kw">text</span>(x<span class="fl">+0.05</span>,y<span class="fl">+0.05</span>,<span class="dt">labels=</span>labelCar)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-203-1.png" width="576" /></p>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-204-1.png" width="480" /></p>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb636-1" data-line-number="1">x&lt;-<span class="kw">scale</span>(mtcars<span class="op">$</span>hp[<span class="op">-</span><span class="dv">1</span>]);y&lt;-<span class="kw">scale</span>(mtcars<span class="op">$</span>mpg[<span class="op">-</span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb636-2" data-line-number="2"><span class="kw">plot</span>(x,y,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb636-3" data-line-number="3"><span class="kw">text</span>(x<span class="fl">+0.05</span>,y<span class="fl">+0.05</span>,<span class="dt">labels=</span>labelCar)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-204-1.png" width="576" /></p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-205-1.png" width="480" /></p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-206-1.png" width="480" /></p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-207-1.png" width="480" /></p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-208-1.png" width="480" /></p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-209-1.png" width="480" /></p>
 <p><code>kmeans()</code></p>
 <ul>
 <li>Important parameters: <code>x</code>, <code>centers</code>, <code>iter.max</code>, <code>nstart</code></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataFrame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)
-kmeansObj &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dataFrame,<span class="dt">centers=</span><span class="dv">3</span>)
-<span class="kw">names</span>(kmeansObj)</code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" data-line-number="1">dataFrame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</a>
+<a class="sourceLine" id="cb637-2" data-line-number="2">kmeansObj &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dataFrame,<span class="dt">centers=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb637-3" data-line-number="3"><span class="kw">names</span>(kmeansObj)</a></code></pre></div>
 <pre><code>## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;     &quot;tot.withinss&quot;
 ## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">kmeansObj$cluster</code></pre></div>
-<pre><code>##  [1] 1 3 1 1 1 2 3 3 1 1 1 1 1 2 2 2 3 3 3 1 1 1 2 1 3 3 3 2 1 2 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="fl">0.2</span>,<span class="dv">4</span>))
-<span class="kw">plot</span>(x,y,<span class="dt">col=</span>kmeansObj$cluster,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="dv">2</span>)
-<span class="kw">points</span>(kmeansObj$centers,<span class="dt">col=</span><span class="dv">1</span>:<span class="dv">3</span>,<span class="dt">pch=</span><span class="dv">3</span>,<span class="dt">cex=</span><span class="dv">3</span>,<span class="dt">lwd=</span><span class="dv">3</span>)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-209-1.png" width="384" /></p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb639-1" data-line-number="1">kmeansObj<span class="op">$</span>cluster</a></code></pre></div>
+<pre><code>##  [1] 3 3 3 3 3 1 2 3 3 3 3 3 3 1 1 1 2 2 2 3 3 3 1 3 2 2 2 1 3 1 3</code></pre>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb641-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar=</span><span class="kw">rep</span>(<span class="fl">0.2</span>,<span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb641-2" data-line-number="2"><span class="kw">plot</span>(x,y,<span class="dt">col=</span>kmeansObj<span class="op">$</span>cluster,<span class="dt">pch=</span><span class="dv">19</span>,<span class="dt">cex=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb641-3" data-line-number="3"><span class="kw">points</span>(kmeansObj<span class="op">$</span>centers,<span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">pch=</span><span class="dv">3</span>,<span class="dt">cex=</span><span class="dv">3</span>,<span class="dt">lwd=</span><span class="dv">3</span>)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-210-1.png" width="384" /></p>
 <p>Heatmaps</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1234</span>)
-dataMatrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(dataFrame)[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">12</span>),]
-kmeansObj &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dataMatrix,<span class="dt">centers=</span><span class="dv">3</span>)
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))
-<span class="kw">image</span>(<span class="kw">t</span>(dataMatrix)[,<span class="kw">nrow</span>(dataMatrix):<span class="dv">1</span>],<span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span>)
-<span class="kw">image</span>(<span class="kw">t</span>(dataMatrix)[,<span class="kw">order</span>(kmeansObj$cluster)],<span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span>)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-210-1.png" width="768" /></p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb642-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">1234</span>)</a>
+<a class="sourceLine" id="cb642-2" data-line-number="2">dataMatrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(dataFrame)[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>),]</a>
+<a class="sourceLine" id="cb642-3" data-line-number="3">kmeansObj &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dataMatrix,<span class="dt">centers=</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb642-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))</a>
+<a class="sourceLine" id="cb642-5" data-line-number="5"><span class="kw">image</span>(<span class="kw">t</span>(dataMatrix)[,<span class="kw">nrow</span>(dataMatrix)<span class="op">:</span><span class="dv">1</span>],<span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb642-6" data-line-number="6"><span class="kw">image</span>(<span class="kw">t</span>(dataMatrix)[,<span class="kw">order</span>(kmeansObj<span class="op">$</span>cluster)],<span class="dt">yaxt=</span><span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-211-1.png" width="768" /></p>
 <p>K-means注意事項</p>
 <ul>
 <li>需要決定# of clusters
@@ -869,58 +847,45 @@ kmeansObj &lt;-<span class="st"> </span><span class="kw">kmeans</span>(dataMatri
 </ul></li>
 </ul>
 <p><code>kmeans()</code>, k=2</p>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-211-1.png" width="384" /></p>
-<p><code>kmeans()</code>, k=3</p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-212-1.png" width="384" /></p>
-<p><code>kmeans()</code>, k=4</p>
+<p><code>kmeans()</code>, k=3</p>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-213-1.png" width="384" /></p>
-<p>Use sum of squared error (SSE) scree plot to optimize the number of clusters</p>
-<p>SSE: The sum of the squared distance between each member of a cluster and its cluster centroid.</p>
-<p><a href="http://stackoverflow.com/questions/15376075/cluster-analysis-in-r-determine-the-optimal-number-of-clusters">參考資料</a></p>
-<p><img src="Fig/SSE.png" width="500px"></p>
-<p>SSE screen plot <code>withinss</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataMatrix &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(dataFrame)[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">12</span>),]
-wss &lt;-<span class="st"> </span>(<span class="kw">nrow</span>(dataMatrix)-<span class="dv">1</span>)*<span class="kw">sum</span>(<span class="kw">apply</span>(dataMatrix,<span class="dv">2</span>,var))
-for (i in <span class="dv">2</span>:(<span class="kw">nrow</span>(dataMatrix)-<span class="dv">1</span>)) {
-    wss[i] &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">kmeans</span>(dataMatrix,<span class="dt">centers=</span>i)$withinss)
-}
-<span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co">#下,左,上,右</span>
-<span class="kw">plot</span>(<span class="dv">1</span>:(<span class="kw">nrow</span>(dataMatrix)-<span class="dv">1</span>), wss, <span class="dt">type=</span><span class="st">&quot;b&quot;</span>, <span class="dt">xlab=</span><span class="st">&quot;Number of Clusters&quot;</span>,
-     <span class="dt">ylab=</span><span class="st">&quot;Within groups sum of squares&quot;</span>)</code></pre></div>
-<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-214-1.png" width="768" /></p>
+<p><code>kmeans()</code>, k=4</p>
+<p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-214-1.png" width="384" /></p>
 </div>
 </div>
-<div id="association-rules-" class="section level2">
+<div id="association-rules-關聯式規則" class="section level2">
 <h2><span class="header-section-number">10.5</span> Association Rules 關聯式規則</h2>
-<p><strong>關聯式規則</strong>用於從大量數據中挖掘出有價值的數據項之間的相關關係，原則為不考慮項目的次序，而僅考慮其組合。著名的<code>購物籃分析 (Market Basket Analysis)</code>即為關聯式規則分析的應用。而<strong>Apriori演算法</strong>是挖掘<code>布林關聯規則</code> (Boolean association rules) 頻繁項集的算法，在R中，可以使用<code>arules</code><span class="citation">(Hahsler et al. <a href="#ref-R-arules">2016</a>)</span> 套件來執行關聯式規則分析。</p>
+<p><strong>關聯式規則</strong>用於從大量數據中挖掘出有價值的數據項之間的相關關係，原則為不考慮項目的次序，而僅考慮其組合。著名的<code>購物籃分析 (Market Basket Analysis)</code>即為關聯式規則分析的應用。而<strong>Apriori演算法</strong>是挖掘<code>布林關聯規則</code> (Boolean association rules) 頻繁項集的算法，在R中，可以使用<code>arules</code><span class="citation">(Hahsler et al. <a href="#ref-R-arules">2019</a>)</span> 套件來執行關聯式規則分析。</p>
 <p>以下以超市資料為例，使用關聯式規則分析執行購物籃分析。</p>
 <p>首先先讀入超市消費資料</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the libraries</span>
-if (!<span class="kw">require</span>(<span class="st">&#39;arules&#39;</span>)){
-  <span class="kw">install.packages</span>(<span class="st">&quot;arules&quot;</span>);
-  <span class="kw">library</span>(arules) <span class="co">#for Apriori演算法</span>
-}
-if (!<span class="kw">require</span>(<span class="st">&#39;datasets&#39;</span>)){
-  <span class="kw">install.packages</span>(<span class="st">&quot;datasets&quot;</span>);
-  <span class="kw">library</span>(datasets) <span class="co">#for Groceries data</span>
-}
-<span class="kw">data</span>(Groceries) <span class="co"># Load the data set</span>
-Groceries@data@Dim <span class="co">#169 種商品，9835筆交易資料</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb643-1" data-line-number="1"><span class="co"># Load the libraries</span></a>
+<a class="sourceLine" id="cb643-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;arules&#39;</span>)){</a>
+<a class="sourceLine" id="cb643-3" data-line-number="3">  <span class="kw">install.packages</span>(<span class="st">&quot;arules&quot;</span>);</a>
+<a class="sourceLine" id="cb643-4" data-line-number="4">  <span class="kw">library</span>(arules) <span class="co">#for Apriori演算法</span></a>
+<a class="sourceLine" id="cb643-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb643-6" data-line-number="6"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;datasets&#39;</span>)){</a>
+<a class="sourceLine" id="cb643-7" data-line-number="7">  <span class="kw">install.packages</span>(<span class="st">&quot;datasets&quot;</span>);</a>
+<a class="sourceLine" id="cb643-8" data-line-number="8">  <span class="kw">library</span>(datasets) <span class="co">#for Groceries data</span></a>
+<a class="sourceLine" id="cb643-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb643-10" data-line-number="10"><span class="kw">data</span>(Groceries) <span class="co"># Load the data set</span></a>
+<a class="sourceLine" id="cb643-11" data-line-number="11">Groceries<span class="op">@</span>data<span class="op">@</span>Dim <span class="co">#169 種商品，9835筆交易資料</span></a></code></pre></div>
 <pre><code>## [1]  169 9835</code></pre>
-<p>超市資料的原始樣貌為： <img src="figure/groceries.png" width="778" /></p>
+<p>超市資料的原始樣貌為：
+<img src="figure/groceries.png" width="778" /></p>
 <p>可使用arules套件中的apriori函數來實作apriori演算法</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the rules</span>
-rules &lt;-<span class="st"> </span><span class="kw">apriori</span>(Groceries, <span class="co"># data= Groceries</span>
-                 <span class="dt">parameter =</span> <span class="kw">list</span>(<span class="dt">supp =</span> <span class="fl">0.001</span>, <span class="dt">conf =</span> <span class="fl">0.8</span>), <span class="co">#參數最低限度</span>
-                 <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span>
-<span class="kw">options</span>(<span class="dt">digits=</span><span class="dv">2</span>) <span class="co"># Only 2 digits</span>
-<span class="kw">inspect</span>(rules[<span class="dv">1</span>:<span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></code></pre></div>
-<pre><code>##     lhs                        rhs            support confidence lift
-## [1] {liquor,red/blush wine} =&gt; {bottled beer} 0.0019  0.90       11.2
-## [2] {curd,cereals}          =&gt; {whole milk}   0.0010  0.91        3.6
-## [3] {yogurt,cereals}        =&gt; {whole milk}   0.0017  0.81        3.2
-## [4] {butter,jam}            =&gt; {whole milk}   0.0010  0.83        3.3
-## [5] {soups,bottled beer}    =&gt; {whole milk}   0.0011  0.92        3.6</code></pre>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb645-1" data-line-number="1"><span class="co"># Get the rules</span></a>
+<a class="sourceLine" id="cb645-2" data-line-number="2">rules &lt;-<span class="st"> </span><span class="kw">apriori</span>(Groceries, <span class="co"># data= Groceries</span></a>
+<a class="sourceLine" id="cb645-3" data-line-number="3">                 <span class="dt">parameter =</span> <span class="kw">list</span>(<span class="dt">supp =</span> <span class="fl">0.001</span>, <span class="dt">conf =</span> <span class="fl">0.8</span>), <span class="co">#參數最低限度</span></a>
+<a class="sourceLine" id="cb645-4" data-line-number="4">                 <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span></a>
+<a class="sourceLine" id="cb645-5" data-line-number="5"><span class="kw">options</span>(<span class="dt">digits=</span><span class="dv">2</span>) <span class="co"># Only 2 digits</span></a>
+<a class="sourceLine" id="cb645-6" data-line-number="6"><span class="kw">inspect</span>(rules[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></a></code></pre></div>
+<pre><code>##     lhs                        rhs            support confidence lift count
+## [1] {liquor,red/blush wine} =&gt; {bottled beer} 0.0019  0.90       11.2 19   
+## [2] {curd,cereals}          =&gt; {whole milk}   0.0010  0.91        3.6 10   
+## [3] {yogurt,cereals}        =&gt; {whole milk}   0.0017  0.81        3.2 17   
+## [4] {butter,jam}            =&gt; {whole milk}   0.0010  0.83        3.3 10   
+## [5] {soups,bottled beer}    =&gt; {whole milk}   0.0011  0.92        3.6 11</code></pre>
 <p>根據計算結果，解讀模型的方法如下：</p>
 <p>啤酒=&gt;尿布</p>
 <ul>
@@ -932,62 +897,63 @@ rules &lt;-<span class="st"> </span><span class="kw">apriori</span>(Groceries, <
 </ul></li>
 </ul>
 <p>可用排序功能排序後，列出最有關連（confidence最高）的幾條規則</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rules&lt;-<span class="kw">sort</span>(rules, <span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>, <span class="dt">decreasing=</span><span class="ot">TRUE</span>) <span class="co">#按照confidence排序</span>
-<span class="kw">inspect</span>(rules[<span class="dv">1</span>:<span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></code></pre></div>
-<pre><code>##     lhs                     rhs          support confidence lift
-## [1] {rice,                                                      
-##      sugar}              =&gt; {whole milk}  0.0012          1  3.9
-## [2] {canned fish,                                               
-##      hygiene articles}   =&gt; {whole milk}  0.0011          1  3.9
-## [3] {root vegetables,                                           
-##      butter,                                                    
-##      rice}               =&gt; {whole milk}  0.0010          1  3.9
-## [4] {root vegetables,                                           
-##      whipped/sour cream,                                        
-##      flour}              =&gt; {whole milk}  0.0017          1  3.9
-## [5] {butter,                                                    
-##      soft cheese,                                               
-##      domestic eggs}      =&gt; {whole milk}  0.0010          1  3.9</code></pre>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb647-1" data-line-number="1">rules&lt;-<span class="kw">sort</span>(rules, <span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>, <span class="dt">decreasing=</span><span class="ot">TRUE</span>) <span class="co">#按照confidence排序</span></a>
+<a class="sourceLine" id="cb647-2" data-line-number="2"><span class="kw">inspect</span>(rules[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></a></code></pre></div>
+<pre><code>##     lhs                     rhs          support confidence lift count
+## [1] {rice,                                                            
+##      sugar}              =&gt; {whole milk}  0.0012          1  3.9    12
+## [2] {canned fish,                                                     
+##      hygiene articles}   =&gt; {whole milk}  0.0011          1  3.9    11
+## [3] {root vegetables,                                                 
+##      butter,                                                          
+##      rice}               =&gt; {whole milk}  0.0010          1  3.9    10
+## [4] {root vegetables,                                                 
+##      whipped/sour cream,                                              
+##      flour}              =&gt; {whole milk}  0.0017          1  3.9    17
+## [5] {butter,                                                          
+##      soft cheese,                                                     
+##      domestic eggs}      =&gt; {whole milk}  0.0010          1  3.9    10</code></pre>
 <p>特別針對某項商品（右側變數），像是：買了什麼東西的人，會買<code>牛奶</code>呢？</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rulesR&lt;-<span class="kw">apriori</span>(<span class="dt">data=</span>Groceries, <span class="dt">parameter=</span><span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>,<span class="dt">conf =</span> <span class="fl">0.08</span>),
-        <span class="dt">appearance =</span> <span class="kw">list</span>(<span class="dt">default=</span><span class="st">&quot;lhs&quot;</span>,<span class="dt">rhs=</span><span class="st">&quot;whole milk&quot;</span>), <span class="co">#設定右邊一定要是牛奶</span>
-        <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span>
-rulesR&lt;-<span class="kw">sort</span>(rulesR, <span class="dt">decreasing=</span><span class="ot">TRUE</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>) <span class="co">#按照confidence排序</span>
-<span class="kw">inspect</span>(rulesR[<span class="dv">1</span>:<span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></code></pre></div>
-<pre><code>##     lhs                     rhs          support confidence lift
-## [1] {rice,                                                      
-##      sugar}              =&gt; {whole milk}  0.0012          1  3.9
-## [2] {canned fish,                                               
-##      hygiene articles}   =&gt; {whole milk}  0.0011          1  3.9
-## [3] {root vegetables,                                           
-##      butter,                                                    
-##      rice}               =&gt; {whole milk}  0.0010          1  3.9
-## [4] {root vegetables,                                           
-##      whipped/sour cream,                                        
-##      flour}              =&gt; {whole milk}  0.0017          1  3.9
-## [5] {butter,                                                    
-##      soft cheese,                                               
-##      domestic eggs}      =&gt; {whole milk}  0.0010          1  3.9</code></pre>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb649-1" data-line-number="1">rulesR&lt;-<span class="kw">apriori</span>(<span class="dt">data=</span>Groceries, <span class="dt">parameter=</span><span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>,<span class="dt">conf =</span> <span class="fl">0.08</span>),</a>
+<a class="sourceLine" id="cb649-2" data-line-number="2">        <span class="dt">appearance =</span> <span class="kw">list</span>(<span class="dt">default=</span><span class="st">&quot;lhs&quot;</span>,<span class="dt">rhs=</span><span class="st">&quot;whole milk&quot;</span>), <span class="co">#設定右邊一定要是牛奶</span></a>
+<a class="sourceLine" id="cb649-3" data-line-number="3">        <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span></a>
+<a class="sourceLine" id="cb649-4" data-line-number="4">rulesR&lt;-<span class="kw">sort</span>(rulesR, <span class="dt">decreasing=</span><span class="ot">TRUE</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>) <span class="co">#按照confidence排序</span></a>
+<a class="sourceLine" id="cb649-5" data-line-number="5"><span class="kw">inspect</span>(rulesR[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></a></code></pre></div>
+<pre><code>##     lhs                     rhs          support confidence lift count
+## [1] {rice,                                                            
+##      sugar}              =&gt; {whole milk}  0.0012          1  3.9    12
+## [2] {canned fish,                                                     
+##      hygiene articles}   =&gt; {whole milk}  0.0011          1  3.9    11
+## [3] {root vegetables,                                                 
+##      butter,                                                          
+##      rice}               =&gt; {whole milk}  0.0010          1  3.9    10
+## [4] {root vegetables,                                                 
+##      whipped/sour cream,                                              
+##      flour}              =&gt; {whole milk}  0.0017          1  3.9    17
+## [5] {butter,                                                          
+##      soft cheese,                                                     
+##      domestic eggs}      =&gt; {whole milk}  0.0010          1  3.9    10</code></pre>
 <p>特別針對某項商品（左側變數），像是：買了<code>牛奶</code>的人，會買什麼呢？</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rulesL&lt;-<span class="kw">apriori</span>(<span class="dt">data=</span>Groceries, <span class="dt">parameter=</span><span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>,<span class="dt">conf =</span> <span class="fl">0.15</span>,<span class="dt">minlen=</span><span class="dv">2</span>),
-        <span class="dt">appearance =</span> <span class="kw">list</span>(<span class="dt">default=</span><span class="st">&quot;rhs&quot;</span>,<span class="dt">lhs=</span><span class="st">&quot;whole milk&quot;</span>), <span class="co">#設定左邊一定要是牛奶</span>
-        <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span>
-rulesL&lt;-<span class="kw">sort</span>(rulesL, <span class="dt">decreasing=</span><span class="ot">TRUE</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>) <span class="co">#按照confidence排序</span>
-<span class="kw">inspect</span>(rulesL[<span class="dv">1</span>:<span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></code></pre></div>
-<pre><code>##     lhs             rhs                support confidence lift
-## [1] {whole milk} =&gt; {other vegetables} 0.075   0.29       1.5 
-## [2] {whole milk} =&gt; {rolls/buns}       0.057   0.22       1.2 
-## [3] {whole milk} =&gt; {yogurt}           0.056   0.22       1.6 
-## [4] {whole milk} =&gt; {root vegetables}  0.049   0.19       1.8 
-## [5] {whole milk} =&gt; {tropical fruit}   0.042   0.17       1.6</code></pre>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb651-1" data-line-number="1">rulesL&lt;-<span class="kw">apriori</span>(<span class="dt">data=</span>Groceries, <span class="dt">parameter=</span><span class="kw">list</span>(<span class="dt">supp=</span><span class="fl">0.001</span>,<span class="dt">conf =</span> <span class="fl">0.15</span>,<span class="dt">minlen=</span><span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb651-2" data-line-number="2">        <span class="dt">appearance =</span> <span class="kw">list</span>(<span class="dt">default=</span><span class="st">&quot;rhs&quot;</span>,<span class="dt">lhs=</span><span class="st">&quot;whole milk&quot;</span>), <span class="co">#設定左邊一定要是牛奶</span></a>
+<a class="sourceLine" id="cb651-3" data-line-number="3">        <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">verbose=</span>F)) <span class="co">#不要顯示output</span></a>
+<a class="sourceLine" id="cb651-4" data-line-number="4">rulesL&lt;-<span class="kw">sort</span>(rulesL, <span class="dt">decreasing=</span><span class="ot">TRUE</span>,<span class="dt">by=</span><span class="st">&quot;confidence&quot;</span>) <span class="co">#按照confidence排序</span></a>
+<a class="sourceLine" id="cb651-5" data-line-number="5"><span class="kw">inspect</span>(rulesL[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]) <span class="co"># Show the top 5 rules</span></a></code></pre></div>
+<pre><code>##     lhs             rhs                support confidence lift count
+## [1] {whole milk} =&gt; {other vegetables} 0.075   0.29       1.5  736  
+## [2] {whole milk} =&gt; {rolls/buns}       0.057   0.22       1.2  557  
+## [3] {whole milk} =&gt; {yogurt}           0.056   0.22       1.6  551  
+## [4] {whole milk} =&gt; {root vegetables}  0.049   0.19       1.8  481  
+## [5] {whole milk} =&gt; {tropical fruit}   0.042   0.17       1.6  416</code></pre>
 <p>規則視覺化</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;arulesViz&#39;</span>)){
-  <span class="kw">install.packages</span>(<span class="st">&quot;arulesViz&quot;</span>); 
-  <span class="kw">library</span>(arulesViz)
-}
-<span class="co">#Mac-&gt;http://planspace.org/2013/01/17/fix-r-tcltk-dependency-problem-on-mac/</span>
-<span class="kw">plot</span>(rules,<span class="dt">method=</span><span class="st">&quot;graph&quot;</span>,<span class="dt">interactive=</span><span class="ot">TRUE</span>,<span class="dt">shading=</span><span class="ot">NA</span>) <span class="co">#會跑一陣子</span></code></pre></div>
-<p><img src="figure/arulesViz.png" width="531" /> <img src="figure/arulesVizBig.png" width="194" /></p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb653-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;arulesViz&#39;</span>)){</a>
+<a class="sourceLine" id="cb653-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">&quot;arulesViz&quot;</span>); </a>
+<a class="sourceLine" id="cb653-3" data-line-number="3">  <span class="kw">library</span>(arulesViz)</a>
+<a class="sourceLine" id="cb653-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb653-5" data-line-number="5"><span class="co">#Mac-&gt;http://planspace.org/2013/01/17/fix-r-tcltk-dependency-problem-on-mac/</span></a>
+<a class="sourceLine" id="cb653-6" data-line-number="6"><span class="kw">plot</span>(rules,<span class="dt">method=</span><span class="st">&quot;graph&quot;</span>,<span class="dt">interactive=</span><span class="ot">TRUE</span>,<span class="dt">shading=</span><span class="ot">NA</span>) <span class="co">#會跑一陣子</span></a></code></pre></div>
+<p><img src="figure/arulesViz.png" width="531" />
+<img src="figure/arulesVizBig.png" width="194" /></p>
 </div>
 <div id="open-source-packages" class="section level2">
 <h2><span class="header-section-number">10.6</span> Open Source Packages</h2>
@@ -995,59 +961,69 @@ rulesL&lt;-<span class="kw">sort</span>(rulesL, <span class="dt">decreasing=</sp
 <h3><span class="header-section-number">10.6.1</span> Prophet</h3>
 <p>Prophet 是 Facebook在2017年開放出來的時序性預測演算法，用來預測各類資料的時序變化，像是顧客造訪數、溫度、疾病發生率等等，以下是Prophet for R的安裝使用範例</p>
 <ul>
-<li>C/C++ Tool</li>
+<li>C/C++ Tool
+<ul>
 <li><a href="https://cran.r-project.org/bin/windows/Rtools/">R Tools</a> on Windows</li>
 <li><a href="http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/">Command Line Tools</a> on OS X</li>
+</ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&#39;prophet&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb654-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;prophet&#39;</span>)</a></code></pre></div>
 <p><a href="https://facebookincubator.github.io/prophet/docs/quick_start.html#r-api">R API</a></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(prophet)
-<span class="kw">library</span>(dplyr)
-df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/facebookincubator/prophet/master/examples/example_wp_peyton_manning.csv&#39;</span>) %&gt;%
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">log</span>(y))
-m &lt;-<span class="st"> </span><span class="kw">prophet</span>(df)
-future &lt;-<span class="st"> </span><span class="kw">make_future_dataframe</span>(m, <span class="dt">periods =</span> <span class="dv">365</span>)
-<span class="kw">tail</span>(future)
-forecast &lt;-<span class="st"> </span><span class="kw">predict</span>(m, future)
-<span class="kw">tail</span>(forecast[<span class="kw">c</span>(<span class="st">&#39;ds&#39;</span>, <span class="st">&#39;yhat&#39;</span>, <span class="st">&#39;yhat_lower&#39;</span>, <span class="st">&#39;yhat_upper&#39;</span>)])
-<span class="kw">plot</span>(m, forecast)
-<span class="kw">prophet_plot_components</span>(m, forecast)</code></pre></div>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb655-1" data-line-number="1"><span class="kw">library</span>(prophet)</a>
+<a class="sourceLine" id="cb655-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb655-3" data-line-number="3">df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/facebookincubator/prophet/master/examples/example_wp_peyton_manning.csv&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb655-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">y =</span> <span class="kw">log</span>(y))</a>
+<a class="sourceLine" id="cb655-5" data-line-number="5">m &lt;-<span class="st"> </span><span class="kw">prophet</span>(df)</a>
+<a class="sourceLine" id="cb655-6" data-line-number="6">future &lt;-<span class="st"> </span><span class="kw">make_future_dataframe</span>(m, <span class="dt">periods =</span> <span class="dv">365</span>)</a>
+<a class="sourceLine" id="cb655-7" data-line-number="7"><span class="kw">tail</span>(future)</a>
+<a class="sourceLine" id="cb655-8" data-line-number="8">forecast &lt;-<span class="st"> </span><span class="kw">predict</span>(m, future)</a>
+<a class="sourceLine" id="cb655-9" data-line-number="9"><span class="kw">tail</span>(forecast[<span class="kw">c</span>(<span class="st">&#39;ds&#39;</span>, <span class="st">&#39;yhat&#39;</span>, <span class="st">&#39;yhat_lower&#39;</span>, <span class="st">&#39;yhat_upper&#39;</span>)])</a>
+<a class="sourceLine" id="cb655-10" data-line-number="10"><span class="kw">plot</span>(m, forecast)</a>
+<a class="sourceLine" id="cb655-11" data-line-number="11"><span class="kw">prophet_plot_components</span>(m, forecast)</a></code></pre></div>
 <p><a href="https://facebookincubator.github.io/prophet/">Prophet官網</a></p>
 </div>
 <div id="tensorflow" class="section level3">
 <h3><span class="header-section-number">10.6.2</span> TensorFlow</h3>
 <ul>
-<li>Python 3.5.3 <strong>64 bit</strong> <a href="https://www.python.org/downloads/release/python-353/">網站</a></li>
+<li>Python 3.5.3 <strong>64 bit</strong> <a href="https://www.python.org/downloads/release/python-353/">網站</a>
+<ul>
 <li>Windows x86-64 executable installer</li>
-<li>TensorFlow 1.0.1 <a href="https://www.tensorflow.org/install/">網站</a></li>
+</ul></li>
+<li>TensorFlow 1.0.1 <a href="https://www.tensorflow.org/install/">網站</a>
+<ul>
 <li>pip3 install –upgrade tensorflow</li>
 <li>pip3 install –upgrade tensorflow-gpu</li>
-<li>C/C++ Tool</li>
+</ul></li>
+<li>C/C++ Tool
+<ul>
 <li><a href="https://cran.r-project.org/bin/windows/Rtools/">R Tools</a> on Windows</li>
 <li><a href="http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/">Command Line Tools</a> on OS X</li>
+</ul></li>
 <li>tensorflow package for R <a href="https://rstudio.github.io/tensorflow/index.html">網站</a></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">install_github</span>(<span class="st">&quot;rstudio/tensorflow&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb656-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/tensorflow&quot;</span>)</a></code></pre></div>
 <p>TensorFlow for R</p>
 <ul>
 <li>Locating TensorFlow (optional)</li>
 <li>Hello World</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tensorflow)
-sess =<span class="st"> </span>tf$<span class="kw">Session</span>()
-hello &lt;-<span class="st"> </span>tf$<span class="kw">constant</span>(<span class="st">&#39;Hello, TensorFlow!&#39;</span>)
-sess$<span class="kw">run</span>(hello)</code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb657-1" data-line-number="1"><span class="kw">library</span>(tensorflow)</a>
+<a class="sourceLine" id="cb657-2" data-line-number="2">sess =<span class="st"> </span>tf<span class="op">$</span><span class="kw">Session</span>()</a>
+<a class="sourceLine" id="cb657-3" data-line-number="3">hello &lt;-<span class="st"> </span>tf<span class="op">$</span><span class="kw">constant</span>(<span class="st">&#39;Hello, TensorFlow!&#39;</span>)</a>
+<a class="sourceLine" id="cb657-4" data-line-number="4">sess<span class="op">$</span><span class="kw">run</span>(hello)</a></code></pre></div>
 </div>
 <div id="mxnet" class="section level3">
 <h3><span class="header-section-number">10.6.3</span> MXNet</h3>
-<p>Amazon <a href="http://mxnet.io/get_started/windows_setup.html#install-mxnet-for-r">Install MXNet for R</a> MXNet for R <a href="http://mxnet.io/tutorials/index.html#r">Tutorials</a></p>
+<p>Amazon
+<a href="http://mxnet.io/get_started/windows_setup.html#install-mxnet-for-r">Install MXNet for R</a>
+MXNet for R <a href="http://mxnet.io/tutorials/index.html#r">Tutorials</a></p>
 <p>MXNet for R</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;drat&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;https://cran.rstudio.com&quot;</span>)
-drat:::<span class="kw">addRepo</span>(<span class="st">&quot;dmlc&quot;</span>)
-<span class="kw">install.packages</span>(<span class="st">&quot;mxnet&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb658-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;drat&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;https://cran.rstudio.com&quot;</span>)</a>
+<a class="sourceLine" id="cb658-2" data-line-number="2">drat<span class="op">:::</span><span class="kw">addRepo</span>(<span class="st">&quot;dmlc&quot;</span>)</a>
+<a class="sourceLine" id="cb658-3" data-line-number="3"><span class="kw">install.packages</span>(<span class="st">&quot;mxnet&quot;</span>)</a></code></pre></div>
 </div>
 </div>
-<div id="section-10.7" class="section level2">
+<div id="模型驗證" class="section level2">
 <h2><span class="header-section-number">10.7</span> 模型驗證</h2>
 <p>在完成模型訓練後，為了驗證模型訓練的好不好，需要用一組<strong>獨立</strong>的測試資料，來做模型的驗證。所以，在訓練模型前，必須特別留意是否有保留一份<strong>獨立的資料</strong>，並確保在訓練模型時都不用到此獨立資料集。因此，資料集可分為以下兩種：</p>
 <ul>
@@ -1056,17 +1032,17 @@ drat:::<span class="kw">addRepo</span>(<span class="st">&quot;dmlc&quot;</span>)
 </ul>
 <p>Training set和Test set通常會比例分配，如2/3的資料設為<code>Training set</code>，剩下的1/3做驗證<code>Test set</code>。以下圖的監督式學習流程圖為例，可以注意到綠色箭頭的資料集在訓練過程中從未被使用。</p>
 <p><img src="figure/SupervisedLearning.png" width="450" /></p>
-<div id="regression-" class="section level3">
+<div id="regression-迴歸驗證" class="section level3">
 <h3><span class="header-section-number">10.7.1</span> Regression 迴歸驗證</h3>
 <p>以NBA資料為例，首先先將資料讀入</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#讀入SportsAnalytics package</span>
-if (!<span class="kw">require</span>(<span class="st">&#39;SportsAnalytics&#39;</span>)){
-    <span class="kw">install.packages</span>(<span class="st">&quot;SportsAnalytics&quot;</span>)
-    <span class="kw">library</span>(SportsAnalytics)
-}
-<span class="co">#擷取2015-2016年球季球員資料</span>
-NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)
-NBA1516&lt;-NBA1516[<span class="kw">complete.cases</span>(NBA1516),]</code></pre></div>
+<div class="sourceCode" id="cb659"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb659-1" data-line-number="1"><span class="co">#讀入SportsAnalytics package</span></a>
+<a class="sourceLine" id="cb659-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;SportsAnalytics&#39;</span>)){</a>
+<a class="sourceLine" id="cb659-3" data-line-number="3">    <span class="kw">install.packages</span>(<span class="st">&quot;SportsAnalytics&quot;</span>)</a>
+<a class="sourceLine" id="cb659-4" data-line-number="4">    <span class="kw">library</span>(SportsAnalytics)</a>
+<a class="sourceLine" id="cb659-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb659-6" data-line-number="6"><span class="co">#擷取2015-2016年球季球員資料</span></a>
+<a class="sourceLine" id="cb659-7" data-line-number="7">NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</a>
+<a class="sourceLine" id="cb659-8" data-line-number="8">NBA1516&lt;-NBA1516[<span class="kw">complete.cases</span>(NBA1516),]</a></code></pre></div>
 <ul>
 <li>以Training set來<code>選看起來最好的模型</code></li>
 <li>用Test set來<code>驗證模型是不是真的很好</code></li>
@@ -1075,146 +1051,146 @@ NBA1516&lt;-NBA1516[<span class="kw">complete.cases</span>(NBA1516),]</code></pr
 <li>訓練模型時，不能偷看Test set，才是真正的驗證</li>
 </ul>
 <p>為分出訓練組與測試組，需使用隨機抽樣的方式</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span>:<span class="dv">10</span>,<span class="dv">3</span>) <span class="co"># 從1到10，隨機取三個數字</span></code></pre></div>
-<pre><code>## [1] 6 3 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(NBA1516),<span class="kw">nrow</span>(NBA1516)/<span class="dv">3</span>) <span class="co">#從第一行到最後一行，隨機取1/3行數</span></code></pre></div>
-<pre><code>##   [1]  64 155  74  62 206  19 335  48 444  57 103 424 438 129 466 367 342 420
-##  [19] 455 430 222 462 114 228 225 144 433 285 461 189 407 208 403 265 279 383
-##  [37] 221 431 142 210 156 273 322 245 423 249 446  98  36 363 100 419 255 422
-##  [55] 159 234 180 241 181  94 427 264 179  30 330 134 310 239 289 174 140 307
-##  [73] 171 226  47 122 192 138 408  31 378   9 331 248 400 290 456 386  50 341
-##  [91] 312 316 320 280 375 243 251 200 120 445 198 274 115 151  76 365 209 104
-## [109]  68 278 207 340 232 254 173 404 152  12  93 377 468 177 284 119 413 406
-## [127] 441 381  38 382 196 473 258 106 167 337 450  83 344 426 329 160 343 191
-## [145] 440 263 175 345  87  92  22 183  85   2 190 388 270  10</code></pre>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb660-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">3</span>) <span class="co"># 從1到10，隨機取三個數字</span></a></code></pre></div>
+<pre><code>## [1] 3 8 5</code></pre>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb662-1" data-line-number="1"><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(NBA1516),<span class="kw">nrow</span>(NBA1516)<span class="op">/</span><span class="dv">3</span>) <span class="co">#從第一行到最後一行，隨機取1/3行數</span></a></code></pre></div>
+<pre><code>##   [1] 435 395  22 216 125 144 238  85 355  94 121 461 374 256 298 470 286 152
+##  [19] 230 309 221 111 347  34 140 323 227  69 226 455 335  78 376 383  19 451
+##  [37]   7 105 456 135 222  23 245  53 385 439 336  39 475 164  30 136 283 391
+##  [55] 199  60 229  83 375 163 130  67 371 448 413  55  54  43 209 122  11 126
+##  [73] 300  15 449 113  82 409 415  62  52 172  16 280  40 411  48  86 354 366
+##  [91] 108 389 306 285 349 378 358 184 107  95 189 186 119 379 236 384 157 337
+## [109] 394 333 219 457 316 182 356 117 173 128 225 265 201 348 204 155  81  29
+## [127] 297 399 343 407 345 397 191 147 197 148  77 350 215 145  25 269 109 252
+## [145] 194 234 141 400 249 139 183  38  98 352 454 193 445 305</code></pre>
 <p>使用上述方法，選出1/3的元素位置，把NBA的資料分成Training 和 Test set</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NBA1516$Test&lt;-F <span class="co">#新增一個參數紀錄分組</span>
-<span class="co">#隨機取1/3當Test set</span>
-NBA1516[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(NBA1516),<span class="kw">nrow</span>(NBA1516)/<span class="dv">3</span>),]$Test&lt;-T
-<span class="co"># Training set : Test set球員數</span>
-<span class="kw">c</span>(<span class="kw">sum</span>(NBA1516$Test==F),<span class="kw">sum</span>(NBA1516$Test==T))</code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb664-1" data-line-number="1">NBA1516<span class="op">$</span>Test&lt;-F <span class="co">#新增一個參數紀錄分組</span></a>
+<a class="sourceLine" id="cb664-2" data-line-number="2"><span class="co">#隨機取1/3當Test set</span></a>
+<a class="sourceLine" id="cb664-3" data-line-number="3">NBA1516[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(NBA1516),<span class="kw">nrow</span>(NBA1516)<span class="op">/</span><span class="dv">3</span>),]<span class="op">$</span>Test&lt;-T</a>
+<a class="sourceLine" id="cb664-4" data-line-number="4"><span class="co"># Training set : Test set球員數</span></a>
+<a class="sourceLine" id="cb664-5" data-line-number="5"><span class="kw">c</span>(<span class="kw">sum</span>(NBA1516<span class="op">$</span>Test<span class="op">==</span>F),<span class="kw">sum</span>(NBA1516<span class="op">$</span>Test<span class="op">==</span>T))</a></code></pre></div>
 <pre><code>## [1] 317 158</code></pre>
 <p>並用訓練組的資料（NBA1516$Test==F），訓練一個多變數線性迴歸模型</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit&lt;-<span class="kw">glm</span>(TotalPoints~TotalMinutesPlayed+FieldGoalsAttempted+
-<span class="st">             </span>Position+ThreesAttempted+FreeThrowsAttempted,
-              <span class="dt">data =</span>NBA1516[NBA1516$Test==F,])
-<span class="kw">summary</span>(fit)$coefficients</code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb666-1" data-line-number="1">fit&lt;-<span class="kw">glm</span>(TotalPoints<span class="op">~</span>TotalMinutesPlayed<span class="op">+</span>FieldGoalsAttempted<span class="op">+</span></a>
+<a class="sourceLine" id="cb666-2" data-line-number="2"><span class="st">             </span>Position<span class="op">+</span>ThreesAttempted<span class="op">+</span>FreeThrowsAttempted,</a>
+<a class="sourceLine" id="cb666-3" data-line-number="3">              <span class="dt">data =</span>NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>F,])</a>
+<a class="sourceLine" id="cb666-4" data-line-number="4"><span class="kw">summary</span>(fit)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)          1.2e+01      8.186   1.487  1.4e-01
-## TotalMinutesPlayed   6.8e-04      0.008   0.085  9.3e-01
-## FieldGoalsAttempted  9.7e-01      0.027  35.796 9.0e-112
-## PositionPF          -1.5e+01      8.741  -1.670  9.6e-02
-## PositionPG          -3.8e+01      9.640  -3.892  1.2e-04
-## PositionSF          -2.4e+01      9.667  -2.506  1.3e-02
-## PositionSG          -3.6e+01      9.465  -3.812  1.7e-04
-## ThreesAttempted      1.9e-01      0.032   5.807  1.6e-08
-## FreeThrowsAttempted  7.6e-01      0.042  18.030  4.1e-50</code></pre>
+## (Intercept)          14.6138     8.5471     1.7  8.8e-02
+## TotalMinutesPlayed    0.0037     0.0074     0.5  6.2e-01
+## FieldGoalsAttempted   1.0066     0.0229    44.0 9.0e-135
+## PositionPF          -24.6204     9.0380    -2.7  6.8e-03
+## PositionPG          -44.5870     9.5232    -4.7  4.3e-06
+## PositionSF          -13.3311     9.6856    -1.4  1.7e-01
+## PositionSG          -34.8667     9.7711    -3.6  4.2e-04
+## ThreesAttempted       0.0968     0.0310     3.1  2.0e-03
+## FreeThrowsAttempted   0.6890     0.0388    17.8  3.8e-49</code></pre>
 <p>逐步選擇模型 stepwise 後退學習：一開始先將所有參數加到模型裡，再一個一個拿掉</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(MASS)
-##根據AIC，做逐步選擇, 預設倒退學習 direction = &quot;backward&quot;
-##trace=FALSE: 不要顯示步驟
-finalModel_B&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;backward&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)
-<span class="kw">summary</span>(finalModel_B)$coefficients</code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb668-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb668-2" data-line-number="2"><span class="co">##根據AIC，做逐步選擇, 預設倒退學習 direction = &quot;backward&quot;</span></a>
+<a class="sourceLine" id="cb668-3" data-line-number="3"><span class="co">##trace=FALSE: 不要顯示步驟</span></a>
+<a class="sourceLine" id="cb668-4" data-line-number="4">finalModel_B&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;backward&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb668-5" data-line-number="5"><span class="kw">summary</span>(finalModel_B)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)            12.43      7.565     1.6  1.0e-01
-## FieldGoalsAttempted     0.97      0.020    49.9 6.5e-150
-## PositionPF            -14.70      8.651    -1.7  9.0e-02
-## PositionPG            -37.65      9.502    -4.0  9.2e-05
-## PositionSF            -24.26      9.639    -2.5  1.2e-02
-## PositionSG            -36.16      9.401    -3.8  1.5e-04
-## ThreesAttempted         0.19      0.032     5.8  1.5e-08
-## FreeThrowsAttempted     0.76      0.042    18.1  1.5e-50</code></pre>
+## (Intercept)           16.034      8.052     2.0  4.7e-02
+## FieldGoalsAttempted    1.014      0.018    57.9 6.1e-168
+## PositionPF           -24.934      9.005    -2.8  6.0e-03
+## PositionPG           -45.141      9.447    -4.8  2.7e-06
+## PositionSF           -13.516      9.667    -1.4  1.6e-01
+## PositionSG           -35.176      9.740    -3.6  3.5e-04
+## ThreesAttempted        0.098      0.031     3.2  1.6e-03
+## FreeThrowsAttempted    0.690      0.039    17.8  2.4e-49</code></pre>
 <p>逐步選擇模型 stepwise 往前學習：一開始先做一個沒有參數的模型，再把參數一個一個加進去</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##根據AIC，做逐步選擇, 往前學習 direction = &quot;forward&quot;
-finalModel_F&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)
-<span class="kw">summary</span>(finalModel_F)$coefficients</code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb670-1" data-line-number="1"><span class="co">##根據AIC，做逐步選擇, 往前學習 direction = &quot;forward&quot;</span></a>
+<a class="sourceLine" id="cb670-2" data-line-number="2">finalModel_F&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;forward&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb670-3" data-line-number="3"><span class="kw">summary</span>(finalModel_F)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)          1.2e+01      8.186   1.487  1.4e-01
-## TotalMinutesPlayed   6.8e-04      0.008   0.085  9.3e-01
-## FieldGoalsAttempted  9.7e-01      0.027  35.796 9.0e-112
-## PositionPF          -1.5e+01      8.741  -1.670  9.6e-02
-## PositionPG          -3.8e+01      9.640  -3.892  1.2e-04
-## PositionSF          -2.4e+01      9.667  -2.506  1.3e-02
-## PositionSG          -3.6e+01      9.465  -3.812  1.7e-04
-## ThreesAttempted      1.9e-01      0.032   5.807  1.6e-08
-## FreeThrowsAttempted  7.6e-01      0.042  18.030  4.1e-50</code></pre>
+## (Intercept)          14.6138     8.5471     1.7  8.8e-02
+## TotalMinutesPlayed    0.0037     0.0074     0.5  6.2e-01
+## FieldGoalsAttempted   1.0066     0.0229    44.0 9.0e-135
+## PositionPF          -24.6204     9.0380    -2.7  6.8e-03
+## PositionPG          -44.5870     9.5232    -4.7  4.3e-06
+## PositionSF          -13.3311     9.6856    -1.4  1.7e-01
+## PositionSG          -34.8667     9.7711    -3.6  4.2e-04
+## ThreesAttempted       0.0968     0.0310     3.1  2.0e-03
+## FreeThrowsAttempted   0.6890     0.0388    17.8  3.8e-49</code></pre>
 <p>逐步選擇模型 stepwise 雙向學習：參數加加減減</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##根據AIC，做逐步選擇, 雙向學習 direction = &quot;both&quot;
-finalModel_Both&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)
-<span class="kw">summary</span>(finalModel_Both)$coefficients</code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb672-1" data-line-number="1"><span class="co">##根據AIC，做逐步選擇, 雙向學習 direction = &quot;both&quot;</span></a>
+<a class="sourceLine" id="cb672-2" data-line-number="2">finalModel_Both&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb672-3" data-line-number="3"><span class="kw">summary</span>(finalModel_Both)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value Pr(&gt;|t|)
-## (Intercept)            12.43      7.565     1.6  1.0e-01
-## FieldGoalsAttempted     0.97      0.020    49.9 6.5e-150
-## PositionPF            -14.70      8.651    -1.7  9.0e-02
-## PositionPG            -37.65      9.502    -4.0  9.2e-05
-## PositionSF            -24.26      9.639    -2.5  1.2e-02
-## PositionSG            -36.16      9.401    -3.8  1.5e-04
-## ThreesAttempted         0.19      0.032     5.8  1.5e-08
-## FreeThrowsAttempted     0.76      0.042    18.1  1.5e-50</code></pre>
+## (Intercept)           16.034      8.052     2.0  4.7e-02
+## FieldGoalsAttempted    1.014      0.018    57.9 6.1e-168
+## PositionPF           -24.934      9.005    -2.8  6.0e-03
+## PositionPG           -45.141      9.447    -4.8  2.7e-06
+## PositionSF           -13.516      9.667    -1.4  1.6e-01
+## PositionSG           -35.176      9.740    -3.6  3.5e-04
+## ThreesAttempted        0.098      0.031     3.2  1.6e-03
+## FreeThrowsAttempted    0.690      0.039    17.8  2.4e-49</code></pre>
 <p>用Test set來評估模型好不好，使用predict函數，將測試組資料放入預測模型中，預測測試組的結果</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">predictPoint&lt;-<span class="kw">predict</span>(finalModel_Both, <span class="co">#Test==T, test data</span>
-                      <span class="dt">newdata =</span> NBA1516[NBA1516$Test==T,])
-<span class="kw">cor</span>(<span class="dt">x=</span>predictPoint,<span class="dt">y=</span>NBA1516[NBA1516$Test==T,]$TotalPoints) <span class="co">#相關係數</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x=</span>predictPoint,<span class="dt">y=</span>NBA1516[NBA1516$Test==T,]$TotalPoints)</code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb674-1" data-line-number="1">predictPoint&lt;-<span class="kw">predict</span>(finalModel_Both, <span class="co">#Test==T, test data</span></a>
+<a class="sourceLine" id="cb674-2" data-line-number="2">                      <span class="dt">newdata =</span> NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,])</a>
+<a class="sourceLine" id="cb674-3" data-line-number="3"><span class="kw">cor</span>(<span class="dt">x=</span>predictPoint,<span class="dt">y=</span>NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>TotalPoints) <span class="co">#相關係數</span></a></code></pre></div>
+<pre><code>## [1] 0.99</code></pre>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb676-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x=</span>predictPoint,<span class="dt">y=</span>NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>TotalPoints)</a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
 </div>
-<div id="logistic-regression-" class="section level3">
+<div id="logistic-regression-邏輯迴歸驗證" class="section level3">
 <h3><span class="header-section-number">10.7.2</span> Logistic Regression 邏輯迴歸驗證</h3>
 <p>首先，先把入學資料分成Training 和 Test set。這邊要特別留意，當答案有正反兩面時，<code>Level 1 要放正面答案</code>–&gt;有病/錄取…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/binary.csv&quot;</span>)
-mydata$admit &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata$admit) <span class="co"># 類別變項要轉為factor</span>
-mydata$rank &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata$rank) <span class="co"># 類別變項要轉為factor</span>
-mydata$Test&lt;-F <span class="co">#新增一個參數紀錄分組</span>
-mydata[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(mydata),<span class="kw">nrow</span>(mydata)/<span class="dv">3</span>),]$Test&lt;-T <span class="co">#隨機取1/3當Test set</span>
-<span class="kw">c</span>(<span class="kw">sum</span>(mydata$Test==F),<span class="kw">sum</span>(mydata$Test==T)) <span class="co"># Training set : Test set學生數</span></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb677-1" data-line-number="1">mydata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/binary.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb677-2" data-line-number="2">mydata<span class="op">$</span>admit &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata<span class="op">$</span>admit) <span class="co"># 類別變項要轉為factor</span></a>
+<a class="sourceLine" id="cb677-3" data-line-number="3">mydata<span class="op">$</span>rank &lt;-<span class="st"> </span><span class="kw">factor</span>(mydata<span class="op">$</span>rank) <span class="co"># 類別變項要轉為factor</span></a>
+<a class="sourceLine" id="cb677-4" data-line-number="4">mydata<span class="op">$</span>Test&lt;-F <span class="co">#新增一個參數紀錄分組</span></a>
+<a class="sourceLine" id="cb677-5" data-line-number="5">mydata[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(mydata),<span class="kw">nrow</span>(mydata)<span class="op">/</span><span class="dv">3</span>),<span class="st">&quot;Test&quot;</span>]&lt;-T <span class="co">#隨機取1/3當Test set</span></a>
+<a class="sourceLine" id="cb677-6" data-line-number="6"><span class="kw">c</span>(<span class="kw">sum</span>(mydata<span class="op">$</span>Test<span class="op">==</span>F),<span class="kw">sum</span>(mydata<span class="op">$</span>Test<span class="op">==</span>T)) <span class="co"># Training set : Test set學生數</span></a></code></pre></div>
 <pre><code>## [1] 267 133</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#修改一下factor的level: 改成Level 1為錄取，2為不錄取--&gt;Level 1 要放正面答案</span>
-mydata$admit&lt;-<span class="kw">factor</span>(mydata$admit,<span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb679-1" data-line-number="1"><span class="co">#修改一下factor的level: 改成Level 1為錄取，2為不錄取--&gt;Level 1 要放正面答案</span></a>
+<a class="sourceLine" id="cb679-2" data-line-number="2">mydata<span class="op">$</span>admit&lt;-<span class="kw">factor</span>(mydata<span class="op">$</span>admit,<span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))</a></code></pre></div>
 <p>逐步選擇最好的模型</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># GRE:某考試成績, GPA:在校平均成績, rank:學校聲望</span>
-mylogit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit ~<span class="st"> </span>gre +<span class="st"> </span>gpa +<span class="st"> </span>rank,
-               <span class="dt">data =</span> mydata[mydata$Test==F,], <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)
-finalFit&lt;-<span class="kw">stepAIC</span>(mylogit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>) <span class="co"># 雙向逐步選擇模型</span>
-<span class="kw">summary</span>(finalFit)</code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" data-line-number="1"><span class="co"># GRE:某考試成績, GPA:在校平均成績, rank:學校聲望</span></a>
+<a class="sourceLine" id="cb680-2" data-line-number="2">mylogit &lt;-<span class="st"> </span><span class="kw">glm</span>(admit <span class="op">~</span><span class="st"> </span>gre <span class="op">+</span><span class="st"> </span>gpa <span class="op">+</span><span class="st"> </span>rank,</a>
+<a class="sourceLine" id="cb680-3" data-line-number="3">               <span class="dt">data =</span> mydata[mydata<span class="op">$</span>Test<span class="op">==</span>F,], <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb680-4" data-line-number="4">finalFit&lt;-<span class="kw">stepAIC</span>(mylogit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace=</span><span class="ot">FALSE</span>) <span class="co"># 雙向逐步選擇模型</span></a>
+<a class="sourceLine" id="cb680-5" data-line-number="5"><span class="kw">summary</span>(finalFit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
-## glm(formula = admit ~ gpa + rank, family = &quot;binomial&quot;, data = mydata[mydata$Test == 
+## glm(formula = admit ~ gre + rank, family = &quot;binomial&quot;, data = mydata[mydata$Test == 
 ##     F, ])
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  
-## -2.241  -1.080   0.670   0.886   1.728  
+## -2.149  -1.085   0.613   0.855   1.537  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)    4.750      1.412    3.36  0.00077 ***
-## gpa           -1.497      0.400   -3.74  0.00018 ***
-## rank2          0.924      0.397    2.33  0.01996 *  
-## rank3          1.645      0.432    3.80  0.00014 ***
-## rank4          1.539      0.488    3.16  0.00160 ** 
+## (Intercept)  2.06544    0.79793    2.59  0.00964 ** 
+## gre         -0.00400    0.00124   -3.24  0.00121 ** 
+## rank2        0.91208    0.39550    2.31  0.02110 *  
+## rank3        1.67005    0.43595    3.83  0.00013 ***
+## rank4        1.73871    0.48597    3.58  0.00035 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
-##     Null deviance: 341.27  on 266  degrees of freedom
-## Residual deviance: 308.76  on 262  degrees of freedom
-## AIC: 318.8
+##     Null deviance: 332.54  on 266  degrees of freedom
+## Residual deviance: 299.33  on 262  degrees of freedom
+## AIC: 309.3
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>用預測組預測新學生可不可以錄取，並驗證答案</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AdmitProb&lt;-<span class="kw">predict</span>(finalFit, <span class="co"># 用Training set做的模型</span>
-                   <span class="dt">newdata =</span> mydata[mydata$Test==T,], <span class="co">#Test==T, test data</span>
-                   <span class="dt">type=</span><span class="st">&quot;response&quot;</span>) <span class="co">#結果為每個人被錄取的機率</span>
-<span class="kw">head</span>(AdmitProb)</code></pre></div>
-<pre><code>##    1    2    3    5   10   12 
-## 0.87 0.61 0.50 0.42 0.60 0.45</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(AdmitProb&lt;<span class="fl">0.5</span>,mydata[mydata$Test==T,]$admit) <span class="co"># row,column</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb682-1" data-line-number="1">AdmitProb&lt;-<span class="kw">predict</span>(finalFit, <span class="co"># 用Training set做的模型</span></a>
+<a class="sourceLine" id="cb682-2" data-line-number="2">                   <span class="dt">newdata =</span> mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,], <span class="co">#Test==T, test data</span></a>
+<a class="sourceLine" id="cb682-3" data-line-number="3">                   <span class="dt">type=</span><span class="st">&quot;response&quot;</span>) <span class="co">#結果為每個人被錄取的機率</span></a>
+<a class="sourceLine" id="cb682-4" data-line-number="4"><span class="kw">head</span>(AdmitProb)</a></code></pre></div>
+<pre><code>##    4   13   14   15   20   23 
+## 0.78 0.27 0.54 0.32 0.48 0.80</code></pre>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb684-1" data-line-number="1"><span class="kw">table</span>(AdmitProb<span class="op">&lt;</span><span class="fl">0.5</span>,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit) <span class="co"># row,column</span></a></code></pre></div>
 <pre><code>##        
 ##          1  0
-##   FALSE 27 82
-##   TRUE  12 12</code></pre>
+##   FALSE 33 80
+##   TRUE  10 10</code></pre>
 <p>當答案是二元時：效能指標</p>
 <ul>
 <li>Sensitivity 敏感性</li>
@@ -1239,131 +1215,131 @@ finalFit&lt;-<span class="kw">stepAIC</span>(mylogit,<span class="dt">direction 
 <li>Negative Predictive Value (NPV) 陰性預測值：所有被<code>預測沒病</code>的人，<code>真的沒病</code>的比例</li>
 </ul>
 <p>回想一下剛剛的驗證結果</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(AdmitProb&lt;<span class="fl">0.5</span>,mydata[mydata$Test==T,]$admit) <span class="co"># row,column</span></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb686-1" data-line-number="1"><span class="kw">table</span>(AdmitProb<span class="op">&lt;</span><span class="fl">0.5</span>,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit) <span class="co"># row,column</span></a></code></pre></div>
 <pre><code>##        
 ##          1  0
-##   FALSE 27 82
-##   TRUE  12 12</code></pre>
+##   FALSE 33 80
+##   TRUE  10 10</code></pre>
 <p><img src="figure/para.png" width="598" /></p>
 <p>計算預測效能參數</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">AdmitProb&lt;-<span class="kw">predict</span>(finalFit,
-                   <span class="dt">newdata =</span> mydata[mydata$Test==T,], <span class="co">#Test==T, test data</span>
-                   <span class="dt">type=</span><span class="st">&quot;response&quot;</span>) <span class="co">#結果為每個人『不』被錄取的機率</span>
-AdmitAns&lt;-<span class="kw">factor</span>(<span class="kw">ifelse</span>(AdmitProb&lt;<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))
-<span class="kw">str</span>(AdmitAns)</code></pre></div>
-<pre><code>##  Factor w/ 2 levels &quot;1&quot;,&quot;0&quot;: 2 2 2 1 2 1 2 2 2 2 ...
-##  - attr(*, &quot;names&quot;)= chr [1:133] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;5&quot; ...</code></pre>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb688-1" data-line-number="1">AdmitProb&lt;-<span class="kw">predict</span>(finalFit,</a>
+<a class="sourceLine" id="cb688-2" data-line-number="2">                   <span class="dt">newdata =</span> mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,], <span class="co">#Test==T, test data</span></a>
+<a class="sourceLine" id="cb688-3" data-line-number="3">                   <span class="dt">type=</span><span class="st">&quot;response&quot;</span>) <span class="co">#結果為每個人『不』被錄取的機率</span></a>
+<a class="sourceLine" id="cb688-4" data-line-number="4">AdmitAns&lt;-<span class="kw">factor</span>(<span class="kw">ifelse</span>(AdmitProb<span class="op">&lt;</span><span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">0</span>),<span class="dt">levels=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb688-5" data-line-number="5"><span class="kw">str</span>(AdmitAns)</a></code></pre></div>
+<pre><code>##  Factor w/ 2 levels &quot;1&quot;,&quot;0&quot;: 2 1 2 1 1 2 2 1 2 2 ...
+##  - attr(*, &quot;names&quot;)= chr [1:133] &quot;4&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot; ...</code></pre>
 <p>計算預測效能參數</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret) <span class="co"># install.packages(&quot;caret&quot;) #計算參數的packages</span>
-<span class="kw">sensitivity</span>(AdmitAns,mydata[mydata$Test==T,]$admit)</code></pre></div>
-<pre><code>## [1] 0.31</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">specificity</span>(AdmitAns,mydata[mydata$Test==T,]$admit)</code></pre></div>
-<pre><code>## [1] 0.87</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">posPredValue</span>(AdmitAns,mydata[mydata$Test==T,]$admit)</code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" data-line-number="1"><span class="kw">library</span>(caret) <span class="co"># install.packages(&quot;caret&quot;) #計算參數的packages</span></a>
+<a class="sourceLine" id="cb690-2" data-line-number="2"><span class="kw">sensitivity</span>(AdmitAns,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit)</a></code></pre></div>
+<pre><code>## [1] 0.23</code></pre>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" data-line-number="1"><span class="kw">specificity</span>(AdmitAns,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit)</a></code></pre></div>
+<pre><code>## [1] 0.89</code></pre>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" data-line-number="1"><span class="kw">posPredValue</span>(AdmitAns,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit)</a></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">negPredValue</span>(AdmitAns,mydata[mydata$Test==T,]$admit)</code></pre></div>
-<pre><code>## [1] 0.75</code></pre>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" data-line-number="1"><span class="kw">negPredValue</span>(AdmitAns,mydata[mydata<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>admit)</a></code></pre></div>
+<pre><code>## [1] 0.71</code></pre>
 </div>
-<div id="decision-trees-" class="section level3">
+<div id="decision-trees-決策樹驗證" class="section level3">
 <h3><span class="header-section-number">10.7.3</span> Decision Trees 決策樹驗證</h3>
 <p>阻攻/籃板/三分/助攻/抄截判斷位置-訓練</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;rpart&#39;</span>)){
-    <span class="kw">install.packages</span>(<span class="st">&quot;rpart&quot;</span>); <span class="kw">library</span>(rpart)
-}
-DT&lt;-<span class="kw">rpart</span>(Position~Blocks+TotalRebounds+ThreesMade+Assists+Steals,
-          <span class="dt">data=</span>NBA1516[NBA1516$Test==F,]) <span class="co">#訓練組 Training set</span>
-<span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span>
-DT</code></pre></div>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;rpart&#39;</span>)){</a>
+<a class="sourceLine" id="cb698-2" data-line-number="2">    <span class="kw">install.packages</span>(<span class="st">&quot;rpart&quot;</span>); <span class="kw">library</span>(rpart)</a>
+<a class="sourceLine" id="cb698-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb698-4" data-line-number="4">DT&lt;-<span class="kw">rpart</span>(Position<span class="op">~</span>Blocks<span class="op">+</span>TotalRebounds<span class="op">+</span>ThreesMade<span class="op">+</span>Assists<span class="op">+</span>Steals,</a>
+<a class="sourceLine" id="cb698-5" data-line-number="5">          <span class="dt">data=</span>NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>F,]) <span class="co">#訓練組 Training set</span></a>
+<a class="sourceLine" id="cb698-6" data-line-number="6"><span class="co">#控球後衛（PG）、得分後衛（SG）、小前鋒（SF）、大前鋒（PF）和中鋒（C）</span></a>
+<a class="sourceLine" id="cb698-7" data-line-number="7">DT</a></code></pre></div>
 <pre><code>## n= 317 
 ## 
 ## node), split, n, loss, yval, (yprob)
 ##       * denotes terminal node
 ## 
-##   1) root 317 240 SG (0.15 0.23 0.2 0.18 0.24)  
-##     2) ThreesMade&lt; 0.5 72  35 C (0.51 0.38 0.069 0.028 0.014)  
-##       4) TotalRebounds&gt;=3 65  28 C (0.57 0.4 0.031 0 0)  
-##         8) Blocks&gt;=18 40  13 C (0.67 0.32 0 0 0) *
-##         9) Blocks&lt; 18 25  12 PF (0.4 0.52 0.08 0 0) *
-##       5) TotalRebounds&lt; 3 7   4 PG (0 0.14 0.43 0.29 0.14) *
-##     3) ThreesMade&gt;=0.5 245 170 SG (0.049 0.18 0.23 0.23 0.31)  
-##       6) Assists&gt;=1.5e+02 78  41 PG (0.064 0.064 0.47 0.15 0.24)  
-##        12) TotalRebounds&gt;=2.9e+02 31  20 SF (0.13 0.16 0.13 0.35 0.23)  
-##          24) Blocks&gt;=64 9   5 C (0.44 0.33 0 0.22 0) *
-##          25) Blocks&lt; 64 22  13 SF (0 0.091 0.18 0.41 0.32)  
-##            50) Steals&lt; 79 9   3 SF (0 0.22 0 0.67 0.11) *
-##            51) Steals&gt;=79 13   7 SG (0 0 0.31 0.23 0.46) *
-##        13) TotalRebounds&lt; 2.9e+02 47  14 PG (0.021 0 0.7 0.021 0.26)  
-##          26) Assists&gt;=2.2e+02 21   1 PG (0 0 0.95 0 0.048) *
-##          27) Assists&lt; 2.2e+02 26  13 PG (0.038 0 0.5 0.038 0.42)  
-##            54) TotalRebounds&lt; 1.4e+02 10   0 PG (0 0 1 0 0) *
-##            55) TotalRebounds&gt;=1.4e+02 16   5 SG (0.063 0 0.19 0.062 0.69) *
-##       7) Assists&lt; 1.5e+02 167 110 SG (0.042 0.24 0.12 0.26 0.34)  
-##        14) Blocks&gt;=6.5 105  68 PF (0.067 0.35 0.019 0.29 0.28)  
-##          28) ThreesMade&lt; 14 28  10 PF (0.18 0.64 0 0.18 0) *
-##          29) ThreesMade&gt;=14 77  48 SG (0.026 0.25 0.026 0.32 0.38)  
-##            58) TotalRebounds&gt;=2.1e+02 37  22 PF (0.054 0.41 0 0.32 0.22)  
-##             116) Steals&lt; 38 15   4 PF (0.067 0.73 0 0.067 0.13) *
-##             117) Steals&gt;=38 22  11 SF (0.045 0.18 0 0.5 0.27) *
-##            59) TotalRebounds&lt; 2.1e+02 40  19 SG (0 0.1 0.05 0.33 0.53)  
-##             118) Assists&lt; 75 26  14 SF (0 0.15 0 0.46 0.38)  
-##               236) Blocks&lt; 18 16   6 SF (0 0.12 0 0.62 0.25) *
-##               237) Blocks&gt;=18 10   4 SG (0 0.2 0 0.2 0.6) *
-##             119) Assists&gt;=75 14   3 SG (0 0 0.14 0.071 0.79) *
-##        15) Blocks&lt; 6.5 62  35 SG (0 0.048 0.29 0.23 0.44)  
-##          30) Assists&gt;=72 11   3 PG (0 0 0.73 0.18 0.091) *
-##          31) Assists&lt; 72 51  25 SG (0 0.059 0.2 0.24 0.51) *</code></pre>
+##   1) root 317 240 SG (0.13 0.22 0.22 0.2 0.24)  
+##     2) Assists&lt; 2.3e+02 272 200 SG (0.15 0.25 0.14 0.2 0.26)  
+##       4) ThreesMade&lt; 2.5 82  51 C (0.38 0.34 0.13 0.085 0.061)  
+##         8) TotalRebounds&gt;=10 61  31 C (0.49 0.41 0.049 0.016 0.033)  
+##          16) TotalRebounds&gt;=4.7e+02 18   3 C (0.83 0.17 0 0 0) *
+##          17) TotalRebounds&lt; 4.7e+02 43  21 PF (0.35 0.51 0.07 0.023 0.047)  
+##            34) Steals&gt;=10 19   6 PF (0.26 0.68 0.053 0 0) *
+##            35) Steals&lt; 10 24  14 C (0.42 0.38 0.083 0.042 0.083)  
+##              70) TotalRebounds&gt;=20 16   7 C (0.56 0.25 0.062 0.062 0.062) *
+##              71) TotalRebounds&lt; 20 8   3 PF (0.12 0.62 0.12 0 0.12) *
+##         9) TotalRebounds&lt; 10 21  13 PG (0.048 0.14 0.38 0.29 0.14)  
+##          18) Steals&gt;=0.5 13   5 PG (0.077 0.077 0.62 0.15 0.077) *
+##          19) Steals&lt; 0.5 8   4 SF (0 0.25 0 0.5 0.25) *
+##       5) ThreesMade&gt;=2.5 190 120 SG (0.047 0.22 0.14 0.25 0.35)  
+##        10) TotalRebounds&gt;=2.9e+02 44  23 PF (0.11 0.48 0.023 0.32 0.068)  
+##          20) Steals&lt; 60 24   5 PF (0.083 0.79 0 0.12 0) *
+##          21) Steals&gt;=60 20   9 SF (0.15 0.1 0.05 0.55 0.15) *
+##        11) TotalRebounds&lt; 2.9e+02 146  82 SG (0.027 0.14 0.17 0.23 0.44)  
+##          22) Assists&lt; 82 87  53 SG (0.023 0.22 0.057 0.31 0.39)  
+##            44) Blocks&gt;=6.5 49  31 PF (0.02 0.37 0.02 0.29 0.31)  
+##              88) Assists&lt; 40 16   5 PF (0.062 0.69 0 0.19 0.062) *
+##              89) Assists&gt;=40 33  19 SG (0 0.21 0.03 0.33 0.42)  
+##               178) Blocks&lt; 18 17   8 SF (0 0.18 0.059 0.53 0.24) *
+##               179) Blocks&gt;=18 16   6 SG (0 0.25 0 0.12 0.62) *
+##            45) Blocks&lt; 6.5 38  19 SG (0.026 0.026 0.11 0.34 0.5)  
+##              90) Blocks&lt; 2.5 22   9 SG (0.045 0.045 0.14 0.18 0.59) *
+##              91) Blocks&gt;=2.5 16   7 SF (0 0 0.062 0.56 0.38) *
+##          23) Assists&gt;=82 59  29 SG (0.034 0.017 0.34 0.1 0.51)  
+##            46) TotalRebounds&lt; 1.4e+02 22   5 PG (0 0 0.77 0 0.23) *
+##            47) TotalRebounds&gt;=1.4e+02 37  12 SG (0.054 0.027 0.081 0.16 0.68) *
+##     3) Assists&gt;=2.3e+02 45  13 PG (0 0.044 0.71 0.18 0.067)  
+##       6) TotalRebounds&lt; 5e+02 36   5 PG (0 0 0.86 0.056 0.083) *
+##       7) TotalRebounds&gt;=5e+02 9   3 SF (0 0.22 0.11 0.67 0) *</code></pre>
 <p>阻攻/籃板/三分/助攻/抄截判斷位置-訓練</p>
 <p>預設的<code>plot()</code>真的太難用，改用<code>rpart.plot</code> package的<code>prp()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&#39;rpart.plot&#39;</span>)){
-  <span class="kw">install.packages</span>(<span class="st">&quot;rpart.plot&quot;</span>); 
-  <span class="kw">library</span>(rpart.plot)
-}
-<span class="kw">prp</span>(DT) <span class="co"># 把決策樹畫出來</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;rpart.plot&#39;</span>)){</a>
+<a class="sourceLine" id="cb700-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">&quot;rpart.plot&quot;</span>); </a>
+<a class="sourceLine" id="cb700-3" data-line-number="3">  <span class="kw">library</span>(rpart.plot)</a>
+<a class="sourceLine" id="cb700-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb700-5" data-line-number="5"><span class="kw">prp</span>(DT) <span class="co"># 把決策樹畫出來</span></a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 <p>阻攻/籃板/三分/助攻/抄截判斷位置-訓練</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">prp</span>(DT)</code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" data-line-number="1"><span class="kw">prp</span>(DT)</a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
 <p>有批球員沒寫守備位置？–預測</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posPred&lt;-<span class="kw">predict</span>(DT,<span class="dt">newdata=</span> NBA1516[NBA1516$Test==T,]) <span class="co">#Test==T, test data</span>
-<span class="co"># 預設為class probabilities, type = &quot;prob&quot;</span>
-<span class="kw">head</span>(posPred)</code></pre></div>
-<pre><code>##        C    PF   PG    SF   SG
-## 1  0.000 0.000 0.14 0.071 0.79
-## 14 0.000 0.059 0.20 0.235 0.51
-## 15 0.000 0.059 0.20 0.235 0.51
-## 20 0.063 0.000 0.19 0.062 0.69
-## 22 0.067 0.733 0.00 0.067 0.13
-## 26 0.000 0.000 0.31 0.231 0.46</code></pre>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb702-1" data-line-number="1">posPred&lt;-<span class="kw">predict</span>(DT,<span class="dt">newdata=</span> NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]) <span class="co">#Test==T, test data</span></a>
+<a class="sourceLine" id="cb702-2" data-line-number="2"><span class="co"># 預設為class probabilities, type = &quot;prob&quot;</span></a>
+<a class="sourceLine" id="cb702-3" data-line-number="3"><span class="kw">head</span>(posPred)</a></code></pre></div>
+<pre><code>##        C    PF    PG   SF   SG
+## 1  0.083 0.792 0.000 0.12 0.00
+## 2  0.054 0.027 0.081 0.16 0.68
+## 8  0.045 0.045 0.136 0.18 0.59
+## 13 0.000 0.222 0.111 0.67 0.00
+## 17 0.150 0.100 0.050 0.55 0.15
+## 18 0.263 0.684 0.053 0.00 0.00</code></pre>
 <p>有個人沒寫守備位置–對答案</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">result&lt;-<span class="kw">cbind</span>(<span class="kw">round</span>(posPred,<span class="dt">digits =</span> <span class="dv">2</span>),
-              NBA1516[NBA1516$Test==T,]$Name,
-      <span class="kw">as.character</span>(NBA1516[NBA1516$Test==T,]$Position))
-<span class="kw">head</span>(result)</code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb704-1" data-line-number="1">result&lt;-<span class="kw">cbind</span>(<span class="kw">round</span>(posPred,<span class="dt">digits =</span> <span class="dv">2</span>),</a>
+<a class="sourceLine" id="cb704-2" data-line-number="2">              NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Name,</a>
+<a class="sourceLine" id="cb704-3" data-line-number="3">      <span class="kw">as.character</span>(NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Position))</a>
+<a class="sourceLine" id="cb704-4" data-line-number="4"><span class="kw">head</span>(result)</a></code></pre></div>
 <pre><code>##    C      PF     PG     SF     SG                            
-## 1  &quot;0&quot;    &quot;0&quot;    &quot;0.14&quot; &quot;0.07&quot; &quot;0.79&quot; &quot;Corey Brewer&quot;     &quot;SG&quot;
-## 14 &quot;0&quot;    &quot;0.06&quot; &quot;0.2&quot;  &quot;0.24&quot; &quot;0.51&quot; &quot;Brian Roberts&quot;    &quot;PG&quot;
-## 15 &quot;0&quot;    &quot;0.06&quot; &quot;0.2&quot;  &quot;0.24&quot; &quot;0.51&quot; &quot;Aaron Harrison&quot;   &quot;SG&quot;
-## 20 &quot;0.06&quot; &quot;0&quot;    &quot;0.19&quot; &quot;0.06&quot; &quot;0.69&quot; &quot;Jared Dudley&quot;     &quot;SG&quot;
-## 22 &quot;0.07&quot; &quot;0.73&quot; &quot;0&quot;    &quot;0.07&quot; &quot;0.13&quot; &quot;Anthony Tolliver&quot; &quot;PF&quot;
-## 26 &quot;0&quot;    &quot;0&quot;    &quot;0.31&quot; &quot;0.23&quot; &quot;0.46&quot; &quot;Trevor Ariza&quot;     &quot;SF&quot;</code></pre>
+## 1  &quot;0.08&quot; &quot;0.79&quot; &quot;0&quot;    &quot;0.12&quot; &quot;0&quot;    &quot;Chris Bosh&quot;       &quot;PF&quot;
+## 2  &quot;0.05&quot; &quot;0.03&quot; &quot;0.08&quot; &quot;0.16&quot; &quot;0.68&quot; &quot;Danilo Gallinari&quot; &quot;SF&quot;
+## 8  &quot;0.05&quot; &quot;0.05&quot; &quot;0.14&quot; &quot;0.18&quot; &quot;0.59&quot; &quot;Justin Harper&quot;    &quot;PF&quot;
+## 13 &quot;0&quot;    &quot;0.22&quot; &quot;0.11&quot; &quot;0.67&quot; &quot;0&quot;    &quot;Paul George&quot;      &quot;SF&quot;
+## 17 &quot;0.15&quot; &quot;0.1&quot;  &quot;0.05&quot; &quot;0.55&quot; &quot;0.15&quot; &quot;Langsto Galloway&quot; &quot;PG&quot;
+## 18 &quot;0.26&quot; &quot;0.68&quot; &quot;0.05&quot; &quot;0&quot;    &quot;0&quot;    &quot;Kendrick Perkins&quot; &quot;C&quot;</code></pre>
 <p>有個人沒寫守備位置–預測-2</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">posPredC&lt;-<span class="kw">predict</span>(DT,<span class="dt">newdata=</span> NBA1516[NBA1516$Test==T,],<span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)
-<span class="co"># type = &quot;class&quot; 直接預測類別</span>
-<span class="kw">head</span>(posPredC)</code></pre></div>
-<pre><code>##  1 14 15 20 22 26 
-## SG SG SG SG PF SG 
+<div class="sourceCode" id="cb706"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb706-1" data-line-number="1">posPredC&lt;-<span class="kw">predict</span>(DT,<span class="dt">newdata=</span> NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,],<span class="dt">type =</span> <span class="st">&quot;class&quot;</span>)</a>
+<a class="sourceLine" id="cb706-2" data-line-number="2"><span class="co"># type = &quot;class&quot; 直接預測類別</span></a>
+<a class="sourceLine" id="cb706-3" data-line-number="3"><span class="kw">head</span>(posPredC)</a></code></pre></div>
+<pre><code>##  1  2  8 13 17 18 
+## PF SG SG SF SF PF 
 ## Levels: C PF PG SF SG</code></pre>
 <p>有個人沒寫守備位置–對答案-2</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">resultC&lt;-<span class="kw">cbind</span>(<span class="kw">as.character</span>(posPredC),NBA1516[NBA1516$Test==T,]$Name,
-      <span class="kw">as.character</span>(NBA1516[NBA1516$Test==T,]$Position))
-<span class="kw">head</span>(resultC)</code></pre></div>
+<div class="sourceCode" id="cb708"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb708-1" data-line-number="1">resultC&lt;-<span class="kw">cbind</span>(<span class="kw">as.character</span>(posPredC),NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Name,</a>
+<a class="sourceLine" id="cb708-2" data-line-number="2">      <span class="kw">as.character</span>(NBA1516[NBA1516<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Position))</a>
+<a class="sourceLine" id="cb708-3" data-line-number="3"><span class="kw">head</span>(resultC)</a></code></pre></div>
 <pre><code>##      [,1] [,2]               [,3]
-## [1,] &quot;SG&quot; &quot;Corey Brewer&quot;     &quot;SG&quot;
-## [2,] &quot;SG&quot; &quot;Brian Roberts&quot;    &quot;PG&quot;
-## [3,] &quot;SG&quot; &quot;Aaron Harrison&quot;   &quot;SG&quot;
-## [4,] &quot;SG&quot; &quot;Jared Dudley&quot;     &quot;SG&quot;
-## [5,] &quot;PF&quot; &quot;Anthony Tolliver&quot; &quot;PF&quot;
-## [6,] &quot;SG&quot; &quot;Trevor Ariza&quot;     &quot;SF&quot;</code></pre>
+## [1,] &quot;PF&quot; &quot;Chris Bosh&quot;       &quot;PF&quot;
+## [2,] &quot;SG&quot; &quot;Danilo Gallinari&quot; &quot;SF&quot;
+## [3,] &quot;SG&quot; &quot;Justin Harper&quot;    &quot;PF&quot;
+## [4,] &quot;SF&quot; &quot;Paul George&quot;      &quot;SF&quot;
+## [5,] &quot;SF&quot; &quot;Langsto Galloway&quot; &quot;PG&quot;
+## [6,] &quot;PF&quot; &quot;Kendrick Perkins&quot; &quot;C&quot;</code></pre>
 </div>
 </div>
 <div id="case-study" class="section level2">
@@ -1374,10 +1350,10 @@ DT</code></pre></div>
 <li>以Sonar, Mines vs. Rocks為例</li>
 </ul>
 <p><strong>步驟1.1:讀資料</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;mlbench&quot;) # 此package內有很多dataset可練習</span>
-<span class="kw">library</span>(mlbench)
-<span class="kw">data</span>(Sonar)
-<span class="kw">str</span>(Sonar) <span class="co">#看一下資料型別，有沒有缺值，類別變項是不是factor</span></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb710-1" data-line-number="1"><span class="co">#install.packages(&quot;mlbench&quot;) # 此package內有很多dataset可練習</span></a>
+<a class="sourceLine" id="cb710-2" data-line-number="2"><span class="kw">library</span>(mlbench)</a>
+<a class="sourceLine" id="cb710-3" data-line-number="3"><span class="kw">data</span>(Sonar)</a>
+<a class="sourceLine" id="cb710-4" data-line-number="4"><span class="kw">str</span>(Sonar) <span class="co">#看一下資料型別，有沒有缺值，類別變項是不是factor</span></a></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    208 obs. of  61 variables:
 ##  $ V1   : num  0.02 0.0453 0.0262 0.01 0.0762 0.0286 0.0317 0.0519 0.0223 0.0164 ...
 ##  $ V2   : num  0.0371 0.0523 0.0582 0.0171 0.0666 0.0453 0.0956 0.0548 0.0375 0.0173 ...
@@ -1442,10 +1418,10 @@ DT</code></pre></div>
 ##  $ Class: Factor w/ 2 levels &quot;M&quot;,&quot;R&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
 <p>在建立模型之前…別忘了基本的資料分析，使用<code>探索性分析 Exploratory data analysis</code>，看看資料長怎麼樣，要是有一個參數可以完美的把礦物跟石頭分開，那就不用麻煩建模了…</p>
 <p>探索性分析 Exploratory data analysis</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2);<span class="kw">library</span>(reshape2) <span class="co">#install.packages(c(&quot;ggplot2&quot;,&quot;reshape2&quot;))</span>
-Sonar.m&lt;-<span class="kw">melt</span>(Sonar,<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;Class&quot;</span>))
-<span class="kw">ggplot</span>(Sonar.m)+<span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Class,<span class="dt">y=</span>value))+
-<span class="st">    </span><span class="kw">facet_wrap</span>(~variable, <span class="dt">nrow=</span><span class="dv">5</span>,<span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="co">#圖片太小了</span></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb712-1" data-line-number="1"><span class="kw">library</span>(ggplot2);<span class="kw">library</span>(reshape2) <span class="co">#install.packages(c(&quot;ggplot2&quot;,&quot;reshape2&quot;))</span></a>
+<a class="sourceLine" id="cb712-2" data-line-number="2">Sonar.m&lt;-<span class="kw">melt</span>(Sonar,<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;Class&quot;</span>))</a>
+<a class="sourceLine" id="cb712-3" data-line-number="3"><span class="kw">ggplot</span>(Sonar.m)<span class="op">+</span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>Class,<span class="dt">y=</span>value))<span class="op">+</span></a>
+<a class="sourceLine" id="cb712-4" data-line-number="4"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>variable, <span class="dt">nrow=</span><span class="dv">5</span>,<span class="dt">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="co">#圖片太小了</span></a></code></pre></div>
 <p><img src="DataAnalyticsWithR_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p><strong>步驟1.2: 資料前處理</strong></p>
 <ul>
@@ -1468,11 +1444,11 @@ Sonar.m&lt;-<span class="kw">melt</span>(Sonar,<span class="dt">id.vars =</span>
 </ul>
 <p><strong>步驟2:分成訓練組與測試組</strong></p>
 <p>該怎麼分可以自己決定，1/3，1/5…都可以</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Sonar$Test&lt;-F <span class="co">#新增一個參數紀錄分組</span>
-<span class="co">#隨機取1/3當Test set</span>
-Sonar[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">nrow</span>(Sonar),<span class="kw">nrow</span>(Sonar)/<span class="dv">3</span>),]$Test&lt;-T
-<span class="co"># 看一下 Training set : Test set 案例數</span>
-<span class="kw">c</span>(<span class="kw">sum</span>(Sonar$Test==F),<span class="kw">sum</span>(Sonar$Test==T))</code></pre></div>
+<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" data-line-number="1">Sonar<span class="op">$</span>Test&lt;-F <span class="co">#新增一個參數紀錄分組</span></a>
+<a class="sourceLine" id="cb713-2" data-line-number="2"><span class="co">#隨機取1/3當Test set</span></a>
+<a class="sourceLine" id="cb713-3" data-line-number="3">Sonar[<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(Sonar),<span class="kw">nrow</span>(Sonar)<span class="op">/</span><span class="dv">3</span>),]<span class="op">$</span>Test&lt;-T</a>
+<a class="sourceLine" id="cb713-4" data-line-number="4"><span class="co"># 看一下 Training set : Test set 案例數</span></a>
+<a class="sourceLine" id="cb713-5" data-line-number="5"><span class="kw">c</span>(<span class="kw">sum</span>(Sonar<span class="op">$</span>Test<span class="op">==</span>F),<span class="kw">sum</span>(Sonar<span class="op">$</span>Test<span class="op">==</span>T))</a></code></pre></div>
 <pre><code>## [1] 139  69</code></pre>
 <p><strong>步驟3:訓練模型</strong></p>
 <ul>
@@ -1480,55 +1456,58 @@ Sonar[<span class="kw">sample</span>(<span class="dv">1</span>:<span class="kw">
 <li>數值自變項X很多，先用迴歸好了～</li>
 <li>要解釋一下模型</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit&lt;-<span class="kw">glm</span>(Class~., Sonar[Sonar$Test==F,],<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)
-finalFit&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace =</span> F)
-<span class="kw">summary</span>(finalFit)$coefficients</code></pre></div>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" data-line-number="1">fit&lt;-<span class="kw">glm</span>(Class<span class="op">~</span>., Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>F,],<span class="dt">family=</span><span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb715-2" data-line-number="2">finalFit&lt;-<span class="kw">stepAIC</span>(fit,<span class="dt">direction =</span> <span class="st">&quot;both&quot;</span>,<span class="dt">trace =</span> F)</a>
+<a class="sourceLine" id="cb715-3" data-line-number="3"><span class="kw">summary</span>(finalFit)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##             Estimate Std. Error z value Pr(&gt;|z|)
-## (Intercept)     4047     174293   0.023     0.98
-## V1            -40789    1776026  -0.023     0.98
-## V4             -5195     270110  -0.019     0.98
-## V9             -2411     167303  -0.014     0.99
-## V13            -4290     188123  -0.023     0.98
-## V17             5684     242345   0.023     0.98
-## V18            -2057      89134  -0.023     0.98
-## V22            -2956     127113  -0.023     0.98
-## V27            -1518      67185  -0.023     0.98
-## V29             3648     164011   0.022     0.98
-## V30            -9116     405516  -0.022     0.98
-## V31             9919     444721   0.022     0.98
-## V32            -5104     253668  -0.020     0.98
-## V34             5067     243722   0.021     0.98
-## V35            -8418     375419  -0.022     0.98
-## V36             7164     310629   0.023     0.98
-## V49           -42033    1797213  -0.023     0.98
-## V50            64865    2866786   0.023     0.98
-## V51           -63687    2801711  -0.023     0.98
-## V53           -47779    2557421  -0.019     0.99
-## V55           133849    5729669   0.023     0.98</code></pre>
+## (Intercept)     1360     106076  0.0128     0.99
+## V1            -17982    1586741 -0.0113     0.99
+## V3             13470    1070284  0.0126     0.99
+## V6             -6741     531117 -0.0127     0.99
+## V7              8606     580826  0.0148     0.99
+## V11            -5790     387660 -0.0149     0.99
+## V17             5393     369435  0.0146     0.99
+## V18            -4341     293739 -0.0148     0.99
+## V23             -830      73145 -0.0113     0.99
+## V26              287      40536  0.0071     0.99
+## V29             2486     213067  0.0117     0.99
+## V30            -6584     494910 -0.0133     0.99
+## V31             5735     421578  0.0136     0.99
+## V32            -3137     232317 -0.0135     0.99
+## V34             3901     281374  0.0139     0.99
+## V35            -3774     278846 -0.0135     0.99
+## V36             3180     231656  0.0137     0.99
+## V39             -808      56514 -0.0143     0.99
+## V46            -4007     293557 -0.0137     0.99
+## V50            29058    2009780  0.0145     0.99
+## V52           -26602    1970864 -0.0135     0.99
+## V56           -62815    4266136 -0.0147     0.99
+## V59           -75377    5503831 -0.0137     0.99
+## V60            79535    6740701  0.0118     0.99</code></pre>
 <p><strong>步驟4.1:用測試組驗證模型-預測</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">MinePred&lt;-<span class="kw">predict</span>(finalFit,<span class="dt">newdata =</span> Sonar[Sonar$Test==T,])
-MineAns&lt;-<span class="kw">ifelse</span>(MinePred&lt;<span class="fl">0.5</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;R&quot;</span>) <span class="co">#&lt;0.5: Level 1</span>
-MineAns&lt;-<span class="kw">factor</span>(MineAns,<span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;R&quot;</span>))
-MineAns</code></pre></div>
-<pre><code>##   1   9  10  11  12  13  14  19  21  24  33  35  36  37  40  41  42  47  52  59 
-##   M   R   R   R   R   R   R   M   M   R   M   R   M   M   R   M   M   M   M   M 
-##  65  66  67  72  73  78  79  80  81  84  85  87  88  89  91  97  98  99 100 104 
-##   R   R   R   R   M   M   R   M   R   R   M   M   R   R   R   R   R   R   R   R 
-## 105 106 109 110 115 117 120 122 126 130 134 135 139 145 151 153 154 155 163 167 
-##   M   M   M   M   M   M   R   M   R   R   M   M   R   M   R   M   M   M   R   M 
-## 168 171 180 181 188 190 195 199 208 
-##   M   R   R   R   M   M   R   R   R 
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" data-line-number="1">MinePred&lt;-<span class="kw">predict</span>(finalFit,<span class="dt">newdata =</span> Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>T,])</a>
+<a class="sourceLine" id="cb717-2" data-line-number="2">MineAns&lt;-<span class="kw">ifelse</span>(MinePred<span class="op">&lt;</span><span class="fl">0.5</span>,<span class="st">&quot;M&quot;</span>,<span class="st">&quot;R&quot;</span>) <span class="co">#&lt;0.5: Level 1</span></a>
+<a class="sourceLine" id="cb717-3" data-line-number="3">MineAns&lt;-<span class="kw">factor</span>(MineAns,<span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;M&quot;</span>,<span class="st">&quot;R&quot;</span>))</a>
+<a class="sourceLine" id="cb717-4" data-line-number="4">MineAns</a></code></pre></div>
+<pre><code>##   1   3   7  10  19  21  24  25  26  29  31  34  36  38  40  42  45  47  48  49 
+##   M   M   R   M   R   R   M   R   M   R   M   M   M   R   M   M   M   M   M   M 
+##  50  51  52  58  61  65  71  72  75  77  83  85  88  91  92  94  96  98  99 101 
+##   M   M   M   M   R   M   M   M   R   M   M   M   R   M   M   M   M   M   R   R 
+## 103 108 127 128 131 132 134 140 142 147 154 155 156 160 163 165 167 170 172 175 
+##   M   R   R   R   R   M   R   R   M   M   R   M   M   R   M   R   M   M   R   M 
+## 176 177 182 191 193 194 198 201 202 
+##   M   M   R   M   R   R   M   M   R 
 ## Levels: M R</code></pre>
 <p><strong>步驟4.2:用測試組驗證模型-效能</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caret) <span class="co"># install.packages(&quot;caret&quot;) #計算參數的packages</span>
-<span class="kw">sensitivity</span>(MineAns,Sonar[Sonar$Test==T,]$Class)</code></pre></div>
-<pre><code>## [1] 0.91</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">specificity</span>(MineAns,Sonar[Sonar$Test==T,]$Class)</code></pre></div>
-<pre><code>## [1] 0.97</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">posPredValue</span>(MineAns,Sonar[Sonar$Test==T,]$Class)</code></pre></div>
-<pre><code>## [1] 0.97</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">negPredValue</span>(MineAns,Sonar[Sonar$Test==T,]$Class)</code></pre></div>
-<pre><code>## [1] 0.92</code></pre>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" data-line-number="1"><span class="kw">library</span>(caret) <span class="co"># install.packages(&quot;caret&quot;) #計算參數的packages</span></a>
+<a class="sourceLine" id="cb719-2" data-line-number="2"><span class="kw">sensitivity</span>(MineAns,Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Class)</a></code></pre></div>
+<pre><code>## [1] 0.98</code></pre>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb721-1" data-line-number="1"><span class="kw">specificity</span>(MineAns,Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Class)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb723"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb723-1" data-line-number="1"><span class="kw">posPredValue</span>(MineAns,Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Class)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb725-1" data-line-number="1"><span class="kw">negPredValue</span>(MineAns,Sonar[Sonar<span class="op">$</span>Test<span class="op">==</span>T,]<span class="op">$</span>Class)</a></code></pre></div>
+<pre><code>## [1] 0.96</code></pre>
 <p><strong>解釋範例 - 資料說明</strong></p>
 <p>此資料來源為UCI Machine Learning Repository。</p>
 <p>記載礦物與石頭接受各個不同角度的聲波撞擊後，接收到的回聲數值，一共有60個參數，代表使用一特別角度的聲波撞擊礦石所得回聲。另外，分類結果為二元分類，包括礦物 (M) 與石頭 (R) 。</p>
@@ -1537,7 +1516,7 @@ MineAns</code></pre></div>
 <p><strong>解釋範例 - 預測效能說明</strong></p>
 <p>使用聲波在不同角度撞擊<code>礦石</code>所得到的回聲資料，以邏輯迴歸模型預測礦石是否為礦物，可得敏感度97%，特異性89%，陽性預測率89%，陰性預測率97%。</p>
 </div>
-<div id="-2" class="section level2">
+<div id="參考資料-1" class="section level2">
 <h2><span class="header-section-number">10.9</span> 參考資料</h2>
 <ul>
 <li>台大資工林軒田教授：
@@ -1553,14 +1532,14 @@ MineAns</code></pre></div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-R-rpart">
-<p>Therneau, Terry, Beth Atkinson, and Brian Ripley. 2015. <em>Rpart: Recursive Partitioning and Regression Trees</em>. <a href="https://CRAN.R-project.org/package=rpart" class="uri">https://CRAN.R-project.org/package=rpart</a>.</p>
+<div id="ref-R-arules">
+<p>Hahsler, Michael, Christian Buchta, Bettina Gruen, and Kurt Hornik. 2019. <em>Arules: Mining Association Rules and Frequent Itemsets</em>. <a href="https://CRAN.R-project.org/package=arules">https://CRAN.R-project.org/package=arules</a>.</p>
 </div>
 <div id="ref-R-rpart.plot">
-<p>Milborrow, Stephen. 2016. <em>Rpart.plot: Plot ’Rpart’ Models: An Enhanced Version of ’Plot.rpart’</em>. <a href="https://CRAN.R-project.org/package=rpart.plot" class="uri">https://CRAN.R-project.org/package=rpart.plot</a>.</p>
+<p>Milborrow, Stephen. 2019. <em>Rpart.plot: Plot ’Rpart’ Models: An Enhanced Version of ’Plot.rpart’</em>. <a href="https://CRAN.R-project.org/package=rpart.plot">https://CRAN.R-project.org/package=rpart.plot</a>.</p>
 </div>
-<div id="ref-R-arules">
-<p>Hahsler, Michael, Christian Buchta, Bettina Gruen, and Kurt Hornik. 2016. <em>Arules: Mining Association Rules and Frequent Itemsets</em>. <a href="https://CRAN.R-project.org/package=arules" class="uri">https://CRAN.R-project.org/package=arules</a>.</p>
+<div id="ref-R-rpart">
+<p>Therneau, Terry, and Beth Atkinson. 2019. <em>Rpart: Recursive Partitioning and Regression Trees</em>. <a href="https://CRAN.R-project.org/package=rpart">https://CRAN.R-project.org/package=rpart</a>.</p>
 </div>
 </div>
             </section>
@@ -1574,23 +1553,26 @@ MineAns</code></pre></div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
 <script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
 <script src="libs/gitbook/js/plugin-search.js"></script>
 <script src="libs/gitbook/js/plugin-sharing.js"></script>
 <script src="libs/gitbook/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
-require(["gitbook"], function(gitbook) {
+gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
 "sharing": {
 "github": false,
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1600,6 +1582,10 @@ gitbook.start({
 "edit": {
 "link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/10-DataMining.Rmd",
 "text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
 },
 "download": ["DataAnalyticsWithR.pdf", "DataAnalyticsWithR.epub"],
 "toc": {
@@ -1614,9 +1600,12 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
