@@ -1,0 +1,14 @@
+# 作者資訊{- #author}
+曾意儒 Yi-Ju Tseng
+
+[長庚大學 資訊管理學系](http://im.cgu.edu.tw/bin/home.php){target="_blank"} 助理教授
+
+[個人網站](https://yjtseng.info/){target="_blank"}
+
+Lab: [數位健康實驗室](https://dhlab-cgu.github.io/){target="_blank"}
+
+歡迎提供[建議與回饋](https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"}
+
+
+
+

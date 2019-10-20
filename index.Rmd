@@ -53,7 +53,7 @@ install.packages("devtools")
 devtools::install_github("yijutseng/DataAnalyticsWithRBook")
 ```
 
-本書為[長庚大學資訊管理學系](http://im.cgu.edu.tw/bin/home.php){target="_blank"} [大數據分析方法](https://github.com/yijutseng/BigDataCGUIM){target="_blank"}課程教學使用書籍
+本書為[長庚大學資訊管理學系](http://im.cgu.edu.tw/bin/home.php){target="_blank"} [大數據分析方法](https://github.com/yijutseng/BigDataCGUIM){target="_blank"}課程教學使用書籍，並可搭配[YouTube平台上的教學影片](https://www.youtube.com/channel/UC2ZZMRLibtq2fD-la4YV_nA){target="_blank"}參考使用，**影片閱讀清單**詳見本書最末章節Ch \@ref(video) 教學影片資訊。
 
 如果您想修改文字或範例，歡迎透過[此連結](https://goo.gl/forms/5Htobvwy2vsB7yiF3){target="_blank"}或是透過[GitHub](https://github.com/yijutseng/DataAnalyticsWithRBook/issues){target="_blank"} issue提供建議與回饋。
 

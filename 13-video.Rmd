@@ -1,0 +1,23 @@
+# 教學影片資訊 {#video}
+
+## 教學影片頻道連結
+[資料科學與R語言 YouTube頻道](https://www.youtube.com/channel/UC2ZZMRLibtq2fD-la4YV_nA/){target="_blank"}
+
+## 完整版播放清單
+1. [R 101 & GitHub 101 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOxTQiku-l0CkYZdL3uidOUC){target="_blank"}
+2. [資料結構 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOwUra70JV-zBaSJc8p9Nlnu){target="_blank"}
+3. [控制流程 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOwII8wk-t6_m4aee9wMg3-6){target="_blank"}
+4. [資料讀取與匯出 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOzlr_NL7_D--OvmR5ppvaZv){target="_blank"}
+5. [資料處理與清洗 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOxE3b_zXjA1EX8Job0i6F5S){target="_blank"}
+6. [探索式資料分析 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOzT7OvpzAXAHwPVnGtZhQD0){target="_blank"}
+7. [資料視覺化 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOxiRwgXZcxwUP7BKM-WVUV4){target="_blank"}
+8. [資料探勘 - [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOyxEedw_cMea3TBHguWRhmi){target="_blank"}
+9. [R Function and Package [資料科學與R語言]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOwyavHjFwah57y2ThJ7Lxzr){target="_blank"}
+
+## 速成版播放清單
+1. [R101與條件判斷 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOyNlKv41DdqYrxOlfLr7Ku7){target="_blank"}
+2. [資料結構 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOzST2pUcH2emqOj0sUaKXnp){target="_blank"}
+3. [資料匯入與匯出 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOzUhXV4ODHb9UYtJ2GFXqMQ){target="_blank"}   
+4. [資料處理與清洗 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOx08FhoUn3WodJzqPLTVIlG){target="_blank"}  
+5. [資料結合 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOwsn-MLpXKPjTAhnPghpsB5){target="_blank"}  
+6. [探索式資料分析 [R資料科學速成]](https://www.youtube.com/playlist?list=PLsKtsWy-7jOyPb7JgaR3dVlVzJCUMlCCU){target="_blank"}

@@ -50,6 +50,22 @@
 
 
 
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -171,17 +187,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a></li>
+<li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a><ul>
+<li class="chapter" data-level="4.1" data-path="function.html"><a href="function.html#為什麼需要函數"><i class="fa fa-check"></i><b>4.1</b> 為什麼需要函數</a></li>
+<li class="chapter" data-level="4.2" data-path="function.html"><a href="function.html#函數組成"><i class="fa fa-check"></i><b>4.2</b> 函數組成</a></li>
+<li class="chapter" data-level="4.3" data-path="function.html"><a href="function.html#函數命名原則"><i class="fa fa-check"></i><b>4.3</b> 函數命名原則</a></li>
+<li class="chapter" data-level="4.4" data-path="function.html"><a href="function.html#函數範例"><i class="fa fa-check"></i><b>4.4</b> 函數範例</a></li>
+<li class="chapter" data-level="4.5" data-path="function.html"><a href="function.html#函式編程functional-programming"><i class="fa fa-check"></i><b>4.5</b> 函式編程Functional programming</a></li>
+<li class="chapter" data-level="4.6" data-path="function.html"><a href="function.html#purrr"><i class="fa fa-check"></i><b>4.6</b> purrr</a></li>
+<li class="chapter" data-level="4.7" data-path="function.html"><a href="function.html#map2-family"><i class="fa fa-check"></i><b>4.7</b> map2 family</a></li>
+<li class="chapter" data-level="4.8" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>4.8</b> 參考資料</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
 <li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
 <li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
-<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#open-data"><i class="fa fa-check"></i><b>5.0.3</b> Open Data</a></li>
-<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.4</b> API (Application programming interfaces)</a></li>
-<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.5</b> XML 可延伸標記式語言</a></li>
-<li class="chapter" data-level="5.0.6" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.6</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
 <li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
 <li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#資料匯出"><i class="fa fa-check"></i><b>5.2</b> 資料匯出</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#文字檔-.txt"><i class="fa fa-check"></i><b>5.2.1</b> 文字檔 .txt</a></li>
+<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#csv檔-.csv"><i class="fa fa-check"></i><b>5.2.2</b> CSV檔 .csv</a></li>
+<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#r物件-.rds"><i class="fa fa-check"></i><b>5.2.3</b> R物件 .rds</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
@@ -258,13 +287,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹驗證"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
 </ul></li>
 <li class="chapter" data-level="10.8" data-path="datamining.html"><a href="datamining.html#case-study"><i class="fa fa-check"></i><b>10.8</b> Case Study</a></li>
-<li class="chapter" data-level="10.9" data-path="datamining.html"><a href="datamining.html#參考資料-1"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
+<li class="chapter" data-level="10.9" data-path="datamining.html"><a href="datamining.html#參考資料-2"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>11</b> 從小數據到大數據分析</a><ul>
 <li class="chapter" data-level="11.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>11.1</b> R + Hadoop</a></li>
 <li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop安裝測試流程-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
 <li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#系統軟體版本資訊"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
-<li class="chapter" data-level="11.2.2" data-path="big.html"><a href="big.html#參考資料-2"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="11.2.2" data-path="big.html"><a href="big.html#參考資料-3"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
 <li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#安裝步驟"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
 <li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#測試前先解決權限問題"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
 <li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#測試"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
@@ -280,6 +309,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#專案"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
 <li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio介面"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="video.html"><a href="video.html"><i class="fa fa-check"></i><b>13</b> 教學影片資訊</a><ul>
+<li class="chapter" data-level="13.1" data-path="video.html"><a href="video.html#教學影片頻道連結"><i class="fa fa-check"></i><b>13.1</b> 教學影片頻道連結</a></li>
+<li class="chapter" data-level="13.2" data-path="video.html"><a href="video.html#完整版播放清單"><i class="fa fa-check"></i><b>13.2</b> 完整版播放清單</a></li>
+<li class="chapter" data-level="13.3" data-path="video.html"><a href="video.html#速成版播放清單"><i class="fa fa-check"></i><b>13.3</b> 速成版播放清單</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -315,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>如要一次安裝所有本書會使用到的套件，可在R內執行以下程式碼：</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;yijutseng/DataAnalyticsWithRBook&quot;</span>)</a></code></pre></div>
-<p>本書為<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚大學資訊管理學系</a> <a href="https://github.com/yijutseng/BigDataCGUIM" target="_blank">大數據分析方法</a>課程教學使用書籍</p>
+<p>本書為<a href="http://im.cgu.edu.tw/bin/home.php" target="_blank">長庚大學資訊管理學系</a> <a href="https://github.com/yijutseng/BigDataCGUIM" target="_blank">大數據分析方法</a>課程教學使用書籍，並可搭配<a href="https://www.youtube.com/channel/UC2ZZMRLibtq2fD-la4YV_nA" target="_blank">YouTube平台上的教學影片</a>參考使用，<strong>影片閱讀清單</strong>詳見本書最末章節Ch <a href="video.html#video">13</a> 教學影片資訊。</p>
 <p>如果您想修改文字或範例，歡迎透過<a href="https://goo.gl/forms/5Htobvwy2vsB7yiF3" target="_blank">此連結</a>或是透過<a href="https://github.com/yijutseng/DataAnalyticsWithRBook/issues" target="_blank">GitHub</a> issue提供建議與回饋。</p>
 <p>本書程式碼執行環境：</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
@@ -340,63 +374,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] mlbench_2.1-1         curl_4.2              treemap_2.4-2        
-##  [4] purrr_0.3.3           caret_6.0-84          lattice_0.20-38      
-##  [7] MASS_7.3-51.4         arulesViz_1.3-3       arules_1.6-4         
-## [10] Matrix_1.2-17         fields_9.9            maps_3.3.0           
-## [13] spam_2.3-0            dotCall64_1.0-0       rpart.plot_3.0.8     
-## [16] rpart_4.1-15          googleVis_0.6.4       ggvis_0.4.4          
-## [19] plotly_4.9.0          shiny_1.4.0           treemapify_2.5.3     
-## [22] WDI_2.6.0             choroplethrMaps_1.0.1 choroplethr_3.6.3    
-## [25] acs_2.1.4             ggmap_3.0.0           maptools_0.9-8       
-## [28] rgeos_0.5-2           rgdal_1.4-6           sp_1.3-1             
-## [31] rvest_0.3.4           xml2_1.2.2            Rfacebook_0.6.15     
-## [34] httpuv_1.5.2          rjson_0.2.20          httr_1.4.1           
-## [37] XML_3.98-1.20         jsonlite_1.6          readxl_1.3.1         
-## [40] readr_1.3.1           SportsAnalytics_0.2   reshape2_1.4.3       
-## [43] stringr_1.4.0         data.table_1.12.6     RCurl_1.95-4.12      
-## [46] bitops_1.0-6          rmarkdown_1.16        knitr_1.25           
-## [49] bookdown_0.14         bit64_0.9-7           bit_1.1-14           
-## [52] lubridate_1.7.4       dplyr_0.8.3           ggplot2_3.2.1        
+##  [1] curl_4.2              treemap_2.4-2         purrr_0.3.3          
+##  [4] caret_6.0-84          lattice_0.20-38       MASS_7.3-51.4        
+##  [7] arulesViz_1.3-3       arules_1.6-4          Matrix_1.2-17        
+## [10] fields_9.9            maps_3.3.0            spam_2.3-0           
+## [13] dotCall64_1.0-0       rpart.plot_3.0.8      rpart_4.1-15         
+## [16] googleVis_0.6.4       ggvis_0.4.4           plotly_4.9.0         
+## [19] shiny_1.4.0           treemapify_2.5.3      WDI_2.6.0            
+## [22] choroplethrMaps_1.0.1 choroplethr_3.6.3     acs_2.1.4            
+## [25] ggmap_3.0.0           maptools_0.9-8        rgeos_0.5-2          
+## [28] rgdal_1.4-6           sp_1.3-1              rvest_0.3.4          
+## [31] xml2_1.2.2            Rfacebook_0.6.15      httpuv_1.5.2         
+## [34] rjson_0.2.20          XML_3.98-1.20         jsonlite_1.6         
+## [37] httr_1.4.1            readxl_1.3.1          readr_1.3.1          
+## [40] SportsAnalytics_0.2   reshape2_1.4.3        stringr_1.4.0        
+## [43] data.table_1.12.6     RCurl_1.95-4.12       bitops_1.0-6         
+## [46] rmarkdown_1.16        knitr_1.25            bookdown_0.14        
+## [49] bit64_0.9-7           bit_1.1-14            lubridate_1.7.4      
+## [52] dplyr_0.8.3           ggplot2_3.2.1        
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] uuid_0.1-2           backports_1.1.5      Hmisc_4.2-0         
-##   [4] servr_0.15           igraph_1.2.4.1       plyr_1.8.4          
-##   [7] lazyeval_0.2.2       splines_3.6.1        crosstalk_1.0.0     
-##  [10] gridBase_0.4-7       digest_0.6.21        foreach_1.4.7       
-##  [13] htmltools_0.4.0      viridis_0.5.1        fansi_0.4.0         
-##  [16] gdata_2.18.0         magrittr_1.5         checkmate_1.9.4     
-##  [19] cluster_2.1.0        gclus_1.3.2          recipes_0.1.7       
-##  [22] ggfittext_0.8.1      gower_0.2.1          jpeg_0.1-8          
-##  [25] colorspace_1.4-1     rappdirs_0.3.1       xfun_0.10           
-##  [28] crayon_1.3.4         zeallot_0.1.0        zoo_1.8-6           
-##  [31] survival_2.44-1.1    tigris_0.8.2         iterators_1.0.12    
-##  [34] glue_1.3.1           registry_0.5-1       gtable_0.3.0        
-##  [37] ipred_0.9-9          scales_1.0.0         DBI_1.0.0           
-##  [40] Rcpp_1.0.2           viridisLite_0.3.0    xtable_1.8-4        
-##  [43] htmlTable_1.13.2     units_0.6-5          mapproj_1.2.6       
-##  [46] foreign_0.8-71       Formula_1.2-3        stats4_3.6.1        
-##  [49] lava_1.6.6           prodlim_2018.04.18   DT_0.9              
-##  [52] vcd_1.4-4            htmlwidgets_1.5.1    gplots_3.0.1.1      
-##  [55] RColorBrewer_1.1-2   acepack_1.4.1        pkgconfig_2.0.3     
-##  [58] nnet_7.3-12          utf8_1.1.4           RJSONIO_1.3-1.3     
-##  [61] labeling_0.3         tidyselect_0.2.5     rlang_0.4.0         
-##  [64] later_1.0.0          visNetwork_2.0.8     munsell_0.5.0       
-##  [67] cellranger_1.1.0     tools_3.6.1          cli_1.1.0           
-##  [70] generics_0.0.2       evaluate_0.14        fastmap_1.0.1       
-##  [73] yaml_2.2.0           ModelMetrics_1.2.2   caTools_1.17.1.2    
-##  [76] RgoogleMaps_1.4.4    dendextend_1.12.0    packrat_0.5.0       
-##  [79] nlme_3.1-140         mime_0.7             compiler_3.6.1      
-##  [82] rstudioapi_0.10      png_0.1-7            e1071_1.7-2         
-##  [85] tibble_2.1.3         stringi_1.4.3        highr_0.8           
-##  [88] classInt_0.4-2       vctrs_0.2.0          pillar_1.4.2        
-##  [91] lifecycle_0.1.0      lmtest_0.9-37        seriation_1.2-8     
-##  [94] R6_2.4.0             latticeExtra_0.6-28  promises_1.1.0      
-##  [97] TSP_1.1-7            KernSmooth_2.23-15   gridExtra_2.3       
-## [100] codetools_0.2-16     gtools_3.8.1         assertthat_0.2.1    
-## [103] withr_2.1.2          hms_0.5.1            timeDate_3043.102   
-## [106] tidyr_1.0.0          class_7.3-15         Cairo_1.5-10        
-## [109] sf_0.8-0             scatterplot3d_0.3-41 base64enc_0.1-3</code></pre>
+##   [4] igraph_1.2.4.1       plyr_1.8.4           lazyeval_0.2.2      
+##   [7] splines_3.6.1        gridBase_0.4-7       digest_0.6.21       
+##  [10] foreach_1.4.7        htmltools_0.4.0      viridis_0.5.1       
+##  [13] gdata_2.18.0         magrittr_1.5         checkmate_1.9.4     
+##  [16] cluster_2.1.0        gclus_1.3.2          recipes_0.1.7       
+##  [19] ggfittext_0.8.1      gower_0.2.1          jpeg_0.1-8          
+##  [22] colorspace_1.4-1     rappdirs_0.3.1       xfun_0.10           
+##  [25] crayon_1.3.4         zeallot_0.1.0        zoo_1.8-6           
+##  [28] survival_2.44-1.1    tigris_0.8.2         iterators_1.0.12    
+##  [31] glue_1.3.1           registry_0.5-1       gtable_0.3.0        
+##  [34] ipred_0.9-9          scales_1.0.0         DBI_1.0.0           
+##  [37] Rcpp_1.0.2           viridisLite_0.3.0    xtable_1.8-4        
+##  [40] htmlTable_1.13.2     units_0.6-5          foreign_0.8-71      
+##  [43] Formula_1.2-3        stats4_3.6.1         lava_1.6.6          
+##  [46] prodlim_2018.04.18   DT_0.9               vcd_1.4-4           
+##  [49] htmlwidgets_1.5.1    gplots_3.0.1.1       RColorBrewer_1.1-2  
+##  [52] acepack_1.4.1        pkgconfig_2.0.3      nnet_7.3-12         
+##  [55] RJSONIO_1.3-1.3      tidyselect_0.2.5     rlang_0.4.0         
+##  [58] later_1.0.0          visNetwork_2.0.8     munsell_0.5.0       
+##  [61] cellranger_1.1.0     tools_3.6.1          generics_0.0.2      
+##  [64] evaluate_0.14        fastmap_1.0.1        yaml_2.2.0          
+##  [67] ModelMetrics_1.2.2   caTools_1.17.1.2     RgoogleMaps_1.4.4   
+##  [70] dendextend_1.12.0    packrat_0.5.0        nlme_3.1-140        
+##  [73] mime_0.7             compiler_3.6.1       rstudioapi_0.10     
+##  [76] png_0.1-7            e1071_1.7-2          tibble_2.1.3        
+##  [79] stringi_1.4.3        highr_0.8            classInt_0.4-2      
+##  [82] vctrs_0.2.0          pillar_1.4.2         lifecycle_0.1.0     
+##  [85] lmtest_0.9-37        seriation_1.2-8      R6_2.4.0            
+##  [88] latticeExtra_0.6-28  promises_1.1.0       TSP_1.1-7           
+##  [91] KernSmooth_2.23-15   gridExtra_2.3        codetools_0.2-16    
+##  [94] gtools_3.8.1         assertthat_0.2.1     withr_2.1.2         
+##  [97] hms_0.5.1            timeDate_3043.102    tidyr_1.0.0         
+## [100] class_7.3-15         sf_0.8-0             scatterplot3d_0.3-41
+## [103] base64enc_0.1-3</code></pre>
 <p>本書使用套件版本：</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pkgInfo&lt;-<span class="kw">lapply</span>(pkg, packageDescription, <span class="dt">fields =</span> <span class="kw">c</span>(<span class="st">&quot;Package&quot;</span>, <span class="st">&quot;Version&quot;</span>))</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">data.frame</span>(<span class="dt">Package=</span><span class="kw">sapply</span>(pkgInfo, <span class="st">`</span><span class="dt">[[</span><span class="st">`</span>, <span class="dv">1</span>),</a>
@@ -631,7 +663,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["DataAnalyticsWithR.pdf", "DataAnalyticsWithR.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }
@@ -639,6 +671,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
