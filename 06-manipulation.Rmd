@@ -1,6 +1,7 @@
 # 資料處理與清洗 {#manipulation}
 
 ## Tidy Data
+
 Each column is a variable. Each row is an observation.
 
 - 一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name
@@ -10,9 +11,11 @@ Each column is a variable. Each row is an observation.
 - One file, one table
 
 ## 資料型別轉換處理
+
 在資料型態章節Chapter \@ref(DataType)中，曾介紹**數值 (numeric)**、**字串 (character)**、**布林變數 (logic)**以及**日期 (Date)**等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。
 
-###資料型別檢查
+### 資料型別檢查
+
 使用以下`is.`函數檢查資料型別，回傳布林變數，若為真，回傳TRUE
 
 - 是否為**數字** `is.numeric(變數名稱)`
@@ -38,7 +41,8 @@ class(boo)
 class(Sys.Date())
 ```
 
-###資料型別轉換
+### 資料型別轉換
+
 使用以下`as.`函數轉換型別
 
 - 轉換為**數字** `as.numeric(變數名稱)`
@@ -87,6 +91,7 @@ str_trim(" Hello World ")
 ```
 
 ### 搜尋字串
+
 搜尋字串函數通常使用在**比對文字向量**，文字比對**有分大小寫**，依照回傳值的型態不同，有兩種常用函數，`grep()`與`grepl()`:
 
 - 回傳符合條件之向量位置(index) `grep(搜尋條件,要搜尋的向量)`
@@ -220,9 +225,10 @@ grep("\\w+@[a-zA-Z0-9._]+",stringVector,value=T)
 - [RegExLib.com](http://regexlib.com/)
 - [Regular Expression in R](http://stat545.com/block022_regular-expression.html)
 
-##子集Subset {#subset}
+## 子集Subset {#subset}
 
-###一維資料 (向量)
+### 一維資料 (向量)
+
 在向量章節`{#vector}`有介紹使用`[]`取出單一或多個元素的方法
 ```{r}
 letters ##R語言內建資料之一
@@ -238,7 +244,8 @@ head(letters,5) ##取出letters向量的前五個元素
 tail(letters,3) ##取出letters向量的後三個元素
 ```
 
-###二維資料
+### 二維資料
+
 最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用`[]`，但因應二維資料的需求，以`,`分隔列與行的篩選條件，資料篩選原則為**前Row,後Column**，**前列,後行**，若不想篩選列，則在`,`前方保持**空白**即可。
 
 篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)
@@ -278,9 +285,10 @@ head(iris,5) ##取出iris資料框的前五列
 tail(iris,3) ##取出iris資料框的後三列
 ```
 
-##排序
+## 排序
 
-###sort 向量排序
+### sort 向量排序
+
 `sort()`函數可直接對向量做**由小到大**的排序
 ```{r}
 head(islands) ##排序前的前六筆資料
@@ -291,7 +299,8 @@ head(sort(islands)) ##由小到大排序後的前六筆資料
 head(sort(islands,decreasing = T)) ##由大到小排序後的前六筆資料
 ```
 
-###order
+### order
+
 如需對資料框做排序，可使用`order()`函數，`order()`函數可回傳**由小到大**之**元素位置**，以`iris$Sepal.Length`為例，回傳的第一個位置為`14`，表示`iris$Sepal.Length`中，數值最小的元素為第14個元素。
 ```{r}
 order(iris$Sepal.Length)
@@ -310,7 +319,8 @@ head(iris[order(iris$Sepal.Length),]) ##依照Sepal.Length欄位數值大小排�
 head(iris[order(iris$Sepal.Length,decreasing = T),]) ##改為由大到小排序的前六筆資料
 ```
 
-##資料組合
+## 資料組合
+
 有時需要在資料框新增一列，或新增一行，可以利用資料組合函數完成
 
 - Row 列的組合 `rbind()`
@@ -345,7 +355,7 @@ tail(irisAdd)
 ```
 
 
-##資料結合 (Join)
+## 資料結合 (Join)
 
 除了按照行列順序的組合外，更常有的情形是依照某個欄位的值作為結合依據，如：
 
@@ -443,7 +453,8 @@ semi_join(nameDF,scoreDF,by="ID")
 ```
 
 
-##長表與寬表{#reshape}
+## 長表與寬表{#reshape}
+
 在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2[@R-reshape2] package，提供完整的轉換功能，最常使用的是
 
 - 寬表轉長表 `melt(資料框/寬表,id.vars=需要保留的欄位)`
@@ -465,7 +476,8 @@ airqualityCast<-dcast(airqualityM, Month +Day~variable)
 head(airqualityCast)
 ```
 
-##遺漏值處理
+## 遺漏值處理
+
 遺漏值(Missing Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用`is.na()`來判斷資料是否為空值`NA`，若為真`TRUE`，則將資料移除。
 ```{r}
 naVec<-c("a","b",NA,"d","e")
@@ -483,28 +495,35 @@ head(airquality[complete.cases(airquality),]) ##保留所有在complete.cases()�
 利用演算法補值也是一種解決辦法，可參考_skydome20_的[R筆記–(10)遺漏值處理(Impute Missing Value)](http://www.rpubs.com/skydome20/R-Note10-Missing_Value){target="_blank"}教學。
 
 
-##綜合練習範例Case study {#manCase}
+## 綜合練習範例Case study {#manCase}
+
 在本範例中，介紹使用`SportsAnalytics` [@R-SportsAnalytics] package 撈取NBA各球員的數據，並加以觀察分析。
 
 ### 載入資料
+
 首先用`library()`函數將`SportsAnalytics`套件載入 (若尚未安裝此套件者，必須先安裝套件，可參考Chapter \@ref(intro))，並利用套件內提供的`fetch_NBAPlayerStatistics()`函數，將對應年份之資料取出。
 ```{r}
 library(SportsAnalytics)
 NBA1516<-fetch_NBAPlayerStatistics("15-16")
 ```
-###資料總覽
+
+### 資料總覽
+
 資料取出後，可用`str()`函數總覽`NBA1516`這個資料框的欄位與欄位類別
 ```{r}
 str(NBA1516)
 ```
 可以發現此`NBA1516`資料框內有476筆球員資料(觀察值, obs)，每筆資料有25個欄位 (variables)。
-###資料預覽
+
+### 資料預覽
+
 如果想看資料框內容，可用`head()`和`tail()`快速瀏覽部分資料
 ```{r}
 head(NBA1516)
 ```
 
-###資料排序後篩選
+### 資料排序後篩選
+
 觀察資料框的組成後，我們想要找出**出場數**最**高**的前五名選手的所有資料，此時可以利用`order()`函數先**由大到小**排序(`decreasing = T`)後，再用`[,]`取子集。
 ```{r}
 NBA1516Order<-NBA1516[order(NBA1516$GamesPlayed,decreasing = T),]
@@ -516,13 +535,15 @@ NBA1516OrderM<-NBA1516[order(NBA1516$TotalMinutesPlayed,decreasing = T),]
 NBA1516OrderM[1:10,"Name"] ##逗號前方取1~10列；逗號後方放"Name"，表示取名稱為Name之欄位
 ```
 
-###欄位值篩選
+### 欄位值篩選
+
 除了排序取值外，也可用欄位條件搜尋，舉例來說，可以取出所有波士頓賽爾迪克隊的選手資料，使用`subset()`函數
 ```{r}
 subset(NBA1516,Team=="BOS")
 ```
 
-###字串條件搜尋後篩選
+### 字串條件搜尋後篩選
+
 當然也可以結合**字串搜尋**函數`grepl()`，將所有名字裡有"James"的選手資料取出
 ```{r}
 NBA1516[grepl("James",NBA1516$Name),]

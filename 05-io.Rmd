@@ -257,10 +257,10 @@ longitude[1:10]
 
 此外，網頁爬蟲可能耗費很多網頁流量和資源，所以在許多網站被視為非法行為，如果一次讀太多太快，很可能被鎖IP。
 
-以[長庚資管系](http://im.cgu.edu.tw/bin/home.php){target="_blank"}網站為例，可直接逐行讀取 `readLines()`
+以[長庚資管系](https://im.cgu.edu.tw/){target="_blank"}網站為例，可直接逐行讀取 `readLines()`
 
 ```{r}
-con <- url("http://im.cgu.edu.tw/bin/home.php")
+con <- url("https://im.cgu.edu.tw/")
 htmlCode <-readLines(con)
 close(con)
 htmlCode[1:5]
@@ -269,7 +269,7 @@ htmlCode[1:5]
 或是使用XML工具分析擷取網頁 (`XML` package)，使用方法與XML檔案處理方法類似，搭配**XPath**語言，篩選所需資料
 
 ```{r xmlhtml, warning=F}
-html <- htmlParse("http://im.cgu.edu.tw/bin/home.php")
+html <- htmlParse("https://im.cgu.edu.tw/")
 xpathSApply(html, "//title", xmlValue)
 xpathSApply(html, "//span[@class='ptname ']", xmlValue)
 ```

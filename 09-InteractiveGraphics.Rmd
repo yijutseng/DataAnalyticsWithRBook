@@ -1,4 +1,5 @@
 # 互動式資料呈現 {#InteractiveGraphics}
+
 在R中有多種互動式資料呈現方式，除了傳統的`GGobi`、`iPlots`、`identify`等套件外，結合網頁呈現的互動畫呈現方式有更多的彈性，以下介紹幾種好用的互動式套件：
 
 - ggvis
@@ -264,7 +265,14 @@ shinyServer(function(input, output) {
 })
 ```
 
-若想使用介紹過的Plotly與Shiny結合，可參考[此教學網頁](https://plot.ly/r/shiny-tutorial/){target="_blank"}
+若想使用介紹過的Plotly與Shiny結合，可參考[此教學網頁](https://plot.ly/r/shiny-tutorial/){target="_blank"}。
+
+更深入的Shiny教學，可參考[使用R Shiny設計資料科學應用程式](https://yjtseng.info/shinybook/){target="_blank"}，為專為Shiny App開發撰寫的電子書，並[深入解說](https://yjtseng.info/shinybook/covid19){target="_blank"}**如何使用Shiny建立新冠肺炎COVID-19的案例數地圖與儀表板**。
+
+
+```{r echo=FALSE}
+knitr::include_graphics("figure/covid19map.png")
+```
 
 參考資料
 
