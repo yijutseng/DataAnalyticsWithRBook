@@ -476,6 +476,33 @@ airqualityCast<-dcast(airqualityM, Month +Day~variable)
 head(airqualityCast)
 ```
 
+
+tidyverse套件組的tidyr [@R-tidyr] package，也提供完整的轉換功能，舉例如下
+
+- 寬表轉長表 `gather(資料框/寬表,key="主鍵欄位名稱",value="數值欄位名稱",要轉換的資料1,要轉換的資料2,...)`
+- 長表轉寬表 `spread(資料框/長表,key="要展開的欄位名稱",value="數值欄位名稱")`
+
+同上，以`airquality`資料框為例，原來的`airquality`資料框中，有Ozone, Solar.R, Wind, Temp, Month, Day等六個欄位 (Column)，屬於寬表
+
+```{r}
+head(airquality,3)
+```
+
+以下範例將保留Month和Day兩個欄位，將其他欄位的名稱整合至Type欄位，數值整合至Value欄位，寬表轉長表範例如下:
+```{r}
+library(tidyr)
+airqualityL<-gather(airquality,
+                    key=Type,value=Value,
+                    Ozone,Solar.R,Wind,Temp) ##欄位Ozone,Solar.R,Wind,Temp轉成單一欄位
+```
+
+轉換過的長表`airqualityL`資料框中，剩下Month, Day, Type, Value等四個欄位 (Column)，屬於長表，以下範例Type欄位的值轉換為新欄位，並將Value欄位填回新增的欄位，長表轉寬表範例如下:
+```{r}
+#欄位保留"Month","Day"外，其他欄位由variable定義
+airqualityW<-spread(airqualityL, key=Type,value=Value) 
+head(airqualityW)
+```
+
 ## 遺漏值處理
 
 遺漏值(Missing Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用`is.na()`來判斷資料是否為空值`NA`，若為真`TRUE`，則將資料移除。

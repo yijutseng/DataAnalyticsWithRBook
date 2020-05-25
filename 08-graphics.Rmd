@@ -237,6 +237,8 @@ state_choropleth(df_pop_state) #把各州人口畫在地圖上
 
 若將`reference_map`設定為` = TRUE`，可在面量圖的背景加上google地圖，因google地圖需要使用API key，因此須先使用ggmap套件的`register_google(key = "your key")`，帶入google金鑰設定授權金鑰。以下金鑰為示範金鑰，目前已失效，請自行至[Google Cloud Platform](https://console.cloud.google.com/){target="_blank"}，點選API及服務申請Maps Static API後，複製API key。
 
+[2020/05/25更新]：似乎需在[Google Cloud Platform](https://console.cloud.google.com/){target="_blank"} 綁定服務使用付款信用卡才可以順利經由ggmap套件取得圖層。
+
 ```{r, warning=F,message=F, fig.height=3.5}
 data(continental_us_states)
 library(ggmap)
@@ -282,6 +284,8 @@ install.packages("ggmap", type = "source") ##第一次使用前先安裝
 ```
 載入`ggmap`[@R-ggmap] package後，可以使用`get_googlemap()`函式取得google map圖層，並用`ggmap()`函式將取得的圖層畫出來，使用google map的資源時，必須先使用register_google(key = "your key")帶入google金鑰。
 投影片金鑰已失效，請自行至Google Cloud Platform，點選API及服務申請Maps Static API後，複製API key。
+
+[2020/05/25更新]：似乎需在[Google Cloud Platform](https://console.cloud.google.com/){target="_blank"} 綁定服務使用付款信用卡才可以順利經由ggmap套件取得圖層。
 
 `get_googlemap()`函式需要設定的參數如下：
 
@@ -556,7 +560,8 @@ knitr::include_graphics("figure/Taiwan.png")
 ### ggmap+面量圖
 ```{r, eval=F,warning=F,message=F, fig.height=6}
 library(ggmap)
-twmap <- get_map(location = 'Taiwan', zoom = 7,language = "zh-TW")
+twmap <- get_googlemap(center = c(lon=120.58,lat=23.58), 
+                       zoom = 7,language = "zh-TW")
 ggmap(twmap)+ #ggmap
     geom_polygon(data = final.plot,  #面量圖
         aes(x = long, y = lat, group = group, fill = prevalence), 
