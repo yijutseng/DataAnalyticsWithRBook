@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 探索式資料分析 | 資料科學與R語言</title>
+  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 探索式資料分析 | 資料科學與R語言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://yijutseng.github.io/DataScienceRBook" />
+  
+  <meta property="og:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 探索式資料分析 | 資料科學與R語言" />
+  
+  <meta name="twitter:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  
+
+<meta name="author" content="曾意儒 Yi-Ju Tseng" />
+
+
+<meta name="date" content="2020-07-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="manipulation.html"/>
+<link rel="next" href="vis.html"/>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">資料科學與R語言</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface"></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R語言101</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#什麼是r語言"><i class="fa fa-check"></i><b>1.1</b> 什麼是R語言</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#函數使用"><i class="fa fa-check"></i><b>1.2</b> 函數使用</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#變數設定"><i class="fa fa-check"></i><b>1.3</b> 變數設定</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#執行視窗"><i class="fa fa-check"></i><b>1.4</b> 執行視窗</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#DataType"><i class="fa fa-check"></i><b>1.5</b> 資料型態</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#數值-numeric"><i class="fa fa-check"></i><b>1.5.1</b> 數值 numeric</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#字串-character"><i class="fa fa-check"></i><b>1.5.2</b> 字串 character</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#布林變數-logic"><i class="fa fa-check"></i><b>1.5.3</b> 布林變數 logic</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#日期-date"><i class="fa fa-check"></i><b>1.5.4</b> 日期 (Date)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#基本運算子"><i class="fa fa-check"></i><b>1.6</b> 基本運算子</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#數學基本運算"><i class="fa fa-check"></i><b>1.6.1</b> 數學基本運算</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#邏輯運算"><i class="fa fa-check"></i><b>1.6.2</b> 邏輯運算</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#錯誤訊息"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.8</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R 資料結構</a><ul>
+<li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#向量-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="RDataStructure.html"><a href="RDataStructure.html#快速產生向量函數"><i class="fa fa-check"></i><b>2.1.1</b> 快速產生向量函數</a></li>
+<li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#向量運算"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#因子-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
+<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#列表-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料擷取"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
+<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料編輯設定"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#矩陣-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#資料框-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
+<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#資料表-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
+<li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#資料屬性查詢函數"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>3</b> 控制流程</a><ul>
+<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#條件判斷"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else敘述"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
+<li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a><ul>
+<li class="chapter" data-level="4.1" data-path="function.html"><a href="function.html#為什麼需要函數"><i class="fa fa-check"></i><b>4.1</b> 為什麼需要函數</a></li>
+<li class="chapter" data-level="4.2" data-path="function.html"><a href="function.html#函數組成"><i class="fa fa-check"></i><b>4.2</b> 函數組成</a></li>
+<li class="chapter" data-level="4.3" data-path="function.html"><a href="function.html#函數命名原則"><i class="fa fa-check"></i><b>4.3</b> 函數命名原則</a></li>
+<li class="chapter" data-level="4.4" data-path="function.html"><a href="function.html#函數範例"><i class="fa fa-check"></i><b>4.4</b> 函數範例</a></li>
+<li class="chapter" data-level="4.5" data-path="function.html"><a href="function.html#函式編程functional-programming"><i class="fa fa-check"></i><b>4.5</b> 函式編程Functional programming</a></li>
+<li class="chapter" data-level="4.6" data-path="function.html"><a href="function.html#purrr"><i class="fa fa-check"></i><b>4.6</b> purrr</a></li>
+<li class="chapter" data-level="4.7" data-path="function.html"><a href="function.html#map2-family"><i class="fa fa-check"></i><b>4.7</b> map2 family</a></li>
+<li class="chapter" data-level="4.8" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>4.8</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
+<li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#資料匯出"><i class="fa fa-check"></i><b>5.2</b> 資料匯出</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#文字檔-.txt"><i class="fa fa-check"></i><b>5.2.1</b> 文字檔 .txt</a></li>
+<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#csv檔-.csv"><i class="fa fa-check"></i><b>5.2.2</b> CSV檔 .csv</a></li>
+<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#r物件-.rds"><i class="fa fa-check"></i><b>5.2.3</b> R物件 .rds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="6.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換處理"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="manipulation.html"><a href="manipulation.html#資料型別檢查"><i class="fa fa-check"></i><b>6.2.1</b> 資料型別檢查</a></li>
+<li class="chapter" data-level="6.2.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換"><i class="fa fa-check"></i><b>6.2.2</b> 資料型別轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#文字字串處理"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#基本處理"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#搜尋字串"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
+<li class="chapter" data-level="6.3.3" data-path="manipulation.html"><a href="manipulation.html#正規表示式-regular-expression"><i class="fa fa-check"></i><b>6.3.3</b> 正規表示式 (Regular Expression)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>6.4</b> 子集Subset</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="manipulation.html"><a href="manipulation.html#一維資料-向量"><i class="fa fa-check"></i><b>6.4.1</b> 一維資料 (向量)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="manipulation.html"><a href="manipulation.html#二維資料"><i class="fa fa-check"></i><b>6.4.2</b> 二維資料</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="manipulation.html"><a href="manipulation.html#排序"><i class="fa fa-check"></i><b>6.5</b> 排序</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-向量排序"><i class="fa fa-check"></i><b>6.5.1</b> sort 向量排序</a></li>
+<li class="chapter" data-level="6.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>6.5.2</b> order</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="manipulation.html"><a href="manipulation.html#資料組合"><i class="fa fa-check"></i><b>6.6</b> 資料組合</a></li>
+<li class="chapter" data-level="6.7" data-path="manipulation.html"><a href="manipulation.html#資料結合-join"><i class="fa fa-check"></i><b>6.7</b> 資料結合 (Join)</a></li>
+<li class="chapter" data-level="6.8" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>6.8</b> 長表與寬表</a></li>
+<li class="chapter" data-level="6.9" data-path="manipulation.html"><a href="manipulation.html#遺漏值處理"><i class="fa fa-check"></i><b>6.9</b> 遺漏值處理</a></li>
+<li class="chapter" data-level="6.10" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>6.10</b> 綜合練習範例Case study</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="manipulation.html"><a href="manipulation.html#載入資料"><i class="fa fa-check"></i><b>6.10.1</b> 載入資料</a></li>
+<li class="chapter" data-level="6.10.2" data-path="manipulation.html"><a href="manipulation.html#資料總覽"><i class="fa fa-check"></i><b>6.10.2</b> 資料總覽</a></li>
+<li class="chapter" data-level="6.10.3" data-path="manipulation.html"><a href="manipulation.html#資料預覽"><i class="fa fa-check"></i><b>6.10.3</b> 資料預覽</a></li>
+<li class="chapter" data-level="6.10.4" data-path="manipulation.html"><a href="manipulation.html#資料排序後篩選"><i class="fa fa-check"></i><b>6.10.4</b> 資料排序後篩選</a></li>
+<li class="chapter" data-level="6.10.5" data-path="manipulation.html"><a href="manipulation.html#欄位值篩選"><i class="fa fa-check"></i><b>6.10.5</b> 欄位值篩選</a></li>
+<li class="chapter" data-level="6.10.6" data-path="manipulation.html"><a href="manipulation.html#字串條件搜尋後篩選"><i class="fa fa-check"></i><b>6.10.6</b> 字串條件搜尋後篩選</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>7</b> 探索式資料分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#什麼是探索式資料分析"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="7.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>7.2</b> data.table</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-觀察值篩選邏輯"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-欄位選擇運算"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-分組依據"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>7.3</b> dplyr</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>7.3.1</b> select()</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>7.3.2</b> filter()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>7.3.3</b> mutate()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>7.3.4</b> summarise()</a></li>
+<li class="chapter" data-level="7.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>7.3.5</b> group_by()</a></li>
+<li class="chapter" data-level="7.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>7.3.6</b> arrange()</a></li>
+<li class="chapter" data-level="7.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>7.3.7</b> rename()</a></li>
+<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#參考文件與資源-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>8</b> 資料視覺化</a><ul>
+<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#資料視覺化的目的"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2簡介"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>8.2.1</b> qplot()</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>8.2.2</b> ggplot()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2地圖"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map面量圖"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="8.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.3.2</b> ggmap()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan的面量圖"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vis.html"><a href="vis.html#ggmap面量圖"><i class="fa fa-check"></i><b>8.4.1</b> ggmap+面量圖</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.5</b> Treemap</a></li>
+<li class="chapter" data-level="8.6" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>8.6</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>9</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="9.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>9.1</b> ggvis</a></li>
+<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.2</b> Plot.ly</a></li>
+<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny簡介"><i class="fa fa-check"></i><b>9.3</b> Shiny簡介</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>10</b> 資料探勘</a><ul>
+<li class="chapter" data-level="10.1" data-path="datamining.html"><a href="datamining.html#什麼是資料探勘"><i class="fa fa-check"></i><b>10.1</b> 什麼是資料探勘</a></li>
+<li class="chapter" data-level="10.2" data-path="datamining.html"><a href="datamining.html#regression-迴歸"><i class="fa fa-check"></i><b>10.2</b> Regression 迴歸</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datamining.html"><a href="datamining.html#linear-regression-線性迴歸"><i class="fa fa-check"></i><b>10.2.1</b> Linear Regression 線性迴歸</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-羅吉斯迴歸"><i class="fa fa-check"></i><b>10.2.2</b> Logistic Regression 羅吉斯迴歸</a></li>
+<li class="chapter" data-level="10.2.3" data-path="datamining.html"><a href="datamining.html#最佳模型篩選"><i class="fa fa-check"></i><b>10.2.3</b> 最佳模型篩選</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹"><i class="fa fa-check"></i><b>10.3</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="10.4" data-path="datamining.html"><a href="datamining.html#clustering-分群"><i class="fa fa-check"></i><b>10.4</b> Clustering 分群</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering-階層式分群"><i class="fa fa-check"></i><b>10.4.1</b> Hierarchical clustering 階層式分群</a></li>
+<li class="chapter" data-level="10.4.2" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4.2</b> K-means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="datamining.html"><a href="datamining.html#association-rules-關聯式規則"><i class="fa fa-check"></i><b>10.5</b> Association Rules 關聯式規則</a></li>
+<li class="chapter" data-level="10.6" data-path="datamining.html"><a href="datamining.html#open-source-packages"><i class="fa fa-check"></i><b>10.6</b> Open Source Packages</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="datamining.html"><a href="datamining.html#prophet"><i class="fa fa-check"></i><b>10.6.1</b> Prophet</a></li>
+<li class="chapter" data-level="10.6.2" data-path="datamining.html"><a href="datamining.html#tensorflow"><i class="fa fa-check"></i><b>10.6.2</b> TensorFlow</a></li>
+<li class="chapter" data-level="10.6.3" data-path="datamining.html"><a href="datamining.html#mxnet"><i class="fa fa-check"></i><b>10.6.3</b> MXNet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="datamining.html"><a href="datamining.html#模型驗證"><i class="fa fa-check"></i><b>10.7</b> 模型驗證</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datamining.html"><a href="datamining.html#regression-迴歸驗證"><i class="fa fa-check"></i><b>10.7.1</b> Regression 迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-邏輯迴歸驗證"><i class="fa fa-check"></i><b>10.7.2</b> Logistic Regression 邏輯迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹驗證"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="datamining.html"><a href="datamining.html#case-study"><i class="fa fa-check"></i><b>10.8</b> Case Study</a></li>
+<li class="chapter" data-level="10.9" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>11</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="11.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>11.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop安裝測試流程-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#系統軟體版本資訊"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="11.2.2" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#安裝步驟"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#測試前先解決權限問題"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#測試"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
+<li class="chapter" data-level="11.2.6" data-path="big.html"><a href="big.html#安裝rstudio-server"><i class="fa fa-check"></i><b>11.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>11.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="11.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>11.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>12</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="12.1" data-path="install.html"><a href="install.html#r安裝"><i class="fa fa-check"></i><b>12.1</b> R安裝</a></li>
+<li class="chapter" data-level="12.2" data-path="install.html"><a href="install.html#rstudio安裝"><i class="fa fa-check"></i><b>12.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="12.3" data-path="install.html"><a href="install.html#rstudio使用簡介"><i class="fa fa-check"></i><b>12.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#專案"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
+<li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio介面"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="video.html"><a href="video.html"><i class="fa fa-check"></i><b>13</b> 教學影片資訊</a><ul>
+<li class="chapter" data-level="13.1" data-path="video.html"><a href="video.html#教學影片頻道連結"><i class="fa fa-check"></i><b>13.1</b> 教學影片頻道連結</a></li>
+<li class="chapter" data-level="13.2" data-path="video.html"><a href="video.html#完整版播放清單"><i class="fa fa-check"></i><b>13.2</b> 完整版播放清單</a></li>
+<li class="chapter" data-level="13.3" data-path="video.html"><a href="video.html#速成版播放清單"><i class="fa fa-check"></i><b>13.3</b> 速成版播放清單</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">資料科學與R語言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="eda" class="section level1">
+<h1><span class="header-section-number">7</span> 探索式資料分析</h1>
+<div id="什麼是探索式資料分析" class="section level2">
+<h2><span class="header-section-number">7.1</span> 什麼是探索式資料分析</h2>
+<p>探索式資料分析 (<strong>E</strong>xploratory <strong>D</strong>ata <strong>A</strong>nalysis) 的主要精神是運用視覺化、基本的統計等工具，反覆的探索資料特性，獲取資料所包含的資訊、結構和特點，因為在進行複雜或嚴謹的分析之前，必須要對資料有更多認識，才能訂定對的資料分析方向。</p>
+<p>探索式資料分析包括分析各變數間的關聯性，看是否有預料之外的有趣發現，或是觀察資料內容是否符合預期，若否，檢查資料是否有誤，最後檢查資料是否符合分析前的假設，由上述可知，探索式資料分析通常不需要嚴謹的假設和細節呈現，主要功能還是『觀察』資料的特性。在資料量大/雜的時候，探索式資料分析就非常重要，因為透過探索式資料分析，分析人員可以在複雜的統計計算與耗時的模型建立前，就先發現可能的錯誤，更重要的是，可以透過探索性分析來調整分析的方向，減少因分析方向錯誤所造成的時間浪費。</p>
+<p>探索式資料分析分為:</p>
+<ul>
+<li>圖形化Graphical 或 量化Quantitative</li>
+<li>單變量Univariate 或 雙變量Bivariate 或 多變量Multivariate</li>
+</ul>
+<p>圖形化的分析方式包括做圖與列表，量化的分析方式則是資料初步統計，本章節著重於量化的分析方式，圖形化的分析方式請參考Ch <a href="vis.html#vis">8</a>。</p>
+<p>以單變量分析來說，量化的分析方式可包含</p>
+<ul>
+<li>計算集中趨勢 (<a href="https://zh.wikipedia.org/wiki/%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF" target="_blank">維基百科</a>)
+<ul>
+<li>平均值 Mean <code>mean()</code></li>
+<li>中位數 Median <code>median()</code></li>
+<li>眾數 Mode，R無內建函數，可直接用<code>table()</code>找出現次數最多的資料</li>
+</ul></li>
+<li>計算資料分散程度
+<ul>
+<li>最小值 Min <code>min()</code></li>
+<li>最大值 Max <code>max()</code></li>
+<li>範圍 Range <code>range()</code></li>
+<li>四分位差 Quartiles <code>quantile()</code></li>
+<li>變異數 Variance <code>var()</code></li>
+<li>標準差 Standard deviation <code>sd()</code></li>
+</ul></li>
+</ul>
+<p>以雙變量分析來說，分析方式可包括:</p>
+<ul>
+<li>列聯表 Crosstabs <code>table()</code>, <code>ftable()</code>, <code>prop.table()</code></li>
+<li>共變數 Covariance <code>cov()</code></li>
+<li>相關性 Correlation <code>cor()</code></li>
+</ul>
+<p>量化分析方式的測量值大多可用R的內建函數完成計算，但是在探索式分析時，常常需要遇到資料分組的分析情形（如觀察男性和女性的血壓差異、A隊與B隊的三分球命中率差異、中鋒和後衛的助攻次數…等），若只用基本的內建函數計算，需要先完成資料分組或子集後，再作進一步的運算，相當耗時，為了使這類資料分組與分析的工作更容易被完成，本書在介紹探索式資料分析時會搭配介紹<code>data.table</code><span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table" role="doc-biblioref">2019</a>)</span>和<code>dplyr</code><span class="citation">(Wickham, Francois, et al. <a href="#ref-R-dplyr" role="doc-biblioref">2020</a>)</span> packages，這兩個packages各有優點，可依自己喜好選用。</p>
+</div>
+<div id="datatable" class="section level2">
+<h2><span class="header-section-number">7.2</span> data.table</h2>
+<p>data.table是data.frame資料框型別的延伸，如要使用必須安裝並載入data.table<span class="citation">(Dowle and Srinivasan <a href="#ref-R-data.table" role="doc-biblioref">2019</a>)</span> package</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>) <span class="co">##安裝</span></a></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" title="1"><span class="kw">library</span>(data.table) <span class="co">##載入</span></a></code></pre></div>
+<p>使用<code>data.table</code>讀取大型資料的速度比使用資料框快上數倍，效能比較可參考<a href="https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping">Benchmarks : Grouping</a>，讀取資料的函數為<code>fread()</code>，使用方法與一般檔案讀取方法(Ch <a href="#file"><strong>??</strong></a>)類似</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1"><span class="kw">fread</span>(<span class="st">&quot;檔案名稱&quot;</span>)</a></code></pre></div>
+<p>如果已經使用其他資料來源將檔案讀成資料框data.frame格式，可以使用<code>data.table()</code>函數將data.frame轉為data.table格式，以先前介紹過的NBA資料為例（Ch <a href="manipulation.html#manCase">6.10</a>，需安裝與載入<code>SportsAnalytics</code>套件）</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" title="1"><span class="kw">library</span>(SportsAnalytics)</a>
+<a class="sourceLine" id="cb502-2" title="2"><span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb502-3" title="3">NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</a>
+<a class="sourceLine" id="cb502-4" title="4">NBA1516DT&lt;-<span class="kw">data.table</span>(NBA1516)</a>
+<a class="sourceLine" id="cb502-5" title="5"><span class="kw">class</span>(NBA1516DT)</a></code></pre></div>
+<pre><code>## [1] &quot;data.table&quot; &quot;data.frame&quot;</code></pre>
+<p>可以發現轉換後的<code>NBA1516DT</code>資料型態為<code>data.table</code>以及<code>data.frame</code>，這是因為data.table是data.frame資料框型別的延伸，所以是data.table型態的資料，就一定會是data.frame型態。</p>
+<p><code>data.table</code>資料型態的特殊結構和語法設計，便於後續資料分析處理，基本語法結構如下：</p>
+<p><strong>DT[<strong><code>i</code></strong>,<strong><code>j</code></strong>,<strong><code>by</code></strong>=]</strong></p>
+<ul>
+<li><code>i</code> 觀察值 (Row) 篩選邏輯</li>
+<li><code>j</code> 所需欄位 (Column)</li>
+<li><code>by</code> 分組依據</li>
+</ul>
+<p>各參數間需要以逗號<code>,</code>區隔，但若只需使用前方參數，後方的<code>,</code>可省略，如只需使用i和j兩個參數，可以寫成DT[i,j]。
+各參數的使用方法分述如下：</p>
+<div id="i-觀察值篩選邏輯" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> i 觀察值篩選邏輯</h3>
+<p>第一個參數<code>i</code>是用來篩選<strong>觀察值</strong>，也就是針對列(Row)做子集。篩選方式與Ch <a href="manipulation.html#subset">6.4</a>雷同，可透過<strong>布林值</strong>的向量或是<strong>元素索引(index)</strong>向量指定篩選條件，透過觀察值的篩選，可保留需要的資料，進行後續分析。</p>
+<p>以前述NBA球員資料為例，如需擷取球員姓名包含James字串的資料，可使用下列指令：</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" title="1">NBA1516DT[<span class="kw">grepl</span>(<span class="st">&#39;James&#39;</span>,Name)]</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">League</th>
+<th align="left">Name</th>
+<th align="left">Team</th>
+<th align="left">Position</th>
+<th align="right">GamesPlayed</th>
+<th align="right">TotalMinutesPlayed</th>
+<th align="right">FieldGoalsMade</th>
+<th align="right">FieldGoalsAttempted</th>
+<th align="right">ThreesMade</th>
+<th align="right">ThreesAttempted</th>
+<th align="right">FreeThrowsMade</th>
+<th align="right">FreeThrowsAttempted</th>
+<th align="right">OffensiveRebounds</th>
+<th align="right">TotalRebounds</th>
+<th align="right">Assists</th>
+<th align="right">Steals</th>
+<th align="right">Turnovers</th>
+<th align="right">Blocks</th>
+<th align="right">PersonalFouls</th>
+<th align="right">Disqualifications</th>
+<th align="right">TotalPoints</th>
+<th align="right">Technicals</th>
+<th align="right">Ejections</th>
+<th align="right">FlagrantFouls</th>
+<th align="right">GamesStarted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">James Anderson</td>
+<td align="left">SAC</td>
+<td align="left">SG</td>
+<td align="right">51</td>
+<td align="right">721</td>
+<td align="right">67</td>
+<td align="right">178</td>
+<td align="right">23</td>
+<td align="right">86</td>
+<td align="right">22</td>
+<td align="right">29</td>
+<td align="right">13</td>
+<td align="right">86</td>
+<td align="right">41</td>
+<td align="right">21</td>
+<td align="right">42</td>
+<td align="right">14</td>
+<td align="right">54</td>
+<td align="right">0</td>
+<td align="right">179</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">James Ennis</td>
+<td align="left">NOR</td>
+<td align="left">SF</td>
+<td align="right">22</td>
+<td align="right">329</td>
+<td align="right">54</td>
+<td align="right">113</td>
+<td align="right">26</td>
+<td align="right">58</td>
+<td align="right">25</td>
+<td align="right">34</td>
+<td align="right">21</td>
+<td align="right">42</td>
+<td align="right">21</td>
+<td align="right">16</td>
+<td align="right">19</td>
+<td align="right">5</td>
+<td align="right">28</td>
+<td align="right">1</td>
+<td align="right">159</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">James Harden</td>
+<td align="left">HOU</td>
+<td align="left">SG</td>
+<td align="right">82</td>
+<td align="right">3121</td>
+<td align="right">710</td>
+<td align="right">1617</td>
+<td align="right">236</td>
+<td align="right">656</td>
+<td align="right">720</td>
+<td align="right">837</td>
+<td align="right">63</td>
+<td align="right">502</td>
+<td align="right">612</td>
+<td align="right">138</td>
+<td align="right">374</td>
+<td align="right">51</td>
+<td align="right">229</td>
+<td align="right">1</td>
+<td align="right">2376</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Lebron James</td>
+<td align="left">CLE</td>
+<td align="left">SF</td>
+<td align="right">76</td>
+<td align="right">2710</td>
+<td align="right">737</td>
+<td align="right">1416</td>
+<td align="right">87</td>
+<td align="right">282</td>
+<td align="right">359</td>
+<td align="right">491</td>
+<td align="right">111</td>
+<td align="right">565</td>
+<td align="right">512</td>
+<td align="right">104</td>
+<td align="right">249</td>
+<td align="right">49</td>
+<td align="right">143</td>
+<td align="right">0</td>
+<td align="right">1920</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">76</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">James Johnson</td>
+<td align="left">TOR</td>
+<td align="left">PF</td>
+<td align="right">57</td>
+<td align="right">924</td>
+<td align="right">114</td>
+<td align="right">240</td>
+<td align="right">20</td>
+<td align="right">66</td>
+<td align="right">39</td>
+<td align="right">68</td>
+<td align="right">28</td>
+<td align="right">126</td>
+<td align="right">67</td>
+<td align="right">29</td>
+<td align="right">54</td>
+<td align="right">33</td>
+<td align="right">84</td>
+<td align="right">0</td>
+<td align="right">287</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">32</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">James Jones</td>
+<td align="left">CLE</td>
+<td align="left">SG</td>
+<td align="right">48</td>
+<td align="right">466</td>
+<td align="right">59</td>
+<td align="right">143</td>
+<td align="right">41</td>
+<td align="right">104</td>
+<td align="right">21</td>
+<td align="right">26</td>
+<td align="right">8</td>
+<td align="right">50</td>
+<td align="right">14</td>
+<td align="right">11</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">50</td>
+<td align="right">0</td>
+<td align="right">180</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">James Mcadoo</td>
+<td align="left">GSW</td>
+<td align="left">SG</td>
+<td align="right">41</td>
+<td align="right">265</td>
+<td align="right">45</td>
+<td align="right">84</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">26</td>
+<td align="right">49</td>
+<td align="right">30</td>
+<td align="right">58</td>
+<td align="right">17</td>
+<td align="right">10</td>
+<td align="right">16</td>
+<td align="right">8</td>
+<td align="right">39</td>
+<td align="right">0</td>
+<td align="right">117</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">James Young</td>
+<td align="left">BOS</td>
+<td align="left">SG</td>
+<td align="right">29</td>
+<td align="right">200</td>
+<td align="right">11</td>
+<td align="right">36</td>
+<td align="right">6</td>
+<td align="right">26</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">26</td>
+<td align="right">9</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">17</td>
+<td align="right">0</td>
+<td align="right">29</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>如需篩選所有中鋒，且姓名包含“A”字串的球員資料，可使用下列指令：</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1">NBA1516DT[<span class="kw">grepl</span>(<span class="st">&#39;A&#39;</span>,Name)<span class="op">&amp;</span>Position<span class="op">==</span><span class="st">&quot;C&quot;</span>]</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">League</th>
+<th align="left">Name</th>
+<th align="left">Team</th>
+<th align="left">Position</th>
+<th align="right">GamesPlayed</th>
+<th align="right">TotalMinutesPlayed</th>
+<th align="right">FieldGoalsMade</th>
+<th align="right">FieldGoalsAttempted</th>
+<th align="right">ThreesMade</th>
+<th align="right">ThreesAttempted</th>
+<th align="right">FreeThrowsMade</th>
+<th align="right">FreeThrowsAttempted</th>
+<th align="right">OffensiveRebounds</th>
+<th align="right">TotalRebounds</th>
+<th align="right">Assists</th>
+<th align="right">Steals</th>
+<th align="right">Turnovers</th>
+<th align="right">Blocks</th>
+<th align="right">PersonalFouls</th>
+<th align="right">Disqualifications</th>
+<th align="right">TotalPoints</th>
+<th align="right">Technicals</th>
+<th align="right">Ejections</th>
+<th align="right">FlagrantFouls</th>
+<th align="right">GamesStarted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Steven Adams</td>
+<td align="left">OKL</td>
+<td align="left">C</td>
+<td align="right">80</td>
+<td align="right">2019</td>
+<td align="right">261</td>
+<td align="right">426</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">114</td>
+<td align="right">196</td>
+<td align="right">218</td>
+<td align="right">531</td>
+<td align="right">61</td>
+<td align="right">42</td>
+<td align="right">84</td>
+<td align="right">89</td>
+<td align="right">223</td>
+<td align="right">2</td>
+<td align="right">636</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Alexis Ajinca</td>
+<td align="left">NOR</td>
+<td align="left">C</td>
+<td align="right">59</td>
+<td align="right">863</td>
+<td align="right">150</td>
+<td align="right">314</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">52</td>
+<td align="right">62</td>
+<td align="right">75</td>
+<td align="right">269</td>
+<td align="right">32</td>
+<td align="right">19</td>
+<td align="right">54</td>
+<td align="right">36</td>
+<td align="right">134</td>
+<td align="right">0</td>
+<td align="right">352</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Cole Aldrich</td>
+<td align="left">LAC</td>
+<td align="left">C</td>
+<td align="right">60</td>
+<td align="right">802</td>
+<td align="right">134</td>
+<td align="right">225</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">60</td>
+<td align="right">84</td>
+<td align="right">86</td>
+<td align="right">288</td>
+<td align="right">50</td>
+<td align="right">47</td>
+<td align="right">64</td>
+<td align="right">68</td>
+<td align="right">139</td>
+<td align="right">1</td>
+<td align="right">328</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Joel Anthony</td>
+<td align="left">DET</td>
+<td align="left">C</td>
+<td align="right">19</td>
+<td align="right">95</td>
+<td align="right">6</td>
+<td align="right">10</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">8</td>
+<td align="right">8</td>
+<td align="right">21</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">12</td>
+<td align="right">15</td>
+<td align="right">0</td>
+<td align="right">18</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Omer Asik</td>
+<td align="left">NOR</td>
+<td align="left">C</td>
+<td align="right">68</td>
+<td align="right">1181</td>
+<td align="right">104</td>
+<td align="right">196</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">61</td>
+<td align="right">112</td>
+<td align="right">119</td>
+<td align="right">413</td>
+<td align="right">26</td>
+<td align="right">21</td>
+<td align="right">60</td>
+<td align="right">23</td>
+<td align="right">124</td>
+<td align="right">0</td>
+<td align="right">269</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">64</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Andrea Bargnani</td>
+<td align="left">BRO</td>
+<td align="left">C</td>
+<td align="right">46</td>
+<td align="right">634</td>
+<td align="right">127</td>
+<td align="right">278</td>
+<td align="right">3</td>
+<td align="right">15</td>
+<td align="right">47</td>
+<td align="right">57</td>
+<td align="right">28</td>
+<td align="right">97</td>
+<td align="right">18</td>
+<td align="right">4</td>
+<td align="right">26</td>
+<td align="right">9</td>
+<td align="right">61</td>
+<td align="right">0</td>
+<td align="right">304</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Andrew Bogut</td>
+<td align="left">GSW</td>
+<td align="left">C</td>
+<td align="right">70</td>
+<td align="right">1452</td>
+<td align="right">175</td>
+<td align="right">279</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">24</td>
+<td align="right">50</td>
+<td align="right">121</td>
+<td align="right">491</td>
+<td align="right">162</td>
+<td align="right">32</td>
+<td align="right">83</td>
+<td align="right">113</td>
+<td align="right">221</td>
+<td align="right">4</td>
+<td align="right">375</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">66</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Andre Drummond</td>
+<td align="left">DET</td>
+<td align="left">C</td>
+<td align="right">81</td>
+<td align="right">2664</td>
+<td align="right">552</td>
+<td align="right">1061</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">208</td>
+<td align="right">586</td>
+<td align="right">395</td>
+<td align="right">1198</td>
+<td align="right">67</td>
+<td align="right">119</td>
+<td align="right">154</td>
+<td align="right">112</td>
+<td align="right">245</td>
+<td align="right">2</td>
+<td align="right">1314</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Al Jefferson</td>
+<td align="left">CHA</td>
+<td align="left">C</td>
+<td align="right">47</td>
+<td align="right">1096</td>
+<td align="right">245</td>
+<td align="right">505</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">72</td>
+<td align="right">111</td>
+<td align="right">57</td>
+<td align="right">301</td>
+<td align="right">70</td>
+<td align="right">30</td>
+<td align="right">34</td>
+<td align="right">41</td>
+<td align="right">117</td>
+<td align="right">1</td>
+<td align="right">562</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Alex Len</td>
+<td align="left">PHO</td>
+<td align="left">C</td>
+<td align="right">78</td>
+<td align="right">1820</td>
+<td align="right">264</td>
+<td align="right">623</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">174</td>
+<td align="right">239</td>
+<td align="right">178</td>
+<td align="right">594</td>
+<td align="right">97</td>
+<td align="right">38</td>
+<td align="right">145</td>
+<td align="right">62</td>
+<td align="right">230</td>
+<td align="right">3</td>
+<td align="right">703</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">46</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Anderson Varejao</td>
+<td align="left">GSW</td>
+<td align="left">C</td>
+<td align="right">53</td>
+<td align="right">494</td>
+<td align="right">53</td>
+<td align="right">124</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">32</td>
+<td align="right">50</td>
+<td align="right">37</td>
+<td align="right">141</td>
+<td align="right">35</td>
+<td align="right">16</td>
+<td align="right">22</td>
+<td align="right">10</td>
+<td align="right">70</td>
+<td align="right">0</td>
+<td align="right">138</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Alan Williams</td>
+<td align="left">PHO</td>
+<td align="left">C</td>
+<td align="right">10</td>
+<td align="right">67</td>
+<td align="right">10</td>
+<td align="right">24</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">9</td>
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">38</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">15</td>
+<td align="right">0</td>
+<td align="right">29</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>如需篩選各隊出場數超過80場的球員資料，可使用下列指令：</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" title="1">NBA1516DT[GamesPlayed<span class="op">&gt;</span><span class="dv">80</span>]</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">League</th>
+<th align="left">Name</th>
+<th align="left">Team</th>
+<th align="left">Position</th>
+<th align="right">GamesPlayed</th>
+<th align="right">TotalMinutesPlayed</th>
+<th align="right">FieldGoalsMade</th>
+<th align="right">FieldGoalsAttempted</th>
+<th align="right">ThreesMade</th>
+<th align="right">ThreesAttempted</th>
+<th align="right">FreeThrowsMade</th>
+<th align="right">FreeThrowsAttempted</th>
+<th align="right">OffensiveRebounds</th>
+<th align="right">TotalRebounds</th>
+<th align="right">Assists</th>
+<th align="right">Steals</th>
+<th align="right">Turnovers</th>
+<th align="right">Blocks</th>
+<th align="right">PersonalFouls</th>
+<th align="right">Disqualifications</th>
+<th align="right">TotalPoints</th>
+<th align="right">Technicals</th>
+<th align="right">Ejections</th>
+<th align="right">FlagrantFouls</th>
+<th align="right">GamesStarted</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Al-farouq Aminu</td>
+<td align="left">POR</td>
+<td align="left">SF</td>
+<td align="right">82</td>
+<td align="right">2342</td>
+<td align="right">299</td>
+<td align="right">719</td>
+<td align="right">126</td>
+<td align="right">349</td>
+<td align="right">115</td>
+<td align="right">156</td>
+<td align="right">98</td>
+<td align="right">498</td>
+<td align="right">138</td>
+<td align="right">72</td>
+<td align="right">120</td>
+<td align="right">53</td>
+<td align="right">171</td>
+<td align="right">0</td>
+<td align="right">839</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Trevor Ariza</td>
+<td align="left">HOU</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2860</td>
+<td align="right">357</td>
+<td align="right">858</td>
+<td align="right">185</td>
+<td align="right">497</td>
+<td align="right">126</td>
+<td align="right">161</td>
+<td align="right">67</td>
+<td align="right">366</td>
+<td align="right">188</td>
+<td align="right">161</td>
+<td align="right">113</td>
+<td align="right">26</td>
+<td align="right">177</td>
+<td align="right">0</td>
+<td align="right">1025</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Will Barton</td>
+<td align="left">DEN</td>
+<td align="left">SG</td>
+<td align="right">82</td>
+<td align="right">2355</td>
+<td align="right">426</td>
+<td align="right">984</td>
+<td align="right">112</td>
+<td align="right">324</td>
+<td align="right">216</td>
+<td align="right">268</td>
+<td align="right">60</td>
+<td align="right">477</td>
+<td align="right">204</td>
+<td align="right">71</td>
+<td align="right">139</td>
+<td align="right">39</td>
+<td align="right">147</td>
+<td align="right">0</td>
+<td align="right">1180</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Aron Baynes</td>
+<td align="left">DET</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">1241</td>
+<td align="right">194</td>
+<td align="right">384</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">126</td>
+<td align="right">165</td>
+<td align="right">140</td>
+<td align="right">384</td>
+<td align="right">51</td>
+<td align="right">21</td>
+<td align="right">67</td>
+<td align="right">52</td>
+<td align="right">151</td>
+<td align="right">0</td>
+<td align="right">514</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Bismack Biyombo</td>
+<td align="left">TOR</td>
+<td align="left">PF</td>
+<td align="right">82</td>
+<td align="right">1810</td>
+<td align="right">156</td>
+<td align="right">288</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">142</td>
+<td align="right">226</td>
+<td align="right">182</td>
+<td align="right">655</td>
+<td align="right">29</td>
+<td align="right">19</td>
+<td align="right">71</td>
+<td align="right">133</td>
+<td align="right">225</td>
+<td align="right">2</td>
+<td align="right">454</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Corey Brewer</td>
+<td align="left">HOU</td>
+<td align="left">SG</td>
+<td align="right">82</td>
+<td align="right">1670</td>
+<td align="right">212</td>
+<td align="right">552</td>
+<td align="right">61</td>
+<td align="right">225</td>
+<td align="right">105</td>
+<td align="right">140</td>
+<td align="right">42</td>
+<td align="right">199</td>
+<td align="right">109</td>
+<td align="right">84</td>
+<td align="right">78</td>
+<td align="right">19</td>
+<td align="right">168</td>
+<td align="right">1</td>
+<td align="right">590</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Allen Crabbe</td>
+<td align="left">POR</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2111</td>
+<td align="right">312</td>
+<td align="right">678</td>
+<td align="right">112</td>
+<td align="right">284</td>
+<td align="right">98</td>
+<td align="right">113</td>
+<td align="right">27</td>
+<td align="right">216</td>
+<td align="right">99</td>
+<td align="right">63</td>
+<td align="right">64</td>
+<td align="right">16</td>
+<td align="right">192</td>
+<td align="right">2</td>
+<td align="right">834</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Ed Davis</td>
+<td align="left">POR</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">1684</td>
+<td align="right">206</td>
+<td align="right">337</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">114</td>
+<td align="right">204</td>
+<td align="right">224</td>
+<td align="right">599</td>
+<td align="right">88</td>
+<td align="right">57</td>
+<td align="right">64</td>
+<td align="right">72</td>
+<td align="right">202</td>
+<td align="right">2</td>
+<td align="right">526</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Gorgui Dieng</td>
+<td align="left">MIN</td>
+<td align="left">C</td>
+<td align="right">82</td>
+<td align="right">2222</td>
+<td align="right">308</td>
+<td align="right">578</td>
+<td align="right">6</td>
+<td align="right">20</td>
+<td align="right">205</td>
+<td align="right">248</td>
+<td align="right">156</td>
+<td align="right">584</td>
+<td align="right">143</td>
+<td align="right">94</td>
+<td align="right">140</td>
+<td align="right">96</td>
+<td align="right">219</td>
+<td align="right">0</td>
+<td align="right">827</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">39</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Andre Drummond</td>
+<td align="left">DET</td>
+<td align="left">C</td>
+<td align="right">81</td>
+<td align="right">2664</td>
+<td align="right">552</td>
+<td align="right">1061</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">208</td>
+<td align="right">586</td>
+<td align="right">395</td>
+<td align="right">1198</td>
+<td align="right">67</td>
+<td align="right">119</td>
+<td align="right">154</td>
+<td align="right">112</td>
+<td align="right">245</td>
+<td align="right">2</td>
+<td align="right">1314</td>
+<td align="right">7</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Jared Dudley</td>
+<td align="left">WAS</td>
+<td align="left">SG</td>
+<td align="right">81</td>
+<td align="right">2098</td>
+<td align="right">233</td>
+<td align="right">487</td>
+<td align="right">100</td>
+<td align="right">239</td>
+<td align="right">72</td>
+<td align="right">98</td>
+<td align="right">54</td>
+<td align="right">286</td>
+<td align="right">170</td>
+<td align="right">75</td>
+<td align="right">80</td>
+<td align="right">18</td>
+<td align="right">190</td>
+<td align="right">1</td>
+<td align="right">638</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">41</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Monta Ellis</td>
+<td align="left">IND</td>
+<td align="left">PG</td>
+<td align="right">81</td>
+<td align="right">2733</td>
+<td align="right">436</td>
+<td align="right">1021</td>
+<td align="right">87</td>
+<td align="right">281</td>
+<td align="right">162</td>
+<td align="right">206</td>
+<td align="right">42</td>
+<td align="right">272</td>
+<td align="right">382</td>
+<td align="right">149</td>
+<td align="right">203</td>
+<td align="right">38</td>
+<td align="right">174</td>
+<td align="right">0</td>
+<td align="right">1121</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Randy Foye</td>
+<td align="left">OKC</td>
+<td align="left">SG</td>
+<td align="right">81</td>
+<td align="right">1640</td>
+<td align="right">168</td>
+<td align="right">481</td>
+<td align="right">75</td>
+<td align="right">250</td>
+<td align="right">61</td>
+<td align="right">74</td>
+<td align="right">24</td>
+<td align="right">156</td>
+<td align="right">160</td>
+<td align="right">39</td>
+<td align="right">86</td>
+<td align="right">29</td>
+<td align="right">131</td>
+<td align="right">0</td>
+<td align="right">472</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Langsto Galloway</td>
+<td align="left">NYK</td>
+<td align="left">PG</td>
+<td align="right">82</td>
+<td align="right">2032</td>
+<td align="right">231</td>
+<td align="right">588</td>
+<td align="right">77</td>
+<td align="right">224</td>
+<td align="right">86</td>
+<td align="right">114</td>
+<td align="right">43</td>
+<td align="right">288</td>
+<td align="right">207</td>
+<td align="right">77</td>
+<td align="right">61</td>
+<td align="right">22</td>
+<td align="right">177</td>
+<td align="right">2</td>
+<td align="right">625</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Paul George</td>
+<td align="left">IND</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2828</td>
+<td align="right">605</td>
+<td align="right">1448</td>
+<td align="right">210</td>
+<td align="right">565</td>
+<td align="right">454</td>
+<td align="right">528</td>
+<td align="right">79</td>
+<td align="right">563</td>
+<td align="right">329</td>
+<td align="right">152</td>
+<td align="right">265</td>
+<td align="right">29</td>
+<td align="right">230</td>
+<td align="right">1</td>
+<td align="right">1874</td>
+<td align="right">6</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Draymond Green</td>
+<td align="left">GSW</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2807</td>
+<td align="right">401</td>
+<td align="right">819</td>
+<td align="right">100</td>
+<td align="right">258</td>
+<td align="right">229</td>
+<td align="right">329</td>
+<td align="right">130</td>
+<td align="right">765</td>
+<td align="right">597</td>
+<td align="right">118</td>
+<td align="right">259</td>
+<td align="right">111</td>
+<td align="right">240</td>
+<td align="right">2</td>
+<td align="right">1131</td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">James Harden</td>
+<td align="left">HOU</td>
+<td align="left">SG</td>
+<td align="right">82</td>
+<td align="right">3121</td>
+<td align="right">710</td>
+<td align="right">1617</td>
+<td align="right">236</td>
+<td align="right">656</td>
+<td align="right">720</td>
+<td align="right">837</td>
+<td align="right">63</td>
+<td align="right">502</td>
+<td align="right">612</td>
+<td align="right">138</td>
+<td align="right">374</td>
+<td align="right">51</td>
+<td align="right">229</td>
+<td align="right">1</td>
+<td align="right">2376</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Roy Hibbert</td>
+<td align="left">LAL</td>
+<td align="left">C</td>
+<td align="right">81</td>
+<td align="right">1881</td>
+<td align="right">182</td>
+<td align="right">411</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">117</td>
+<td align="right">145</td>
+<td align="right">131</td>
+<td align="right">398</td>
+<td align="right">95</td>
+<td align="right">32</td>
+<td align="right">76</td>
+<td align="right">110</td>
+<td align="right">252</td>
+<td align="right">3</td>
+<td align="right">481</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Al Horford</td>
+<td align="left">ATL</td>
+<td align="left">PF</td>
+<td align="right">82</td>
+<td align="right">2638</td>
+<td align="right">529</td>
+<td align="right">1049</td>
+<td align="right">88</td>
+<td align="right">257</td>
+<td align="right">103</td>
+<td align="right">129</td>
+<td align="right">148</td>
+<td align="right">597</td>
+<td align="right">263</td>
+<td align="right">67</td>
+<td align="right">107</td>
+<td align="right">122</td>
+<td align="right">163</td>
+<td align="right">0</td>
+<td align="right">1249</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Joe Ingles</td>
+<td align="left">UTA</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">1241</td>
+<td align="right">124</td>
+<td align="right">291</td>
+<td align="right">81</td>
+<td align="right">210</td>
+<td align="right">13</td>
+<td align="right">18</td>
+<td align="right">19</td>
+<td align="right">151</td>
+<td align="right">96</td>
+<td align="right">55</td>
+<td align="right">65</td>
+<td align="right">4</td>
+<td align="right">98</td>
+<td align="right">0</td>
+<td align="right">342</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Joe Johnson</td>
+<td align="left">MIA</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2703</td>
+<td align="right">377</td>
+<td align="right">859</td>
+<td align="right">120</td>
+<td align="right">313</td>
+<td align="right">118</td>
+<td align="right">142</td>
+<td align="right">49</td>
+<td align="right">292</td>
+<td align="right">318</td>
+<td align="right">61</td>
+<td align="right">160</td>
+<td align="right">4</td>
+<td align="right">146</td>
+<td align="right">0</td>
+<td align="right">992</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Frank Kaminsky</td>
+<td align="left">CHA</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">1713</td>
+<td align="right">215</td>
+<td align="right">525</td>
+<td align="right">68</td>
+<td align="right">202</td>
+<td align="right">108</td>
+<td align="right">148</td>
+<td align="right">69</td>
+<td align="right">336</td>
+<td align="right">97</td>
+<td align="right">37</td>
+<td align="right">58</td>
+<td align="right">43</td>
+<td align="right">126</td>
+<td align="right">0</td>
+<td align="right">606</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Enes Kanter</td>
+<td align="left">OKL</td>
+<td align="left">C</td>
+<td align="right">82</td>
+<td align="right">1721</td>
+<td align="right">415</td>
+<td align="right">720</td>
+<td align="right">10</td>
+<td align="right">21</td>
+<td align="right">200</td>
+<td align="right">251</td>
+<td align="right">250</td>
+<td align="right">665</td>
+<td align="right">33</td>
+<td align="right">26</td>
+<td align="right">115</td>
+<td align="right">33</td>
+<td align="right">166</td>
+<td align="right">1</td>
+<td align="right">1040</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Zach Lavine</td>
+<td align="left">MIN</td>
+<td align="left">PG</td>
+<td align="right">82</td>
+<td align="right">2295</td>
+<td align="right">433</td>
+<td align="right">960</td>
+<td align="right">123</td>
+<td align="right">316</td>
+<td align="right">161</td>
+<td align="right">203</td>
+<td align="right">28</td>
+<td align="right">229</td>
+<td align="right">252</td>
+<td align="right">69</td>
+<td align="right">155</td>
+<td align="right">17</td>
+<td align="right">193</td>
+<td align="right">1</td>
+<td align="right">1150</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Robin Lopez</td>
+<td align="left">NYK</td>
+<td align="left">C</td>
+<td align="right">82</td>
+<td align="right">2213</td>
+<td align="right">357</td>
+<td align="right">662</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">128</td>
+<td align="right">161</td>
+<td align="right">268</td>
+<td align="right">602</td>
+<td align="right">114</td>
+<td align="right">16</td>
+<td align="right">133</td>
+<td align="right">129</td>
+<td align="right">182</td>
+<td align="right">2</td>
+<td align="right">842</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">T.j. Mcconnell</td>
+<td align="left">PHI</td>
+<td align="left">PG</td>
+<td align="right">81</td>
+<td align="right">1609</td>
+<td align="right">218</td>
+<td align="right">464</td>
+<td align="right">31</td>
+<td align="right">89</td>
+<td align="right">26</td>
+<td align="right">41</td>
+<td align="right">43</td>
+<td align="right">250</td>
+<td align="right">367</td>
+<td align="right">95</td>
+<td align="right">140</td>
+<td align="right">10</td>
+<td align="right">114</td>
+<td align="right">0</td>
+<td align="right">493</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Doug Mcdermott</td>
+<td align="left">CHI</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">1860</td>
+<td align="right">291</td>
+<td align="right">644</td>
+<td align="right">110</td>
+<td align="right">259</td>
+<td align="right">72</td>
+<td align="right">84</td>
+<td align="right">37</td>
+<td align="right">195</td>
+<td align="right">59</td>
+<td align="right">14</td>
+<td align="right">52</td>
+<td align="right">6</td>
+<td align="right">127</td>
+<td align="right">0</td>
+<td align="right">764</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Patty Mills</td>
+<td align="left">SAN</td>
+<td align="left">PG</td>
+<td align="right">81</td>
+<td align="right">1659</td>
+<td align="right">260</td>
+<td align="right">612</td>
+<td align="right">123</td>
+<td align="right">320</td>
+<td align="right">47</td>
+<td align="right">58</td>
+<td align="right">27</td>
+<td align="right">158</td>
+<td align="right">226</td>
+<td align="right">59</td>
+<td align="right">76</td>
+<td align="right">6</td>
+<td align="right">102</td>
+<td align="right">0</td>
+<td align="right">690</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Paul Millsap</td>
+<td align="left">ATL</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">2640</td>
+<td align="right">501</td>
+<td align="right">1067</td>
+<td align="right">74</td>
+<td align="right">232</td>
+<td align="right">309</td>
+<td align="right">408</td>
+<td align="right">197</td>
+<td align="right">733</td>
+<td align="right">264</td>
+<td align="right">148</td>
+<td align="right">191</td>
+<td align="right">140</td>
+<td align="right">237</td>
+<td align="right">2</td>
+<td align="right">1385</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Shabazz Muhammad</td>
+<td align="left">MIN</td>
+<td align="left">SF</td>
+<td align="right">82</td>
+<td align="right">1678</td>
+<td align="right">317</td>
+<td align="right">681</td>
+<td align="right">44</td>
+<td align="right">152</td>
+<td align="right">185</td>
+<td align="right">242</td>
+<td align="right">100</td>
+<td align="right">267</td>
+<td align="right">52</td>
+<td align="right">24</td>
+<td align="right">70</td>
+<td align="right">7</td>
+<td align="right">94</td>
+<td align="right">0</td>
+<td align="right">863</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Raul Neto</td>
+<td align="left">UTA</td>
+<td align="left">PG</td>
+<td align="right">81</td>
+<td align="right">1501</td>
+<td align="right">180</td>
+<td align="right">418</td>
+<td align="right">64</td>
+<td align="right">162</td>
+<td align="right">52</td>
+<td align="right">70</td>
+<td align="right">17</td>
+<td align="right">120</td>
+<td align="right">173</td>
+<td align="right">62</td>
+<td align="right">109</td>
+<td align="right">2</td>
+<td align="right">122</td>
+<td align="right">1</td>
+<td align="right">476</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">53</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Mason Plumlee</td>
+<td align="left">POR</td>
+<td align="left">PF</td>
+<td align="right">82</td>
+<td align="right">2087</td>
+<td align="right">267</td>
+<td align="right">517</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">215</td>
+<td align="right">335</td>
+<td align="right">201</td>
+<td align="right">628</td>
+<td align="right">226</td>
+<td align="right">68</td>
+<td align="right">154</td>
+<td align="right">82</td>
+<td align="right">253</td>
+<td align="right">4</td>
+<td align="right">749</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Julius Randle</td>
+<td align="left">LAL</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">2287</td>
+<td align="right">358</td>
+<td align="right">835</td>
+<td align="right">10</td>
+<td align="right">36</td>
+<td align="right">193</td>
+<td align="right">270</td>
+<td align="right">172</td>
+<td align="right">830</td>
+<td align="right">144</td>
+<td align="right">53</td>
+<td align="right">149</td>
+<td align="right">29</td>
+<td align="right">242</td>
+<td align="right">2</td>
+<td align="right">919</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Ramon Sessions</td>
+<td align="left">WAS</td>
+<td align="left">PG</td>
+<td align="right">82</td>
+<td align="right">1667</td>
+<td align="right">280</td>
+<td align="right">592</td>
+<td align="right">36</td>
+<td align="right">111</td>
+<td align="right">214</td>
+<td align="right">283</td>
+<td align="right">26</td>
+<td align="right">204</td>
+<td align="right">240</td>
+<td align="right">47</td>
+<td align="right">115</td>
+<td align="right">5</td>
+<td align="right">102</td>
+<td align="right">0</td>
+<td align="right">810</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Jared Sullinger</td>
+<td align="left">BOS</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">1917</td>
+<td align="right">351</td>
+<td align="right">807</td>
+<td align="right">29</td>
+<td align="right">104</td>
+<td align="right">103</td>
+<td align="right">161</td>
+<td align="right">194</td>
+<td align="right">673</td>
+<td align="right">187</td>
+<td align="right">75</td>
+<td align="right">102</td>
+<td align="right">47</td>
+<td align="right">209</td>
+<td align="right">2</td>
+<td align="right">834</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">73</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Isaiah Thomas</td>
+<td align="left">BOS</td>
+<td align="left">PG</td>
+<td align="right">82</td>
+<td align="right">2647</td>
+<td align="right">591</td>
+<td align="right">1382</td>
+<td align="right">167</td>
+<td align="right">465</td>
+<td align="right">474</td>
+<td align="right">544</td>
+<td align="right">46</td>
+<td align="right">243</td>
+<td align="right">509</td>
+<td align="right">91</td>
+<td align="right">220</td>
+<td align="right">9</td>
+<td align="right">167</td>
+<td align="right">1</td>
+<td align="right">1823</td>
+<td align="right">9</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">79</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Tristan Thompson</td>
+<td align="left">CLE</td>
+<td align="left">C</td>
+<td align="right">82</td>
+<td align="right">2269</td>
+<td align="right">247</td>
+<td align="right">420</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">149</td>
+<td align="right">242</td>
+<td align="right">268</td>
+<td align="right">738</td>
+<td align="right">63</td>
+<td align="right">38</td>
+<td align="right">61</td>
+<td align="right">51</td>
+<td align="right">202</td>
+<td align="right">0</td>
+<td align="right">643</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Karl-antho Towns</td>
+<td align="left">MIN</td>
+<td align="left">C</td>
+<td align="right">82</td>
+<td align="right">2621</td>
+<td align="right">625</td>
+<td align="right">1152</td>
+<td align="right">30</td>
+<td align="right">88</td>
+<td align="right">223</td>
+<td align="right">275</td>
+<td align="right">226</td>
+<td align="right">854</td>
+<td align="right">161</td>
+<td align="right">58</td>
+<td align="right">183</td>
+<td align="right">138</td>
+<td align="right">245</td>
+<td align="right">1</td>
+<td align="right">1503</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">82</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">P.j. Tucker</td>
+<td align="left">PHO</td>
+<td align="left">SF</td>
+<td align="right">82</td>
+<td align="right">2540</td>
+<td align="right">239</td>
+<td align="right">582</td>
+<td align="right">68</td>
+<td align="right">206</td>
+<td align="right">106</td>
+<td align="right">142</td>
+<td align="right">165</td>
+<td align="right">512</td>
+<td align="right">177</td>
+<td align="right">106</td>
+<td align="right">111</td>
+<td align="right">20</td>
+<td align="right">202</td>
+<td align="right">3</td>
+<td align="right">652</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Evan Turner</td>
+<td align="left">BOS</td>
+<td align="left">SG</td>
+<td align="right">81</td>
+<td align="right">2270</td>
+<td align="right">343</td>
+<td align="right">753</td>
+<td align="right">20</td>
+<td align="right">83</td>
+<td align="right">148</td>
+<td align="right">179</td>
+<td align="right">50</td>
+<td align="right">397</td>
+<td align="right">359</td>
+<td align="right">80</td>
+<td align="right">169</td>
+<td align="right">28</td>
+<td align="right">139</td>
+<td align="right">0</td>
+<td align="right">854</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Kemba Walker</td>
+<td align="left">CHA</td>
+<td align="left">PG</td>
+<td align="right">81</td>
+<td align="right">2885</td>
+<td align="right">568</td>
+<td align="right">1332</td>
+<td align="right">182</td>
+<td align="right">490</td>
+<td align="right">371</td>
+<td align="right">438</td>
+<td align="right">56</td>
+<td align="right">358</td>
+<td align="right">421</td>
+<td align="right">127</td>
+<td align="right">171</td>
+<td align="right">39</td>
+<td align="right">111</td>
+<td align="right">0</td>
+<td align="right">1689</td>
+<td align="right">5</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="left">NBA</td>
+<td align="left">Andrew Wiggins</td>
+<td align="left">MIN</td>
+<td align="left">SF</td>
+<td align="right">81</td>
+<td align="right">2844</td>
+<td align="right">594</td>
+<td align="right">1294</td>
+<td align="right">57</td>
+<td align="right">190</td>
+<td align="right">430</td>
+<td align="right">565</td>
+<td align="right">107</td>
+<td align="right">294</td>
+<td align="right">164</td>
+<td align="right">78</td>
+<td align="right">182</td>
+<td align="right">46</td>
+<td align="right">165</td>
+<td align="right">1</td>
+<td align="right">1675</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+<tr class="odd">
+<td align="left">NBA</td>
+<td align="left">Marvin Williams</td>
+<td align="left">CHA</td>
+<td align="left">PF</td>
+<td align="right">81</td>
+<td align="right">2339</td>
+<td align="right">338</td>
+<td align="right">747</td>
+<td align="right">152</td>
+<td align="right">379</td>
+<td align="right">120</td>
+<td align="right">144</td>
+<td align="right">127</td>
+<td align="right">520</td>
+<td align="right">110</td>
+<td align="right">58</td>
+<td align="right">62</td>
+<td align="right">77</td>
+<td align="right">133</td>
+<td align="right">1</td>
+<td align="right">948</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">81</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="j-欄位選擇運算" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> j 欄位選擇運算</h3>
+<p>第二個參數<code>j</code>是用來決定輸出欄位，輸出的欄位可以是原始欄位，也可以是計算後的欄位，以計算所有球員的平均出場數為例：</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb507-1" title="1">NBA1516DT[,<span class="kw">mean</span>(GamesPlayed)] <span class="co">##因沒有篩選需求，,前方留空</span></a></code></pre></div>
+<pre><code>## [1] 55</code></pre>
+<p>也可以一次計算多個數值，如同時計算平均出場數、平均犯規次數以及平均抄截次數，此時第二個欄位<code>j</code>需要使用<code>.()</code>包起來</p>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1">NBA1516DT[,.(<span class="kw">mean</span>(GamesPlayed),<span class="kw">mean</span>(PersonalFouls),<span class="kw">mean</span>(Steals))] <span class="co">##因沒有篩選需求，,前方留空</span></a></code></pre></div>
+<pre><code>##    V1  V2 V3
+## 1: 55 105 41</code></pre>
+<p>由上述輸出可以發現輸出的數字自動被加上欄位名稱V1, V2, V3，可能會造成數據判別錯誤，所以在計算新欄位時，可以在新欄位定義的前方加上<code>欄位名稱=</code>，同時替欄位取名字</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1">NBA1516DT[,.(<span class="dt">GamesPlayedMean=</span><span class="kw">mean</span>(GamesPlayed),</a>
+<a class="sourceLine" id="cb511-2" title="2">             <span class="dt">PersonalFoulsMean=</span><span class="kw">mean</span>(PersonalFouls),</a>
+<a class="sourceLine" id="cb511-3" title="3">             <span class="dt">StealsMean=</span><span class="kw">mean</span>(Steals))]</a></code></pre></div>
+<pre><code>##    GamesPlayedMean PersonalFoulsMean StealsMean
+## 1:              55               105         41</code></pre>
+<p>除了計算平均值以外，當然可以帶入其他函式做各式各樣的運算</p>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1">NBA1516DT[,.(<span class="dt">GamesPlayedMax=</span><span class="kw">max</span>(GamesPlayed), <span class="co">#最大值</span></a>
+<a class="sourceLine" id="cb513-2" title="2">             <span class="dt">ThreesMadeMin=</span><span class="kw">min</span>(ThreesMade), <span class="co">#最小值</span></a>
+<a class="sourceLine" id="cb513-3" title="3">             <span class="dt">FieldGoalsMadeSD=</span><span class="kw">sd</span>(FieldGoalsMade))] <span class="co">#標準差</span></a></code></pre></div>
+<pre><code>##    GamesPlayedMax ThreesMadeMin FieldGoalsMadeSD
+## 1:             82             0              166</code></pre>
+<p>若配合第一個參數一起使用，可以計算出所有<strong>出場數大於70</strong>的球員，<strong>平均投進幾顆三分球與兩分球</strong></p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1">NBA1516DT[GamesPlayed<span class="op">&gt;</span><span class="dv">70</span>,</a>
+<a class="sourceLine" id="cb515-2" title="2">          .(<span class="dt">ThreesMadeMean=</span><span class="kw">mean</span>(ThreesMade), <span class="dt">FieldGoalsMadeMean=</span><span class="kw">mean</span>(FieldGoalsMade))]</a></code></pre></div>
+<pre><code>##    ThreesMadeMean FieldGoalsMadeMean
+## 1:             76                335</code></pre>
+</div>
+<div id="by-分組依據" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> by 分組依據</h3>
+<p>第三個參數<code>by</code>為分組計算的依據，舉例來說，我們可以計算NBA各隊的<strong>球員數</strong>與<strong>平均助攻數</strong>，球員個數的計算在<code>data.table</code>內可使用<code>.N</code>指令，平均使用<code>mean()</code>函數，此時只要在<code>by=</code>後方加上分組依據(各隊Team)，即可完成運算</p>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1">NBA1516DT[,.(.N,<span class="dt">AssistsMean=</span><span class="kw">mean</span>(Assists)),</a>
+<a class="sourceLine" id="cb517-2" title="2">          by=Team]</a></code></pre></div>
+<pre><code>##     Team  N AssistsMean
+##  1:  SAC 15         134
+##  2:  MEM 22          74
+##  3:  OKL 14         126
+##  4:  NYK 16         105
+##  5:  NOR 21          87
+##  6:  LAC 15         124
+##  7:  SAN 16         130
+##  8:  POR 15         116
+##  9:  IND 15         125
+## 10:  WAS 17         127
+## 11:  DAL 15         124
+## 12:  MIL 17         113
+## 13:  DET 15         105
+## 14:  ORL 15         128
+## 15:  HOU 16         101
+## 16:  LAL 15          99
+## 17:  DEN 15         122
+## 18:  CHI 15         121
+## 19:  GSW 15         158
+## 20:  BRO 16         100
+## 21:  CHA 14         118
+## 22:  ATL 15         142
+## 23:  TOR 16          97
+## 24:  MIN 14         129
+## 25:  PHO 17          97
+## 26:  UTA 17          94
+## 27:  MIA 15         131
+## 28:  BOS 15         128
+## 29:  PHI 16         118
+## 30:  CLE 16         117
+## 31:  OKC  1         160
+##     Team  N AssistsMean</code></pre>
+<p><code>.N</code>在<code>data.table</code>內是保留字，用來計算個數</p>
+<p>三個參數結合使用，可以輕鬆計算出<strong>NBA各隊的中鋒球員數和他們的平均三分球出手次數</strong>，指令如下：</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1">NBA1516DT[Position<span class="op">==</span><span class="st">&quot;C&quot;</span>,</a>
+<a class="sourceLine" id="cb519-2" title="2">          .(.N,<span class="dt">ThreesAttemptedMean=</span><span class="kw">mean</span>(ThreesAttempted)),</a>
+<a class="sourceLine" id="cb519-3" title="3">          by=Team]</a></code></pre></div>
+<pre><code>##     Team N ThreesAttemptedMean
+##  1:  OKL 3                7.00
+##  2:  NOR 4                0.25
+##  3:  LAC 2                0.50
+##  4:  DET 2                3.00
+##  5:  BRO 3               10.00
+##  6:  LAL 3                0.67
+##  7:  WAS 2                1.00
+##  8:  GSW 4               16.00
+##  9:  SAN 3               34.67
+## 10:  HOU 2                3.50
+## 11:  SAC 3               70.67
+## 12:  PHO 3                2.67
+## 13:  ORL 2                4.50
+## 14:  MIN 3               36.00
+## 15:  MEM 2                1.50
+## 16:  UTA 3                1.33
+## 17:  IND 2                0.50
+## 18:  CHA 1                0.00
+## 19:  DEN 2               43.50
+## 20:  POR 2              116.00
+## 21:  CLE 3                2.33
+## 22:  NYK 1                1.00
+## 23:  DAL 3                1.67
+## 24:  MIL 2                0.50
+## 25:  CHI 1                1.00
+## 26:  PHI 2                4.00
+## 27:  TOR 3                6.00
+## 28:  BOS 2              105.00
+## 29:  ATL 1                0.00
+## 30:  MIA 1                0.00
+##     Team N ThreesAttemptedMean</code></pre>
+</div>
+<div id="參考文件與資源" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> 參考文件與資源</h3>
+<p><code>data.table</code>還有很多好用的功能，有興趣的話可以參考下列資料</p>
+<ul>
+<li><a href="https://github.com/Rdatatable/data.table/wiki" target="_blank">官網</a></li>
+<li>指令全集<a href="https://s3.amazonaws.com/assets.datacamp.com/img/blog/data+table+cheat+sheet.pdf" target="_blank">The data.table R package cheat sheet</a></li>
+<li><a href="https://www.datacamp.com/community/tutorials/data-table-r-tutorial#gs.vzMYa_k" target="_blank">A data.table R tutorial by DataCamp</a></li>
+<li>DataCamp<a href="https://www.datacamp.com/courses/data-table-data-manipulation-r-tutorial" target="_blank">互動式教學課程</a></li>
+</ul>
+</div>
+</div>
+<div id="dplyr" class="section level2">
+<h2><span class="header-section-number">7.3</span> dplyr</h2>
+<p><code>dplyr</code><span class="citation">(Wickham, Francois, et al. <a href="#ref-R-dplyr" role="doc-biblioref">2020</a>)</span> package是<a href="http://hadley.nz/" target="_blank">Hadley Wickham</a>開發的資料處理分析套件，如要使用必須安裝並載入<code>dplyr</code> package</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co">##安裝</span></a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" title="1"><span class="kw">library</span>(dplyr) <span class="co">##載入</span></a></code></pre></div>
+<p><code>dplyr</code>使用以下函數分析整理資料：</p>
+<ul>
+<li><code>select()</code>: 選要分析的欄位，欄位子集 (Column)</li>
+<li><code>filter()</code>: 選要分析的觀察值，觀察值子集 (Row)</li>
+<li><code>mutate()</code>: 增加新欄位</li>
+<li><code>summarise()</code>: 計算統計值</li>
+<li><code>group_by()</code>: 分組依據</li>
+<li><code>arrange()</code>: 觀察值排序</li>
+<li><code>rename()</code>: 欄位重新命名</li>
+<li><code>%&gt;%</code>: the “pipe” operator 連結上數函式，將所有函式計算串在一起執行</li>
+</ul>
+<p>以上述NBA資料為例，各函數功能分述如下：
+首先先讀入資料</p>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1"><span class="kw">library</span>(SportsAnalytics)</a>
+<a class="sourceLine" id="cb523-2" title="2">NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</a></code></pre></div>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> select()</h3>
+<p>使用<code>select()</code>函式可選要分析的欄位，也就是針對欄位 (Column)做子集，函式使用方式為<code>select(資料名稱,欄位條件1,欄位條件2,...)</code>，其中條件1與條件2是使用<strong>或</strong>的連結概念。另外<code>dplyr</code>提供幾個方便篩選名稱的函式：</p>
+<ul>
+<li><code>starts_with()</code></li>
+<li><code>ends_with()</code></li>
+<li><code>contains()</code></li>
+<li><code>matches()</code></li>
+<li><code>num_range()</code></li>
+<li><code>one_of()</code></li>
+<li><code>everything()</code></li>
+</ul>
+<p>詳細說明可在R執行視窗中輸入<code>?select_helpers</code>查看。</p>
+<p>舉例來說，我們想要篩選欄位名稱為<code>Name</code>、<code>ThreesMade</code>、<code>ThreesAttempted</code>、<code>FieldGoalsMade</code>與<code>FieldGoalsAttempted</code>的五個欄位，指令範例如下</p>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" title="1"><span class="co">##等同於</span></a>
+<a class="sourceLine" id="cb524-2" title="2"><span class="co">##NBA1516[,c(&quot;Name&quot;,&quot;ThreesMade&quot;,&quot;ThreesAttempted&quot;,&quot;FieldGoalsMade&quot;,&quot;FieldGoalsAttempted&quot;)]</span></a>
+<a class="sourceLine" id="cb524-3" title="3">select1&lt;-<span class="kw">select</span>(NBA1516,Name,<span class="kw">starts_with</span>(<span class="st">&quot;Threes&quot;</span>),<span class="kw">starts_with</span>(<span class="st">&quot;FieldGoals&quot;</span>))</a>
+<a class="sourceLine" id="cb524-4" title="4"><span class="kw">head</span>(select1)</a></code></pre></div>
+<pre><code>##            Name ThreesMade ThreesAttempted FieldGoalsMade FieldGoalsAttempted
+## 1    Quincy Acy         19              49            119                 214
+## 2  Jordan Adams          0               1              2                   6
+## 3  Steven Adams          0               0            261                 426
+## 4 Arron Afflalo         91             238            354                 799
+## 5 Alexis Ajinca          0               1            150                 314
+## 6  Cole Aldrich          0               0            134                 225</code></pre>
+<p>若想篩選欄位<code>Name</code>到欄位<code>FreeThrowsAttempted</code>間的所有欄位，可用<code>:</code>串連欄位名稱</p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb526-1" title="1"><span class="co">##等同於NBA1516[,2:12]</span></a>
+<a class="sourceLine" id="cb526-2" title="2">select2&lt;-<span class="kw">select</span>(NBA1516,Name<span class="op">:</span>FreeThrowsAttempted)</a>
+<a class="sourceLine" id="cb526-3" title="3"><span class="kw">head</span>(select2)</a></code></pre></div>
+<pre><code>##            Name Team Position GamesPlayed TotalMinutesPlayed FieldGoalsMade
+## 1    Quincy Acy  SAC       SF          59                877            119
+## 2  Jordan Adams  MEM       SG           2                 15              2
+## 3  Steven Adams  OKL        C          80               2019            261
+## 4 Arron Afflalo  NYK       SG          71               2359            354
+## 5 Alexis Ajinca  NOR        C          59                863            150
+## 6  Cole Aldrich  LAC        C          60                802            134
+##   FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1                 214         19              49             50
+## 2                   6          0               1              3
+## 3                 426          0               0            114
+## 4                 799         91             238            110
+## 5                 314          0               1             52
+## 6                 225          0               0             60
+##   FreeThrowsAttempted
+## 1                  68
+## 2                   5
+## 3                 196
+## 4                 131
+## 5                  62
+## 6                  84</code></pre>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb528-1" title="1"><span class="co">##等同於NBA1516[,c(2:4,6:12)]</span></a>
+<a class="sourceLine" id="cb528-2" title="2">select3&lt;-<span class="kw">select</span>(NBA1516,Name<span class="op">:</span>FreeThrowsAttempted,<span class="op">-</span>GamesPlayed)</a>
+<a class="sourceLine" id="cb528-3" title="3"><span class="kw">head</span>(select3)</a></code></pre></div>
+<pre><code>##            Name Team Position TotalMinutesPlayed FieldGoalsMade
+## 1    Quincy Acy  SAC       SF                877            119
+## 2  Jordan Adams  MEM       SG                 15              2
+## 3  Steven Adams  OKL        C               2019            261
+## 4 Arron Afflalo  NYK       SG               2359            354
+## 5 Alexis Ajinca  NOR        C                863            150
+## 6  Cole Aldrich  LAC        C                802            134
+##   FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1                 214         19              49             50
+## 2                   6          0               1              3
+## 3                 426          0               0            114
+## 4                 799         91             238            110
+## 5                 314          0               1             52
+## 6                 225          0               0             60
+##   FreeThrowsAttempted
+## 1                  68
+## 2                   5
+## 3                 196
+## 4                 131
+## 5                  62
+## 6                  84</code></pre>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> filter()</h3>
+<p>使用<code>filter()</code>函式可選要分析的觀察值，也就是針對列 (Row)做子集，使用方法為<code>filter(資料名稱,篩選條件)</code>，舉例來說，如果想要看出場分鐘數超過2850分鐘的球員資料，可用輸入下列指令</p>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" title="1"><span class="co">##等同於 NBA1516[NBA1516$TotalMinutesPlayed&gt;2850,]</span></a>
+<a class="sourceLine" id="cb530-2" title="2">filter1&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed<span class="op">&gt;</span><span class="dv">2850</span>)</a>
+<a class="sourceLine" id="cb530-3" title="3">filter1</a></code></pre></div>
+<pre><code>##   League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Trevor Ariza  HOU       SF          81               2860
+## 2    NBA    James Harden  HOU       SG          82               3121
+## 3    NBA  Gordon Hayward  UTA       SG          80               2889
+## 4    NBA      Kyle Lowry  TOR       PG          77               2853
+## 5    NBA Khris Middleton  MIL       SF          79               2855
+## 6    NBA   Marcus Morris  DET       SF          80               2852
+## 7    NBA    Kemba Walker  CHA       PG          81               2885
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            357                 858        185             497            126
+## 2            710                1617        236             656            720
+## 3            521                1202        143             410            393
+## 4            512                1198        212             546            398
+## 5            507                1144        143             362            277
+## 6            410                 945        108             297            203
+## 7            568                1332        182             490            371
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 161                67           366     188    161       113
+## 2                 837                63           502     612    138       374
+## 3                 477                61           397     296     95       202
+## 4                 491                55           365     494    158       225
+## 5                 312                45           301     331    131       180
+## 6                 271                91           404     201     67       140
+## 7                 438                56           358     421    127       171
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     26           177                 0        1025          2         0
+## 2     51           229                 1        2376          2         0
+## 3     27           183                 0        1578          0         0
+## 4     34           211                 1        1634          9         0
+## 5     19           204                 1        1434          5         0
+## 6     23           170                 1        1131         11         0
+## 7     39           111                 0        1689          5         0
+##   FlagrantFouls GamesStarted
+## 1             0           81
+## 2             0           82
+## 3             0           80
+## 4             0           77
+## 5             0           79
+## 6             0           80
+## 7             0           81</code></pre>
+<p>也可選擇隊伍名稱為“BOS”或“SAN”的球員資料</p>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" title="1"><span class="co">##等同於 NBA1516[NBA1516$Team %in% c(&quot;BOS&quot;,&quot;SAN&quot;),]</span></a>
+<a class="sourceLine" id="cb532-2" title="2">filter2&lt;-<span class="kw">filter</span>(NBA1516,Team <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;BOS&quot;</span>,<span class="st">&quot;SAN&quot;</span>))</a>
+<a class="sourceLine" id="cb532-3" title="3"><span class="kw">head</span>(filter2)</a></code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Lamarcu Aldridge  SAN       PF          74               2260
+## 2    NBA    Kyle Anderson  SAN       SF          78               1247
+## 3    NBA      Matt Bonner  SAN        C          30                210
+## 4    NBA    Avery Bradley  BOS       PG          76               2536
+## 5    NBA    Rasual Butler  SAN       SF          46                432
+## 6    NBA      Coty Clarke  BOS     &lt;NA&gt;           4                  8
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            536                1045          0              16            259
+## 2            138                 296         12              37             62
+## 3             29                  58         15              35              3
+## 4            456                1018        147             406             96
+## 5             49                 105         15              49             11
+## 6              2                   4          2               2              0
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 302               175           631     110     38        99
+## 2                  83                25           245     123     60        59
+## 3                   4                 3            27       9      6         3
+## 4                 123                48           220     158    117       109
+## 5                  16                 3            56      24     13         8
+## 6                   0                 0             1       0      0         1
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     81           151                 0        1331          0         0
+## 2     29            97                 0         350          0         0
+## 3      1            16                 0          76          0         0
+## 4     19           164                 2        1155          0         0
+## 5     23            11                 0         124          0         0
+## 6      0             0                 0           6          0         0
+##   FlagrantFouls GamesStarted
+## 1             0           74
+## 2             0           11
+## 3             0            2
+## 4             0           72
+## 5             0            0
+## 6             0            0</code></pre>
+<p>在<code>filter()</code>函式中可<strong>直接做變數計算</strong>後再篩選</p>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb534-1" title="1"><span class="co">##等同於</span></a>
+<a class="sourceLine" id="cb534-2" title="2">filter3&lt;-<span class="kw">filter</span>(NBA1516,FieldGoalsMade<span class="op">/</span>FieldGoalsAttempted<span class="op">&gt;</span><span class="fl">0.7</span>)</a>
+<a class="sourceLine" id="cb534-3" title="3">filter3</a></code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Th Antetokounmpo  NYK       SF           3                  7
+## 2    NBA Rakeem Christmas  IND       PF           1                  6
+## 3    NBA   Deandre Jordan  LAC        C          77               2600
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1              3                   4          0               1              0
+## 2              2                   2          0               0              0
+## 3            357                 507          0               1            266
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                   0                 0             1       0      0         0
+## 2                   0                 1             1       0      0         0
+## 3                 619               267          1059      90     52       107
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1      0             2                 0           6          0         0
+## 2      0             1                 0           4          0         0
+## 3    176           207                 1         980         10         0
+##   FlagrantFouls GamesStarted
+## 1             0            0
+## 2             0            0
+## 3             0           77</code></pre>
+<p>也可使用 <code>&amp;</code> 和 <code>|</code>等符號串連邏輯</p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb536-1" title="1"><span class="co">##等同於</span></a>
+<a class="sourceLine" id="cb536-2" title="2">filter4&lt;-<span class="kw">filter</span>(NBA1516,FieldGoalsMade<span class="op">/</span>FieldGoalsAttempted<span class="op">&gt;</span><span class="fl">0.7</span> <span class="op">&amp;</span><span class="st"> </span>GamesPlayed<span class="op">&gt;</span><span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb536-3" title="3">filter4</a></code></pre></div>
+<pre><code>##   League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA Deandre Jordan  LAC        C          77               2600
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            357                 507          0               1            266
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 619               267          1059      90     52       107
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1    176           207                 1         980         10         0
+##   FlagrantFouls GamesStarted
+## 1             0           77</code></pre>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> mutate()</h3>
+<p>使用<code>mutate()</code>增加新欄位，如需新增新欄位<code>FieldGoalsRate</code>，欄位值為<code>FieldGoalsMade/FieldGoalsAttempted</code>，指令如下</p>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb538-1" title="1">mutate1&lt;-<span class="kw">mutate</span>(NBA1516,<span class="dt">FieldGoalsRate=</span>FieldGoalsMade<span class="op">/</span>FieldGoalsAttempted)</a>
+<a class="sourceLine" id="cb538-2" title="2">mutate1<span class="op">$</span>FieldGoalsRate[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a></code></pre></div>
+<pre><code>##  [1] 0.56 0.33 0.61 0.44 0.48 0.60 0.51 0.50 0.52 0.46</code></pre>
+</div>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> summarise()</h3>
+<p><code>summarise()</code>函式用來計算統計值，像是<strong>球員個數</strong>、<strong>不重複的隊伍數</strong>以及<strong>不重複的守備位置數</strong>等</p>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1">sum1&lt;-<span class="kw">summarise</span>(NBA1516,</a>
+<a class="sourceLine" id="cb540-2" title="2">                <span class="dt">nPlayer=</span><span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb540-3" title="3">                <span class="dt">nTeam=</span><span class="kw">n_distinct</span>(Team),</a>
+<a class="sourceLine" id="cb540-4" title="4">                <span class="dt">nPosition=</span><span class="kw">n_distinct</span>(Position))</a>
+<a class="sourceLine" id="cb540-5" title="5">sum1</a></code></pre></div>
+<pre><code>##   nPlayer nTeam nPosition
+## 1     476    31         6</code></pre>
+<p>計算統計值的功能通常會與其他功能合併使用，像是與前述<code>filter()</code>功能 Ch <a href="eda.html#filter">7.3.2</a>合併使用，可計算<strong>出場分鐘數大於2500分鐘</strong>的球員個數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1">filter1&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed<span class="op">&gt;</span><span class="dv">2500</span>)</a>
+<a class="sourceLine" id="cb542-2" title="2">sum2&lt;-<span class="kw">summarise</span>(filter1,</a>
+<a class="sourceLine" id="cb542-3" title="3">                <span class="dt">nPlayer=</span><span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb542-4" title="4">                <span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),</a>
+<a class="sourceLine" id="cb542-5" title="5">                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))</a>
+<a class="sourceLine" id="cb542-6" title="6">sum2</a></code></pre></div>
+<pre><code>##   nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+## 1      40                512                    1121</code></pre>
+<p>上述分析序列（先篩選再總和），可直接用<strong>pipe</strong>符號<code>%&gt;%</code>將指令串連，減少暫存物件（filter1）的生成，主要概念是先篩選後計算</p>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" title="1">sum3&lt;-<span class="kw">filter</span>(NBA1516,TotalMinutesPlayed<span class="op">&gt;</span><span class="dv">2500</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb544-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),</a>
+<a class="sourceLine" id="cb544-3" title="3">                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))</a>
+<a class="sourceLine" id="cb544-4" title="4">sum3</a></code></pre></div>
+<pre><code>##   nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+## 1      40                512                    1121</code></pre>
+</div>
+<div id="group_by" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> group_by()</h3>
+<p><code>group_by()</code>函數的功能為設定分組依據，通常會與<code>summarise()</code>函式Ch <a href="eda.html#summarise">7.3.4</a>合併使用，例如計算各<strong>隊</strong>（以Team作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" title="1">group1&lt;-<span class="kw">group_by</span>(NBA1516,Team)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb546-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),</a>
+<a class="sourceLine" id="cb546-3" title="3">                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" title="1"><span class="kw">head</span>(group1)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Team  nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fct&gt;   &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 ATL        15               215                     471.
+## 2 BOS        15               209.                    475.
+## 3 BRO        16               181.                    396.
+## 4 CHA        14               199.                    451.
+## 5 CHI        15               209.                    475.
+## 6 CLE        16               200.                    433.</code></pre>
+<p>當然也可以設定<strong>多個</strong>分組依據，像是計算各<strong>隊</strong>各<strong>守備位置</strong>（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數</p>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" title="1">group2&lt;-<span class="kw">group_by</span>(NBA1516,Team,Position)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb550-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),</a>
+<a class="sourceLine" id="cb550-3" title="3">                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;Team&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" title="1"><span class="kw">head</span>(group2)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   Team [2]
+##   Team  Position nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 ATL   C              1                11                      19 
+## 2 ATL   PF             6               247.                    516.
+## 3 ATL   PG             2               382.                    884 
+## 4 ATL   SG             6               161.                    364.
+## 5 BOS   C              2               196.                    423 
+## 6 BOS   PF             4               182.                    386.</code></pre>
+</div>
+<div id="arrange" class="section level3">
+<h3><span class="header-section-number">7.3.6</span> arrange()</h3>
+<p>排序功能，預設為<strong>遞增排序</strong></p>
+<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" title="1">arrange1&lt;-<span class="kw">arrange</span>(NBA1516,TotalMinutesPlayed)</a>
+<a class="sourceLine" id="cb554-2" title="2"><span class="kw">head</span>(arrange1)</a></code></pre></div>
+<pre><code>##   League             Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA     J.j. O&#39;brien  UTA       SF           1                  2
+## 2    NBA Rakeem Christmas  IND       PF           1                  6
+## 3    NBA Th Antetokounmpo  NYK       SF           3                  7
+## 4    NBA       Sam Dekker  HOU       SF           3                  7
+## 5    NBA      Coty Clarke  BOS     &lt;NA&gt;           4                  8
+## 6    NBA     Jordan Adams  MEM       SG           2                 15
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1              0                   1          0               0              0
+## 2              2                   2          0               0              0
+## 3              3                   4          0               1              0
+## 4              0                   0          0               0              0
+## 5              2                   4          2               2              0
+## 6              2                   6          0               1              3
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                   0                 0             0       0      0         0
+## 2                   0                 1             1       0      0         0
+## 3                   0                 0             1       0      0         0
+## 4                   0                 0             1       0      1         0
+## 5                   0                 0             1       0      0         1
+## 6                   5                 0             2       3      3         2
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1      0             0                 0           0          0         0
+## 2      0             1                 0           4          0         0
+## 3      0             2                 0           6          0         0
+## 4      0             0                 0           0          0         0
+## 5      0             0                 0           6          0         0
+## 6      0             2                 0           7          0         0
+##   FlagrantFouls GamesStarted
+## 1             0            0
+## 2             0            0
+## 3             0            0
+## 4             0            0
+## 5             0            0
+## 6             0            0</code></pre>
+<p>使用<code>desc()</code>將要<strong>遞減排序</strong>的變數包起來，就可以遞減排序</p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" title="1">arrange2&lt;-<span class="kw">arrange</span>(NBA1516,<span class="kw">desc</span>(TotalMinutesPlayed),<span class="kw">desc</span>(GamesPlayed))</a>
+<a class="sourceLine" id="cb556-2" title="2"><span class="kw">head</span>(arrange2)</a></code></pre></div>
+<pre><code>##   League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    James Harden  HOU       SG          82               3121
+## 2    NBA  Gordon Hayward  UTA       SG          80               2889
+## 3    NBA    Kemba Walker  CHA       PG          81               2885
+## 4    NBA    Trevor Ariza  HOU       SF          81               2860
+## 5    NBA Khris Middleton  MIL       SF          79               2855
+## 6    NBA      Kyle Lowry  TOR       PG          77               2853
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            710                1617        236             656            720
+## 2            521                1202        143             410            393
+## 3            568                1332        182             490            371
+## 4            357                 858        185             497            126
+## 5            507                1144        143             362            277
+## 6            512                1198        212             546            398
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                 837                63           502     612    138       374
+## 2                 477                61           397     296     95       202
+## 3                 438                56           358     421    127       171
+## 4                 161                67           366     188    161       113
+## 5                 312                45           301     331    131       180
+## 6                 491                55           365     494    158       225
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     51           229                 1        2376          2         0
+## 2     27           183                 0        1578          0         0
+## 3     39           111                 0        1689          5         0
+## 4     26           177                 0        1025          2         0
+## 5     19           204                 1        1434          5         0
+## 6     34           211                 1        1634          9         0
+##   FlagrantFouls GamesStarted
+## 1             0           82
+## 2             0           80
+## 3             0           81
+## 4             0           81
+## 5             0           79
+## 6             0           77</code></pre>
+<p>結合<code>group_by()</code>、<code>summarise()</code>、<code>arrange()</code>，可完成一連串的資料分析，例如計算各<strong>隊</strong>各<strong>守備</strong>位置（以Team和Position作為分組依據）的球員數、平均投進的兩分球數以及平均投出的兩分球數，並依平均投進的兩分球數<strong>由大到小排序</strong></p>
+<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" title="1">arrange3&lt;-<span class="kw">group_by</span>(NBA1516,Team,Position)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb558-2" title="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nPlayer=</span><span class="kw">n</span>(),<span class="dt">meanFieldGoalsMade=</span><span class="kw">mean</span>(FieldGoalsMade),</a>
+<a class="sourceLine" id="cb558-3" title="3">                <span class="dt">meanFieldGoalsAttempted=</span><span class="kw">mean</span>(FieldGoalsAttempted)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb558-4" title="4"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(meanFieldGoalsMade))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;Team&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" title="1"><span class="kw">head</span>(arrange3)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+## # Groups:   Team [6]
+##   Team  Position nPlayer meanFieldGoalsMade meanFieldGoalsAttempted
+##   &lt;fct&gt; &lt;fct&gt;      &lt;int&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
+## 1 GSW   PG             2               504                      988
+## 2 CLE   SF             2               440                      864
+## 3 ORL   SG             1               425                      969
+## 4 MIA   C              1               412                      681
+## 5 OKL   PG             2               385                      861
+## 6 ATL   PG             2               382.                     884</code></pre>
+</div>
+<div id="rename" class="section level3">
+<h3><span class="header-section-number">7.3.7</span> rename()</h3>
+<p><code>新名稱=舊名稱</code></p>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb562-1" title="1">rename1&lt;-<span class="kw">rename</span>(NBA1516,<span class="dt">Po=</span>Position)</a>
+<a class="sourceLine" id="cb562-2" title="2">rename1[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<pre><code>##   League          Name Team Po GamesPlayed
+## 1    NBA    Quincy Acy  SAC SF          59
+## 2    NBA  Jordan Adams  MEM SG           2
+## 3    NBA  Steven Adams  OKL  C          80
+## 4    NBA Arron Afflalo  NYK SG          71
+## 5    NBA Alexis Ajinca  NOR  C          59</code></pre>
+</div>
+<div id="參考文件與資源-1" class="section level3">
+<h3><span class="header-section-number">7.3.8</span> 參考文件與資源</h3>
+<ul>
+<li><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html" target="_blank">Introduction to dplyr</a></li>
+<li>DataCamp互動式教學課程 <a href="https://www.datacamp.com/courses/dplyr-data-manipulation-r-tutorial" target="_blank">Data Manipulation in R with dplyr</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-data.table">
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Muller. 2020. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "Microsoft JhengHei",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/07-eda.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["DataAnalyticsWithR.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

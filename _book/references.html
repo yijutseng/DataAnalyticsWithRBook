@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>References | 資料科學與R語言</title>
+  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="References | 資料科學與R語言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://yijutseng.github.io/DataScienceRBook" />
+  
+  <meta property="og:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | 資料科學與R語言" />
+  
+  <meta name="twitter:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  
+
+<meta name="author" content="曾意儒 Yi-Ju Tseng" />
+
+
+<meta name="date" content="2020-07-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="author.html"/>
+
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">資料科學與R語言</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface"></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R語言101</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#什麼是r語言"><i class="fa fa-check"></i><b>1.1</b> 什麼是R語言</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#函數使用"><i class="fa fa-check"></i><b>1.2</b> 函數使用</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#變數設定"><i class="fa fa-check"></i><b>1.3</b> 變數設定</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#執行視窗"><i class="fa fa-check"></i><b>1.4</b> 執行視窗</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#DataType"><i class="fa fa-check"></i><b>1.5</b> 資料型態</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#數值-numeric"><i class="fa fa-check"></i><b>1.5.1</b> 數值 numeric</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#字串-character"><i class="fa fa-check"></i><b>1.5.2</b> 字串 character</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#布林變數-logic"><i class="fa fa-check"></i><b>1.5.3</b> 布林變數 logic</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#日期-date"><i class="fa fa-check"></i><b>1.5.4</b> 日期 (Date)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#基本運算子"><i class="fa fa-check"></i><b>1.6</b> 基本運算子</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#數學基本運算"><i class="fa fa-check"></i><b>1.6.1</b> 數學基本運算</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#邏輯運算"><i class="fa fa-check"></i><b>1.6.2</b> 邏輯運算</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#錯誤訊息"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.8</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R 資料結構</a><ul>
+<li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#向量-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="RDataStructure.html"><a href="RDataStructure.html#快速產生向量函數"><i class="fa fa-check"></i><b>2.1.1</b> 快速產生向量函數</a></li>
+<li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#向量運算"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#因子-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
+<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#列表-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料擷取"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
+<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料編輯設定"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#矩陣-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#資料框-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
+<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#資料表-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
+<li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#資料屬性查詢函數"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>3</b> 控制流程</a><ul>
+<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#條件判斷"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else敘述"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
+<li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a><ul>
+<li class="chapter" data-level="4.1" data-path="function.html"><a href="function.html#為什麼需要函數"><i class="fa fa-check"></i><b>4.1</b> 為什麼需要函數</a></li>
+<li class="chapter" data-level="4.2" data-path="function.html"><a href="function.html#函數組成"><i class="fa fa-check"></i><b>4.2</b> 函數組成</a></li>
+<li class="chapter" data-level="4.3" data-path="function.html"><a href="function.html#函數命名原則"><i class="fa fa-check"></i><b>4.3</b> 函數命名原則</a></li>
+<li class="chapter" data-level="4.4" data-path="function.html"><a href="function.html#函數範例"><i class="fa fa-check"></i><b>4.4</b> 函數範例</a></li>
+<li class="chapter" data-level="4.5" data-path="function.html"><a href="function.html#函式編程functional-programming"><i class="fa fa-check"></i><b>4.5</b> 函式編程Functional programming</a></li>
+<li class="chapter" data-level="4.6" data-path="function.html"><a href="function.html#purrr"><i class="fa fa-check"></i><b>4.6</b> purrr</a></li>
+<li class="chapter" data-level="4.7" data-path="function.html"><a href="function.html#map2-family"><i class="fa fa-check"></i><b>4.7</b> map2 family</a></li>
+<li class="chapter" data-level="4.8" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>4.8</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
+<li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#資料匯出"><i class="fa fa-check"></i><b>5.2</b> 資料匯出</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#文字檔-.txt"><i class="fa fa-check"></i><b>5.2.1</b> 文字檔 .txt</a></li>
+<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#csv檔-.csv"><i class="fa fa-check"></i><b>5.2.2</b> CSV檔 .csv</a></li>
+<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#r物件-.rds"><i class="fa fa-check"></i><b>5.2.3</b> R物件 .rds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="6.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換處理"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="manipulation.html"><a href="manipulation.html#資料型別檢查"><i class="fa fa-check"></i><b>6.2.1</b> 資料型別檢查</a></li>
+<li class="chapter" data-level="6.2.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換"><i class="fa fa-check"></i><b>6.2.2</b> 資料型別轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#文字字串處理"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#基本處理"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#搜尋字串"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
+<li class="chapter" data-level="6.3.3" data-path="manipulation.html"><a href="manipulation.html#正規表示式-regular-expression"><i class="fa fa-check"></i><b>6.3.3</b> 正規表示式 (Regular Expression)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>6.4</b> 子集Subset</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="manipulation.html"><a href="manipulation.html#一維資料-向量"><i class="fa fa-check"></i><b>6.4.1</b> 一維資料 (向量)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="manipulation.html"><a href="manipulation.html#二維資料"><i class="fa fa-check"></i><b>6.4.2</b> 二維資料</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="manipulation.html"><a href="manipulation.html#排序"><i class="fa fa-check"></i><b>6.5</b> 排序</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-向量排序"><i class="fa fa-check"></i><b>6.5.1</b> sort 向量排序</a></li>
+<li class="chapter" data-level="6.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>6.5.2</b> order</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="manipulation.html"><a href="manipulation.html#資料組合"><i class="fa fa-check"></i><b>6.6</b> 資料組合</a></li>
+<li class="chapter" data-level="6.7" data-path="manipulation.html"><a href="manipulation.html#資料結合-join"><i class="fa fa-check"></i><b>6.7</b> 資料結合 (Join)</a></li>
+<li class="chapter" data-level="6.8" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>6.8</b> 長表與寬表</a></li>
+<li class="chapter" data-level="6.9" data-path="manipulation.html"><a href="manipulation.html#遺漏值處理"><i class="fa fa-check"></i><b>6.9</b> 遺漏值處理</a></li>
+<li class="chapter" data-level="6.10" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>6.10</b> 綜合練習範例Case study</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="manipulation.html"><a href="manipulation.html#載入資料"><i class="fa fa-check"></i><b>6.10.1</b> 載入資料</a></li>
+<li class="chapter" data-level="6.10.2" data-path="manipulation.html"><a href="manipulation.html#資料總覽"><i class="fa fa-check"></i><b>6.10.2</b> 資料總覽</a></li>
+<li class="chapter" data-level="6.10.3" data-path="manipulation.html"><a href="manipulation.html#資料預覽"><i class="fa fa-check"></i><b>6.10.3</b> 資料預覽</a></li>
+<li class="chapter" data-level="6.10.4" data-path="manipulation.html"><a href="manipulation.html#資料排序後篩選"><i class="fa fa-check"></i><b>6.10.4</b> 資料排序後篩選</a></li>
+<li class="chapter" data-level="6.10.5" data-path="manipulation.html"><a href="manipulation.html#欄位值篩選"><i class="fa fa-check"></i><b>6.10.5</b> 欄位值篩選</a></li>
+<li class="chapter" data-level="6.10.6" data-path="manipulation.html"><a href="manipulation.html#字串條件搜尋後篩選"><i class="fa fa-check"></i><b>6.10.6</b> 字串條件搜尋後篩選</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>7</b> 探索式資料分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#什麼是探索式資料分析"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="7.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>7.2</b> data.table</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-觀察值篩選邏輯"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-欄位選擇運算"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-分組依據"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>7.3</b> dplyr</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>7.3.1</b> select()</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>7.3.2</b> filter()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>7.3.3</b> mutate()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>7.3.4</b> summarise()</a></li>
+<li class="chapter" data-level="7.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>7.3.5</b> group_by()</a></li>
+<li class="chapter" data-level="7.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>7.3.6</b> arrange()</a></li>
+<li class="chapter" data-level="7.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>7.3.7</b> rename()</a></li>
+<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#參考文件與資源-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>8</b> 資料視覺化</a><ul>
+<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#資料視覺化的目的"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2簡介"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>8.2.1</b> qplot()</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>8.2.2</b> ggplot()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2地圖"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map面量圖"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="8.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.3.2</b> ggmap()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan的面量圖"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vis.html"><a href="vis.html#ggmap面量圖"><i class="fa fa-check"></i><b>8.4.1</b> ggmap+面量圖</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.5</b> Treemap</a></li>
+<li class="chapter" data-level="8.6" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>8.6</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>9</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="9.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>9.1</b> ggvis</a></li>
+<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.2</b> Plot.ly</a></li>
+<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny簡介"><i class="fa fa-check"></i><b>9.3</b> Shiny簡介</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>10</b> 資料探勘</a><ul>
+<li class="chapter" data-level="10.1" data-path="datamining.html"><a href="datamining.html#什麼是資料探勘"><i class="fa fa-check"></i><b>10.1</b> 什麼是資料探勘</a></li>
+<li class="chapter" data-level="10.2" data-path="datamining.html"><a href="datamining.html#regression-迴歸"><i class="fa fa-check"></i><b>10.2</b> Regression 迴歸</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datamining.html"><a href="datamining.html#linear-regression-線性迴歸"><i class="fa fa-check"></i><b>10.2.1</b> Linear Regression 線性迴歸</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-羅吉斯迴歸"><i class="fa fa-check"></i><b>10.2.2</b> Logistic Regression 羅吉斯迴歸</a></li>
+<li class="chapter" data-level="10.2.3" data-path="datamining.html"><a href="datamining.html#最佳模型篩選"><i class="fa fa-check"></i><b>10.2.3</b> 最佳模型篩選</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹"><i class="fa fa-check"></i><b>10.3</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="10.4" data-path="datamining.html"><a href="datamining.html#clustering-分群"><i class="fa fa-check"></i><b>10.4</b> Clustering 分群</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering-階層式分群"><i class="fa fa-check"></i><b>10.4.1</b> Hierarchical clustering 階層式分群</a></li>
+<li class="chapter" data-level="10.4.2" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4.2</b> K-means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="datamining.html"><a href="datamining.html#association-rules-關聯式規則"><i class="fa fa-check"></i><b>10.5</b> Association Rules 關聯式規則</a></li>
+<li class="chapter" data-level="10.6" data-path="datamining.html"><a href="datamining.html#open-source-packages"><i class="fa fa-check"></i><b>10.6</b> Open Source Packages</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="datamining.html"><a href="datamining.html#prophet"><i class="fa fa-check"></i><b>10.6.1</b> Prophet</a></li>
+<li class="chapter" data-level="10.6.2" data-path="datamining.html"><a href="datamining.html#tensorflow"><i class="fa fa-check"></i><b>10.6.2</b> TensorFlow</a></li>
+<li class="chapter" data-level="10.6.3" data-path="datamining.html"><a href="datamining.html#mxnet"><i class="fa fa-check"></i><b>10.6.3</b> MXNet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="datamining.html"><a href="datamining.html#模型驗證"><i class="fa fa-check"></i><b>10.7</b> 模型驗證</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datamining.html"><a href="datamining.html#regression-迴歸驗證"><i class="fa fa-check"></i><b>10.7.1</b> Regression 迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-邏輯迴歸驗證"><i class="fa fa-check"></i><b>10.7.2</b> Logistic Regression 邏輯迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹驗證"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="datamining.html"><a href="datamining.html#case-study"><i class="fa fa-check"></i><b>10.8</b> Case Study</a></li>
+<li class="chapter" data-level="10.9" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>11</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="11.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>11.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop安裝測試流程-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#系統軟體版本資訊"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="11.2.2" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#安裝步驟"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#測試前先解決權限問題"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#測試"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
+<li class="chapter" data-level="11.2.6" data-path="big.html"><a href="big.html#安裝rstudio-server"><i class="fa fa-check"></i><b>11.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>11.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="11.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>11.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>12</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="12.1" data-path="install.html"><a href="install.html#r安裝"><i class="fa fa-check"></i><b>12.1</b> R安裝</a></li>
+<li class="chapter" data-level="12.2" data-path="install.html"><a href="install.html#rstudio安裝"><i class="fa fa-check"></i><b>12.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="12.3" data-path="install.html"><a href="install.html#rstudio使用簡介"><i class="fa fa-check"></i><b>12.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#專案"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
+<li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio介面"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="video.html"><a href="video.html"><i class="fa fa-check"></i><b>13</b> 教學影片資訊</a><ul>
+<li class="chapter" data-level="13.1" data-path="video.html"><a href="video.html#教學影片頻道連結"><i class="fa fa-check"></i><b>13.1</b> 教學影片頻道連結</a></li>
+<li class="chapter" data-level="13.2" data-path="video.html"><a href="video.html#完整版播放清單"><i class="fa fa-check"></i><b>13.2</b> 完整版播放清單</a></li>
+<li class="chapter" data-level="13.3" data-path="video.html"><a href="video.html#速成版播放清單"><i class="fa fa-check"></i><b>13.3</b> 速成版播放清單</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">資料科學與R語言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+
+<div id="refs" class="references">
+<div>
+<p>Arel-Bundock, Vincent. 2020. <em>WDI: World Development Indicators and Other World Bank Data</em>. <a href="https://CRAN.R-project.org/package=WDI">https://CRAN.R-project.org/package=WDI</a>.</p>
+</div>
+<div>
+<p>Barbera, Pablo, Michael Piccirilli, Andrew Geisler, and Wouter van Atteveldt. 2017. <em>Rfacebook: Access to Facebook Api via R</em>. <a href="https://CRAN.R-project.org/package=Rfacebook">https://CRAN.R-project.org/package=Rfacebook</a>.</p>
+</div>
+<div>
+<p>Chang, Winston, Joe Cheng, JJ Allaire, Yihui Xie, and Jonathan McPherson. 2020. <em>Shiny: Web Application Framework for R</em>. <a href="https://CRAN.R-project.org/package=shiny">https://CRAN.R-project.org/package=shiny</a>.</p>
+</div>
+<div>
+<p>Chang, Winston, and Hadley Wickham. 2019. <em>Ggvis: Interactive Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggvis">https://CRAN.R-project.org/package=ggvis</a>.</p>
+</div>
+<div>
+<p>Dowle, Matt, and Arun Srinivasan. 2019. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.</p>
+</div>
+<div>
+<p>Eugster, Manuel J. A. 2013. <em>SportsAnalytics: Infrastructure for Sports Analytics</em>. <a href="https://CRAN.R-project.org/package=SportsAnalytics">https://CRAN.R-project.org/package=SportsAnalytics</a>.</p>
+</div>
+<div>
+<p>Gesmann, Markus, and Diego de Castillo. 2020. <em>GoogleVis: R Interface to Google Charts</em>. <a href="https://CRAN.R-project.org/package=googleVis">https://CRAN.R-project.org/package=googleVis</a>.</p>
+</div>
+<div>
+<p>Hahsler, Michael, Christian Buchta, Bettina Gruen, and Kurt Hornik. 2020. <em>Arules: Mining Association Rules and Frequent Itemsets</em>. <a href="https://CRAN.R-project.org/package=arules">https://CRAN.R-project.org/package=arules</a>.</p>
+</div>
+<div>
+<p>Henry, Lionel, and Hadley Wickham. 2020. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.</p>
+</div>
+<div>
+<p>Kahle, David, Hadley Wickham, and Scott Jackson. 2020. <em>Ggmap: Spatial Visualization with Ggplot2</em>. <a href="https://github.com/dkahle/ggmap">https://github.com/dkahle/ggmap</a>.</p>
+</div>
+<div>
+<p>Lamstein, Ari. 2018. <em>Choroplethr: Simplify the Creation of Choropleth Maps in R</em>. <a href="https://CRAN.R-project.org/package=choroplethr">https://CRAN.R-project.org/package=choroplethr</a>.</p>
+</div>
+<div>
+<p>Milborrow, Stephen. 2019. <em>Rpart.plot: Plot ’Rpart’ Models: An Enhanced Version of ’Plot.rpart’</em>. <a href="https://CRAN.R-project.org/package=rpart.plot">https://CRAN.R-project.org/package=rpart.plot</a>.</p>
+</div>
+<div>
+<p>Oehlschlagel, Jens. 2020. <em>Bit64: A S3 Class for Vectors of 64bit Integers</em>. <a href="https://CRAN.R-project.org/package=bit64">https://CRAN.R-project.org/package=bit64</a>.</p>
+</div>
+<div>
+<p>Ooms, Jeroen. 2020. <em>Jsonlite: A Robust, High Performance Json Parser and Generator for R</em>. <a href="https://CRAN.R-project.org/package=jsonlite">https://CRAN.R-project.org/package=jsonlite</a>.</p>
+</div>
+<div>
+<p>Sievert, Carson, Chris Parmer, Toby Hocking, Scott Chamberlain, Karthik Ram, Marianne Corvellec, and Pedro Despouy. 2020. <em>Plotly: Create Interactive Web Graphics via ’Plotly.js’</em>. <a href="https://CRAN.R-project.org/package=plotly">https://CRAN.R-project.org/package=plotly</a>.</p>
+</div>
+<div>
+<p>Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2020. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>.</p>
+</div>
+<div>
+<p>Temple Lang, Duncan. 2020. <em>XML: Tools for Parsing and Generating Xml Within R and S-Plus</em>. <a href="https://CRAN.R-project.org/package=XML">https://CRAN.R-project.org/package=XML</a>.</p>
+</div>
+<div>
+<p>Tennekes, Martijn. 2017. <em>Treemap: Treemap Visualization</em>. <a href="https://CRAN.R-project.org/package=treemap">https://CRAN.R-project.org/package=treemap</a>.</p>
+</div>
+<div>
+<p>Therneau, Terry, and Beth Atkinson. 2019. <em>Rpart: Recursive Partitioning and Regression Trees</em>. <a href="https://CRAN.R-project.org/package=rpart">https://CRAN.R-project.org/package=rpart</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2019a. <em>Rvest: Easily Harvest (Scrape) Web Pages</em>. <a href="https://CRAN.R-project.org/package=rvest">https://CRAN.R-project.org/package=rvest</a>.</p>
+</div>
+<div>
+<p>———. 2019b. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div>
+<p>———. 2020. <em>Reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package</em>. <a href="https://CRAN.R-project.org/package=reshape2">https://CRAN.R-project.org/package=reshape2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Jennifer Bryan. 2019. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2020. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Muller. 2020. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2020. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Jim Hester, and Jeroen Ooms. 2020. <em>Xml2: Parse Xml</em>. <a href="https://CRAN.R-project.org/package=xml2">https://CRAN.R-project.org/package=xml2</a>.</p>
+</div>
+<div>
+<p>Wilkins, David. 2019. <em>Treemapify: Draw Treemaps in ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=treemapify">https://CRAN.R-project.org/package=treemapify</a>.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="author.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "Microsoft JhengHei",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/15-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["DataAnalyticsWithR.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

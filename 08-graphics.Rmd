@@ -242,7 +242,7 @@ state_choropleth(df_pop_state) #把各州人口畫在地圖上
 ```{r, warning=F,message=F, fig.height=3.5}
 data(continental_us_states)
 library(ggmap)
-register_google(key = "AIzaSyC7JRppSZtZuzpy9SdsVbpK5Nhf_oh2xl0")
+register_google(key = "AIzaSyBD_nXDjGMYcJO9e_3SI_h3YZwhx0if680") #demo key
 state_choropleth(df_pop_state,reference_map = TRUE,
                  zoom= continental_us_states) #把各州人口畫在地圖上
 ```
@@ -294,8 +294,8 @@ install.packages("ggmap", type = "source") ##第一次使用前先安裝
 - language 地圖語言
 
 ```{r, warning=F,message=F, fig.height=4}
-library(ggmap)
-register_google(key = "AIzaSyC7JRppSZtZuzpy9SdsVbpK5Nhf_oh2xl0")
+library(ggmap) 
+register_google(key = "AIzaSyBD_nXDjGMYcJO9e_3SI_h3YZwhx0if680")#demo key
 twmap <- get_googlemap(center = c(lon=120.58,lat=23.58), 
                   zoom = 7,
                   language = "zh-TW")

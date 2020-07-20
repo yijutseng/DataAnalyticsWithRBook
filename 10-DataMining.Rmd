@@ -825,7 +825,7 @@ sample(1:nrow(NBA1516),nrow(NBA1516)/3) #從第一行到最後一行，隨機取
 ```{r message=FALSE,warning=FALSE}
 NBA1516$Test<-F #新增一個參數紀錄分組
 #隨機取1/3當Test set
-NBA1516[sample(1:nrow(NBA1516),nrow(NBA1516)/3),]$Test<-T
+NBA1516[sample(1:nrow(NBA1516),nrow(NBA1516)/3),"Test"]<-T
 # Training set : Test set球員數
 c(sum(NBA1516$Test==F),sum(NBA1516$Test==T))
 ```
@@ -873,7 +873,7 @@ plot(x=predictPoint,y=NBA1516[NBA1516$Test==T,]$TotalPoints)
 
 ### Logistic Regression 邏輯迴歸驗證
 
-首先，先把入學資料分成Training 和 Test set。這邊要特別留意，當答案有正反兩面時，`Level 1 要放正面答案`-->有病/錄取...
+首先，先把入學資料分成Training 和 Test set。這邊要特別留意，當答案有正反兩面時，`Level 2 要放正面答案`-->有病/錄取...
 ```{r warning=F,message=F,fig.height=4.5}
 mydata <- read.csv("https://raw.githubusercontent.com/CGUIM-BigDataAnalysis/BigDataCGUIM/master/binary.csv")
 mydata$admit <- factor(mydata$admit) # 類別變項要轉為factor
@@ -881,8 +881,8 @@ mydata$rank <- factor(mydata$rank) # 類別變項要轉為factor
 mydata$Test<-F #新增一個參數紀錄分組
 mydata[sample(1:nrow(mydata),nrow(mydata)/3),"Test"]<-T #隨機取1/3當Test set
 c(sum(mydata$Test==F),sum(mydata$Test==T)) # Training set : Test set學生數
-#修改一下factor的level: 改成Level 1為錄取，2為不錄取-->Level 1 要放正面答案
-mydata$admit<-factor(mydata$admit,levels=c(1,0))
+#修改一下factor的level: 改成Level 2為錄取，1為不錄取-->Level 2 要放正面答案
+mydata$admit<-factor(mydata$admit,levels=c(0,1))
 ```
 
 逐步選擇最好的模型
@@ -900,7 +900,7 @@ AdmitProb<-predict(finalFit, # 用Training set做的模型
                    newdata = mydata[mydata$Test==T,], #Test==T, test data
                    type="response") #結果為每個人被錄取的機率
 head(AdmitProb)
-table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
+table(AdmitProb>0.5,mydata[mydata$Test==T,]$admit) # row,column
 ```
 
 當答案是二元時：效能指標
@@ -935,7 +935,7 @@ knitr::include_graphics("figure/para.png")
 
  回想一下剛剛的驗證結果
 ```{r warning=F,message=F,fig.height=4.5}
-table(AdmitProb<0.5,mydata[mydata$Test==T,]$admit) # row,column
+table(AdmitProb>0.5,mydata[mydata$Test==T,]$admit) # row,column
 ```
 ```{r echo=FALSE}
 knitr::include_graphics("figure/para.png")
@@ -946,18 +946,18 @@ knitr::include_graphics("figure/para.png")
 ```{r warning=F,message=F,fig.height=4.5}
 AdmitProb<-predict(finalFit,
                    newdata = mydata[mydata$Test==T,], #Test==T, test data
-                   type="response") #結果為每個人『不』被錄取的機率
-AdmitAns<-factor(ifelse(AdmitProb<0.5,1,0),levels=c(1,0))
+                   type="response") #結果為每個人被錄取的機率
+AdmitAns<-factor(ifelse(AdmitProb>0.5,1,0),levels=c(0,1))
 str(AdmitAns)
 ```
 
  計算預測效能參數
 ```{r warning=F,message=F,fig.height=4.5}
 library(caret) # install.packages("caret") #計算參數的packages
-sensitivity(AdmitAns,mydata[mydata$Test==T,]$admit)
-specificity(AdmitAns,mydata[mydata$Test==T,]$admit)
-posPredValue(AdmitAns,mydata[mydata$Test==T,]$admit)
-negPredValue(AdmitAns,mydata[mydata$Test==T,]$admit)
+sensitivity(AdmitAns,mydata[mydata$Test==T,]$admit,positive = "1")
+specificity(AdmitAns,mydata[mydata$Test==T,]$admit,negative = "0")
+posPredValue(AdmitAns,mydata[mydata$Test==T,]$admit,positive = "1")
+negPredValue(AdmitAns,mydata[mydata$Test==T,]$admit,negative = "0")
 ```
 
 
@@ -1064,7 +1064,7 @@ ggplot(Sonar.m)+geom_boxplot(aes(x=Class,y=value))+
 ```{r}
 Sonar$Test<-F #新增一個參數紀錄分組
 #隨機取1/3當Test set
-Sonar[sample(1:nrow(Sonar),nrow(Sonar)/3),]$Test<-T
+Sonar[sample(1:nrow(Sonar),nrow(Sonar)/3),"Test"]<-T
 # 看一下 Training set : Test set 案例數
 c(sum(Sonar$Test==F),sum(Sonar$Test==T))
 ```
@@ -1084,7 +1084,7 @@ summary(finalFit)$coefficients
 
 ```{r warning=F,message=F,fig.height=4.5}
 MinePred<-predict(finalFit,newdata = Sonar[Sonar$Test==T,])
-MineAns<-ifelse(MinePred<0.5,"M","R") #<0.5: Level 1
+MineAns<-ifelse(MinePred>0.5,"R","M") #>0.5: Level 2
 MineAns<-factor(MineAns,levels = c("M","R"))
 MineAns
 ```

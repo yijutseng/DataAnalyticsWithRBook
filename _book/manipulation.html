@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 資料處理與清洗 | 資料科學與R語言</title>
+  <meta name="description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 資料處理與清洗 | 資料科學與R語言" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="http://yijutseng.github.io/DataScienceRBook" />
+  
+  <meta property="og:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  <meta name="github-repo" content="yijutseng/DataAnalyticsWithRBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 資料處理與清洗 | 資料科學與R語言" />
+  
+  <meta name="twitter:description" content="介紹如何使用R語言完成資料讀取、處理、分析與呈現，以及大數據技術與R的整合" />
+  
+
+<meta name="author" content="曾意儒 Yi-Ju Tseng" />
+
+
+<meta name="date" content="2020-07-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="io.html"/>
+<link rel="next" href="eda.html"/>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/detect-resize/jquery.resize.js"></script>
+<link href="libs/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<script src="libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<script src="libs/vega/vega.min.js"></script>
+<script src="libs/lodash/lodash.min.js"></script>
+<script>var lodash = _.noConflict();</script>
+<link href="libs/ggvis/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis/js/ggvis.js"></script>
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/plotly-binding/plotly.js"></script>
+<script src="libs/typedarray/typedarray.min.js"></script>
+<link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">資料科學與R語言</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface"></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> R語言101</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#什麼是r語言"><i class="fa fa-check"></i><b>1.1</b> 什麼是R語言</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#函數使用"><i class="fa fa-check"></i><b>1.2</b> 函數使用</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#變數設定"><i class="fa fa-check"></i><b>1.3</b> 變數設定</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#執行視窗"><i class="fa fa-check"></i><b>1.4</b> 執行視窗</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#DataType"><i class="fa fa-check"></i><b>1.5</b> 資料型態</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="intro.html"><a href="intro.html#數值-numeric"><i class="fa fa-check"></i><b>1.5.1</b> 數值 numeric</a></li>
+<li class="chapter" data-level="1.5.2" data-path="intro.html"><a href="intro.html#字串-character"><i class="fa fa-check"></i><b>1.5.2</b> 字串 character</a></li>
+<li class="chapter" data-level="1.5.3" data-path="intro.html"><a href="intro.html#布林變數-logic"><i class="fa fa-check"></i><b>1.5.3</b> 布林變數 logic</a></li>
+<li class="chapter" data-level="1.5.4" data-path="intro.html"><a href="intro.html#日期-date"><i class="fa fa-check"></i><b>1.5.4</b> 日期 (Date)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#基本運算子"><i class="fa fa-check"></i><b>1.6</b> 基本運算子</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="intro.html"><a href="intro.html#數學基本運算"><i class="fa fa-check"></i><b>1.6.1</b> 數學基本運算</a></li>
+<li class="chapter" data-level="1.6.2" data-path="intro.html"><a href="intro.html#邏輯運算"><i class="fa fa-check"></i><b>1.6.2</b> 邏輯運算</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#錯誤訊息"><i class="fa fa-check"></i><b>1.7</b> 錯誤訊息</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.8</b> Help</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="RDataStructure.html"><a href="RDataStructure.html"><i class="fa fa-check"></i><b>2</b> R 資料結構</a><ul>
+<li class="chapter" data-level="2.1" data-path="RDataStructure.html"><a href="RDataStructure.html#向量-vector"><i class="fa fa-check"></i><b>2.1</b> 向量 vector</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="RDataStructure.html"><a href="RDataStructure.html#快速產生向量函數"><i class="fa fa-check"></i><b>2.1.1</b> 快速產生向量函數</a></li>
+<li class="chapter" data-level="2.1.2" data-path="RDataStructure.html"><a href="RDataStructure.html#向量運算"><i class="fa fa-check"></i><b>2.1.2</b> 向量運算</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="RDataStructure.html"><a href="RDataStructure.html#因子-factor"><i class="fa fa-check"></i><b>2.2</b> 因子 factor</a></li>
+<li class="chapter" data-level="2.3" data-path="RDataStructure.html"><a href="RDataStructure.html#列表-list"><i class="fa fa-check"></i><b>2.3</b> 列表 list</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料擷取"><i class="fa fa-check"></i><b>2.3.1</b> 列表資料擷取</a></li>
+<li class="chapter" data-level="2.3.2" data-path="RDataStructure.html"><a href="RDataStructure.html#列表資料編輯設定"><i class="fa fa-check"></i><b>2.3.2</b> 列表資料編輯設定</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="RDataStructure.html"><a href="RDataStructure.html#矩陣-matrix"><i class="fa fa-check"></i><b>2.4</b> 矩陣 matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="RDataStructure.html"><a href="RDataStructure.html#資料框-data.frame"><i class="fa fa-check"></i><b>2.5</b> 資料框 data.frame</a></li>
+<li class="chapter" data-level="2.6" data-path="RDataStructure.html"><a href="RDataStructure.html#資料表-data.table"><i class="fa fa-check"></i><b>2.6</b> 資料表 data.table</a></li>
+<li class="chapter" data-level="2.7" data-path="RDataStructure.html"><a href="RDataStructure.html#資料屬性查詢函數"><i class="fa fa-check"></i><b>2.7</b> 資料屬性查詢函數</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="controlstructure.html"><a href="controlstructure.html"><i class="fa fa-check"></i><b>3</b> 控制流程</a><ul>
+<li class="chapter" data-level="3.1" data-path="controlstructure.html"><a href="controlstructure.html#條件判斷"><i class="fa fa-check"></i><b>3.1</b> 條件判斷</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="controlstructure.html"><a href="controlstructure.html#if-else敘述"><i class="fa fa-check"></i><b>3.1.1</b> if-else敘述</a></li>
+<li class="chapter" data-level="3.1.2" data-path="controlstructure.html"><a href="controlstructure.html#if-else-if-else"><i class="fa fa-check"></i><b>3.1.2</b> if-else if-else</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="function.html"><a href="function.html"><i class="fa fa-check"></i><b>4</b> 函數</a><ul>
+<li class="chapter" data-level="4.1" data-path="function.html"><a href="function.html#為什麼需要函數"><i class="fa fa-check"></i><b>4.1</b> 為什麼需要函數</a></li>
+<li class="chapter" data-level="4.2" data-path="function.html"><a href="function.html#函數組成"><i class="fa fa-check"></i><b>4.2</b> 函數組成</a></li>
+<li class="chapter" data-level="4.3" data-path="function.html"><a href="function.html#函數命名原則"><i class="fa fa-check"></i><b>4.3</b> 函數命名原則</a></li>
+<li class="chapter" data-level="4.4" data-path="function.html"><a href="function.html#函數範例"><i class="fa fa-check"></i><b>4.4</b> 函數範例</a></li>
+<li class="chapter" data-level="4.5" data-path="function.html"><a href="function.html#函式編程functional-programming"><i class="fa fa-check"></i><b>4.5</b> 函式編程Functional programming</a></li>
+<li class="chapter" data-level="4.6" data-path="function.html"><a href="function.html#purrr"><i class="fa fa-check"></i><b>4.6</b> purrr</a></li>
+<li class="chapter" data-level="4.7" data-path="function.html"><a href="function.html#map2-family"><i class="fa fa-check"></i><b>4.7</b> map2 family</a></li>
+<li class="chapter" data-level="4.8" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>4.8</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="io.html"><a href="io.html"><i class="fa fa-check"></i><b>5</b> 資料讀取與匯出</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="io.html"><a href="io.html#純文字資料-無分隔"><i class="fa fa-check"></i><b>5.0.1</b> 純文字資料 (無分隔)</a></li>
+<li class="chapter" data-level="5.0.2" data-path="io.html"><a href="io.html#其他讀檔注意事項"><i class="fa fa-check"></i><b>5.0.2</b> 其他讀檔注意事項</a></li>
+<li class="chapter" data-level="5.0.3" data-path="io.html"><a href="io.html#api"><i class="fa fa-check"></i><b>5.0.3</b> API (Application programming interfaces)</a></li>
+<li class="chapter" data-level="5.0.4" data-path="io.html"><a href="io.html#xml"><i class="fa fa-check"></i><b>5.0.4</b> XML 可延伸標記式語言</a></li>
+<li class="chapter" data-level="5.0.5" data-path="io.html"><a href="io.html#網頁爬蟲-webscraping"><i class="fa fa-check"></i><b>5.0.5</b> 網頁爬蟲 Webscraping</a></li>
+<li class="chapter" data-level="5.1" data-path="io.html"><a href="io.html#facebook資料擷取"><i class="fa fa-check"></i><b>5.1</b> Facebook資料擷取</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="io.html"><a href="io.html#graph-api-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Graph API in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="io.html"><a href="io.html#rfacebook-package"><i class="fa fa-check"></i><b>5.1.2</b> Rfacebook package</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="io.html"><a href="io.html#資料匯出"><i class="fa fa-check"></i><b>5.2</b> 資料匯出</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="io.html"><a href="io.html#文字檔-.txt"><i class="fa fa-check"></i><b>5.2.1</b> 文字檔 .txt</a></li>
+<li class="chapter" data-level="5.2.2" data-path="io.html"><a href="io.html#csv檔-.csv"><i class="fa fa-check"></i><b>5.2.2</b> CSV檔 .csv</a></li>
+<li class="chapter" data-level="5.2.3" data-path="io.html"><a href="io.html#r物件-.rds"><i class="fa fa-check"></i><b>5.2.3</b> R物件 .rds</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="manipulation.html"><a href="manipulation.html"><i class="fa fa-check"></i><b>6</b> 資料處理與清洗</a><ul>
+<li class="chapter" data-level="6.1" data-path="manipulation.html"><a href="manipulation.html#tidy-data"><i class="fa fa-check"></i><b>6.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="6.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換處理"><i class="fa fa-check"></i><b>6.2</b> 資料型別轉換處理</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="manipulation.html"><a href="manipulation.html#資料型別檢查"><i class="fa fa-check"></i><b>6.2.1</b> 資料型別檢查</a></li>
+<li class="chapter" data-level="6.2.2" data-path="manipulation.html"><a href="manipulation.html#資料型別轉換"><i class="fa fa-check"></i><b>6.2.2</b> 資料型別轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="manipulation.html"><a href="manipulation.html#文字字串處理"><i class="fa fa-check"></i><b>6.3</b> 文字字串處理</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="manipulation.html"><a href="manipulation.html#基本處理"><i class="fa fa-check"></i><b>6.3.1</b> 基本處理</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manipulation.html"><a href="manipulation.html#搜尋字串"><i class="fa fa-check"></i><b>6.3.2</b> 搜尋字串</a></li>
+<li class="chapter" data-level="6.3.3" data-path="manipulation.html"><a href="manipulation.html#正規表示式-regular-expression"><i class="fa fa-check"></i><b>6.3.3</b> 正規表示式 (Regular Expression)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="manipulation.html"><a href="manipulation.html#subset"><i class="fa fa-check"></i><b>6.4</b> 子集Subset</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="manipulation.html"><a href="manipulation.html#一維資料-向量"><i class="fa fa-check"></i><b>6.4.1</b> 一維資料 (向量)</a></li>
+<li class="chapter" data-level="6.4.2" data-path="manipulation.html"><a href="manipulation.html#二維資料"><i class="fa fa-check"></i><b>6.4.2</b> 二維資料</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="manipulation.html"><a href="manipulation.html#排序"><i class="fa fa-check"></i><b>6.5</b> 排序</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="manipulation.html"><a href="manipulation.html#sort-向量排序"><i class="fa fa-check"></i><b>6.5.1</b> sort 向量排序</a></li>
+<li class="chapter" data-level="6.5.2" data-path="manipulation.html"><a href="manipulation.html#order"><i class="fa fa-check"></i><b>6.5.2</b> order</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="manipulation.html"><a href="manipulation.html#資料組合"><i class="fa fa-check"></i><b>6.6</b> 資料組合</a></li>
+<li class="chapter" data-level="6.7" data-path="manipulation.html"><a href="manipulation.html#資料結合-join"><i class="fa fa-check"></i><b>6.7</b> 資料結合 (Join)</a></li>
+<li class="chapter" data-level="6.8" data-path="manipulation.html"><a href="manipulation.html#reshape"><i class="fa fa-check"></i><b>6.8</b> 長表與寬表</a></li>
+<li class="chapter" data-level="6.9" data-path="manipulation.html"><a href="manipulation.html#遺漏值處理"><i class="fa fa-check"></i><b>6.9</b> 遺漏值處理</a></li>
+<li class="chapter" data-level="6.10" data-path="manipulation.html"><a href="manipulation.html#manCase"><i class="fa fa-check"></i><b>6.10</b> 綜合練習範例Case study</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="manipulation.html"><a href="manipulation.html#載入資料"><i class="fa fa-check"></i><b>6.10.1</b> 載入資料</a></li>
+<li class="chapter" data-level="6.10.2" data-path="manipulation.html"><a href="manipulation.html#資料總覽"><i class="fa fa-check"></i><b>6.10.2</b> 資料總覽</a></li>
+<li class="chapter" data-level="6.10.3" data-path="manipulation.html"><a href="manipulation.html#資料預覽"><i class="fa fa-check"></i><b>6.10.3</b> 資料預覽</a></li>
+<li class="chapter" data-level="6.10.4" data-path="manipulation.html"><a href="manipulation.html#資料排序後篩選"><i class="fa fa-check"></i><b>6.10.4</b> 資料排序後篩選</a></li>
+<li class="chapter" data-level="6.10.5" data-path="manipulation.html"><a href="manipulation.html#欄位值篩選"><i class="fa fa-check"></i><b>6.10.5</b> 欄位值篩選</a></li>
+<li class="chapter" data-level="6.10.6" data-path="manipulation.html"><a href="manipulation.html#字串條件搜尋後篩選"><i class="fa fa-check"></i><b>6.10.6</b> 字串條件搜尋後篩選</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="eda.html"><a href="eda.html"><i class="fa fa-check"></i><b>7</b> 探索式資料分析</a><ul>
+<li class="chapter" data-level="7.1" data-path="eda.html"><a href="eda.html#什麼是探索式資料分析"><i class="fa fa-check"></i><b>7.1</b> 什麼是探索式資料分析</a></li>
+<li class="chapter" data-level="7.2" data-path="eda.html"><a href="eda.html#datatable"><i class="fa fa-check"></i><b>7.2</b> data.table</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="eda.html"><a href="eda.html#i-觀察值篩選邏輯"><i class="fa fa-check"></i><b>7.2.1</b> i 觀察值篩選邏輯</a></li>
+<li class="chapter" data-level="7.2.2" data-path="eda.html"><a href="eda.html#j-欄位選擇運算"><i class="fa fa-check"></i><b>7.2.2</b> j 欄位選擇運算</a></li>
+<li class="chapter" data-level="7.2.3" data-path="eda.html"><a href="eda.html#by-分組依據"><i class="fa fa-check"></i><b>7.2.3</b> by 分組依據</a></li>
+<li class="chapter" data-level="7.2.4" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>7.2.4</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="eda.html"><a href="eda.html#dplyr"><i class="fa fa-check"></i><b>7.3</b> dplyr</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="eda.html"><a href="eda.html#select"><i class="fa fa-check"></i><b>7.3.1</b> select()</a></li>
+<li class="chapter" data-level="7.3.2" data-path="eda.html"><a href="eda.html#filter"><i class="fa fa-check"></i><b>7.3.2</b> filter()</a></li>
+<li class="chapter" data-level="7.3.3" data-path="eda.html"><a href="eda.html#mutate"><i class="fa fa-check"></i><b>7.3.3</b> mutate()</a></li>
+<li class="chapter" data-level="7.3.4" data-path="eda.html"><a href="eda.html#summarise"><i class="fa fa-check"></i><b>7.3.4</b> summarise()</a></li>
+<li class="chapter" data-level="7.3.5" data-path="eda.html"><a href="eda.html#group_by"><i class="fa fa-check"></i><b>7.3.5</b> group_by()</a></li>
+<li class="chapter" data-level="7.3.6" data-path="eda.html"><a href="eda.html#arrange"><i class="fa fa-check"></i><b>7.3.6</b> arrange()</a></li>
+<li class="chapter" data-level="7.3.7" data-path="eda.html"><a href="eda.html#rename"><i class="fa fa-check"></i><b>7.3.7</b> rename()</a></li>
+<li class="chapter" data-level="7.3.8" data-path="eda.html"><a href="eda.html#參考文件與資源-1"><i class="fa fa-check"></i><b>7.3.8</b> 參考文件與資源</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="vis.html"><a href="vis.html"><i class="fa fa-check"></i><b>8</b> 資料視覺化</a><ul>
+<li class="chapter" data-level="8.1" data-path="vis.html"><a href="vis.html#資料視覺化的目的"><i class="fa fa-check"></i><b>8.1</b> 資料視覺化的目的</a></li>
+<li class="chapter" data-level="8.2" data-path="vis.html"><a href="vis.html#ggplot2簡介"><i class="fa fa-check"></i><b>8.2</b> ggplot2簡介</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="vis.html"><a href="vis.html#qplot"><i class="fa fa-check"></i><b>8.2.1</b> qplot()</a></li>
+<li class="chapter" data-level="8.2.2" data-path="vis.html"><a href="vis.html#ggplot"><i class="fa fa-check"></i><b>8.2.2</b> ggplot()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="vis.html"><a href="vis.html#ggplot2地圖"><i class="fa fa-check"></i><b>8.3</b> ggplot2+地圖</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="vis.html"><a href="vis.html#choropleth-map面量圖"><i class="fa fa-check"></i><b>8.3.1</b> Choropleth map面量圖</a></li>
+<li class="chapter" data-level="8.3.2" data-path="vis.html"><a href="vis.html#ggmap"><i class="fa fa-check"></i><b>8.3.2</b> ggmap()</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="vis.html"><a href="vis.html#taiwan的面量圖"><i class="fa fa-check"></i><b>8.4</b> Taiwan的面量圖</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="vis.html"><a href="vis.html#ggmap面量圖"><i class="fa fa-check"></i><b>8.4.1</b> ggmap+面量圖</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="vis.html"><a href="vis.html#treemap"><i class="fa fa-check"></i><b>8.5</b> Treemap</a></li>
+<li class="chapter" data-level="8.6" data-path="eda.html"><a href="eda.html#參考文件與資源"><i class="fa fa-check"></i><b>8.6</b> 參考文件與資源</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html"><i class="fa fa-check"></i><b>9</b> 互動式資料呈現</a><ul>
+<li class="chapter" data-level="9.1" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#ggvis"><i class="fa fa-check"></i><b>9.1</b> ggvis</a></li>
+<li class="chapter" data-level="9.2" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#plot.ly"><i class="fa fa-check"></i><b>9.2</b> Plot.ly</a></li>
+<li class="chapter" data-level="9.3" data-path="InteractiveGraphics.html"><a href="InteractiveGraphics.html#shiny簡介"><i class="fa fa-check"></i><b>9.3</b> Shiny簡介</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="datamining.html"><a href="datamining.html"><i class="fa fa-check"></i><b>10</b> 資料探勘</a><ul>
+<li class="chapter" data-level="10.1" data-path="datamining.html"><a href="datamining.html#什麼是資料探勘"><i class="fa fa-check"></i><b>10.1</b> 什麼是資料探勘</a></li>
+<li class="chapter" data-level="10.2" data-path="datamining.html"><a href="datamining.html#regression-迴歸"><i class="fa fa-check"></i><b>10.2</b> Regression 迴歸</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="datamining.html"><a href="datamining.html#linear-regression-線性迴歸"><i class="fa fa-check"></i><b>10.2.1</b> Linear Regression 線性迴歸</a></li>
+<li class="chapter" data-level="10.2.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-羅吉斯迴歸"><i class="fa fa-check"></i><b>10.2.2</b> Logistic Regression 羅吉斯迴歸</a></li>
+<li class="chapter" data-level="10.2.3" data-path="datamining.html"><a href="datamining.html#最佳模型篩選"><i class="fa fa-check"></i><b>10.2.3</b> 最佳模型篩選</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹"><i class="fa fa-check"></i><b>10.3</b> Decision Trees 決策樹</a></li>
+<li class="chapter" data-level="10.4" data-path="datamining.html"><a href="datamining.html#clustering-分群"><i class="fa fa-check"></i><b>10.4</b> Clustering 分群</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="datamining.html"><a href="datamining.html#hierarchical-clustering-階層式分群"><i class="fa fa-check"></i><b>10.4.1</b> Hierarchical clustering 階層式分群</a></li>
+<li class="chapter" data-level="10.4.2" data-path="datamining.html"><a href="datamining.html#k-means-clustering"><i class="fa fa-check"></i><b>10.4.2</b> K-means clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="datamining.html"><a href="datamining.html#association-rules-關聯式規則"><i class="fa fa-check"></i><b>10.5</b> Association Rules 關聯式規則</a></li>
+<li class="chapter" data-level="10.6" data-path="datamining.html"><a href="datamining.html#open-source-packages"><i class="fa fa-check"></i><b>10.6</b> Open Source Packages</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="datamining.html"><a href="datamining.html#prophet"><i class="fa fa-check"></i><b>10.6.1</b> Prophet</a></li>
+<li class="chapter" data-level="10.6.2" data-path="datamining.html"><a href="datamining.html#tensorflow"><i class="fa fa-check"></i><b>10.6.2</b> TensorFlow</a></li>
+<li class="chapter" data-level="10.6.3" data-path="datamining.html"><a href="datamining.html#mxnet"><i class="fa fa-check"></i><b>10.6.3</b> MXNet</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="datamining.html"><a href="datamining.html#模型驗證"><i class="fa fa-check"></i><b>10.7</b> 模型驗證</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="datamining.html"><a href="datamining.html#regression-迴歸驗證"><i class="fa fa-check"></i><b>10.7.1</b> Regression 迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.2" data-path="datamining.html"><a href="datamining.html#logistic-regression-邏輯迴歸驗證"><i class="fa fa-check"></i><b>10.7.2</b> Logistic Regression 邏輯迴歸驗證</a></li>
+<li class="chapter" data-level="10.7.3" data-path="datamining.html"><a href="datamining.html#decision-trees-決策樹驗證"><i class="fa fa-check"></i><b>10.7.3</b> Decision Trees 決策樹驗證</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="datamining.html"><a href="datamining.html#case-study"><i class="fa fa-check"></i><b>10.8</b> Case Study</a></li>
+<li class="chapter" data-level="10.9" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>10.9</b> 參考資料</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="big.html"><a href="big.html"><i class="fa fa-check"></i><b>11</b> 從小數據到大數據分析</a><ul>
+<li class="chapter" data-level="11.1" data-path="big.html"><a href="big.html#r-hadoop"><i class="fa fa-check"></i><b>11.1</b> R + Hadoop</a></li>
+<li class="chapter" data-level="11.2" data-path="big.html"><a href="big.html#rhadoop安裝測試流程-cloudera"><i class="fa fa-check"></i><b>11.2</b> RHadoop安裝測試流程 (Cloudera)</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="big.html"><a href="big.html#系統軟體版本資訊"><i class="fa fa-check"></i><b>11.2.1</b> 系統/軟體版本資訊</a></li>
+<li class="chapter" data-level="11.2.2" data-path="function.html"><a href="function.html#參考資料"><i class="fa fa-check"></i><b>11.2.2</b> 參考資料</a></li>
+<li class="chapter" data-level="11.2.3" data-path="big.html"><a href="big.html#安裝步驟"><i class="fa fa-check"></i><b>11.2.3</b> 安裝步驟</a></li>
+<li class="chapter" data-level="11.2.4" data-path="big.html"><a href="big.html#測試前先解決權限問題"><i class="fa fa-check"></i><b>11.2.4</b> 測試前，先解決權限問題</a></li>
+<li class="chapter" data-level="11.2.5" data-path="big.html"><a href="big.html#測試"><i class="fa fa-check"></i><b>11.2.5</b> 測試</a></li>
+<li class="chapter" data-level="11.2.6" data-path="big.html"><a href="big.html#安裝rstudio-server"><i class="fa fa-check"></i><b>11.2.6</b> 安裝RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="big.html"><a href="big.html#rhadoop-mapreduce-easy-word-count"><i class="fa fa-check"></i><b>11.3</b> RHadoop MapReduce: easy word count</a></li>
+<li class="chapter" data-level="11.4" data-path="big.html"><a href="big.html#r-spark"><i class="fa fa-check"></i><b>11.4</b> R + Spark</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>12</b> 軟體安裝介紹</a><ul>
+<li class="chapter" data-level="12.1" data-path="install.html"><a href="install.html#r安裝"><i class="fa fa-check"></i><b>12.1</b> R安裝</a></li>
+<li class="chapter" data-level="12.2" data-path="install.html"><a href="install.html#rstudio安裝"><i class="fa fa-check"></i><b>12.2</b> RStudio安裝</a></li>
+<li class="chapter" data-level="12.3" data-path="install.html"><a href="install.html#rstudio使用簡介"><i class="fa fa-check"></i><b>12.3</b> RStudio使用簡介</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="install.html"><a href="install.html#專案"><i class="fa fa-check"></i><b>12.3.1</b> 專案</a></li>
+<li class="chapter" data-level="12.3.2" data-path="install.html"><a href="install.html#rstudio介面"><i class="fa fa-check"></i><b>12.3.2</b> RStudio介面</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="video.html"><a href="video.html"><i class="fa fa-check"></i><b>13</b> 教學影片資訊</a><ul>
+<li class="chapter" data-level="13.1" data-path="video.html"><a href="video.html#教學影片頻道連結"><i class="fa fa-check"></i><b>13.1</b> 教學影片頻道連結</a></li>
+<li class="chapter" data-level="13.2" data-path="video.html"><a href="video.html#完整版播放清單"><i class="fa fa-check"></i><b>13.2</b> 完整版播放清單</a></li>
+<li class="chapter" data-level="13.3" data-path="video.html"><a href="video.html#速成版播放清單"><i class="fa fa-check"></i><b>13.3</b> 速成版播放清單</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>作者資訊</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">資料科學與R語言</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulation" class="section level1">
+<h1><span class="header-section-number">6</span> 資料處理與清洗</h1>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">6.1</span> Tidy Data</h2>
+<p>Each column is a variable. Each row is an observation.</p>
+<ul>
+<li>一個欄位（Column）內只有一個數值，最好要有凡人看得懂的Column Name</li>
+<li>不同的觀察值應該要在不同列（Row）</li>
+<li>一張表裡面，有所有分析需要的資料</li>
+<li>如果一定要多張表，中間一定要有index可以把表串起來</li>
+<li>One file, one table</li>
+</ul>
+</div>
+<div id="資料型別轉換處理" class="section level2">
+<h2><span class="header-section-number">6.2</span> 資料型別轉換處理</h2>
+<p>在資料型態章節Chapter <a href="intro.html#DataType">1.5</a>中，曾介紹<strong>數值 (numeric)</strong>、<strong>字串 (character)</strong>、<strong>布林變數 (logic)</strong>以及<strong>日期 (Date)</strong>等資料型態，在此章節中將介紹如何檢查變數型別與各型別的轉換。</p>
+<div id="資料型別檢查" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> 資料型別檢查</h3>
+<p>使用以下<code>is.</code>函數檢查資料型別，回傳布林變數，若為真，回傳TRUE</p>
+<ul>
+<li>是否為<strong>數字</strong> <code>is.numeric(變數名稱)</code></li>
+<li>是否為<strong>文字</strong> <code>is.character(變數名稱)</code></li>
+<li>是否為<strong>布林變數</strong> <code>is.logical(變數名稱)</code></li>
+</ul>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1">num&lt;-<span class="dv">100</span></a>
+<a class="sourceLine" id="cb304-2" title="2">cha&lt;-<span class="st">&#39;200&#39;</span></a>
+<a class="sourceLine" id="cb304-3" title="3">boo&lt;-T</a>
+<a class="sourceLine" id="cb304-4" title="4"><span class="kw">is.numeric</span>(num)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1"><span class="kw">is.numeric</span>(cha)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1"><span class="kw">is.character</span>(num)</a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1"><span class="kw">is.character</span>(cha)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1"><span class="kw">is.logical</span>(boo)</a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>或使用<code>class(變數名稱)</code>函數，直接回傳資料型別</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1"><span class="kw">class</span>(num)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1"><span class="kw">class</span>(cha)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" title="1"><span class="kw">class</span>(boo)</a></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" title="1"><span class="kw">class</span>(<span class="kw">Sys.Date</span>())</a></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+</div>
+<div id="資料型別轉換" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> 資料型別轉換</h3>
+<p>使用以下<code>as.</code>函數轉換型別</p>
+<ul>
+<li>轉換為<strong>數字</strong> <code>as.numeric(變數名稱)</code></li>
+<li>轉換為<strong>文字</strong> <code>as.character(變數名稱)</code></li>
+<li>轉換為<strong>布林變數</strong> <code>as.logical(變數名稱)</code></li>
+</ul>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" title="1"><span class="kw">as.numeric</span>(cha)</a></code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" title="1"><span class="kw">as.numeric</span>(boo)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" title="1"><span class="kw">as.character</span>(num)</a></code></pre></div>
+<pre><code>## [1] &quot;100&quot;</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" title="1"><span class="kw">as.character</span>(boo)</a></code></pre></div>
+<pre><code>## [1] &quot;TRUE&quot;</code></pre>
+<p>若無法順利完成轉換，會回傳空值<code>NA</code>，並出現警告訊息<code>Warning: NAs introduced by coercion，Warning: 強制變更過程中產生了 NA</code></p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" title="1"><span class="kw">as.numeric</span>(<span class="st">&quot;abc&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: 強制變更過程中產生了 NA</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>日期的轉換則建議使用<code>lubridate</code><span class="citation">(Spinu, Grolemund, and Wickham <a href="#ref-R-lubridate" role="doc-biblioref">2020</a>)</span> package，如果想要將<code>年/月/日</code>格式的文字轉換為日期物件，可使用<code>ymd()</code>函數（y表年year，m表月month，d表日day），如果想要將<code>月/日/年</code>格式的文字轉換為日期物件，則使用<code>mdy()</code>函數，以此類推。</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb333-2" title="2"><span class="kw">ymd</span>(<span class="st">&#39;2012/3/3&#39;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;2012-03-03&quot;</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1"><span class="kw">mdy</span>(<span class="st">&#39;3/3/2012&#39;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;2012-03-03&quot;</code></pre>
+</div>
+</div>
+<div id="文字字串處理" class="section level2">
+<h2><span class="header-section-number">6.3</span> 文字字串處理</h2>
+<div id="基本處理" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> 基本處理</h3>
+<ul>
+<li>切割 <code>strsplit()</code></li>
+<li>子集 <code>substr()</code></li>
+<li>大小寫轉換 <code>toupper()</code> <code>tolower()</code></li>
+<li>兩文字連接 <code>paste()</code> <code>paste0()</code></li>
+<li>文字取代 <code>gsub()</code></li>
+<li>前後空白去除 <code>str_trim()</code> 需安裝<code>stringr</code><span class="citation">(Wickham <a href="#ref-R-stringr" role="doc-biblioref">2019</a><a href="#ref-R-stringr" role="doc-biblioref">b</a>)</span> package</li>
+</ul>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" title="1"><span class="kw">strsplit</span> (<span class="st">&quot;Hello World&quot;</span>,<span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Hello&quot; &quot;World&quot;</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">toupper</span>(<span class="st">&quot;Hello World&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;HELLO WORLD&quot;</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1"><span class="kw">tolower</span>(<span class="st">&quot;Hello World&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;hello world&quot;</code></pre>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="dt">sep=</span><span class="st">&#39;&#39;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;HelloWorld&quot;</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1"><span class="kw">substr</span>(<span class="st">&quot;Hello World&quot;</span>, <span class="dt">start=</span><span class="dv">2</span>,<span class="dt">stop=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;ell&quot;</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">gsub</span>(<span class="st">&quot;o&quot;</span>,<span class="st">&quot;0&quot;</span>,<span class="st">&quot;Hello World&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Hell0 W0rld&quot;</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1"><span class="kw">library</span>(stringr)</a>
+<a class="sourceLine" id="cb349-2" title="2"><span class="kw">str_trim</span>(<span class="st">&quot; Hello World &quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Hello World&quot;</code></pre>
+</div>
+<div id="搜尋字串" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> 搜尋字串</h3>
+<p>搜尋字串函數通常使用在<strong>比對文字向量</strong>，文字比對<strong>有分大小寫</strong>，依照回傳值的型態不同，有兩種常用函數，<code>grep()</code>與<code>grepl()</code>:</p>
+<ul>
+<li>回傳符合條件之向量位置(index) <code>grep(搜尋條件,要搜尋的向量)</code></li>
+<li>回傳每個向量是否符合條件(TRUE or FALSE) <code>grepl(搜尋條件,要搜尋的向量)</code></li>
+</ul>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;A&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Alex&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Joy&quot;</span>,<span class="st">&quot;Emma&quot;</span>)) <span class="co">##在姓名文字向量中尋找A，回傳包含&quot;A&quot;之元素位置</span></a></code></pre></div>
+<pre><code>## [1] 1 3</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">grepl</span>(<span class="st">&quot;A&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Alex&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Joy&quot;</span>,<span class="st">&quot;Emma&quot;</span>)) <span class="co">##在姓名文字向量中尋找A，回傳各元素是否包含&quot;A&quot;</span></a></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1"><span class="kw">grepl</span>(<span class="st">&quot;a&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;Alex&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Joy&quot;</span>,<span class="st">&quot;Emma&quot;</span>)) <span class="co">##在姓名文字向量中尋找a，回傳各元素是否包含&quot;a&quot;</span></a></code></pre></div>
+<pre><code>## [1] FALSE FALSE FALSE FALSE  TRUE</code></pre>
+</div>
+<div id="正規表示式-regular-expression" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> 正規表示式 (Regular Expression)</h3>
+<p>字串處理通常會搭配正規表示式 (Regular Expression)</p>
+<p>Regular Expression (正規表示式)是指一組能用來表示字串共同格式 (common structure)的樣式 (Pattern)，像是<code>@</code>符號會固定出現在email中，或是手機號碼固定是10碼，等等樣式。
+在所有的程式語言中，只要用到<strong>字串比對</strong>與<strong>字串取代</strong>等字串相關功能，都會用到正規表示式。雖然正規表示式在不同程式語言中會有些許差異，但核心概念是相同的。</p>
+<p>以下是常見的範例:</p>
+<table>
+<thead>
+<tr class="header">
+<th>語法</th>
+<th>正則表達式</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>整數</td>
+<td>[0-9]+</td>
+<td>5815</td>
+</tr>
+<tr class="even">
+<td>浮點數</td>
+<td>[0-9]+.[0-9]+</td>
+<td>58.15</td>
+</tr>
+<tr class="odd">
+<td>純英文字串</td>
+<td>[A-Za-z]+</td>
+<td>CGUIM</td>
+</tr>
+<tr class="even">
+<td>Email</td>
+<td>[a-zA-Z0-9_]+@[a-zA-Z0-9._]+</td>
+<td><code>im@mail.cgu.edu.tw</code></td>
+</tr>
+<tr class="odd">
+<td>URL</td>
+<td><code>http://[a-zA-Z0-9./_]+</code></td>
+<td><code>http://www.is.cgu.edu.tw/</code></td>
+</tr>
+</tbody>
+</table>
+<p>可以用正規表示式的R函數如下：</p>
+<ul>
+<li>grep()</li>
+<li>grepl()</li>
+<li>gsub()</li>
+<li>str_split()</li>
+<li>stringr package中的諸多函數</li>
+</ul>
+<p>正規表示式的常用語法分類如下：</p>
+<ul>
+<li>逃脫字元</li>
+<li>表示數量</li>
+<li>表示位置</li>
+<li>運算子</li>
+<li>特殊符號</li>
+</ul>
+<div id="逃脫字元" class="section level4">
+<h4><span class="header-section-number">6.3.3.1</span> 逃脫字元</h4>
+<p>****</p>
+</div>
+<div id="表示數量的語法" class="section level4">
+<h4><span class="header-section-number">6.3.3.2</span> 表示數量的語法</h4>
+<ul>
+<li><code>*</code>: 出現0~無限多次</li>
+<li><code>+</code>: 出現1~無限多次</li>
+<li><code>?</code>: 出現0~1次</li>
+<li><code>{n}</code>: 出現n次</li>
+<li><code>{n,}</code>: 出現n~無限多次</li>
+<li><code>{n,m}</code>: 出現n~m次</li>
+</ul>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1">stringVector&lt;-<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;ac&quot;</span>,<span class="st">&quot;abbc&quot;</span>,<span class="st">&quot;abbbc&quot;</span>,<span class="st">&quot;abbbbc&quot;</span>)</a>
+<a class="sourceLine" id="cb357-2" title="2"><span class="kw">grep</span>(<span class="st">&quot;ab*&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot;      &quot;abc&quot;    &quot;ac&quot;     &quot;abbc&quot;   &quot;abbbc&quot;  &quot;abbbbc&quot;</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;ab+&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abc&quot;    &quot;abbc&quot;   &quot;abbbc&quot;  &quot;abbbbc&quot;</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;ab?c&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abc&quot; &quot;ac&quot;</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;ab{2}c&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abbc&quot;</code></pre>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;ab{2,}c&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abbc&quot;   &quot;abbbc&quot;  &quot;abbbbc&quot;</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;ab{2,3}c&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abbc&quot;  &quot;abbbc&quot;</code></pre>
+</div>
+<div id="表示位置的語法" class="section level4">
+<h4><span class="header-section-number">6.3.3.3</span> 表示位置的語法</h4>
+<ul>
+<li><code>^</code>: 出現在字串開始的位置</li>
+<li><code>$</code>: 出現在字串結束ˇ的位置</li>
+<li><code>\b</code>: 出現空字串(空白)開始或結束的位置</li>
+<li><code>\B</code>: 出現非字串開始或結束的位置</li>
+</ul>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1">stringVector&lt;-<span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>,<span class="st">&quot;bcd&quot;</span>,<span class="st">&quot;cde&quot;</span>,<span class="st">&quot;def&quot;</span>,<span class="st">&quot;abc def&quot;</span>,<span class="st">&quot;bcdefg abc&quot;</span>)</a>
+<a class="sourceLine" id="cb369-2" title="2"><span class="kw">grep</span>(<span class="st">&quot;^bc&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;bcd&quot;        &quot;bcdefg abc&quot;</code></pre>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb371-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;bc$&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;abc&quot;        &quot;bcdefg abc&quot;</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">bde&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;def&quot;     &quot;abc def&quot;</code></pre>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">Bde&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;cde&quot;        &quot;bcdefg abc&quot;</code></pre>
+</div>
+<div id="運算子" class="section level4">
+<h4><span class="header-section-number">6.3.3.4</span> 運算子</h4>
+<ul>
+<li><code>.</code>: 出現所有的字元一次，包括空字串</li>
+<li><code>[...]</code>: 出現字元清單(…)中的字元一次，可用<code>-</code>表示範圍，如<code>[A-Z]</code>，<code>[a-z]</code>，<code>[0-9]</code></li>
+<li><code>[^...]</code>: 不出現字元清單(…)中的字元</li>
+<li><code>\</code>: 要搜尋字串中的特殊字元時，前方須加上<code>\</code></li>
+<li><code>|</code>: 或</li>
+</ul>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1">stringVector&lt;-<span class="kw">c</span>(<span class="st">&quot;03-2118800&quot;</span>,<span class="st">&quot;02-23123456&quot;</span>,<span class="st">&quot;0988123456&quot;</span>,</a>
+<a class="sourceLine" id="cb377-2" title="2">                <span class="st">&quot;07-118&quot;</span>,<span class="st">&quot;0-888&quot;</span>,<span class="st">&quot;csim@mail.cgu.edu.tw&quot;</span>,<span class="st">&quot;csim@.&quot;</span>,<span class="st">&quot;csim@&quot;</span>,</a>
+<a class="sourceLine" id="cb377-3" title="3">                <span class="st">&quot;http://www.is.cgu.edu.tw/&quot;</span>)</a>
+<a class="sourceLine" id="cb377-4" title="4"><span class="kw">grep</span>(<span class="st">&quot;[0-9]{2}-[0-9]{7,8}&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;03-2118800&quot;  &quot;02-23123456&quot;</code></pre>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;[0-9]{10}&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;0988123456&quot;</code></pre>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;02|03&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;03-2118800&quot;  &quot;02-23123456&quot;</code></pre>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;[a-zA-Z0-9_]+@[a-zA-Z0-9._]+&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;csim@mail.cgu.edu.tw&quot; &quot;csim@.&quot;</code></pre>
+</div>
+<div id="特殊符號" class="section level4">
+<h4><span class="header-section-number">6.3.3.5</span> 特殊符號</h4>
+<ul>
+<li><code>\d</code>: 數字，等於 [0-9]</li>
+<li><code>\D</code>: 非數字，等於 [^0-9]</li>
+<li><code>[:lower:]</code>: 小寫字，等於 [a-z]</li>
+<li><code>[:upper:]</code>: 大寫字，等於 [A-Z]</li>
+<li><code>[:alpha:]</code>: 所有英文字，等於 [[:lower:][:upper:]] or [A-z]</li>
+<li><code>[:alnum:]</code>: 所有英文字和數字，等於 [[:alpha:][:digit:]] or [A-z0-9]</li>
+<li><code>\w</code>: 文字數字與底線，等於 [[:alnum:]_] or [A-z0-9_]</li>
+<li><code>\W</code>: 非文字數字與底線，等於 [^A-z0-9_]</li>
+<li><code>[:blank:]</code>: 空白字元，包括空白和tab</li>
+<li><code>\s</code>: 空白字元, <code></code></li>
+<li><code>\S</code>: 非空白字元</li>
+<li><code>[:punct:]</code>: 標點符號 ! " # $ % &amp; ’ ( ) * + , - . / : ; &lt; = &gt; ? @ [ ] ^ _ ` { | } ~.</li>
+</ul>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">stringVector&lt;-<span class="kw">c</span>(<span class="st">&quot;03-2118800&quot;</span>,<span class="st">&quot;02-23123456&quot;</span>,<span class="st">&quot;0988123456&quot;</span>,</a>
+<a class="sourceLine" id="cb385-2" title="2">                <span class="st">&quot;07-118&quot;</span>,<span class="st">&quot;0-888&quot;</span>,<span class="st">&quot;csim@mail.cgu.edu.tw&quot;</span>,<span class="st">&quot;http://www.is.cgu.edu.tw/&quot;</span>)</a>
+<a class="sourceLine" id="cb385-3" title="3"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{2}-</span><span class="ch">\\</span><span class="st">d{7,8}&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;03-2118800&quot;  &quot;02-23123456&quot;</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">d{10}&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;0988123456&quot;</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1"><span class="kw">grep</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">w+@[a-zA-Z0-9._]+&quot;</span>,stringVector,<span class="dt">value=</span>T)</a></code></pre></div>
+<pre><code>## [1] &quot;csim@mail.cgu.edu.tw&quot;</code></pre>
+</div>
+<div id="參考資料" class="section level4">
+<h4><span class="header-section-number">6.3.3.6</span> 參考資料</h4>
+<ul>
+<li><a href="https://dotblogs.com.tw/johnny/archive/2010/01/25/13301.aspx">Regular Expression 詳論</a></li>
+<li><a href="http://regexlib.com/">RegExLib.com</a></li>
+<li><a href="http://stat545.com/block022_regular-expression.html">Regular Expression in R</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="subset" class="section level2">
+<h2><span class="header-section-number">6.4</span> 子集Subset</h2>
+<div id="一維資料-向量" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> 一維資料 (向量)</h3>
+<p>在向量章節<code>{#vector}</code>有介紹使用<code>[]</code>取出單一或多個元素的方法</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1">letters <span class="co">##R語言內建資料之一</span></a></code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1">letters[<span class="dv">1</span>] <span class="co">##取出letters向量的第一個元素</span></a></code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1">letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>] <span class="co">##取出letters向量的前十個元素</span></a></code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot;</code></pre>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1">letters[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)] <span class="co">##取出letters向量的第1,3,5個元素</span></a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;c&quot; &quot;e&quot;</code></pre>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1">letters[<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="op">-</span><span class="dv">5</span>)] <span class="co">##取出letters向量除了第1,3,5個元素之外的所有元素</span></a></code></pre></div>
+<pre><code>##  [1] &quot;b&quot; &quot;d&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot;
+## [20] &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<p>若想要快速取得一向量的開頭與結尾元素，可使用<code>head()</code>和<code>tail()</code>函數</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="kw">head</span>(letters,<span class="dv">5</span>) <span class="co">##取出letters向量的前五個元素</span></a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="kw">tail</span>(letters,<span class="dv">3</span>) <span class="co">##取出letters向量的後三個元素</span></a></code></pre></div>
+<pre><code>## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+</div>
+<div id="二維資料" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> 二維資料</h3>
+<p>最常見的二維資料為data.frame資料框，二維資料可針對列(Row)和行(Column)做子集，子集選擇方式一樣是使用<code>[]</code>，但因應二維資料的需求，以<code>,</code>分隔列與行的篩選條件，資料篩選原則為<strong>前Row,後Column</strong>，<strong>前列,後行</strong>，若不想篩選列，則在<code>,</code>前方保持<strong>空白</strong>即可。</p>
+<p>篩選方式可輸入位置(index)、欄位名稱或輸入布林變數(TRUE/FALSE)</p>
+<ul>
+<li>輸入位置: <code>dataFrame[row index,column index]</code></li>
+<li>輸入布林變數: <code>dataFrame[c(T,F,T),c(T,F,T)]</code></li>
+<li>輸入欄位名稱: <code>dataFrame[row name,column name]</code></li>
+</ul>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb405-2" title="2">iris[<span class="dv">1</span>,<span class="dv">2</span>] <span class="co">##第一列Row，第二行Column</span></a></code></pre></div>
+<pre><code>## [1] 3.5</code></pre>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1">iris[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,] <span class="co">##第1~3列Row，所有的行Column</span></a></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa</code></pre>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1">iris[,<span class="st">&quot;Species&quot;</span>] <span class="co">##所有的列Row，名稱為Species的行Column</span></a></code></pre></div>
+<pre><code>##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica</code></pre>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1">iris[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="kw">c</span>(T,F,T,F,T)] <span class="co">##第1~10列Row，第1,3,5行Column (TRUE)</span></a></code></pre></div>
+<pre><code>##    Sepal.Length Petal.Length Species
+## 1           5.1          1.4  setosa
+## 2           4.9          1.4  setosa
+## 3           4.7          1.3  setosa
+## 4           4.6          1.5  setosa
+## 5           5.0          1.4  setosa
+## 6           5.4          1.7  setosa
+## 7           4.6          1.4  setosa
+## 8           5.0          1.5  setosa
+## 9           4.4          1.4  setosa
+## 10          4.9          1.5  setosa</code></pre>
+<p>也可使用<code>$</code>符號做<strong>Column的篩選</strong></p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1">iris<span class="op">$</span>Species <span class="co">##所有的列Row，名稱為Species的行Column</span></a></code></pre></div>
+<pre><code>##   [1] setosa     setosa     setosa     setosa     setosa     setosa    
+##   [7] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [13] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [19] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [25] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [31] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [37] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [43] setosa     setosa     setosa     setosa     setosa     setosa    
+##  [49] setosa     setosa     versicolor versicolor versicolor versicolor
+##  [55] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [61] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [67] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [73] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [79] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [85] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [91] versicolor versicolor versicolor versicolor versicolor versicolor
+##  [97] versicolor versicolor versicolor versicolor virginica  virginica 
+## [103] virginica  virginica  virginica  virginica  virginica  virginica 
+## [109] virginica  virginica  virginica  virginica  virginica  virginica 
+## [115] virginica  virginica  virginica  virginica  virginica  virginica 
+## [121] virginica  virginica  virginica  virginica  virginica  virginica 
+## [127] virginica  virginica  virginica  virginica  virginica  virginica 
+## [133] virginica  virginica  virginica  virginica  virginica  virginica 
+## [139] virginica  virginica  virginica  virginica  virginica  virginica 
+## [145] virginica  virginica  virginica  virginica  virginica  virginica 
+## Levels: setosa versicolor virginica</code></pre>
+<p><strong>Row的篩選</strong>可使用<code>subset()</code>函數，使用方法為<code>subset(資料表,篩選邏輯)</code></p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="kw">subset</span>(iris,Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="co">##Species等於&quot;virginica&quot;的列Row，所有的行Column</span></a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 101          6.3         3.3          6.0         2.5 virginica
+## 102          5.8         2.7          5.1         1.9 virginica
+## 103          7.1         3.0          5.9         2.1 virginica
+## 104          6.3         2.9          5.6         1.8 virginica
+## 105          6.5         3.0          5.8         2.2 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+## 107          4.9         2.5          4.5         1.7 virginica
+## 108          7.3         2.9          6.3         1.8 virginica
+## 109          6.7         2.5          5.8         1.8 virginica
+## 110          7.2         3.6          6.1         2.5 virginica
+## 111          6.5         3.2          5.1         2.0 virginica
+## 112          6.4         2.7          5.3         1.9 virginica
+## 113          6.8         3.0          5.5         2.1 virginica
+## 114          5.7         2.5          5.0         2.0 virginica
+## 115          5.8         2.8          5.1         2.4 virginica
+## 116          6.4         3.2          5.3         2.3 virginica
+## 117          6.5         3.0          5.5         1.8 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 120          6.0         2.2          5.0         1.5 virginica
+## 121          6.9         3.2          5.7         2.3 virginica
+## 122          5.6         2.8          4.9         2.0 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 124          6.3         2.7          4.9         1.8 virginica
+## 125          6.7         3.3          5.7         2.1 virginica
+## 126          7.2         3.2          6.0         1.8 virginica
+## 127          6.2         2.8          4.8         1.8 virginica
+## 128          6.1         3.0          4.9         1.8 virginica
+## 129          6.4         2.8          5.6         2.1 virginica
+## 130          7.2         3.0          5.8         1.6 virginica
+## 131          7.4         2.8          6.1         1.9 virginica
+## 132          7.9         3.8          6.4         2.0 virginica
+## 133          6.4         2.8          5.6         2.2 virginica
+## 134          6.3         2.8          5.1         1.5 virginica
+## 135          6.1         2.6          5.6         1.4 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 137          6.3         3.4          5.6         2.4 virginica
+## 138          6.4         3.1          5.5         1.8 virginica
+## 139          6.0         3.0          4.8         1.8 virginica
+## 140          6.9         3.1          5.4         2.1 virginica
+## 141          6.7         3.1          5.6         2.4 virginica
+## 142          6.9         3.1          5.1         2.3 virginica
+## 143          5.8         2.7          5.1         1.9 virginica
+## 144          6.8         3.2          5.9         2.3 virginica
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
+<p><strong>Row的篩選</strong>也可搭配字串搜尋函數<code>grepl()</code></p>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1">knitr<span class="op">::</span><span class="kw">kable</span>(iris[<span class="kw">grepl</span>(<span class="st">&quot;color&quot;</span>,iris<span class="op">$</span>Species),]) <span class="co">##Species包含&quot;color&quot;的列，所有的行</span></a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>51</td>
+<td align="right">7.0</td>
+<td align="right">3.2</td>
+<td align="right">4.7</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>52</td>
+<td align="right">6.4</td>
+<td align="right">3.2</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>53</td>
+<td align="right">6.9</td>
+<td align="right">3.1</td>
+<td align="right">4.9</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>54</td>
+<td align="right">5.5</td>
+<td align="right">2.3</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>55</td>
+<td align="right">6.5</td>
+<td align="right">2.8</td>
+<td align="right">4.6</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>56</td>
+<td align="right">5.7</td>
+<td align="right">2.8</td>
+<td align="right">4.5</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>57</td>
+<td align="right">6.3</td>
+<td align="right">3.3</td>
+<td align="right">4.7</td>
+<td align="right">1.6</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>58</td>
+<td align="right">4.9</td>
+<td align="right">2.4</td>
+<td align="right">3.3</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>59</td>
+<td align="right">6.6</td>
+<td align="right">2.9</td>
+<td align="right">4.6</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>60</td>
+<td align="right">5.2</td>
+<td align="right">2.7</td>
+<td align="right">3.9</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>61</td>
+<td align="right">5.0</td>
+<td align="right">2.0</td>
+<td align="right">3.5</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>62</td>
+<td align="right">5.9</td>
+<td align="right">3.0</td>
+<td align="right">4.2</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>63</td>
+<td align="right">6.0</td>
+<td align="right">2.2</td>
+<td align="right">4.0</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>64</td>
+<td align="right">6.1</td>
+<td align="right">2.9</td>
+<td align="right">4.7</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>65</td>
+<td align="right">5.6</td>
+<td align="right">2.9</td>
+<td align="right">3.6</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>66</td>
+<td align="right">6.7</td>
+<td align="right">3.1</td>
+<td align="right">4.4</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>67</td>
+<td align="right">5.6</td>
+<td align="right">3.0</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>68</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">4.1</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>69</td>
+<td align="right">6.2</td>
+<td align="right">2.2</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>70</td>
+<td align="right">5.6</td>
+<td align="right">2.5</td>
+<td align="right">3.9</td>
+<td align="right">1.1</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>71</td>
+<td align="right">5.9</td>
+<td align="right">3.2</td>
+<td align="right">4.8</td>
+<td align="right">1.8</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>72</td>
+<td align="right">6.1</td>
+<td align="right">2.8</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>73</td>
+<td align="right">6.3</td>
+<td align="right">2.5</td>
+<td align="right">4.9</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>74</td>
+<td align="right">6.1</td>
+<td align="right">2.8</td>
+<td align="right">4.7</td>
+<td align="right">1.2</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>75</td>
+<td align="right">6.4</td>
+<td align="right">2.9</td>
+<td align="right">4.3</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>76</td>
+<td align="right">6.6</td>
+<td align="right">3.0</td>
+<td align="right">4.4</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>77</td>
+<td align="right">6.8</td>
+<td align="right">2.8</td>
+<td align="right">4.8</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>78</td>
+<td align="right">6.7</td>
+<td align="right">3.0</td>
+<td align="right">5.0</td>
+<td align="right">1.7</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>79</td>
+<td align="right">6.0</td>
+<td align="right">2.9</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>80</td>
+<td align="right">5.7</td>
+<td align="right">2.6</td>
+<td align="right">3.5</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>81</td>
+<td align="right">5.5</td>
+<td align="right">2.4</td>
+<td align="right">3.8</td>
+<td align="right">1.1</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>82</td>
+<td align="right">5.5</td>
+<td align="right">2.4</td>
+<td align="right">3.7</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>83</td>
+<td align="right">5.8</td>
+<td align="right">2.7</td>
+<td align="right">3.9</td>
+<td align="right">1.2</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>84</td>
+<td align="right">6.0</td>
+<td align="right">2.7</td>
+<td align="right">5.1</td>
+<td align="right">1.6</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>85</td>
+<td align="right">5.4</td>
+<td align="right">3.0</td>
+<td align="right">4.5</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>86</td>
+<td align="right">6.0</td>
+<td align="right">3.4</td>
+<td align="right">4.5</td>
+<td align="right">1.6</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>87</td>
+<td align="right">6.7</td>
+<td align="right">3.1</td>
+<td align="right">4.7</td>
+<td align="right">1.5</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>88</td>
+<td align="right">6.3</td>
+<td align="right">2.3</td>
+<td align="right">4.4</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>89</td>
+<td align="right">5.6</td>
+<td align="right">3.0</td>
+<td align="right">4.1</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>90</td>
+<td align="right">5.5</td>
+<td align="right">2.5</td>
+<td align="right">4.0</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>91</td>
+<td align="right">5.5</td>
+<td align="right">2.6</td>
+<td align="right">4.4</td>
+<td align="right">1.2</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>92</td>
+<td align="right">6.1</td>
+<td align="right">3.0</td>
+<td align="right">4.6</td>
+<td align="right">1.4</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>93</td>
+<td align="right">5.8</td>
+<td align="right">2.6</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>94</td>
+<td align="right">5.0</td>
+<td align="right">2.3</td>
+<td align="right">3.3</td>
+<td align="right">1.0</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>95</td>
+<td align="right">5.6</td>
+<td align="right">2.7</td>
+<td align="right">4.2</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>96</td>
+<td align="right">5.7</td>
+<td align="right">3.0</td>
+<td align="right">4.2</td>
+<td align="right">1.2</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>97</td>
+<td align="right">5.7</td>
+<td align="right">2.9</td>
+<td align="right">4.2</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>98</td>
+<td align="right">6.2</td>
+<td align="right">2.9</td>
+<td align="right">4.3</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="odd">
+<td>99</td>
+<td align="right">5.1</td>
+<td align="right">2.5</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="left">versicolor</td>
+</tr>
+<tr class="even">
+<td>100</td>
+<td align="right">5.7</td>
+<td align="right">2.8</td>
+<td align="right">4.1</td>
+<td align="right">1.3</td>
+<td align="left">versicolor</td>
+</tr>
+</tbody>
+</table>
+<p>若想要快速取得資料框的前幾列(Row)或後幾列，也可使用<code>head()</code>和<code>tail()</code>函數</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" title="1"><span class="kw">head</span>(iris,<span class="dv">5</span>) <span class="co">##取出iris資料框的前五列</span></a></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa</code></pre>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="kw">tail</span>(iris,<span class="dv">3</span>) <span class="co">##取出iris資料框的後三列</span></a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica</code></pre>
+</div>
+</div>
+<div id="排序" class="section level2">
+<h2><span class="header-section-number">6.5</span> 排序</h2>
+<div id="sort-向量排序" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> sort 向量排序</h3>
+<p><code>sort()</code>函數可直接對向量做<strong>由小到大</strong>的排序</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" title="1"><span class="kw">head</span>(islands) <span class="co">##排序前的前六筆資料</span></a></code></pre></div>
+<pre><code>##       Africa   Antarctica         Asia    Australia Axel Heiberg       Baffin 
+##        11506         5500        16988         2968           16          184</code></pre>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb424-1" title="1"><span class="kw">head</span>(<span class="kw">sort</span>(islands)) <span class="co">##由小到大排序後的前六筆資料</span></a></code></pre></div>
+<pre><code>##       Vancouver          Hainan Prince of Wales           Timor          Kyushu 
+##              12              13              13              13              14 
+##          Taiwan 
+##              14</code></pre>
+<p>如需<strong>由大到小</strong>排序，可將<code>decreasing</code>參數設為TRUE</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb426-1" title="1"><span class="kw">head</span>(<span class="kw">sort</span>(islands,<span class="dt">decreasing =</span> T)) <span class="co">##由大到小排序後的前六筆資料</span></a></code></pre></div>
+<pre><code>##          Asia        Africa North America South America    Antarctica 
+##         16988         11506          9390          6795          5500 
+##        Europe 
+##          3745</code></pre>
+</div>
+<div id="order" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> order</h3>
+<p>如需對資料框做排序，可使用<code>order()</code>函數，<code>order()</code>函數可回傳<strong>由小到大</strong>之<strong>元素位置</strong>，以<code>iris$Sepal.Length</code>為例，回傳的第一個位置為<code>14</code>，表示<code>iris$Sepal.Length</code>中，數值最小的元素為第14個元素。</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" title="1"><span class="kw">order</span>(iris<span class="op">$</span>Sepal.Length)</a></code></pre></div>
+<pre><code>##   [1]  14   9  39  43  42   4   7  23  48   3  30  12  13  25  31  46   2  10
+##  [19]  35  38  58 107   5   8  26  27  36  41  44  50  61  94   1  18  20  22
+##  [37]  24  40  45  47  99  28  29  33  60  49   6  11  17  21  32  85  34  37
+##  [55]  54  81  82  90  91  65  67  70  89  95 122  16  19  56  80  96  97 100
+##  [73] 114  15  68  83  93 102 115 143  62  71 150  63  79  84  86 120 139  64
+##  [91]  72  74  92 128 135  69  98 127 149  57  73  88 101 104 124 134 137 147
+## [109]  52  75 112 116 129 133 138  55 105 111 117 148  59  76  66  78  87 109
+## [127] 125 141 145 146  77 113 144  53 121 140 142  51 103 110 126 130 108 131
+## [145] 106 118 119 123 136 132</code></pre>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb430-1" title="1">iris<span class="op">$</span>Sepal.Length[<span class="dv">14</span>]</a></code></pre></div>
+<pre><code>## [1] 4.3</code></pre>
+<p>若將<code>decreasing</code>參數設定為TRUE，則會回傳<strong>由大到小</strong>的元素位置，以<code>iris$Sepal.Length</code>為例，回傳的第一個位置為<code>132</code>，表示<code>iris$Sepal.Length</code>中，數值最大的元素為第132個元素。</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb432-1" title="1"><span class="kw">order</span>(iris<span class="op">$</span>Sepal.Length,<span class="dt">decreasing =</span> T)</a></code></pre></div>
+<pre><code>##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142  77
+##  [19] 113 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117 148  52
+##  [37]  75 112 116 129 133 138  57  73  88 101 104 124 134 137 147  69  98 127
+##  [55] 149  64  72  74  92 128 135  63  79  84  86 120 139  62  71 150  15  68
+##  [73]  83  93 102 115 143  16  19  56  80  96  97 100 114  65  67  70  89  95
+##  [91] 122  34  37  54  81  82  90  91   6  11  17  21  32  85  49  28  29  33
+## [109]  60   1  18  20  22  24  40  45  47  99   5   8  26  27  36  41  44  50
+## [127]  61  94   2  10  35  38  58 107  12  13  25  31  46   3  30   4   7  23
+## [145]  48  42   9  39  43  14</code></pre>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" title="1">iris<span class="op">$</span>Sepal.Length[<span class="dv">132</span>]</a></code></pre></div>
+<pre><code>## [1] 7.9</code></pre>
+<p>依照order回傳的元素位置，重新排序iris資料框</p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="kw">head</span>(iris) <span class="co">##排序前的前六筆資料</span></a></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="kw">head</span>(iris[<span class="kw">order</span>(iris<span class="op">$</span>Sepal.Length),]) <span class="co">##依照Sepal.Length欄位數值大小排序後的前六筆資料</span></a></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 14          4.3         3.0          1.1         0.1  setosa
+## 9           4.4         2.9          1.4         0.2  setosa
+## 39          4.4         3.0          1.3         0.2  setosa
+## 43          4.4         3.2          1.3         0.2  setosa
+## 42          4.5         2.3          1.3         0.3  setosa
+## 4           4.6         3.1          1.5         0.2  setosa</code></pre>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1"><span class="kw">head</span>(iris[<span class="kw">order</span>(iris<span class="op">$</span>Sepal.Length,<span class="dt">decreasing =</span> T),]) <span class="co">##改為由大到小排序的前六筆資料</span></a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 132          7.9         3.8          6.4         2.0 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 106          7.6         3.0          6.6         2.1 virginica</code></pre>
+</div>
+</div>
+<div id="資料組合" class="section level2">
+<h2><span class="header-section-number">6.6</span> 資料組合</h2>
+<p>有時需要在資料框新增一列，或新增一行，可以利用資料組合函數完成</p>
+<ul>
+<li>Row 列的組合 <code>rbind()</code></li>
+<li>Column 行的組合 <code>cbind()</code></li>
+</ul>
+<p><code>rbind()</code>和<code>cbind()</code>的參數可以是向量，也可以是資料框，使用向量做資料整合範例:</p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" title="1"><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="co">#第一列</span></a>
+<a class="sourceLine" id="cb442-2" title="2">      <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)  <span class="co">#第二列</span></a>
+<a class="sourceLine" id="cb442-3" title="3">      ) </a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    4    5    6</code></pre>
+<p>使用資料框與向量做資料整合範例:</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" title="1">irisAdd&lt;-<span class="kw">rbind</span>(iris, <span class="co">#資料框</span></a>
+<a class="sourceLine" id="cb444-2" title="2">      <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="st">&quot;versicolor&quot;</span>)  <span class="co">#新增一列</span></a>
+<a class="sourceLine" id="cb444-3" title="3">      ) </a>
+<a class="sourceLine" id="cb444-4" title="4"><span class="kw">tail</span>(irisAdd)</a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 146          6.7           3          5.2         2.3  virginica
+## 147          6.3         2.5            5         1.9  virginica
+## 148          6.5           3          5.2           2  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9           3          5.1         1.8  virginica
+## 151            1           1            1           1 versicolor</code></pre>
+<p>使用向量做資料整合範例:</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" title="1"><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="co">#第一行</span></a>
+<a class="sourceLine" id="cb446-2" title="2">      <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)  <span class="co">#第二行</span></a>
+<a class="sourceLine" id="cb446-3" title="3">      ) </a></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<p>使用資料框與向量做資料整合範例:</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" title="1">irisAdd&lt;-<span class="kw">cbind</span>(iris, <span class="co">#資料框</span></a>
+<a class="sourceLine" id="cb448-2" title="2">      <span class="kw">rep</span>(<span class="st">&quot;Add&quot;</span>,<span class="kw">nrow</span>(iris))  <span class="co">#新增一行</span></a>
+<a class="sourceLine" id="cb448-3" title="3">      ) </a>
+<a class="sourceLine" id="cb448-4" title="4"><span class="kw">tail</span>(irisAdd)</a></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 145          6.7         3.3          5.7         2.5 virginica
+## 146          6.7         3.0          5.2         2.3 virginica
+## 147          6.3         2.5          5.0         1.9 virginica
+## 148          6.5         3.0          5.2         2.0 virginica
+## 149          6.2         3.4          5.4         2.3 virginica
+## 150          5.9         3.0          5.1         1.8 virginica
+##     rep(&quot;Add&quot;, nrow(iris))
+## 145                    Add
+## 146                    Add
+## 147                    Add
+## 148                    Add
+## 149                    Add
+## 150                    Add</code></pre>
+</div>
+<div id="資料結合-join" class="section level2">
+<h2><span class="header-section-number">6.7</span> 資料結合 (Join)</h2>
+<p>除了按照行列順序的組合外，更常有的情形是依照某個欄位的值作為結合依據，如：</p>
+<ul>
+<li>用學號把以下兩個資料框結合成一個資料框
+<ul>
+<li>學號與姓名資料框</li>
+<li>學號與宿舍床位資料框</li>
+</ul></li>
+<li>用縣市名稱與年度將人口資料與醫療資源資料結合</li>
+</ul>
+<p>原生的R環境可以用<code>merge()</code>函數將資料框結合，使用方法為<code>merge(資料框1,資料框2,by="結合依據欄位")</code></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" title="1">nameDF&lt;-<span class="kw">data.frame</span>(<span class="dt">ID=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb450-2" title="2">                  <span class="dt">Name=</span><span class="kw">c</span>(<span class="st">&quot;Amy&quot;</span>,<span class="st">&quot;Bob&quot;</span>,<span class="st">&quot;Chris&quot;</span>,<span class="st">&quot;David&quot;</span>,<span class="st">&quot;Emma&quot;</span>))</a>
+<a class="sourceLine" id="cb450-3" title="3">scoreDF&lt;-<span class="kw">data.frame</span>(<span class="dt">ID=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>),</a>
+<a class="sourceLine" id="cb450-4" title="4">                  <span class="dt">Score=</span><span class="kw">c</span>(<span class="dv">60</span>,<span class="dv">90</span>,<span class="dv">50</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb451-1" title="1">nameDF</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="left">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Amy</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Bob</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Chris</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">David</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Emma</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" title="1">scoreDF</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="right">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">90</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">50</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" title="1"><span class="kw">merge</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="left">Name</th>
+<th align="right">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Amy</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Bob</td>
+<td align="right">90</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="left">David</td>
+<td align="right">50</td>
+</tr>
+</tbody>
+</table>
+<p>按照上述輸出結果可知，merge函數預設只保留兩資料框都有對應到的資料，如果不想要merge函數將沒對應到的資料刪除，可以設定參數<code>all</code>，<code>all.x</code>或是<code>all.y</code>，來保留沒對應到的資料列。</p>
+<p><code>merge(資料框1,資料框2,by="結合依據欄位",all=T)</code></p>
+<p><code>merge(資料框1,資料框2,by="結合依據欄位",all.x=T)</code></p>
+<p><code>merge(資料框1,資料框2,by="結合依據欄位",all.y=T)</code></p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" title="1"><span class="kw">merge</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>,<span class="dt">all=</span>T)</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="left">Name</th>
+<th align="right">Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Amy</td>
+<td align="right">60</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Bob</td>
+<td align="right">90</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Chris</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">David</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Emma</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p><code>dplyr</code>套件提供更有效率的資料結合方法，包括:</p>
+<ul>
+<li>inner_join()：保留有對應到的資料</li>
+<li>left_join()：保留左邊資料框的所有資料</li>
+<li>right_join()：保留右邊資料框的所有資料</li>
+<li>full_join()：保留所有資料</li>
+<li>semi_join()</li>
+<li>anti_join()</li>
+</ul>
+<p>inner_join()：只保留兩張表都有的列，使用方法為 <code>inner_join(x, y, by = )</code></p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">library</span>(dplyr) <span class="co">#使用前須先載入套件</span></a>
+<a class="sourceLine" id="cb455-2" title="2"><span class="kw">inner_join</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<pre><code>##   ID  Name Score
+## 1  1   Amy    60
+## 2  2   Bob    90
+## 3  4 David    50</code></pre>
+<p>left_join()：保留左邊的表所有的列，使用方法文為 <code>left_join(x, y, by = )</code></p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb457-1" title="1"><span class="kw">left_join</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<pre><code>##   ID  Name Score
+## 1  1   Amy    60
+## 2  2   Bob    90
+## 3  3 Chris    NA
+## 4  4 David    50
+## 5  5  Emma    NA</code></pre>
+<p>right_join()：保留右邊的表所有的列。使用方法為 <code>right_join(x, y, by = )</code></p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" title="1"><span class="kw">right_join</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<pre><code>##   ID  Name Score
+## 1  1   Amy    60
+## 2  2   Bob    90
+## 3  4 David    50</code></pre>
+<p>full_join()：保留所有的列。使用方法為 <code>full_join(x, y, by = )</code></p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb461-1" title="1"><span class="kw">full_join</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<pre><code>##   ID  Name Score
+## 1  1   Amy    60
+## 2  2   Bob    90
+## 3  3 Chris    NA
+## 4  4 David    50
+## 5  5  Emma    NA</code></pre>
+<p>semi_join()：留下左邊的ID也有出現在右邊的表的列，右表資料不會輸出。使用方法為 <code>semi_join(x, y, by = )</code></p>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" title="1"><span class="kw">semi_join</span>(nameDF,scoreDF,<span class="dt">by=</span><span class="st">&quot;ID&quot;</span>)</a></code></pre></div>
+<pre><code>##   ID  Name
+## 1  1   Amy
+## 2  2   Bob
+## 3  4 David</code></pre>
+</div>
+<div id="reshape" class="section level2">
+<h2><span class="header-section-number">6.8</span> 長表與寬表</h2>
+<p>在資料處理的過程中，常因各種需求，需要執行長寬表互換的動作，在R中有很好用的套件reshape2<span class="citation">(Wickham <a href="#ref-R-reshape2" role="doc-biblioref">2020</a>)</span> package，提供完整的轉換功能，最常使用的是</p>
+<ul>
+<li>寬表轉長表 <code>melt(資料框/寬表,id.vars=需要保留的欄位)</code></li>
+<li>長表轉寬表 <code>dcast(資料框/長表,寬表分列依據~分欄位依據)</code></li>
+</ul>
+<p>原來的<code>airquality</code>資料框中，有Ozone, Solar.R, Wind, Temp, Month, Day等六個欄位 (Column)，屬於寬表，以下範例將保留Month和Day兩個欄位，並將其他欄位的名稱整合至variable欄位，數值整合至value欄位，寬表轉長表範例如下:</p>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb465-1" title="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb465-2" title="2"><span class="kw">head</span>(airquality)</a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb467-1" title="1">airqualityM&lt;-<span class="kw">melt</span>(airquality,<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;Month&quot;</span>,<span class="st">&quot;Day&quot;</span>)) <span class="co">##欄位需要保留&quot;Month&quot;,&quot;Day&quot;</span></a>
+<a class="sourceLine" id="cb467-2" title="2"><span class="kw">head</span>(airqualityM)</a></code></pre></div>
+<pre><code>##   Month Day variable value
+## 1     5   1    Ozone    41
+## 2     5   2    Ozone    36
+## 3     5   3    Ozone    12
+## 4     5   4    Ozone    18
+## 5     5   5    Ozone    NA
+## 6     5   6    Ozone    28</code></pre>
+<p>轉換過的長表<code>airqualityM</code>資料框中，剩下Month, Day, variable, value等四個欄位 (Column)，屬於長表，以下範例variable欄位的值轉換為新欄位，並將value欄位填回新增的欄位，長表轉寬表範例如下:</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" title="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb469-2" title="2"><span class="co">##欄位保留&quot;Month&quot;,&quot;Day&quot;外，其他欄位數目由variable定義</span></a>
+<a class="sourceLine" id="cb469-3" title="3">airqualityCast&lt;-<span class="kw">dcast</span>(airqualityM, Month <span class="op">+</span>Day<span class="op">~</span>variable) </a>
+<a class="sourceLine" id="cb469-4" title="4"><span class="kw">head</span>(airqualityCast)</a></code></pre></div>
+<pre><code>##   Month Day Ozone Solar.R Wind Temp
+## 1     5   1    41     190  7.4   67
+## 2     5   2    36     118  8.0   72
+## 3     5   3    12     149 12.6   74
+## 4     5   4    18     313 11.5   62
+## 5     5   5    NA      NA 14.3   56
+## 6     5   6    28      NA 14.9   66</code></pre>
+<p>tidyverse套件組的tidyr <span class="citation">(Wickham and Henry <a href="#ref-R-tidyr" role="doc-biblioref">2020</a>)</span> package，也提供完整的轉換功能，舉例如下</p>
+<ul>
+<li>寬表轉長表 <code>gather(資料框/寬表,key="主鍵欄位名稱",value="數值欄位名稱",要轉換的資料1,要轉換的資料2,...)</code></li>
+<li>長表轉寬表 <code>spread(資料框/長表,key="要展開的欄位名稱",value="數值欄位名稱")</code></li>
+</ul>
+<p>同上，以<code>airquality</code>資料框為例，原來的<code>airquality</code>資料框中，有Ozone, Solar.R, Wind, Temp, Month, Day等六個欄位 (Column)，屬於寬表</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" title="1"><span class="kw">head</span>(airquality,<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3</code></pre>
+<p>以下範例將保留Month和Day兩個欄位，將其他欄位的名稱整合至Type欄位，數值整合至Value欄位，寬表轉長表範例如下:</p>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" title="1"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb473-2" title="2">airqualityL&lt;-<span class="kw">gather</span>(airquality,</a>
+<a class="sourceLine" id="cb473-3" title="3">                    <span class="dt">key=</span>Type,<span class="dt">value=</span>Value,</a>
+<a class="sourceLine" id="cb473-4" title="4">                    Ozone,Solar.R,Wind,Temp) <span class="co">##欄位Ozone,Solar.R,Wind,Temp轉成單一欄位</span></a></code></pre></div>
+<p>轉換過的長表<code>airqualityL</code>資料框中，剩下Month, Day, Type, Value等四個欄位 (Column)，屬於長表，以下範例Type欄位的值轉換為新欄位，並將Value欄位填回新增的欄位，長表轉寬表範例如下:</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb474-1" title="1"><span class="co">#欄位保留&quot;Month&quot;,&quot;Day&quot;外，其他欄位由variable定義</span></a>
+<a class="sourceLine" id="cb474-2" title="2">airqualityW&lt;-<span class="kw">spread</span>(airqualityL, <span class="dt">key=</span>Type,<span class="dt">value=</span>Value) </a>
+<a class="sourceLine" id="cb474-3" title="3"><span class="kw">head</span>(airqualityW)</a></code></pre></div>
+<pre><code>##   Month Day Ozone Solar.R Temp Wind
+## 1     5   1    41     190   67  7.4
+## 2     5   2    36     118   72  8.0
+## 3     5   3    12     149   74 12.6
+## 4     5   4    18     313   62 11.5
+## 5     5   5    NA      NA   56 14.3
+## 6     5   6    28      NA   66 14.9</code></pre>
+</div>
+<div id="遺漏值處理" class="section level2">
+<h2><span class="header-section-number">6.9</span> 遺漏值處理</h2>
+<p>遺漏值(Missing Value)常常出現在真實資料內，在數值運算時常會有問題，最簡單的方法是將有缺值的資料移除，如資料為向量，可使用<code>is.na()</code>來判斷資料是否為空值<code>NA</code>，若為真<code>TRUE</code>，則將資料移除。</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" title="1">naVec&lt;-<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="ot">NA</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>)</a>
+<a class="sourceLine" id="cb476-2" title="2"><span class="kw">is.na</span>(naVec)</a></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" title="1">naVec[<span class="op">!</span><span class="kw">is.na</span>(naVec)] <span class="co">##保留所有在is.na()檢查回傳FALSE的元素</span></a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<p>若資料型態為資料框，可使用<code>complete.cases</code>來選出完整的資料列，如果資料列是完整的，則會回傳真TRUE</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" title="1"><span class="kw">head</span>(airquality)</a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 5    NA      NA 14.3   56     5   5
+## 6    28      NA 14.9   66     5   6</code></pre>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" title="1"><span class="kw">complete.cases</span>(airquality) </a></code></pre></div>
+<pre><code>##   [1]  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE
+##  [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [25] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [37] FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE  TRUE
+##  [49]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [61] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [73]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+##  [85]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+##  [97] FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+## [109]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
+## [121]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [133]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [145]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" title="1"><span class="kw">head</span>(airquality[<span class="kw">complete.cases</span>(airquality),]) <span class="co">##保留所有在complete.cases()檢查回傳TRUE的元素</span></a></code></pre></div>
+<pre><code>##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67     5   1
+## 2    36     118  8.0   72     5   2
+## 3    12     149 12.6   74     5   3
+## 4    18     313 11.5   62     5   4
+## 7    23     299  8.6   65     5   7
+## 8    19      99 13.8   59     5   8</code></pre>
+<p>利用演算法補值也是一種解決辦法，可參考_skydome20_的<a href="http://www.rpubs.com/skydome20/R-Note10-Missing_Value" target="_blank">R筆記–(10)遺漏值處理(Impute Missing Value)</a>教學。</p>
+</div>
+<div id="manCase" class="section level2">
+<h2><span class="header-section-number">6.10</span> 綜合練習範例Case study</h2>
+<p>在本範例中，介紹使用<code>SportsAnalytics</code> <span class="citation">(Eugster <a href="#ref-R-SportsAnalytics" role="doc-biblioref">2013</a>)</span> package 撈取NBA各球員的數據，並加以觀察分析。</p>
+<div id="載入資料" class="section level3">
+<h3><span class="header-section-number">6.10.1</span> 載入資料</h3>
+<p>首先用<code>library()</code>函數將<code>SportsAnalytics</code>套件載入 (若尚未安裝此套件者，必須先安裝套件，可參考Chapter <a href="intro.html#intro">1</a>)，並利用套件內提供的<code>fetch_NBAPlayerStatistics()</code>函數，將對應年份之資料取出。</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" title="1"><span class="kw">library</span>(SportsAnalytics)</a>
+<a class="sourceLine" id="cb486-2" title="2">NBA1516&lt;-<span class="kw">fetch_NBAPlayerStatistics</span>(<span class="st">&quot;15-16&quot;</span>)</a></code></pre></div>
+</div>
+<div id="資料總覽" class="section level3">
+<h3><span class="header-section-number">6.10.2</span> 資料總覽</h3>
+<p>資料取出後，可用<code>str()</code>函數總覽<code>NBA1516</code>這個資料框的欄位與欄位類別</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" title="1"><span class="kw">str</span>(NBA1516)</a></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	476 obs. of  25 variables:
+##  $ League             : Factor w/ 1 level &quot;NBA&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Name               : chr  &quot;Quincy Acy&quot; &quot;Jordan Adams&quot; &quot;Steven Adams&quot; &quot;Arron Afflalo&quot; ...
+##  $ Team               : Factor w/ 31 levels &quot;ATL&quot;,&quot;BOS&quot;,&quot;BRO&quot;,..: 27 15 22 20 19 13 28 26 12 15 ...
+##  $ Position           : Factor w/ 5 levels &quot;C&quot;,&quot;PF&quot;,&quot;PG&quot;,..: 4 5 1 5 1 1 2 2 2 5 ...
+##  $ GamesPlayed        : int  59 2 80 71 59 60 74 9 79 64 ...
+##  $ TotalMinutesPlayed : int  877 15 2019 2359 863 802 2260 37 1601 1622 ...
+##  $ FieldGoalsMade     : int  119 2 261 354 150 134 536 5 191 215 ...
+##  $ FieldGoalsAttempted: int  214 6 426 799 314 225 1045 10 370 469 ...
+##  $ ThreesMade         : int  19 0 0 91 0 0 0 0 0 15 ...
+##  $ ThreesAttempted    : int  49 1 0 238 1 0 16 0 0 42 ...
+##  $ FreeThrowsMade     : int  50 3 114 110 52 60 259 0 46 90 ...
+##  $ FreeThrowsAttempted: int  68 5 196 131 62 84 302 0 73 138 ...
+##  $ OffensiveRebounds  : int  65 0 218 23 75 86 175 2 162 104 ...
+##  $ TotalRebounds      : int  188 2 531 266 269 288 631 6 424 297 ...
+##  $ Assists            : int  27 3 61 145 32 50 110 0 76 70 ...
+##  $ Steals             : int  29 3 42 25 19 47 38 1 26 109 ...
+##  $ Turnovers          : int  27 2 84 82 54 64 99 1 69 78 ...
+##  $ Blocks             : int  24 0 89 10 36 68 81 2 42 18 ...
+##  $ PersonalFouls      : int  103 2 223 142 134 139 151 1 147 175 ...
+##  $ Disqualifications  : int  0 0 2 1 0 1 0 0 1 1 ...
+##  $ TotalPoints        : int  307 7 636 909 352 328 1331 10 428 535 ...
+##  $ Technicals         : int  3 0 2 1 2 0 0 0 0 1 ...
+##  $ Ejections          : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ FlagrantFouls      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ GamesStarted       : int  29 0 80 57 17 5 74 0 28 56 ...</code></pre>
+<p>可以發現此<code>NBA1516</code>資料框內有476筆球員資料(觀察值, obs)，每筆資料有25個欄位 (variables)。</p>
+</div>
+<div id="資料預覽" class="section level3">
+<h3><span class="header-section-number">6.10.3</span> 資料預覽</h3>
+<p>如果想看資料框內容，可用<code>head()</code>和<code>tail()</code>快速瀏覽部分資料</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1"><span class="kw">head</span>(NBA1516)</a></code></pre></div>
+<pre><code>##   League          Name Team Position GamesPlayed TotalMinutesPlayed
+## 1    NBA    Quincy Acy  SAC       SF          59                877
+## 2    NBA  Jordan Adams  MEM       SG           2                 15
+## 3    NBA  Steven Adams  OKL        C          80               2019
+## 4    NBA Arron Afflalo  NYK       SG          71               2359
+## 5    NBA Alexis Ajinca  NOR        C          59                863
+## 6    NBA  Cole Aldrich  LAC        C          60                802
+##   FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted FreeThrowsMade
+## 1            119                 214         19              49             50
+## 2              2                   6          0               1              3
+## 3            261                 426          0               0            114
+## 4            354                 799         91             238            110
+## 5            150                 314          0               1             52
+## 6            134                 225          0               0             60
+##   FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists Steals Turnovers
+## 1                  68                65           188      27     29        27
+## 2                   5                 0             2       3      3         2
+## 3                 196               218           531      61     42        84
+## 4                 131                23           266     145     25        82
+## 5                  62                75           269      32     19        54
+## 6                  84                86           288      50     47        64
+##   Blocks PersonalFouls Disqualifications TotalPoints Technicals Ejections
+## 1     24           103                 0         307          3         0
+## 2      0             2                 0           7          0         0
+## 3     89           223                 2         636          2         0
+## 4     10           142                 1         909          1         0
+## 5     36           134                 0         352          2         0
+## 6     68           139                 1         328          0         0
+##   FlagrantFouls GamesStarted
+## 1             0           29
+## 2             0            0
+## 3             0           80
+## 4             0           57
+## 5             0           17
+## 6             0            5</code></pre>
+</div>
+<div id="資料排序後篩選" class="section level3">
+<h3><span class="header-section-number">6.10.4</span> 資料排序後篩選</h3>
+<p>觀察資料框的組成後，我們想要找出<strong>出場數</strong>最<strong>高</strong>的前五名選手的所有資料，此時可以利用<code>order()</code>函數先<strong>由大到小</strong>排序(<code>decreasing = T</code>)後，再用<code>[,]</code>取子集。</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1">NBA1516Order&lt;-NBA1516[<span class="kw">order</span>(NBA1516<span class="op">$</span>GamesPlayed,<span class="dt">decreasing =</span> T),]</a>
+<a class="sourceLine" id="cb491-2" title="2">NBA1516Order[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,] <span class="co">##逗號前方放1~5，表示取1~5列；逗號後方空白，表示要取所有欄位</span></a></code></pre></div>
+<pre><code>##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 11     NBA Al-farouq Aminu  POR       SF          82               2342
+## 37     NBA     Will Barton  DEN       SG          82               2355
+## 48     NBA Bismack Biyombo  TOR       PF          82               1810
+## 62     NBA    Corey Brewer  HOU       SG          82               1670
+## 118    NBA    Gorgui Dieng  MIN        C          82               2222
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 11             299                 719        126             349
+## 37             426                 984        112             324
+## 48             156                 288          0               1
+## 62             212                 552         61             225
+## 118            308                 578          6              20
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 11             115                 156                98           498     138
+## 37             216                 268                60           477     204
+## 48             142                 226               182           655      29
+## 62             105                 140                42           199     109
+## 118            205                 248               156           584     143
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 11      72       120     53           171                 0         839
+## 37      71       139     39           147                 0        1180
+## 48      19        71    133           225                 2         454
+## 62      84        78     19           168                 1         590
+## 118     94       140     96           219                 0         827
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 11           3         0             0           82
+## 37           2         0             0            1
+## 48           3         0             0           22
+## 62           0         0             0           12
+## 118          1         0             0           39</code></pre>
+<p>如果我們想要出<strong>出場分鐘數</strong>最<strong>高</strong>的前十名選手的<strong>名字</strong>，一樣可以用<code>order()</code>函數先<strong>由大到小</strong>排序(<code>decreasing = T</code>)後，再用<code>[,]</code>取子集。</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1">NBA1516OrderM&lt;-NBA1516[<span class="kw">order</span>(NBA1516<span class="op">$</span>TotalMinutesPlayed,<span class="dt">decreasing =</span> T),]</a>
+<a class="sourceLine" id="cb493-2" title="2">NBA1516OrderM[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="st">&quot;Name&quot;</span>] <span class="co">##逗號前方取1~10列；逗號後方放&quot;Name&quot;，表示取名稱為Name之欄位</span></a></code></pre></div>
+<pre><code>##  [1] &quot;James Harden&quot;     &quot;Gordon Hayward&quot;   &quot;Kemba Walker&quot;     &quot;Trevor Ariza&quot;    
+##  [5] &quot;Khris Middleton&quot;  &quot;Kyle Lowry&quot;       &quot;Marcus Morris&quot;    &quot;Andrew Wiggins&quot;  
+##  [9] &quot;Paul George&quot;      &quot;Gi Antetokounmpo&quot;</code></pre>
+</div>
+<div id="欄位值篩選" class="section level3">
+<h3><span class="header-section-number">6.10.5</span> 欄位值篩選</h3>
+<p>除了排序取值外，也可用欄位條件搜尋，舉例來說，可以取出所有波士頓賽爾迪克隊的選手資料，使用<code>subset()</code>函數</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1"><span class="kw">subset</span>(NBA1516,Team<span class="op">==</span><span class="st">&quot;BOS&quot;</span>)</a></code></pre></div>
+<pre><code>##     League            Name Team Position GamesPlayed TotalMinutesPlayed
+## 60     NBA   Avery Bradley  BOS       PG          76               2536
+## 89     NBA     Coty Clarke  BOS     &lt;NA&gt;           4                  8
+## 102    NBA     Jae Crowder  BOS       SF          73               2310
+## 213    NBA     R.j. Hunter  BOS       SG          36                319
+## 228    NBA   Jonas Jerebko  BOS       PF          78               1178
+## 229    NBA    Amir Johnson  BOS       PF          79               1798
+## 300    NBA   Jordan Mickey  BOS       PF          16                 59
+## 340    NBA    Kelly Olynyk  BOS        C          69               1396
+## 382    NBA    Terry Rozier  BOS       PG          39                310
+## 400    NBA    Marcus Smart  BOS       PG          61               1666
+## 416    NBA Jared Sullinger  BOS       PF          81               1917
+## 422    NBA   Isaiah Thomas  BOS       PG          82               2647
+## 433    NBA     Evan Turner  BOS       SG          81               2270
+## 471    NBA     James Young  BOS       SG          29                200
+## 476    NBA    Tyler Zeller  BOS        C          60                714
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 60             456                1018        147             406
+## 89               2                   4          2               2
+## 102            359                 812        122             363
+## 213             36                  98         19              63
+## 228            118                 286         43             108
+## 229            250                 427         10              43
+## 300              8                  22          0               0
+## 340            253                 556         85             210
+## 382             29                 106          6              27
+## 400            184                 529         61             241
+## 416            351                 807         29             104
+## 422            591                1382        167             465
+## 433            343                 753         20              83
+## 471             11                  36          6              26
+## 476            138                 290          0               0
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 60              96                 123                48           220     158
+## 89               0                   0                 0             1       0
+## 102            196                 239                70           373     135
+## 213              6                   7                 2            37      13
+## 228             61                  78                77           288      62
+## 229             69                 121               178           505     137
+## 300              5                  10                 6            13       1
+## 340             96                 128                72           281     105
+## 382              8                  10                24            63      37
+## 400            129                 166                76           255     186
+## 416            103                 161               194           673     187
+## 422            474                 544                46           243     509
+## 433            148                 179                50           397     359
+## 471              1                   4                 4            26       9
+## 476             88                 108                62           178      29
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 60     117       109     19           164                 2        1155
+## 89       0         1      0             0                 0           6
+## 102    126        83     35           198                 4        1036
+## 213     14        11      4            29                 0          97
+## 228     20        52     24           137                 2         340
+## 229     52        94     83           214                 1         579
+## 300      0         1     11             5                 0          21
+## 340     52        74     33           163                 3         687
+## 382      6        19      1            23                 0          72
+## 400     91        80     18           183                 1         558
+## 416     75       102     47           209                 2         834
+## 422     91       220      9           167                 1        1823
+## 433     80       169     28           139                 0         854
+## 471      6         5      1            17                 0          29
+## 476     10        46     22            97                 1         364
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 60           0         0             0           72
+## 89           0         0             0            0
+## 102          3         0             0           73
+## 213          0         0             0            0
+## 228          1         0             0            0
+## 229          0         0             0           76
+## 300          0         0             0            0
+## 340          1         0             0            8
+## 382          0         0             0            0
+## 400          2         0             0           10
+## 416          2         0             0           73
+## 422          9         0             0           79
+## 433          2         0             0           12
+## 471          0         0             0            0
+## 476          0         0             0            3</code></pre>
+</div>
+<div id="字串條件搜尋後篩選" class="section level3">
+<h3><span class="header-section-number">6.10.6</span> 字串條件搜尋後篩選</h3>
+<p>當然也可以結合<strong>字串搜尋</strong>函數<code>grepl()</code>，將所有名字裡有“James”的選手資料取出</p>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" title="1">NBA1516[<span class="kw">grepl</span>(<span class="st">&quot;James&quot;</span>,NBA1516<span class="op">$</span>Name),]</a></code></pre></div>
+<pre><code>##     League           Name Team Position GamesPlayed TotalMinutesPlayed
+## 15     NBA James Anderson  SAC       SG          51                721
+## 132    NBA    James Ennis  NOR       SF          22                329
+## 178    NBA   James Harden  HOU       SG          82               3121
+## 222    NBA   Lebron James  CLE       SF          76               2710
+## 231    NBA  James Johnson  TOR       PF          57                924
+## 239    NBA    James Jones  CLE       SG          48                466
+## 286    NBA   James Mcadoo  GSW       SG          41                265
+## 471    NBA    James Young  BOS       SG          29                200
+##     FieldGoalsMade FieldGoalsAttempted ThreesMade ThreesAttempted
+## 15              67                 178         23              86
+## 132             54                 113         26              58
+## 178            710                1617        236             656
+## 222            737                1416         87             282
+## 231            114                 240         20              66
+## 239             59                 143         41             104
+## 286             45                  84          1               2
+## 471             11                  36          6              26
+##     FreeThrowsMade FreeThrowsAttempted OffensiveRebounds TotalRebounds Assists
+## 15              22                  29                13            86      41
+## 132             25                  34                21            42      21
+## 178            720                 837                63           502     612
+## 222            359                 491               111           565     512
+## 231             39                  68                28           126      67
+## 239             21                  26                 8            50      14
+## 286             26                  49                30            58      17
+## 471              1                   4                 4            26       9
+##     Steals Turnovers Blocks PersonalFouls Disqualifications TotalPoints
+## 15      21        42     14            54                 0         179
+## 132     16        19      5            28                 1         159
+## 178    138       374     51           229                 1        2376
+## 222    104       249     49           143                 0        1920
+## 231     29        54     33            84                 0         287
+## 239     11        13     10            50                 0         180
+## 286     10        16      8            39                 0         117
+## 471      6         5      1            17                 0          29
+##     Technicals Ejections FlagrantFouls GamesStarted
+## 15           0         0             0           15
+## 132          0         0             0            5
+## 178          2         0             0           82
+## 222          3         0             0           76
+## 231          0         0             0           32
+## 239          1         0             0            0
+## 286          0         0             0            1
+## 471          0         0             0            0</code></pre>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-SportsAnalytics">
+<p>Eugster, Manuel J. A. 2013. <em>SportsAnalytics: Infrastructure for Sports Analytics</em>. <a href="https://CRAN.R-project.org/package=SportsAnalytics">https://CRAN.R-project.org/package=SportsAnalytics</a>.</p>
+</div>
+<div id="ref-R-lubridate">
+<p>Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2020. <em>Lubridate: Make Dealing with Dates a Little Easier</em>. <a href="https://CRAN.R-project.org/package=lubridate">https://CRAN.R-project.org/package=lubridate</a>.</p>
+</div>
+<div id="ref-R-stringr">
+<p>Wickham, Hadley. 2019b. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div id="ref-R-reshape2">
+<p>Wickham, Hadley. 2020. <em>Reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package</em>. <a href="https://CRAN.R-project.org/package=reshape2">https://CRAN.R-project.org/package=reshape2</a>.</p>
+</div>
+<div id="ref-R-tidyr">
+<p>Wickham, Hadley, and Lionel Henry. 2020. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="io.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="eda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "Microsoft JhengHei",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/yijutseng/DataAnalyticsWithRBook/edit/master/06-manipulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["DataAnalyticsWithR.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

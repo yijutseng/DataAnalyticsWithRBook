@@ -1,0 +1,23 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+  font-family:Microsoft JhengHei,sans-serif;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+  font-family:Microsoft JhengHei,sans-serif;
+}
+pre code {
+  white-space: inherit;
+}
+p{
+  font-family:Microsoft JhengHei,sans-serif;
+}
+li,h1,h2,h3,h4,h5{
+  font-family:Microsoft JhengHei,sans-serif;
+}
+
