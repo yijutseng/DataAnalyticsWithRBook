@@ -126,7 +126,7 @@ qplot(TotalPoints, data = NBA1516,
 
 - 準備好資料。當然要有資料才能畫圖
 - 設定**Aesthetic attributes**。使用`aes(x, y, ...)`指定
-- 指定**Geometric objects**。常用的包括`geom_point()`、`geom_line()`、`geom_point()`、`geom_polygon()`、`geom_errorbar()`
+- 指定**Geometric objects**。常用的包括`geom_point()`、`geom_line()`、`geom_histogram()`、`geom_polygon()`、`geom_errorbar()`
 
 ```{r warning=F, message=F}
 library(ggplot2) ##須先安裝 install.packages("ggplot2")

@@ -503,19 +503,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下為計算30個學生的成績時的程式碼，可以看到每筆成績都需要耗費一行程式碼來處理，十分麻煩。</p>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" title="1">ori_score_list&lt;-<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>,<span class="dv">30</span>)</a>
 <a class="sourceLine" id="cb233-2" title="2">ori_score_list[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1] 53 89 37</code></pre>
+<pre><code>## [1] 87 60  9</code></pre>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" title="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">1</span>])</a></code></pre></div>
-<pre><code>## [1] 73</code></pre>
+<pre><code>## [1] 93</code></pre>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" title="1"><span class="kw">good_teacher_score</span>(ori_score_list[<span class="dv">2</span>])</a></code></pre></div>
-<pre><code>## [1] 94</code></pre>
+<pre><code>## [1] 77</code></pre>
 <div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" title="1"><span class="co">#.....</span></a></code></pre></div>
 <p>此時若能妥善利用<code>purrr</code>套件的<code>map_dbl</code>功能，就能將程式碼縮短，並且提升易讀性。map()函數家族的使用概念為<code>map(需逐一計算的向量,計算所需的函數)</code>，如下所示，我們需要計算的學生原始成績存在<code>ori_score_list</code>向量中，而加分的函數為<code>good_teacher_score()</code>：
 <img src="figure/map.png" width="666" />
 <a href="https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf">圖片來源</a></p>
 <p>學生原始成績存在ori_score_list變數內：</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" title="1">ori_score_list</a></code></pre></div>
-<pre><code>##  [1]  53  89  37  52   3  98  16  35  12  57  47  19  61  13  88   1  46  83  80
-## [20]  74  56  69   8  70   9   2 100  18   5  66</code></pre>
+<pre><code>##  [1] 87 60  9  5 84 77 64 54 81 70 95 58 59  7 66 20 28 25 94  3 35 78 12 24 39
+## [26] 53 98  4 16 10</code></pre>
 <p>使用<code>map_dbl</code>將每位學生的成績加分：</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" title="1"><span class="kw">library</span>(purrr)</a>
 <a class="sourceLine" id="cb242-2" title="2">new_score_list&lt;-</a>
@@ -532,124 +532,124 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">53</td>
-<td align="right">73</td>
+<td align="right">87</td>
+<td align="right">93</td>
 </tr>
 <tr class="even">
-<td align="right">89</td>
-<td align="right">94</td>
-</tr>
-<tr class="odd">
-<td align="right">37</td>
-<td align="right">61</td>
-</tr>
-<tr class="even">
-<td align="right">52</td>
-<td align="right">72</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">17</td>
-</tr>
-<tr class="even">
-<td align="right">98</td>
-<td align="right">99</td>
-</tr>
-<tr class="odd">
-<td align="right">16</td>
-<td align="right">40</td>
-</tr>
-<tr class="even">
-<td align="right">35</td>
-<td align="right">59</td>
-</tr>
-<tr class="odd">
-<td align="right">12</td>
-<td align="right">35</td>
-</tr>
-<tr class="even">
-<td align="right">57</td>
-<td align="right">76</td>
-</tr>
-<tr class="odd">
-<td align="right">47</td>
-<td align="right">69</td>
-</tr>
-<tr class="even">
-<td align="right">19</td>
-<td align="right">44</td>
-</tr>
-<tr class="odd">
-<td align="right">61</td>
-<td align="right">78</td>
-</tr>
-<tr class="even">
-<td align="right">13</td>
-<td align="right">36</td>
-</tr>
-<tr class="odd">
-<td align="right">88</td>
-<td align="right">94</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="right">46</td>
-<td align="right">68</td>
-</tr>
-<tr class="even">
-<td align="right">83</td>
-<td align="right">91</td>
-</tr>
-<tr class="odd">
-<td align="right">80</td>
-<td align="right">89</td>
-</tr>
-<tr class="even">
-<td align="right">74</td>
-<td align="right">86</td>
-</tr>
-<tr class="odd">
-<td align="right">56</td>
-<td align="right">75</td>
-</tr>
-<tr class="even">
-<td align="right">69</td>
-<td align="right">83</td>
-</tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="right">28</td>
-</tr>
-<tr class="even">
-<td align="right">70</td>
-<td align="right">84</td>
+<td align="right">60</td>
+<td align="right">77</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
 <td align="right">30</td>
 </tr>
 <tr class="even">
-<td align="right">2</td>
-<td align="right">14</td>
-</tr>
-<tr class="odd">
-<td align="right">100</td>
-<td align="right">100</td>
-</tr>
-<tr class="even">
-<td align="right">18</td>
-<td align="right">42</td>
-</tr>
-<tr class="odd">
 <td align="right">5</td>
 <td align="right">22</td>
 </tr>
+<tr class="odd">
+<td align="right">84</td>
+<td align="right">92</td>
+</tr>
 <tr class="even">
+<td align="right">77</td>
+<td align="right">88</td>
+</tr>
+<tr class="odd">
+<td align="right">64</td>
+<td align="right">80</td>
+</tr>
+<tr class="even">
+<td align="right">54</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">81</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="right">70</td>
+<td align="right">84</td>
+</tr>
+<tr class="odd">
+<td align="right">95</td>
+<td align="right">97</td>
+</tr>
+<tr class="even">
+<td align="right">58</td>
+<td align="right">76</td>
+</tr>
+<tr class="odd">
+<td align="right">59</td>
+<td align="right">77</td>
+</tr>
+<tr class="even">
+<td align="right">7</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
 <td align="right">66</td>
 <td align="right">81</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">45</td>
+</tr>
+<tr class="odd">
+<td align="right">28</td>
+<td align="right">53</td>
+</tr>
+<tr class="even">
+<td align="right">25</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">94</td>
+<td align="right">97</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">17</td>
+</tr>
+<tr class="odd">
+<td align="right">35</td>
+<td align="right">59</td>
+</tr>
+<tr class="even">
+<td align="right">78</td>
+<td align="right">88</td>
+</tr>
+<tr class="odd">
+<td align="right">12</td>
+<td align="right">35</td>
+</tr>
+<tr class="even">
+<td align="right">24</td>
+<td align="right">49</td>
+</tr>
+<tr class="odd">
+<td align="right">39</td>
+<td align="right">62</td>
+</tr>
+<tr class="even">
+<td align="right">53</td>
+<td align="right">73</td>
+</tr>
+<tr class="odd">
+<td align="right">98</td>
+<td align="right">99</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
+<td align="right">16</td>
+<td align="right">40</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">32</td>
 </tr>
 </tbody>
 </table>
